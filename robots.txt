@@ -1,0 +1,20 @@
+# robots.txt für benni-photo.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.benni-photo.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin/backend areas
+Disallow: /admin/
+Disallow: /backend/
+
+# Allow important resources
+Allow: /main.css
+Allow: /main.js
+Allow: /*.svg$
+Allow: /*.png$
+Allow: /*.jpg$
