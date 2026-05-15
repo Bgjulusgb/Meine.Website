@@ -1,4 +1,4 @@
-name: 🚀 Deploy Galerie (Frontend)
+name: 🚀 Deploy Galerie (Worker + Frontend)
 
 on:
   push:
@@ -6,38 +6,60 @@ on:
   workflow_dispatch:
 
 jobs:
+  deploy_worker:
+    name: 1️⃣ Worker zu Cloudflare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install -g wrangler
+
+      - name: 🔐 Dropbox-Token setzen
+        run: |
+          echo "${{ secrets.DROPBOX_ACCESS_TOKEN }}" > /tmp/token.txt
+          wrangler secret put DROPBOX_TOKEN < /tmp/token.txt
+          rm /tmp/token.txt
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: 🚀 Worker deployen
+        run: wrangler deploy worker.js --name galerie-api
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
   deploy_frontend:
-    name: Frontend zu GitHub Pages
+    name: 2️⃣ Frontend zu GitHub Pages
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: ⬇️ Code auschecken
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 🟢 Node.js Setup
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: 🔧 Worker-URL in index.html eintragen
+      - name: 🔧 Worker-URL eintragen
         run: |
           ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
           WORKER_URL="https://galerie-api.${ACCOUNT_ID}.workers.dev"
           sed -i "s|'__WORKER_URL__'|'${WORKER_URL}'|g" index.html
           echo "✅ Worker-URL: ${WORKER_URL}"
 
-      - name: 📤 Artifact hochladen
+      - name: 📤 Upload zu Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: 🌐 Zu GitHub Pages deployen
+      - name: 🌐 Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v2
