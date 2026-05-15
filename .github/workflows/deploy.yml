@@ -53,7 +53,7 @@ jobs:
       - name: 🔧 Worker-URL eintragen
         run: |
           ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-          WORKER_URL="https://galerie-api.${ACCOUNT_ID}.workers.dev"
+          WORKER_URL="https://galerie-api.3d95dac45e5dd7bcba40e06cc22cbccb.workers.dev"
           sed -i "s|'__WORKER_URL__'|'${WORKER_URL}'|g" index.html
           echo "✅ Worker-URL: ${WORKER_URL}"
 
