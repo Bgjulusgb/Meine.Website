@@ -1,20 +1,41 @@
 # robots.txt für benni-photo.com
+# Benjamin Gillmann Photography
+
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://www.benni-photo.com/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
-
-# Disallow admin/backend areas
-Disallow: /admin/
-Disallow: /backend/
-
-# Allow important resources
-Allow: /main.css
-Allow: /main.js
+Allow: /index.html
 Allow: /*.svg$
 Allow: /*.png$
 Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /manifest.json
+Allow: /favicon.ico
+
+# Private Kundenbereiche – nicht indexieren
+Disallow: /galerie/
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /worker.js
+Disallow: /wrangler.toml
+Disallow: /.github/
+
+# KI-Crawler ausschließen (optional – bei Bedarf entfernen)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# Crawl-Delay für freundliche Bots
+User-agent: *
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://benni-photo.com/sitemap.xml

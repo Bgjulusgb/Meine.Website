@@ -2,15 +2,26 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fotogalerie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#000000" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Private Fotogalerie – Benjamin Gillmann Photography. Ausgewählte Aufnahmen für Kunden zum Ansehen und Herunterladen." />
+<meta name="author" content="Benjamin Gillmann" />
+
+<title>Kundengalerie · Benjamin Gillmann Photography</title>
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Mono:wght@300;400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
 /* ═══════════════════════════════════════
-   DESIGN TOKENS
+   DESIGN TOKENS – an Hauptseite angepasst
 ═══════════════════════════════════════ */
 :root {
   --black:  #000;
@@ -33,15 +44,17 @@
   --ease-in:  cubic-bezier(0.4,0,1,1);
   --ease-io:  cubic-bezier(0.4,0,0.2,1);
 
-  --sp-1: 0.25rem; --sp-2: 0.5rem;  --sp-3: 0.75rem;
-  --sp-4: 1rem;    --sp-5: 1.5rem;  --sp-6: 2rem;
-  --sp-7: 3rem;    --sp-8: 4rem;    --sp-9: 6rem;
+  --sp-1: 0.25rem; --sp-2: 0.5rem; --sp-3: 0.75rem;
+  --sp-4: 1rem;    --sp-5: 1.5rem; --sp-6: 2rem;
+  --sp-7: 3rem;    --sp-8: 4rem;   --sp-9: 6rem;
   --hit: 44px;
 
   --safe-top:    env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left:   env(safe-area-inset-left, 0px);
   --safe-right:  env(safe-area-inset-right, 0px);
+
+  --gap: 6px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,11 +64,10 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-@media (max-width: 600px) { html { font-size: 15px; } }
-@media (max-width: 380px) { html { font-size: 14px; } }
+@media (max-width: 600px) { html { font-size: 15px; } :root { --gap: 4px; } }
+@media (max-width: 380px) { html { font-size: 14px; } :root { --gap: 3px; } }
 
 body {
   font-family: var(--f-ui);
@@ -64,10 +76,18 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   -webkit-tap-highlight-color: transparent;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 img { display: block; max-width: 100%; }
 a   { color: inherit; }
 button { font-family: inherit; cursor: pointer; }
+
+:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 
 /* ═══════════════════════════════════════
    PRELOADER
@@ -80,8 +100,7 @@ button { font-family: inherit; cursor: pointer; }
   overflow: hidden;
 }
 .preloader::before {
-  content: '';
-  position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
@@ -98,50 +117,45 @@ button { font-family: inherit; cursor: pointer; }
 }
 @keyframes plScan { 0%{top:-2px;opacity:0} 8%{opacity:1} 100%{top:100%;opacity:0} }
 
-.pl-body {
-  position: relative;
-  display: flex; flex-direction: column;
-  align-items: center; gap: var(--sp-6);
-  width: min(360px, 90vw);
-}
+.pl-body { position: relative; display: flex; flex-direction: column; align-items: center; gap: var(--sp-6); width: min(360px, 90vw); }
 .pl-ring-wrap { width: 88px; height: 88px; position: relative; }
 .pl-ring {
   position: absolute; inset: 0; border-radius: 50%;
   border: 1px solid rgba(255,255,255,.14);
   animation: plRing 1.8s var(--ease-out) forwards;
 }
-.pl-ring:nth-child(2) { inset:10px; animation-delay:.14s }
-.pl-ring:nth-child(3) { inset:20px; animation-delay:.28s }
+.pl-ring:nth-child(2) { inset: 10px; animation-delay: .14s; }
+.pl-ring:nth-child(3) { inset: 20px; animation-delay: .28s; }
 @keyframes plRing { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
 .pl-ring-wrap::after {
-  content:''; position:absolute; inset:-8px; border-radius:50%;
-  border:1px dashed rgba(255,255,255,.07);
+  content: ''; position: absolute; inset: -8px; border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,.07);
   animation: plSpin 8s linear infinite;
 }
-@keyframes plSpin { to{transform:rotate(360deg)} }
-.pl-logo-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+@keyframes plSpin { to { transform: rotate(360deg); } }
+.pl-logo-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.pl-logo { width: 44px; height: 44px; object-fit: contain; opacity: 0; animation: plFadeIn .7s ease .45s forwards; }
+@keyframes plFadeIn { from{opacity:0;transform:scale(.75)} to{opacity:1;transform:scale(1)} }
+
 .pl-name {
   font-family: var(--f-display);
-  font-size: clamp(1.2rem,5vw,2rem);
+  font-size: clamp(1.2rem, 5vw, 2rem);
   font-weight: 300; letter-spacing: .3em; text-transform: uppercase;
-  opacity: 0; animation: plName .9s ease .65s forwards; white-space: nowrap;
+  opacity: 0; animation: plName .9s ease .35s forwards; white-space: nowrap;
 }
 @keyframes plName { from{opacity:0;letter-spacing:.7em} to{opacity:1;letter-spacing:.3em} }
 .pl-sub {
   font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em;
   text-transform: uppercase; color: var(--fg-2);
-  opacity: 0; animation: plUp .7s ease .9s forwards; text-align:center;
+  opacity: 0; animation: plUp .7s ease .6s forwards; text-align: center;
 }
-.pl-bar-wrap { width:100%; opacity:0; animation:plUp .5s ease 1s forwards; }
-.pl-bar-track { height:1px; background:rgba(255,255,255,.07); overflow:hidden; }
+.pl-bar-wrap { width: 100%; opacity: 0; animation: plUp .5s ease .7s forwards; }
+.pl-bar-track { height: 1px; background: rgba(255,255,255,.07); overflow: hidden; }
 .pl-bar-fill {
-  height:100%; width:0%; background:#fff; transition:width .15s linear;
-  box-shadow:0 0 6px rgba(255,255,255,.5);
+  height: 100%; width: 0%; background: #fff; transition: width .2s linear;
+  box-shadow: 0 0 6px rgba(255,255,255,.5);
 }
-.pl-bar-labels {
-  display:flex; justify-content:space-between; margin-top:.6rem;
-  font-family:var(--f-mono); font-size:.58rem; letter-spacing:.1em; color:var(--fg-2);
-}
+.pl-bar-labels { display: flex; justify-content: space-between; margin-top: .6rem; font-family: var(--f-mono); font-size: .58rem; letter-spacing: .1em; color: var(--fg-2); }
 .pl-counter { font-variant-numeric: tabular-nums; }
 @keyframes plUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 .preloader.exit { animation: plExit .9s var(--ease-io) forwards; }
@@ -153,389 +167,541 @@ button { font-family: inherit; cursor: pointer; }
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 1.4rem 0;
+  padding-top: calc(1.4rem + var(--safe-top));
   transition: padding .4s var(--ease-io), background .4s var(--ease-io);
   border-bottom: 1px solid transparent;
 }
 .header.stuck {
   padding: .8rem 0;
+  padding-top: calc(.8rem + var(--safe-top));
   background: rgba(0,0,0,.95);
   backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom-color: rgba(255,255,255,.06);
 }
 .nav-wrap {
   max-width: 1400px; margin: 0 auto;
-  padding: 0 clamp(1.2rem,5vw,2.5rem);
+  padding: 0 clamp(1rem, 5vw, 2.5rem);
   display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
 }
 .logo {
   display: flex; align-items: center; gap: .6rem;
   text-decoration: none; color: var(--fg-0);
-  font-size: clamp(.68rem,1.4vw,.8rem); font-weight: 600;
-  letter-spacing: .14em; text-transform: uppercase;
+  font-size: clamp(.68rem, 1.4vw, .8rem);
+  font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
   flex-shrink: 0; min-height: var(--hit);
 }
-.logo-text { font-family:var(--f-display); font-size:1.4rem; font-weight:300; letter-spacing:.25em; }
-.nav-links { display:flex; list-style:none; gap:clamp(1.2rem,3vw,2.2rem); align-items:center; }
+.logo img { height: 30px; width: auto; transition: transform .3s ease; }
+.logo:hover img { transform: scale(1.07); }
+
+.nav-links { display: flex; list-style: none; gap: clamp(1.2rem, 3vw, 2.2rem); align-items: center; }
 .nav-a {
   color: rgba(255,255,255,.5); text-decoration: none;
-  font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
-  position:relative; padding:.4rem 0; min-height:var(--hit);
-  display:flex; align-items:center; transition:color .2s ease;
+  font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  position: relative; padding: .4rem 0; min-height: var(--hit);
+  display: flex; align-items: center; transition: color .2s ease;
 }
 .nav-a::after {
-  content:''; position:absolute; bottom:0; left:0;
-  width:0; height:1px; background:#fff; transition:width .3s ease;
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: #fff; transition: width .3s ease;
 }
-.nav-a:hover,.nav-a.on { color:#fff; }
-.nav-a:hover::after,.nav-a.on::after { width:100%; }
-.nav-cta-btn {
-  display:inline-flex; align-items:center; padding:.5rem 1.2rem;
-  background:#fff; color:#000; font-size:.66rem; font-weight:700;
-  letter-spacing:.16em; text-transform:uppercase; text-decoration:none;
-  transition:background .25s,transform .25s; min-height:var(--hit); flex-shrink:0;
-}
-.nav-cta-btn:hover { background:rgba(255,255,255,.85); transform:translateY(-1px); }
+.nav-a:hover, .nav-a.on { color: #fff; }
+.nav-a:hover::after, .nav-a.on::after { width: 100%; }
+
 .ham {
-  display:none; flex-direction:column; align-items:center; justify-content:center;
-  gap:5px; width:var(--hit); height:var(--hit); background:none; border:none; padding:10px; z-index:1002;
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; width: var(--hit); height: var(--hit); background: none; border: none; padding: 10px; z-index: 1002;
 }
-.ham span { display:block; width:22px; height:1px; background:#fff; transition:transform .3s ease,opacity .3s ease; transform-origin:center; }
-.ham.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
-.ham.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
-.ham.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
-@media (max-width:900px) { .nav-cta-btn { display:none; } }
-@media (max-width:768px) {
+.ham span {
+  display: block; width: 22px; height: 1px; background: #fff;
+  transition: transform .3s ease, opacity .3s ease; transform-origin: center;
+}
+.ham.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.ham.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 768px) {
   .nav-links-wrap {
-    position:fixed; top:0; right:-100%; width:min(300px,82vw); height:100dvh;
-    background:rgba(5,5,5,.98); backdrop-filter:blur(24px);
-    border-left:1px solid rgba(255,255,255,.06); z-index:1001; overflow-y:auto;
-    display:flex; flex-direction:column; transition:right .36s var(--ease-io);
-    padding-bottom:calc(var(--sp-6) + var(--safe-bottom));
+    position: fixed; top: 0; right: -100%; width: min(300px, 82vw); height: 100dvh;
+    background: rgba(5,5,5,.98); backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid rgba(255,255,255,.06); z-index: 1001; overflow-y: auto;
+    display: flex; flex-direction: column; transition: right .36s var(--ease-io);
+    padding-bottom: calc(var(--sp-6) + var(--safe-bottom));
   }
-  .nav-links-wrap.open { right:0; }
-  .nav-links { flex-direction:column; gap:0; width:100%; padding:5rem 0 var(--sp-5); align-items:flex-start; }
-  .nav-links li { width:100%; border-bottom:1px solid rgba(255,255,255,.04); }
-  .nav-a { display:block; padding:1rem 2rem; font-size:.88rem; min-height:var(--hit); color:rgba(255,255,255,.65); }
-  .ham { display:flex; }
+  .nav-links-wrap.open { right: 0; }
+  .nav-links { flex-direction: column; gap: 0; width: 100%; padding: 5rem 0 var(--sp-5); align-items: flex-start; }
+  .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .nav-a { display: block; padding: 1rem 2rem; font-size: .88rem; color: rgba(255,255,255,.65); }
+  .ham { display: flex; }
 }
 
 /* ═══════════════════════════════════════
-   PAGE SHELL
+   PAGE
 ═══════════════════════════════════════ */
-.page-main { min-height:100vh; padding-top:100px; }
+.page-main { min-height: 100vh; padding-top: 100px; padding-bottom: var(--sp-9); }
 
-/* ═══════════════════════════════════════
-   GALLERY HEADER
-═══════════════════════════════════════ */
 .gallery-header {
-  padding: clamp(3rem,8vw,5rem) clamp(1.2rem,5vw,2.5rem) clamp(2rem,5vw,3rem);
-  max-width:1400px; margin:0 auto;
-  display:flex; align-items:flex-end; justify-content:space-between; gap:var(--sp-6); flex-wrap:wrap;
+  padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 5vw, 2.5rem) clamp(1.5rem, 5vw, 3rem);
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: var(--sp-6); flex-wrap: wrap;
 }
-.gallery-eyebrow { font-family:var(--f-mono); font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; color:var(--fg-2); margin-bottom:var(--sp-3); }
-.gallery-title { font-family:var(--f-display); font-size:clamp(2.8rem,8vw,5.5rem); font-weight:300; line-height:1; letter-spacing:-.02em; }
-.gallery-title em { font-style:italic; color:rgba(255,255,255,.45); }
-.gallery-header-right { display:flex; flex-direction:column; align-items:flex-end; gap:var(--sp-3); }
-.gallery-count { font-family:var(--f-mono); font-size:.65rem; letter-spacing:.15em; color:var(--fg-2); text-transform:uppercase; }
-.gallery-count span { color:var(--fg-0); font-size:1.2rem; font-family:var(--f-display); font-weight:300; letter-spacing:0; vertical-align:middle; margin-right:.3rem; }
-.gallery-folder { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.1em; color:var(--fg-2); }
+.gallery-eyebrow {
+  font-family: var(--f-mono); font-size: .65rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--fg-2); margin-bottom: var(--sp-3);
+}
+.gallery-title {
+  font-family: var(--f-display); font-size: clamp(2.4rem, 8vw, 5.5rem);
+  font-weight: 300; line-height: 1; letter-spacing: -.02em;
+}
+.gallery-title em { font-style: italic; color: rgba(255,255,255,.45); }
+.gallery-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: var(--sp-3); }
+.gallery-count {
+  font-family: var(--f-mono); font-size: .65rem; letter-spacing: .15em;
+  color: var(--fg-2); text-transform: uppercase;
+}
+.gallery-count span {
+  color: var(--fg-0); font-size: 1.2rem; font-family: var(--f-display);
+  font-weight: 300; vertical-align: middle; margin-right: .3rem;
+}
+.gallery-folder {
+  font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em; color: var(--fg-2);
+  max-width: 60vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
 
 /* ═══════════════════════════════════════
    TOOLBAR
 ═══════════════════════════════════════ */
 .toolbar {
-  max-width:1400px; margin:0 auto;
-  padding:0 clamp(1.2rem,5vw,2.5rem) var(--sp-5);
-  display:flex; align-items:center; gap:var(--sp-4); flex-wrap:wrap;
-  border-bottom:1px solid rgba(255,255,255,.06); padding-bottom:var(--sp-5);
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 clamp(1rem, 5vw, 2.5rem) var(--sp-5);
+  display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,.06); padding-bottom: var(--sp-5);
 }
-.toolbar-left { display:flex; align-items:center; gap:var(--sp-3); flex:1; }
+.toolbar-left { display: flex; align-items: center; gap: var(--sp-3); flex: 1; flex-wrap: wrap; min-width: 0; }
+.toolbar-right { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
 
-.select-all-btn, .download-selected-btn {
-  display:inline-flex; align-items:center; gap:.45rem;
-  background:none; border:1px solid rgba(255,255,255,.12);
-  color:rgba(255,255,255,.6); font-family:var(--f-ui); font-size:.65rem; font-weight:600;
-  letter-spacing:.14em; text-transform:uppercase; padding:.5rem 1rem;
-  transition:all .25s ease; min-height:var(--hit);
+.btn-tb {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: none; border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.6);
+  font-family: var(--f-ui); font-size: .65rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: .5rem 1rem; transition: all .25s ease;
+  min-height: var(--hit);
 }
-.select-all-btn:hover { border-color:rgba(255,255,255,.35); color:#fff; }
-.download-selected-btn {
-  background:#fff; color:#000; border-color:#fff; opacity:0;
-  pointer-events:none; transform:translateY(4px); transition:all .3s var(--ease-out);
+.btn-tb:hover, .btn-tb:focus-visible { border-color: rgba(255,255,255,.35); color: #fff; }
+.btn-tb svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.btn-tb.primary {
+  background: #fff; color: #000; border-color: #fff;
+  opacity: 0; pointer-events: none; transform: translateY(4px);
+  transition: all .3s var(--ease-out);
 }
-.download-selected-btn.visible { opacity:1; pointer-events:all; transform:translateY(0); }
-.download-selected-btn:hover { background:rgba(255,255,255,.85); }
+.btn-tb.primary.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+.btn-tb.primary:hover { background: rgba(255,255,255,.85); }
+.btn-tb.primary[disabled] { opacity: .5; pointer-events: none; cursor: wait; }
+
 .selected-label {
-  font-family:var(--f-mono); font-size:.62rem; letter-spacing:.12em; color:var(--fg-2);
-  text-transform:uppercase; opacity:0; transition:opacity .3s ease;
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .12em;
+  color: var(--fg-2); text-transform: uppercase; opacity: 0;
+  transition: opacity .3s ease; white-space: nowrap;
 }
-.selected-label.visible { opacity:1; }
-.toolbar-right { display:flex; align-items:center; gap:var(--sp-3); }
-.view-toggle { display:flex; gap:2px; }
-.view-btn {
-  background:none; border:none; padding:.5rem; color:var(--fg-2); transition:color .2s ease;
-  min-height:var(--hit); min-width:var(--hit); display:flex; align-items:center; justify-content:center;
-}
-.view-btn.on,.view-btn:hover { color:#fff; }
-.view-btn svg { width:18px; height:18px; }
+.selected-label.visible { opacity: 1; }
 
-/* Search */
 .search-wrap {
-  display:flex; align-items:center; gap:.5rem;
-  border:1px solid rgba(255,255,255,.1); padding:.4rem .8rem;
-  transition:border-color .2s ease; min-height:var(--hit);
+  display: flex; align-items: center; gap: .5rem;
+  border: 1px solid rgba(255,255,255,.1); padding: .4rem .8rem;
+  transition: border-color .2s ease; min-height: var(--hit);
 }
-.search-wrap:focus-within { border-color:rgba(255,255,255,.35); }
-.search-wrap svg { width:14px; height:14px; color:var(--fg-2); flex-shrink:0; }
+.search-wrap:focus-within { border-color: rgba(255,255,255,.35); }
+.search-wrap svg { width: 14px; height: 14px; color: var(--fg-2); flex-shrink: 0; }
 .search-input {
-  background:none; border:none; outline:none; color:#fff;
-  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.08em;
-  width:140px; caret-color:#fff;
+  background: none; border: none; outline: none; color: #fff;
+  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .08em;
+  width: 140px; caret-color: #fff;
 }
-.search-input::placeholder { color:var(--fg-2); }
+.search-input::placeholder { color: var(--fg-2); }
+@media (max-width: 600px) { .search-input { width: 90px; } }
 
-/* Sort */
 .sort-select {
-  appearance:none; background:none; border:1px solid rgba(255,255,255,.12);
-  color:rgba(255,255,255,.6); font-family:var(--f-ui); font-size:.65rem; font-weight:600;
-  letter-spacing:.12em; text-transform:uppercase; padding:.5rem 2rem .5rem .8rem;
-  min-height:var(--hit); cursor:pointer; transition:all .2s ease;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23555' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right .7rem center;
+  appearance: none; background: none;
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.6);
+  font-family: var(--f-ui); font-size: .65rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: .5rem 2rem .5rem .8rem;
+  min-height: var(--hit); cursor: pointer; transition: all .2s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23555' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .7rem center;
 }
-.sort-select:hover { border-color:rgba(255,255,255,.35); color:#fff; }
-.sort-select option { background:#111; color:#fff; }
+.sort-select:hover, .sort-select:focus-visible { border-color: rgba(255,255,255,.35); color: #fff; }
+.sort-select option { background: #111; color: #fff; }
+
+.view-toggle { display: flex; gap: 2px; }
+.view-btn {
+  background: none; border: none; padding: .5rem; color: var(--fg-2);
+  transition: color .2s ease;
+  min-height: var(--hit); min-width: var(--hit);
+  display: flex; align-items: center; justify-content: center;
+}
+.view-btn.on, .view-btn:hover, .view-btn:focus-visible { color: #fff; }
+.view-btn svg { width: 18px; height: 18px; }
 
 /* ═══════════════════════════════════════
-   GALLERY GRID
+   MASONRY GALLERY (CSS Columns)
 ═══════════════════════════════════════ */
-.gallery-section { max-width:1400px; margin:0 auto; padding:var(--sp-6) clamp(1.2rem,5vw,2.5rem); }
-.gallery-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
-  gap:2px; transition:all .4s var(--ease-io);
+.gallery-section {
+  max-width: 1400px; margin: 0 auto;
+  padding: var(--sp-6) clamp(1rem, 5vw, 2.5rem);
 }
-.gallery-grid.view-large { grid-template-columns:repeat(auto-fill, minmax(420px,1fr)); }
-.gallery-grid.view-small { grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); }
+.gallery-grid {
+  column-gap: var(--gap);
+  column-count: 4;
+  transition: column-count .3s var(--ease-io);
+}
+@media (max-width: 1200px) { .gallery-grid { column-count: 3; } }
+@media (max-width: 768px)  { .gallery-grid { column-count: 2; } }
+@media (max-width: 380px)  { .gallery-grid { column-count: 1; } }
 
-@media (max-width:600px) {
-  .gallery-grid { grid-template-columns:repeat(2,1fr); gap:1px; }
-  .gallery-grid.view-large { grid-template-columns:1fr; }
-  .gallery-grid.view-small { grid-template-columns:repeat(3,1fr); }
+.gallery-grid.view-large  { column-count: 2; }
+.gallery-grid.view-medium { column-count: 4; }
+.gallery-grid.view-small  { column-count: 6; }
+
+@media (max-width: 1200px) {
+  .gallery-grid.view-large  { column-count: 2; }
+  .gallery-grid.view-medium { column-count: 3; }
+  .gallery-grid.view-small  { column-count: 4; }
+}
+@media (max-width: 768px) {
+  .gallery-grid.view-large  { column-count: 1; }
+  .gallery-grid.view-medium { column-count: 2; }
+  .gallery-grid.view-small  { column-count: 3; }
+}
+@media (max-width: 380px) {
+  .gallery-grid.view-large  { column-count: 1; }
+  .gallery-grid.view-medium { column-count: 1; }
+  .gallery-grid.view-small  { column-count: 2; }
 }
 
 /* ═══════════════════════════════════════
    PHOTO CARD
 ═══════════════════════════════════════ */
 .photo-card {
-  position:relative; overflow:hidden; aspect-ratio:3/2;
-  background:var(--bg-2); cursor:pointer;
+  position: relative; overflow: hidden;
+  background: var(--bg-2); cursor: zoom-in;
+  margin-bottom: var(--gap);
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
 }
 .photo-card.selected::after {
-  content:''; position:absolute; inset:0;
-  border:2px solid #fff; pointer-events:none; z-index:3;
+  content: ''; position: absolute; inset: 0;
+  border: 2px solid #fff; pointer-events: none; z-index: 3;
 }
-.photo-card img {
-  width:100%; height:100%; object-fit:cover;
-  transition:transform .6s var(--ease-out), filter .4s ease, opacity .4s ease;
-  will-change:transform; opacity:0;
-}
-.photo-card img.loaded { opacity:1; }
-.photo-card:hover img { transform:scale(1.04); filter:brightness(.8); }
-
-/* Skeleton shimmer */
-.photo-card.loading {
-  background:linear-gradient(90deg,var(--bg-2) 25%,rgba(255,255,255,.04) 50%,var(--bg-2) 75%);
-  background-size:200% 100%; animation:shimmer 1.6s infinite;
+.photo-card .ratio-box {
+  width: 100%; position: relative;
+  background: linear-gradient(90deg, var(--bg-2) 25%, rgba(255,255,255,.04) 50%, var(--bg-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
 }
 @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-.photo-card.error { background:rgba(255,94,94,.05); }
-.photo-card.error::before {
-  content:'⚠'; position:absolute; inset:0; display:flex; align-items:center;
-  justify-content:center; font-size:1.5rem; color:var(--fg-2); display:grid; place-items:center;
+.photo-card.loaded .ratio-box { animation: none; background: var(--bg-2); }
+.photo-card.error .ratio-box::after {
+  content: '⚠'; position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-size: 1.5rem; color: var(--red);
 }
+.photo-card img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s var(--ease-out), filter .4s ease, opacity .4s ease;
+  will-change: transform; opacity: 0;
+  -webkit-user-drag: none; user-select: none;
+}
+.photo-card.loaded img { opacity: 1; }
+.photo-card:hover img { transform: scale(1.04); filter: brightness(.75); }
 
-/* Overlay */
 .card-overlay {
-  position:absolute; inset:0; z-index:2;
-  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 40%,transparent 70%);
-  opacity:0; transition:opacity .35s ease;
-  display:flex; flex-direction:column; justify-content:flex-end; padding:var(--sp-4); gap:var(--sp-3);
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.2) 40%, transparent 70%);
+  opacity: 0; transition: opacity .35s ease;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: var(--sp-4); gap: var(--sp-3);
+  pointer-events: none;
 }
-.photo-card:hover .card-overlay { opacity:1; }
-.card-filename {
-  font-family:var(--f-mono); font-size:.6rem; letter-spacing:.1em;
-  color:rgba(255,255,255,.65); text-transform:uppercase;
-  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-}
-.card-actions { display:flex; align-items:center; gap:var(--sp-2); }
-.card-download-btn {
-  flex:1; display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
-  background:#fff; color:#000; border:none;
-  font-family:var(--f-ui); font-size:.6rem; font-weight:700;
-  letter-spacing:.16em; text-transform:uppercase; padding:.55rem .9rem;
-  transition:all .25s ease; min-height:36px;
-}
-.card-download-btn:hover { background:rgba(255,255,255,.85); transform:translateY(-1px); }
-.card-download-btn svg { width:12px; height:12px; flex-shrink:0; }
+.photo-card:hover .card-overlay,
+.photo-card:focus-within .card-overlay { opacity: 1; }
+.card-overlay > * { pointer-events: auto; }
 
-/* Checkbox */
-.card-checkbox-wrap { position:absolute; top:var(--sp-3); right:var(--sp-3); z-index:4; }
-.card-checkbox {
-  appearance:none; width:22px; height:22px;
-  border:1px solid rgba(255,255,255,.5); background:rgba(0,0,0,.5); backdrop-filter:blur(8px);
-  border-radius:2px; cursor:pointer; position:relative;
-  opacity:0; transform:scale(.7);
-  transition:opacity .25s ease, transform .25s var(--ease-out), background .2s ease, border-color .2s ease;
+.card-filename {
+  font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em;
+  color: rgba(255,255,255,.75); text-transform: uppercase;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.photo-card:hover .card-checkbox,.card-checkbox:checked { opacity:1; transform:scale(1); }
-.card-checkbox:checked { background:#fff; border-color:#fff; }
+.card-actions { display: flex; align-items: center; gap: var(--sp-2); }
+.card-download-btn {
+  flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  background: #fff; color: #000; border: none;
+  font-family: var(--f-ui); font-size: .6rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: .55rem .9rem; transition: all .25s ease; min-height: 36px;
+}
+.card-download-btn:hover { background: rgba(255,255,255,.85); transform: translateY(-1px); }
+.card-download-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* Touch-Geräte: Overlay dezent dauerhaft */
+@media (hover: none) {
+  .card-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 50%); }
+  .photo-card img { opacity: 1; }
+}
+
+.card-checkbox-wrap { position: absolute; top: var(--sp-3); right: var(--sp-3); z-index: 4; }
+.card-checkbox {
+  appearance: none; width: 24px; height: 24px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  cursor: pointer; position: relative;
+  opacity: 0; transform: scale(.7);
+  transition: opacity .25s ease, transform .25s var(--ease-out), background .2s ease, border-color .2s ease;
+}
+.photo-card:hover .card-checkbox,
+.photo-card:focus-within .card-checkbox,
+.card-checkbox:checked { opacity: 1; transform: scale(1); }
+@media (hover: none) { .card-checkbox { opacity: 1; transform: scale(1); } }
+.card-checkbox:checked { background: #fff; border-color: #fff; }
 .card-checkbox:checked::after {
-  content:''; position:absolute; width:5px; height:9px;
-  border-right:2px solid #000; border-bottom:2px solid #000;
-  transform:rotate(45deg) translate(-1px,-1px);
+  content: ''; position: absolute; width: 5px; height: 9px;
+  border-right: 2px solid #000; border-bottom: 2px solid #000;
+  transform: rotate(45deg) translate(-1px,-1px);
+  top: 5px; left: 9px;
 }
 
 /* ═══════════════════════════════════════
    STATES
 ═══════════════════════════════════════ */
 .gallery-state {
-  grid-column:1/-1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:var(--sp-5); padding:var(--sp-9) var(--sp-6); text-align:center; min-height:40vh;
+  column-span: all; -webkit-column-span: all;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--sp-5); padding: var(--sp-9) var(--sp-6); text-align: center; min-height: 40vh;
 }
-.gallery-state-icon { width:64px; height:64px; opacity:.2; }
-.gallery-state h3 { font-family:var(--f-display); font-size:2rem; font-weight:300; color:var(--fg-1); }
-.gallery-state p { font-family:var(--f-mono); font-size:.68rem; letter-spacing:.15em; color:var(--fg-2); text-transform:uppercase; max-width:340px; line-height:1.9; }
-.gallery-state .retry-btn { margin-top:var(--sp-3); }
+.gallery-state-icon { width: 64px; height: 64px; opacity: .2; }
+.gallery-state h3 { font-family: var(--f-display); font-size: 2rem; font-weight: 300; color: var(--fg-1); }
+.gallery-state p {
+  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .15em;
+  color: var(--fg-2); text-transform: uppercase; max-width: 340px; line-height: 1.9;
+}
 
 /* ═══════════════════════════════════════
    CONFIG BANNER
 ═══════════════════════════════════════ */
 .config-banner {
-  background:rgba(255,94,94,.08); border:1px solid rgba(255,94,94,.25); border-radius:2px;
-  padding:var(--sp-4) var(--sp-5); margin:0 clamp(1.2rem,5vw,2.5rem) var(--sp-5);
-  max-width:1400px; margin-left:auto; margin-right:auto;
-  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; color:var(--red); display:none;
+  background: rgba(255,94,94,.08); border: 1px solid rgba(255,94,94,.25);
+  padding: var(--sp-4) var(--sp-5);
+  margin: 0 auto var(--sp-5);
+  max-width: 1400px;
+  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
+  color: var(--red); display: none; line-height: 1.7;
 }
-.config-banner.visible { display:block; }
-.config-banner code { background:rgba(255,255,255,.06); padding:.15rem .4rem; font-size:.65rem; }
+.config-banner.visible { display: block; }
+.config-banner code {
+  background: rgba(255,255,255,.06); padding: .15rem .4rem;
+  font-size: .65rem; word-break: break-all;
+}
 
 /* ═══════════════════════════════════════
-   LIGHTBOX
+   LIGHTBOX (mit Zoom)
 ═══════════════════════════════════════ */
 .lightbox {
-  position:fixed; inset:0; z-index:9000;
-  background:rgba(0,0,0,.96); backdrop-filter:blur(24px);
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; pointer-events:none; transition:opacity .4s var(--ease-io);
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,.97);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .4s var(--ease-io);
+  padding: var(--sp-5);
+  padding-top: calc(var(--sp-5) + var(--safe-top));
+  padding-bottom: calc(var(--sp-5) + var(--safe-bottom));
 }
-.lightbox.open { opacity:1; pointer-events:all; }
+.lightbox.open { opacity: 1; pointer-events: all; }
 .lb-inner {
-  position:relative; width:min(1200px,95vw); max-height:90dvh;
-  display:flex; flex-direction:column; gap:var(--sp-4);
-  transform:scale(.96); transition:transform .4s var(--ease-out);
+  position: relative; width: min(1200px, 100%); max-height: 100%;
+  display: flex; flex-direction: column; gap: var(--sp-4);
+  transform: scale(.96); transition: transform .4s var(--ease-out);
 }
-.lightbox.open .lb-inner { transform:scale(1); }
+.lightbox.open .lb-inner { transform: scale(1); }
 .lb-img-wrap {
-  flex:1; overflow:hidden; display:flex; align-items:center; justify-content:center;
-  max-height:calc(90dvh - 120px); position:relative;
+  flex: 1; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  max-height: calc(100dvh - 200px); position: relative;
+  touch-action: pan-y;
 }
+.lb-img-wrap.zoomed { cursor: grab; touch-action: none; }
+.lb-img-wrap.zoomed.dragging { cursor: grabbing; }
 .lb-img-wrap img {
-  max-width:100%; max-height:100%; object-fit:contain;
-  border:1px solid rgba(255,255,255,.06); transition:opacity .25s ease;
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  border: 1px solid rgba(255,255,255,.06);
+  transition: opacity .25s ease, transform .25s var(--ease-out);
+  -webkit-user-drag: none; user-select: none;
+  transform-origin: center center;
+  will-change: transform;
 }
-.lb-spinner {
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-}
+.lb-img-wrap.dragging img { transition: none; }
+.lb-spinner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
 .lb-spinner-ring {
-  width:40px; height:40px; border:1px solid rgba(255,255,255,.15);
-  border-top-color:#fff; border-radius:50%; animation:plSpin .8s linear infinite;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-top-color: #fff; border-radius: 50%;
+  animation: plSpin .8s linear infinite;
 }
-.lb-footer {
-  display:flex; align-items:center; justify-content:space-between; gap:var(--sp-4); flex-wrap:wrap; padding:0 var(--sp-2);
-}
-.lb-meta { display:flex; flex-direction:column; gap:.3rem; }
-.lb-filename { font-family:var(--f-mono); font-size:.68rem; letter-spacing:.12em; color:var(--fg-2); text-transform:uppercase; }
-.lb-fileinfo { font-family:var(--f-mono); font-size:.58rem; letter-spacing:.1em; color:var(--fg-2); }
-.lb-counter { font-family:var(--f-mono); font-size:.62rem; letter-spacing:.1em; color:var(--fg-2); }
-.lb-actions { display:flex; align-items:center; gap:var(--sp-3); }
-.lb-download-btn {
-  display:inline-flex; align-items:center; gap:.5rem;
-  background:#fff; color:#000; border:none; font-family:var(--f-ui); font-size:.65rem; font-weight:700;
-  letter-spacing:.16em; text-transform:uppercase; padding:.6rem 1.4rem;
-  transition:all .25s ease; min-height:var(--hit); cursor:pointer;
-}
-.lb-download-btn:hover { background:rgba(255,255,255,.85); transform:translateY(-1px); }
-.lb-download-btn svg { width:14px; height:14px; flex-shrink:0; }
-.lb-nav {
-  position:absolute; top:50%; transform:translateY(-50%);
-  background:none; border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.7);
-  width:48px; height:48px; display:flex; align-items:center; justify-content:center;
-  transition:all .25s ease; z-index:1;
-}
-.lb-nav:hover { border-color:#fff; color:#fff; background:rgba(255,255,255,.06); }
-.lb-nav.prev { left:calc(-3.5rem - 2px); }
-.lb-nav.next { right:calc(-3.5rem - 2px); }
-@media (max-width:900px) { .lb-nav.prev{left:var(--sp-2)} .lb-nav.next{right:var(--sp-2)} }
-.lb-nav svg { width:20px; height:20px; }
-.lb-close {
-  position:fixed; top:var(--sp-5); right:var(--sp-5);
-  background:none; border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.7);
-  width:var(--hit); height:var(--hit); display:flex; align-items:center; justify-content:center;
-  transition:all .25s ease; z-index:9001;
-}
-.lb-close:hover { border-color:#fff; color:#fff; }
-.lb-close svg { width:18px; height:18px; }
 
-/* ═══════════════════════════════════════
-   RETRY / BTN
-═══════════════════════════════════════ */
-.btn {
-  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-  padding:1rem 2.2rem; font-family:var(--f-ui); font-size:.75rem; font-weight:600;
-  letter-spacing:.18em; text-transform:uppercase; text-decoration:none;
-  border:none; cursor:pointer; background:#fff; color:#000; transition:all .3s ease;
-  min-height:var(--hit);
+.lb-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4); flex-wrap: wrap; padding: 0 var(--sp-2);
 }
-.btn:hover { transform:translateY(-3px); box-shadow:0 15px 35px rgba(255,255,255,.15); }
-.btn-outline { background:none; color:#fff; border:1px solid rgba(255,255,255,.25); }
-.btn-outline:hover { border-color:#fff; background:rgba(255,255,255,.06); box-shadow:none; }
+.lb-meta { display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
+.lb-filename {
+  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .12em;
+  color: var(--fg-1); text-transform: uppercase;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 50vw;
+}
+.lb-fileinfo { font-family: var(--f-mono); font-size: .58rem; letter-spacing: .1em; color: var(--fg-2); }
+.lb-counter  { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .1em; color: var(--fg-2); }
+.lb-actions  { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.lb-zoom-info {
+  font-family: var(--f-mono); font-size: .58rem; letter-spacing: .1em;
+  color: var(--fg-2); padding: 0 .5rem; min-width: 3em; text-align: center;
+}
+.lb-icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.75);
+  width: var(--hit); height: var(--hit);
+  transition: all .25s ease; cursor: pointer;
+}
+.lb-icon-btn:hover, .lb-icon-btn:focus-visible { border-color: #fff; color: #fff; background: rgba(255,255,255,.1); }
+.lb-icon-btn svg { width: 16px; height: 16px; }
+.lb-icon-btn[disabled] { opacity: .35; cursor: not-allowed; }
+.lb-download-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: #fff; color: #000; border: none;
+  font-family: var(--f-ui); font-size: .65rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: .6rem 1.4rem; transition: all .25s ease;
+  min-height: var(--hit); cursor: pointer;
+}
+.lb-download-btn:hover { background: rgba(255,255,255,.85); transform: translateY(-1px); }
+.lb-download-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.lb-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7);
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .25s ease; z-index: 1; cursor: pointer;
+}
+.lb-nav:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.06); }
+.lb-nav.prev { left: calc(-3.5rem - 2px); }
+.lb-nav.next { right: calc(-3.5rem - 2px); }
+@media (max-width: 900px) {
+  .lb-nav.prev { left: var(--sp-2); }
+  .lb-nav.next { right: var(--sp-2); }
+}
+.lb-nav svg { width: 20px; height: 20px; }
+
+.lb-close {
+  position: fixed; top: calc(var(--sp-5) + var(--safe-top)); right: var(--sp-5);
+  background: rgba(0,0,0,.4); border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7);
+  width: var(--hit); height: var(--hit);
+  display: flex; align-items: center; justify-content: center;
+  transition: all .25s ease; z-index: 9001; cursor: pointer;
+}
+.lb-close:hover { border-color: #fff; color: #fff; }
+.lb-close svg { width: 18px; height: 18px; }
+
+/* Keyboard-Hilfe im Lightbox */
+.lb-hint {
+  position: fixed; bottom: calc(var(--sp-5) + var(--safe-bottom)); left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--f-mono); font-size: .54rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--fg-2);
+  background: rgba(0,0,0,.4); padding: .4rem .9rem;
+  border: 1px solid rgba(255,255,255,.06);
+  display: none; z-index: 9001; max-width: 90vw; text-align: center;
+}
+.lightbox.open .lb-hint { display: block; }
+@media (max-width: 600px) { .lb-hint { display: none !important; } }
 
 /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
-.footer { background:#000; border-top:1px solid rgba(255,255,255,.08); padding:clamp(3rem,6vw,5rem) clamp(1.2rem,5vw,2rem); text-align:center; font-size:.8rem; color:var(--fg-2); }
+.footer {
+  background: #000; border-top: 1px solid rgba(255,255,255,.08);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 5vw, 2rem);
+  text-align: center; font-size: .8rem; color: var(--fg-2);
+}
+.footer .logo { display: inline-flex; margin-bottom: 1.5rem; }
 
 /* ═══════════════════════════════════════
    TOAST
 ═══════════════════════════════════════ */
-.toast-wrap { position:fixed; bottom:calc(var(--sp-6) + var(--safe-bottom)); left:50%; transform:translateX(-50%); z-index:9999; display:flex; flex-direction:column; align-items:center; gap:var(--sp-2); pointer-events:none; }
-.toast {
-  background:var(--bg-1); border:1px solid rgba(255,255,255,.12); color:#fff;
-  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
-  padding:.7rem 1.6rem; white-space:nowrap; opacity:0; transform:translateY(12px);
-  transition:all .35s var(--ease-out);
+.toast-wrap {
+  position: fixed; bottom: calc(var(--sp-6) + var(--safe-bottom));
+  left: 50%; transform: translateX(-50%); z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+  pointer-events: none; padding: 0 var(--sp-4); max-width: 100vw;
 }
-.toast.show { opacity:1; transform:translateY(0); }
-.toast.toast-green { border-color:rgba(94,255,160,.3); color:var(--green); }
-.toast.toast-red { border-color:rgba(255,94,94,.3); color:var(--red); }
+.toast {
+  background: var(--bg-1); border: 1px solid rgba(255,255,255,.12); color: #fff;
+  font-family: var(--f-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  padding: .7rem 1.6rem; white-space: nowrap;
+  opacity: 0; transform: translateY(12px);
+  transition: all .35s var(--ease-out);
+  max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.toast-green { border-color: rgba(94,255,160,.3); color: var(--green); }
+.toast.toast-red   { border-color: rgba(255,94,94,.3); color: var(--red); }
+.toast.progress {
+  display: flex; flex-direction: column; align-items: stretch; gap: .4rem;
+  white-space: normal; min-width: 240px;
+}
+.toast .toast-bar { height: 2px; width: 100%; background: rgba(255,255,255,.1); overflow: hidden; }
+.toast .toast-bar-fill { height: 100%; width: 0%; background: #fff; transition: width .2s linear; }
+
+/* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  padding: 1rem 2.2rem; font-family: var(--f-ui); font-size: .75rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; text-decoration: none;
+  border: none; cursor: pointer; background: #fff; color: #000;
+  transition: all .3s ease; min-height: var(--hit);
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255,255,255,.15); }
+.btn-outline { background: none; color: #fff; border: 1px solid rgba(255,255,255,.25); }
+.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); box-shadow: none; }
 </style>
 </head>
 <body>
 
 <!-- ═══ PRELOADER ═══ -->
-<div class="preloader" id="preloader">
-  <div class="pl-scan"></div>
+<div class="preloader" id="preloader" role="status" aria-label="Galerie wird geladen">
+  <div class="pl-scan" aria-hidden="true"></div>
   <div class="pl-body">
-    <div class="pl-ring-wrap">
+    <div class="pl-ring-wrap" aria-hidden="true">
       <div class="pl-ring"></div><div class="pl-ring"></div><div class="pl-ring"></div>
+      <div class="pl-logo-wrap">
+        <img src="/Transparent_Logo.svg" alt="" class="pl-logo" />
+      </div>
     </div>
     <div class="pl-name">Galerie</div>
-    <div class="pl-sub">Verbindung zu Dropbox…</div>
+    <div class="pl-sub" id="pl-sub">Verbindung wird hergestellt…</div>
     <div class="pl-bar-wrap">
       <div class="pl-bar-track"><div class="pl-bar-fill" id="pl-bar"></div></div>
       <div class="pl-bar-labels">
-        <span>Dropbox API</span>
+        <span>Lade Bilder</span>
         <span class="pl-counter"><span id="pl-pct">0</span>%</span>
       </div>
     </div>
@@ -544,17 +710,19 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ═══ HEADER ═══ -->
 <header class="header" id="header">
-  <nav class="nav-wrap">
-    <a href="#" class="logo"><span class="logo-text">Studio</span></a>
+  <nav class="nav-wrap" aria-label="Hauptnavigation">
+    <a href="/" class="logo">
+      <img src="/Transparent_Logo.svg" alt="Logo" />
+      <span class="logo-name">Benjamin Gillmann</span>
+    </a>
     <div class="nav-links-wrap" id="navLinksWrap">
       <ul class="nav-links">
-        <li><a href="#" class="nav-a on">Galerie</a></li>
-        <li><a href="#" class="nav-a">Über mich</a></li>
-        <li><a href="#" class="nav-a">Kontakt</a></li>
+        <li><a href="/" class="nav-a">Home</a></li>
+        <li><a href="/galerie/" class="nav-a on">Galerie</a></li>
+        <li><a href="mailto:b.b@black.com" class="nav-a">Kontakt</a></li>
       </ul>
     </div>
-    <a href="#" class="nav-cta-btn">Anfrage stellen</a>
-    <button class="ham" id="ham" aria-label="Menü öffnen">
+    <button class="ham" id="ham" aria-label="Menü öffnen" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -562,15 +730,11 @@ button { font-family: inherit; cursor: pointer; }
 
 <!-- ═══ MAIN ═══ -->
 <main class="page-main">
-  <div class="config-banner" id="configBanner">
-    ⚠ <strong>Token fehlt:</strong> Bitte GitHub Secret
-    <code>DROPBOX_ACCESS_TOKEN</code> setzen und die GitHub Action erneut ausführen.
-    Oder direkt in <code>CONFIG.dropboxToken</code> setzen (nur für lokale Tests).
-  </div>
+  <div class="config-banner" id="configBanner" role="alert"></div>
 
   <div class="gallery-header">
-    <div class="gallery-header-left">
-      <div class="gallery-eyebrow">Meine Arbeiten</div>
+    <div>
+      <div class="gallery-eyebrow">Kundengalerie</div>
       <h1 class="gallery-title">Foto<em>galerie</em></h1>
     </div>
     <div class="gallery-header-right">
@@ -581,53 +745,53 @@ button { font-family: inherit; cursor: pointer; }
 
   <div class="toolbar">
     <div class="toolbar-left">
-      <button class="select-all-btn" id="selectAllBtn" onclick="toggleSelectAll()">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">
+      <button class="btn-tb" id="selectAllBtn" type="button">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
           <rect x="1.5" y="1.5" width="5" height="5" rx=".5"/>
           <rect x="9.5" y="1.5" width="5" height="5" rx=".5"/>
           <rect x="1.5" y="9.5" width="5" height="5" rx=".5"/>
           <rect x="9.5" y="9.5" width="5" height="5" rx=".5"/>
         </svg>
-        Alle auswählen
+        <span id="selectAllLabel">Alle auswählen</span>
       </button>
-      <button class="download-selected-btn" id="downloadSelectedBtn" onclick="downloadSelected()">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+      <button class="btn-tb primary" id="downloadSelectedBtn" type="button">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
         </svg>
-        Auswahl laden
+        <span id="downloadSelectedLabel">Als ZIP laden</span>
       </button>
       <span class="selected-label" id="selectedLabel">0 ausgewählt</span>
     </div>
     <div class="toolbar-right">
       <div class="search-wrap">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <circle cx="7" cy="7" r="5"/><path d="M11 11l3 3"/>
         </svg>
-        <input type="text" class="search-input" id="searchInput" placeholder="Suchen…" oninput="filterGallery()" />
+        <input type="text" class="search-input" id="searchInput" placeholder="Suchen…" aria-label="Bilder suchen" />
       </div>
-      <select class="sort-select" id="sortSelect" onchange="sortAndRender()">
+      <select class="sort-select" id="sortSelect" aria-label="Sortierung">
         <option value="name-asc">Name A–Z</option>
         <option value="name-desc">Name Z–A</option>
         <option value="date-desc">Neueste zuerst</option>
         <option value="date-asc">Älteste zuerst</option>
         <option value="size-desc">Größte zuerst</option>
       </select>
-      <div class="view-toggle">
-        <button class="view-btn" title="Groß" onclick="setView('large',this)">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
+      <div class="view-toggle" role="group" aria-label="Ansichtsmodus">
+        <button class="view-btn" data-view="large" title="Große Ansicht" aria-label="Große Ansicht">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
             <rect x="1" y="1" width="7" height="7" rx=".5"/><rect x="10" y="1" width="7" height="7" rx=".5"/>
             <rect x="1" y="10" width="7" height="7" rx=".5"/><rect x="10" y="10" width="7" height="7" rx=".5"/>
           </svg>
         </button>
-        <button class="view-btn on" title="Mittel" onclick="setView('medium',this)">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
+        <button class="view-btn on" data-view="medium" title="Mittlere Ansicht" aria-label="Mittlere Ansicht">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
             <rect x="1" y="1" width="4.5" height="4.5" rx=".4"/><rect x="6.75" y="1" width="4.5" height="4.5" rx=".4"/>
             <rect x="12.5" y="1" width="4.5" height="4.5" rx=".4"/><rect x="1" y="6.75" width="4.5" height="4.5" rx=".4"/>
             <rect x="6.75" y="6.75" width="4.5" height="4.5" rx=".4"/><rect x="12.5" y="6.75" width="4.5" height="4.5" rx=".4"/>
           </svg>
         </button>
-        <button class="view-btn" title="Klein" onclick="setView('small',this)">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
+        <button class="view-btn" data-view="small" title="Kleine Ansicht" aria-label="Kleine Ansicht">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
             <rect x="1" y="1" width="3" height="3" rx=".3"/><rect x="5" y="1" width="3" height="3" rx=".3"/>
             <rect x="9" y="1" width="3" height="3" rx=".3"/><rect x="13" y="1" width="3" height="3" rx=".3"/>
             <rect x="1" y="5" width="3" height="3" rx=".3"/><rect x="5" y="5" width="3" height="3" rx=".3"/>
@@ -639,34 +803,34 @@ button { font-family: inherit; cursor: pointer; }
   </div>
 
   <section class="gallery-section">
-    <div class="gallery-grid" id="galleryGrid">
-      <div class="gallery-state" id="initialState">
-        <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+    <div class="gallery-grid view-medium" id="galleryGrid">
+      <div class="gallery-state">
+        <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
           <rect x="4" y="12" width="56" height="40" rx="3"/>
           <circle cx="22" cy="27" r="6"/>
           <path d="M4 42l14-12 10 10 10-14 14 14"/>
         </svg>
         <h3>Galerie wird geladen</h3>
-        <p>Verbindung zu Dropbox wird hergestellt…</p>
+        <p>Verbindung wird hergestellt…</p>
       </div>
     </div>
   </section>
 </main>
 
 <!-- ═══ LIGHTBOX ═══ -->
-<div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
-  <button class="lb-close" onclick="closeLightbox()">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Schließen (ESC)">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <path d="M4 4l12 12M16 4L4 16"/>
     </svg>
   </button>
   <div class="lb-inner">
-    <button class="lb-nav prev" onclick="navigateLightbox(-1)" aria-label="Vorheriges Bild">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4L6 10l6 6"/></svg>
+    <button class="lb-nav prev" id="lbPrev" type="button" aria-label="Vorheriges Bild">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4L6 10l6 6"/></svg>
     </button>
-    <div class="lb-img-wrap">
+    <div class="lb-img-wrap" id="lbImgWrap">
       <div class="lb-spinner" id="lbSpinner"><div class="lb-spinner-ring"></div></div>
-      <img id="lbImg" src="" alt="" />
+      <img id="lbImg" src="" alt="" draggable="false" />
     </div>
     <div class="lb-footer">
       <div class="lb-meta">
@@ -675,362 +839,607 @@ button { font-family: inherit; cursor: pointer; }
       </div>
       <div class="lb-actions">
         <span class="lb-counter" id="lbCounter"></span>
-        <button class="lb-download-btn" onclick="downloadFromLightbox()">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+        <button class="lb-icon-btn" id="lbZoomOut" type="button" aria-label="Verkleinern" title="Verkleinern (−)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10"/></svg>
+        </button>
+        <span class="lb-zoom-info" id="lbZoomInfo">100%</span>
+        <button class="lb-icon-btn" id="lbZoomIn" type="button" aria-label="Vergrößern" title="Vergrößern (+)">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
+        </button>
+        <button class="lb-download-btn" id="lbDownload" type="button">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
             <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
           </svg>
           Herunterladen
         </button>
       </div>
     </div>
-    <button class="lb-nav next" onclick="navigateLightbox(1)" aria-label="Nächstes Bild">
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4l6 6-6 6"/></svg>
+    <button class="lb-nav next" id="lbNext" type="button" aria-label="Nächstes Bild">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg>
     </button>
   </div>
+  <div class="lb-hint">← → Navigieren · D Download · +/− Zoom · ESC Schließen</div>
 </div>
 
-<div class="toast-wrap" id="toastWrap"></div>
+<div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
 
 <footer class="footer">
-  <p>© <span id="year"></span> Studio · Alle Rechte vorbehalten</p>
+  <div>
+    <a href="/" class="logo">
+      <img src="/Transparent_Logo.svg" alt="" style="height:28px;" />
+      <span class="logo-name">Benjamin Gillmann</span>
+    </a>
+    <p>© <span id="year"></span> Benjamin Gillmann Photography · Alle Rechte vorbehalten</p>
+    <p style="margin-top:0.8rem; font-size:0.75rem;">Sport · Musik · Events</p>
+  </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════════════════════ -->
+<!-- JSZip für Multi-Image-Downloads -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+        integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script>
-/* ┌────────────────────────────────────────────────────────
-   │  ⚙️  KONFIGURATION
-   │  Token wird von GitHub Actions via sed injiziert.
-   │  Für lokale Tests: direkt deinen Token eintragen.
-   └──────────────────────────────────────────────────────── */
-const CONFIG = {
-  dropboxToken:  '__DROPBOX_TOKEN__',   // ← wird von CI/CD ersetzt
-  folderPath:    '/meine-fotos',        // ← dein Dropbox-Ordnerpfad
-  cacheDuration: 60 * 60 * 1000,       // 1 Stunde in ms
-  imageExtensions: new Set(['jpg','jpeg','png','webp','gif','tiff','bmp']),
-  retryAttempts: 3,
-  retryDelay:    1000,                  // ms zwischen Retries
+'use strict';
+
+/* ═══════════════════════════════════════════════════════
+   ⚙️  KONFIGURATION
+   Worker-URL wird durch GitHub Actions ersetzt (sed in deploy.yml).
+   Für lokale Tests die URL direkt eintragen.
+═══════════════════════════════════════════════════════ */
+const CONFIG = Object.freeze({
+  apiBase: '__WORKER_URL__',
+
+  thumbConcurrency: 8,
+  zipConcurrency:   4,
+
+  thumbSize:        'w640h480',
+  thumbSizeLarge:   'w1024h768',
+  thumbSizeSmall:   'w256h256',
+
+  cacheDuration:    60 * 60 * 1000,   // 1 Stunde Session-Cache
+
+  zoomMin:          1,
+  zoomMax:          5,
+  zoomStep:         0.5,
+});
+
+/* ═══════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════ */
+const state = {
+  allPhotos:     [],
+  displayPhotos: [],
+  selectedPaths: new Set(),
+  currentIndex:  0,
+  allSelected:   false,
+  viewMode:      'medium',
+  zoom:          { scale: 1, x: 0, y: 0 },
+  touch:         { startX: 0, startY: 0, startDist: 0, startScale: 1, lastTap: 0, dragging: false, dragStartX: 0, dragStartY: 0, dragOriginX: 0, dragOriginY: 0, panning: false },
 };
 
-/* ┌────────────────────────────────────────────────────────
-   │  STATE
-   └──────────────────────────────────────────────────────── */
-let allPhotos     = [];   // vollständige Liste
-let displayPhotos = [];   // gefiltert + sortiert
-let selectedPaths = new Set();
-let currentIndex  = 0;
-let allSelected   = false;
-let touchStartX   = 0;
+/* ═══════════════════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════════════════ */
+function setText(elOrId, text) {
+  const el = typeof elOrId === 'string' ? document.getElementById(elOrId) : elOrId;
+  if (el) el.textContent = text == null ? '' : String(text);
+}
 
-/* ┌────────────────────────────────────────────────────────
-   │  PRELOADER
-   └──────────────────────────────────────────────────────── */
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === 'class')         node.className = v;
+    else if (k === 'dataset')  Object.assign(node.dataset, v);
+    else if (k.startsWith('on') && typeof v === 'function') {
+      node.addEventListener(k.slice(2).toLowerCase(), v);
+    } else {
+      node.setAttribute(k, v === true ? '' : String(v));
+    }
+  }
+  for (const c of children.flat()) {
+    if (c == null || c === false) continue;
+    node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  }
+  return node;
+}
+
+function formatBytes(b) {
+  if (!b && b !== 0) return '';
+  if (b < 1024) return b + ' B';
+  if (b < 1024 ** 2) return (b / 1024).toFixed(1) + ' KB';
+  if (b < 1024 ** 3) return (b / 1024 ** 2).toFixed(1) + ' MB';
+  return (b / 1024 ** 3).toFixed(2) + ' GB';
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function sanitizeFilename(name) {
+  return String(name).replace(/[\\/:*?"<>|]+/g, '_').slice(0, 200);
+}
+
+function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+/* ═══════════════════════════════════════════════════════
+   API-CLIENT
+═══════════════════════════════════════════════════════ */
+const api = {
+  base() {
+    let b = CONFIG.apiBase.replace(/\/$/, '');
+    if (b && !/^https?:\/\//.test(b)) b = 'https://' + b;
+    return b;
+  },
+
+  async getPhotos() {
+    const res = await fetch(`${this.base()}/api/photos`, { credentials: 'omit' });
+    if (!res.ok) throw apiErr(res.status, `Bilder-Liste fehlgeschlagen (${res.status})`);
+    return res.json();
+  },
+
+  thumbUrl(path, size) {
+    const u = new URL(`${this.base()}/api/thumb`);
+    u.searchParams.set('path', path);
+    u.searchParams.set('size', size || CONFIG.thumbSize);
+    return u.toString();
+  },
+
+  downloadUrl(path) {
+    const u = new URL(`${this.base()}/api/download`);
+    u.searchParams.set('path', path);
+    return u.toString();
+  },
+
+  async fetchOriginal(path) {
+    const res = await fetch(this.downloadUrl(path), { credentials: 'omit', redirect: 'follow' });
+    if (!res.ok) throw apiErr(res.status, `Datei laden fehlgeschlagen (${res.status})`);
+    return res.blob();
+  },
+
+  triggerDownload(path, filename) {
+    const a = document.createElement('a');
+    a.href = this.downloadUrl(path);
+    a.download = sanitizeFilename(filename);
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  },
+};
+
+function apiErr(status, msg) { const e = new Error(msg); e.status = status; return e; }
+
+/* ═══════════════════════════════════════════════════════
+   PRELOADER
+═══════════════════════════════════════════════════════ */
 function setProgress(pct) {
-  document.getElementById('pl-bar').style.width = pct + '%';
-  document.getElementById('pl-pct').textContent = Math.round(pct);
+  const p = clamp(pct, 0, 100);
+  document.getElementById('pl-bar').style.width = p + '%';
+  setText('pl-pct', Math.round(p));
 }
 function exitPreloader() {
   const pl = document.getElementById('preloader');
+  if (!pl) return;
   pl.classList.add('exit');
   pl.addEventListener('animationend', () => pl.remove(), { once: true });
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  DROPBOX API HELPERS  (direkt aus dem Browser)
-   └──────────────────────────────────────────────────────── */
-async function fetchWithRetry(url, options, attempt = 1) {
-  try {
-    const res = await fetch(url, options);
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw Object.assign(new Error(err.error_summary || `HTTP ${res.status}`), { status: res.status, body: err });
-    }
-    return res.json();
-  } catch (e) {
-    if (attempt < CONFIG.retryAttempts && e.status !== 401) {
-      await sleep(CONFIG.retryDelay * attempt);
-      return fetchWithRetry(url, options, attempt + 1);
-    }
-    throw e;
-  }
-}
-
-const dropboxHeaders = () => ({
-  'Authorization': `Bearer ${CONFIG.dropboxToken}`,
-  'Content-Type':  'application/json',
-});
-
-async function listFolder(path) {
-  const entries = [];
-  let data = await fetchWithRetry(
-    'https://api.dropboxapi.com/2/files/list_folder',
-    { method: 'POST', headers: dropboxHeaders(),
-      body: JSON.stringify({ path, recursive: false, include_media_info: true }) }
-  );
-  entries.push(...data.entries);
-  while (data.has_more) {
-    data = await fetchWithRetry(
-      'https://api.dropboxapi.com/2/files/list_folder/continue',
-      { method: 'POST', headers: dropboxHeaders(),
-        body: JSON.stringify({ cursor: data.cursor }) }
-    );
-    entries.push(...data.entries);
-  }
-  return entries;
-}
-
-async function getTemporaryLink(path) {
-  const data = await fetchWithRetry(
-    'https://api.dropboxapi.com/2/files/get_temporary_link',
-    { method: 'POST', headers: dropboxHeaders(), body: JSON.stringify({ path }) }
-  );
-  return data.link;
-}
-
-/* ┌────────────────────────────────────────────────────────
-   │  SESSION CACHE (links are 4h valid, cache for 1h)
-   └──────────────────────────────────────────────────────── */
-const CACHE_KEY = `dbx_gallery_${CONFIG.folderPath}`;
-
+/* ═══════════════════════════════════════════════════════
+   SESSION-CACHE
+═══════════════════════════════════════════════════════ */
+const CACHE_KEY = 'bg_gallery_cache_v3';
 function loadCache() {
   try {
     const raw = sessionStorage.getItem(CACHE_KEY);
     if (!raw) return null;
     const { ts, data } = JSON.parse(raw);
-    if (Date.now() - ts > CONFIG.cacheDuration) { sessionStorage.removeItem(CACHE_KEY); return null; }
+    if (Date.now() - ts > CONFIG.cacheDuration) {
+      sessionStorage.removeItem(CACHE_KEY);
+      return null;
+    }
     return data;
   } catch { return null; }
 }
 function saveCache(data) {
-  try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch {}
+  try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); }
+  catch { /* Quota überschritten */ }
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  INIT & LOAD
-   └──────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   INIT & LOAD
+═══════════════════════════════════════════════════════ */
 async function loadPhotos() {
-  // Token-Prüfung
-  if (!CONFIG.dropboxToken || CONFIG.dropboxToken === '__DROPBOX_TOKEN__') {
-    document.getElementById('configBanner').classList.add('visible');
-    showError('Token nicht konfiguriert',
-      'GitHub Secret DROPBOX_ACCESS_TOKEN fehlt. Workflow erneut ausführen.');
+  if (!CONFIG.apiBase || CONFIG.apiBase === '__WORKER_URL__' || CONFIG.apiBase.includes('CHANGE-ME')) {
+    showConfigBanner(`
+      <strong>Konfiguration fehlt:</strong>
+      Worker-URL nicht gesetzt. Die GitHub Action muss den Platzhalter
+      <code>__WORKER_URL__</code> in <code>galerie/index.html</code> ersetzen
+      oder die URL direkt in <code>CONFIG.apiBase</code> eintragen.
+    `);
+    showState({
+      title:   'Konfiguration fehlt',
+      message: 'Worker-URL in CONFIG.apiBase setzen.',
+      icon:    'warn',
+    });
     exitPreloader();
     return;
   }
 
-  // Cache prüfen
   const cached = loadCache();
   if (cached) {
-    allPhotos = cached;
+    state.allPhotos = cached.photos || cached;
     setProgress(100);
     sortAndRender();
     updatePhotoCount();
-    document.getElementById('folderLabel').textContent = CONFIG.folderPath;
+    setText('folderLabel', cached.folder || '');
     setTimeout(exitPreloader, 200);
-    showToast('Aus Cache geladen', false);
+    showToast('Aus Cache geladen');
+    handleInitialHash();
     return;
   }
 
   try {
-    setProgress(10);
-    const rawEntries = await listFolder(CONFIG.folderPath);
-    setProgress(35);
+    setProgress(15);
+    setText('pl-sub', 'Lade Bildverzeichnis…');
+    const { photos, folder } = await api.getPhotos();
+    setProgress(80);
 
-    // Nur Bilder, keine versteckten Dateien
-    const imageEntries = rawEntries.filter(e => {
-      if (e['.tag'] !== 'file') return false;
-      if (e.name.startsWith('.')) return false;
-      const ext = e.name.split('.').pop().toLowerCase();
-      return CONFIG.imageExtensions.has(ext);
-    });
+    if (!Array.isArray(photos) || photos.length === 0) {
+      showState({
+        title:   'Ordner leer',
+        message: 'Keine Bilder gefunden.',
+        icon:    'empty',
+      });
+      exitPreloader();
+      return;
+    }
 
-    if (imageEntries.length === 0) { showEmpty(); exitPreloader(); return; }
+    state.allPhotos = photos;
+    saveCache({ photos, folder });
 
-    // Temporary links parallel abrufen (max 6 gleichzeitig)
-    const results = await parallelMap(imageEntries, async (entry, i) => {
-      const url = await getTemporaryLink(entry.path_display);
-      setProgress(35 + Math.round(((i + 1) / imageEntries.length) * 60));
-      return {
-        name:     entry.name,
-        path:     entry.path_display,
-        id:       entry.id,
-        size:     entry.size || 0,
-        modified: entry.server_modified || null,
-        url,
-      };
-    }, 6);
-
-    allPhotos = results.filter(Boolean);
-    saveCache(allPhotos);
+    setText('folderLabel', folder || '');
     setProgress(100);
     sortAndRender();
     updatePhotoCount();
-    document.getElementById('folderLabel').textContent = CONFIG.folderPath;
-    setTimeout(exitPreloader, 300);
+    setTimeout(exitPreloader, 250);
+    handleInitialHash();
 
   } catch (err) {
-    console.error('[Gallery] Fehler:', err);
-    const msg = err.status === 401
-      ? 'Ungültiger Dropbox-Token. Bitte GitHub Secret prüfen.'
-      : err.status === 409
-      ? `Ordner "${CONFIG.folderPath}" nicht gefunden. CONFIG.folderPath prüfen.`
-      : err.message || 'Unbekannter Fehler';
-    showError('Fehler beim Laden', msg);
+    console.error('[Gallery]', err);
+    let msg;
+    if (err.status === 401 || err.status === 403)      msg = 'Server lehnt die Anfrage ab. Token im Worker prüfen.';
+    else if (err.status === 404)                       msg = 'Endpunkt nicht gefunden. Worker-URL prüfen.';
+    else if (err.message?.includes('Failed to fetch')) msg = 'Server nicht erreichbar. Internet & Worker-Status prüfen.';
+    else                                               msg = err.message || 'Unbekannter Fehler';
+    showState({ title: 'Fehler beim Laden', message: msg, icon: 'warn', retry: true });
     exitPreloader();
   }
 }
 
-/* Paralleles Abrufen mit Concurrency-Limit */
-async function parallelMap(items, fn, concurrency = 6) {
-  const results = new Array(items.length);
+/* ═══════════════════════════════════════════════════════
+   SORT, FILTER, RENDER
+═══════════════════════════════════════════════════════ */
+function sortAndRender() {
+  const sort  = document.getElementById('sortSelect').value;
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+
+  let list = state.allPhotos.slice();
+  if (query) list = list.filter(p => p.name.toLowerCase().includes(query));
+
+  list.sort((a, b) => {
+    switch (sort) {
+      case 'name-asc':  return a.name.localeCompare(b.name);
+      case 'name-desc': return b.name.localeCompare(a.name);
+      case 'date-desc': return new Date(b.modified || 0) - new Date(a.modified || 0);
+      case 'date-asc':  return new Date(a.modified || 0) - new Date(b.modified || 0);
+      case 'size-desc': return (b.size || 0) - (a.size || 0);
+      default:          return 0;
+    }
+  });
+
+  state.displayPhotos = list;
+  renderGallery();
+}
+
+let lazyObserver = null;
+function ensureObserver() {
+  if (lazyObserver) lazyObserver.disconnect();
+  lazyObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      const card = entry.target;
+      const img  = card.querySelector('img[data-src]');
+      if (img) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        img.addEventListener('load',  () => card.classList.add('loaded'), { once: true });
+        img.addEventListener('error', () => card.classList.add('loaded', 'error'), { once: true });
+      }
+      lazyObserver.unobserve(card);
+    }
+  }, { rootMargin: '300px' });
+}
+
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  grid.replaceChildren();
+
+  if (state.displayPhotos.length === 0) {
+    showState({ title: 'Keine Ergebnisse', message: 'Suche anpassen oder Filter zurücksetzen', icon: 'search' });
+    return;
+  }
+
+  ensureObserver();
+
+  const size =
+    state.viewMode === 'large' ? CONFIG.thumbSizeLarge :
+    state.viewMode === 'small' ? CONFIG.thumbSizeSmall :
+    CONFIG.thumbSize;
+
+  const frag = document.createDocumentFragment();
+  state.displayPhotos.forEach((photo, idx) => {
+    frag.appendChild(buildCard(photo, idx, size));
+  });
+  grid.appendChild(frag);
+  grid.querySelectorAll('.photo-card').forEach(c => lazyObserver.observe(c));
+}
+
+function buildCard(photo, idx, size) {
+  const ratio = (photo.width && photo.height && photo.width > 0)
+    ? (photo.height / photo.width)
+    : (2 / 3);
+  const paddingTop = (ratio * 100).toFixed(2) + '%';
+
+  const isSelected = state.selectedPaths.has(photo.path);
+
+  const checkbox = el('input', {
+    type:    'checkbox',
+    class:   'card-checkbox',
+    'aria-label': 'Auswählen',
+  });
+  checkbox.checked = isSelected;
+  checkbox.addEventListener('click', e => e.stopPropagation());
+  checkbox.addEventListener('change', () => togglePhotoSelect(photo.path, checkbox));
+
+  const img = el('img', {
+    'data-src': api.thumbUrl(photo.path, size),
+    alt:        photo.name,
+    loading:    'lazy',
+    decoding:   'async',
+    draggable:  'false',
+  });
+
+  const dlBtn = el('button', {
+    type:  'button',
+    class: 'card-download-btn',
+    'aria-label': `${photo.name} herunterladen`,
+    onclick: e => {
+      e.stopPropagation();
+      api.triggerDownload(photo.path, photo.name);
+      showToast(`⬇ ${photo.name}`);
+    },
+  });
+  dlBtn.innerHTML = `
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
+    </svg>`;
+  dlBtn.appendChild(document.createTextNode('Laden'));
+
+  const ratioBox = el('div', { class: 'ratio-box', style: `padding-top:${paddingTop}` }, img);
+  const overlay = el('div', { class: 'card-overlay' },
+    el('div', { class: 'card-filename' }, photo.name),
+    el('div', { class: 'card-actions' }, dlBtn)
+  );
+  const cb = el('div', { class: 'card-checkbox-wrap' }, checkbox);
+
+  const card = el('div', {
+    class: 'photo-card' + (isSelected ? ' selected' : ''),
+    'data-idx': idx,
+    tabindex: '0',
+    role: 'button',
+    'aria-label': `${photo.name} öffnen`,
+    onclick: e => {
+      if (e.target.closest('.card-checkbox-wrap') || e.target.closest('.card-download-btn')) return;
+      openLightbox(idx);
+    },
+    onkeydown: e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(idx); }
+    },
+  }, ratioBox, cb, overlay);
+
+  return card;
+}
+
+/* ═══════════════════════════════════════════════════════
+   AUSWAHL & DOWNLOAD
+═══════════════════════════════════════════════════════ */
+function togglePhotoSelect(path, checkbox) {
+  if (checkbox.checked) state.selectedPaths.add(path);
+  else                  state.selectedPaths.delete(path);
+  const card = checkbox.closest('.photo-card');
+  if (card) card.classList.toggle('selected', checkbox.checked);
+  state.allSelected = state.displayPhotos.length > 0
+    && state.displayPhotos.every(p => state.selectedPaths.has(p.path));
+  setText('selectAllLabel', state.allSelected ? 'Auswahl aufheben' : 'Alle auswählen');
+  updateSelectionUI();
+}
+
+function toggleSelectAll() {
+  state.allSelected = !state.allSelected;
+  state.displayPhotos.forEach(photo => {
+    if (state.allSelected) state.selectedPaths.add(photo.path);
+    else                   state.selectedPaths.delete(photo.path);
+  });
+  document.querySelectorAll('.photo-card').forEach(card => {
+    const cb = card.querySelector('.card-checkbox');
+    if (!cb) return;
+    cb.checked = state.allSelected;
+    card.classList.toggle('selected', state.allSelected);
+  });
+  setText('selectAllLabel', state.allSelected ? 'Auswahl aufheben' : 'Alle auswählen');
+  updateSelectionUI();
+}
+
+function updateSelectionUI() {
+  const count = state.selectedPaths.size;
+  setText('selectedLabel', `${count} ausgewählt`);
+  document.getElementById('selectedLabel').classList.toggle('visible', count > 0);
+  document.getElementById('downloadSelectedBtn').classList.toggle('visible', count > 0);
+  if (count === 1)    setText('downloadSelectedLabel', 'Einzeln laden');
+  else if (count > 1) setText('downloadSelectedLabel', `${count} als ZIP laden`);
+}
+
+async function parallelMap(items, fn, concurrency = 4) {
+  const out = new Array(items.length);
   let idx = 0;
   async function worker() {
     while (idx < items.length) {
       const i = idx++;
-      try { results[i] = await fn(items[i], i); }
-      catch (e) { console.warn('Link-Fehler für', items[i]?.name, e); results[i] = null; }
+      try { out[i] = await fn(items[i], i); }
+      catch (e) { out[i] = null; }
     }
   }
   await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
-  return results;
+  return out;
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  SORT & FILTER & RENDER
-   └──────────────────────────────────────────────────────── */
-function sortAndRender() {
-  const sort  = document.getElementById('sortSelect')?.value || 'name-asc';
-  const query = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+async function downloadSelected() {
+  const paths = Array.from(state.selectedPaths);
+  if (paths.length === 0) return;
 
-  let list = [...allPhotos];
+  const photos = paths
+    .map(p => state.allPhotos.find(x => x.path === p))
+    .filter(Boolean);
 
-  // Suche
-  if (query) {
-    list = list.filter(p => p.name.toLowerCase().includes(query));
-  }
-
-  // Sortierung
-  list.sort((a, b) => {
-    switch (sort) {
-      case 'name-asc':   return a.name.localeCompare(b.name);
-      case 'name-desc':  return b.name.localeCompare(a.name);
-      case 'date-desc':  return new Date(b.modified) - new Date(a.modified);
-      case 'date-asc':   return new Date(a.modified) - new Date(b.modified);
-      case 'size-desc':  return b.size - a.size;
-      default:           return 0;
-    }
-  });
-
-  displayPhotos = list;
-  renderGallery();
-}
-
-function filterGallery() { sortAndRender(); }
-
-/* ┌────────────────────────────────────────────────────────
-   │  RENDER GALLERY
-   └──────────────────────────────────────────────────────── */
-function renderGallery() {
-  const grid = document.getElementById('galleryGrid');
-  grid.innerHTML = '';
-
-  if (displayPhotos.length === 0) {
-    grid.innerHTML = `
-      <div class="gallery-state">
-        <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-          <circle cx="32" cy="32" r="28"/><path d="M20 44l8-8 8 8M32 36V20"/>
-        </svg>
-        <h3>Keine Ergebnisse</h3>
-        <p>Suche anpassen oder Filter zurücksetzen</p>
-      </div>`;
+  if (photos.length === 1) {
+    api.triggerDownload(photos[0].path, photos[0].name);
+    showToast(`⬇ ${photos[0].name}`);
     return;
   }
 
-  // IntersectionObserver für Lazy Loading
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const img = entry.target.querySelector('img[data-src]');
-      if (img) {
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-        img.onload  = () => { img.classList.add('loaded'); entry.target.classList.remove('loading'); };
-        img.onerror = () => entry.target.classList.replace('loading','error');
-      }
-      observer.unobserve(entry.target);
-    });
-  }, { rootMargin: '200px' });
+  if (typeof JSZip === 'undefined') {
+    showToast('ZIP-Bibliothek nicht geladen', false, true);
+    return;
+  }
 
-  displayPhotos.forEach((photo, idx) => {
-    const card = createPhotoCard(photo, idx);
-    grid.appendChild(card);
-    observer.observe(card);
-  });
+  const btn = document.getElementById('downloadSelectedBtn');
+  btn.disabled = true;
+
+  const toast = showProgressToast('ZIP wird vorbereitet…', photos.length);
+  const zip = new JSZip();
+
+  const usedNames = new Set();
+  function uniqueName(name) {
+    let n = sanitizeFilename(name);
+    if (!usedNames.has(n)) { usedNames.add(n); return n; }
+    const dot = n.lastIndexOf('.');
+    const base = dot > 0 ? n.slice(0, dot) : n;
+    const ext  = dot > 0 ? n.slice(dot)    : '';
+    let i = 2;
+    while (usedNames.has(`${base}_${i}${ext}`)) i++;
+    const final = `${base}_${i}${ext}`;
+    usedNames.add(final);
+    return final;
+  }
+
+  let done = 0, failed = 0;
+  await parallelMap(photos, async (photo) => {
+    try {
+      const blob = await api.fetchOriginal(photo.path);
+      zip.file(uniqueName(photo.name), blob);
+    } catch (e) {
+      console.warn('[ZIP] Skip', photo.name, e);
+      failed++;
+    } finally {
+      done++;
+      toast.update(done, photos.length, `Lade ${done}/${photos.length}…`);
+    }
+  }, CONFIG.zipConcurrency);
+
+  if (Object.keys(zip.files).length === 0) {
+    toast.dismiss();
+    btn.disabled = false;
+    showToast('Keine Bilder konnten geladen werden', false, true);
+    return;
+  }
+
+  toast.update(done, photos.length, 'Komprimiere ZIP…');
+
+  try {
+    const blob = await zip.generateAsync(
+      { type: 'blob', compression: 'STORE' },
+      (meta) => { toast.setBar(50 + Math.round(meta.percent / 2)); }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const stamp = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `galerie_${stamp}.zip`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    toast.dismiss();
+    const okCount = photos.length - failed;
+    const msg = failed > 0
+      ? `ZIP geladen (${okCount}/${photos.length})`
+      : `${photos.length} Bilder als ZIP geladen`;
+    showToast(msg, true);
+  } catch (e) {
+    console.error('[ZIP]', e);
+    toast.dismiss();
+    showToast('ZIP-Erstellung fehlgeschlagen', false, true);
+  } finally {
+    btn.disabled = false;
+  }
 }
 
-function createPhotoCard(photo, idx) {
-  const card = document.createElement('div');
-  card.className = 'photo-card loading';
-  card.id = `photo-${idx}`;
-
-  // Click öffnet Lightbox, aber nicht wenn Checkbox oder Download-Button geklickt
-  card.onclick = (e) => {
-    if (e.target.closest('.card-checkbox-wrap') || e.target.closest('.card-download-btn')) return;
-    openLightbox(idx);
-  };
-
-  const isSelected = selectedPaths.has(photo.path);
-  if (isSelected) card.classList.add('selected');
-
-  card.innerHTML = `
-    <div class="card-checkbox-wrap">
-      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''}
-             onclick="event.stopPropagation()"
-             onchange="togglePhotoSelect('${CSS.escape(photo.path)}', this)" />
-    </div>
-    <img data-src="${photo.url}" alt="${photo.name}" />
-    <div class="card-overlay">
-      <div class="card-filename">${photo.name}</div>
-      <div class="card-actions">
-        <button class="card-download-btn" onclick="downloadPhoto(event,'${CSS.escape(photo.url)}','${CSS.escape(photo.name)}')">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
-          </svg>
-          Laden
-        </button>
-      </div>
-    </div>`;
-  return card;
-}
-
-/* ┌────────────────────────────────────────────────────────
-   │  LIGHTBOX
-   └──────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════════════════ */
 function openLightbox(idx) {
-  currentIndex = idx;
+  state.currentIndex = idx;
+  resetZoom();
   updateLightbox();
-  document.getElementById('lightbox').classList.add('open');
+  const lb = document.getElementById('lightbox');
+  lb.classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.getElementById('lbClose').focus();
+  const photo = state.displayPhotos[idx];
+  if (photo) history.replaceState(null, '', `#bild=${encodeURIComponent(photo.name)}`);
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
-}
-function closeLightboxOnBackdrop(e) {
-  if (e.target.id === 'lightbox') closeLightbox();
+  resetZoom();
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
 }
 function navigateLightbox(dir) {
-  currentIndex = (currentIndex + dir + displayPhotos.length) % displayPhotos.length;
+  const n = state.displayPhotos.length;
+  if (n === 0) return;
+  state.currentIndex = (state.currentIndex + dir + n) % n;
+  resetZoom();
   updateLightbox();
+  const photo = state.displayPhotos[state.currentIndex];
+  if (photo) history.replaceState(null, '', `#bild=${encodeURIComponent(photo.name)}`);
 }
 function updateLightbox() {
-  const photo   = displayPhotos[currentIndex];
+  const photo = state.displayPhotos[state.currentIndex];
+  if (!photo) return;
   const img     = document.getElementById('lbImg');
   const spinner = document.getElementById('lbSpinner');
 
   img.style.opacity = '0';
   spinner.style.display = 'flex';
+
+  const previewUrl = api.thumbUrl(photo.path, CONFIG.thumbSizeLarge);
 
   img.onload = () => {
     img.style.opacity = '1';
@@ -1040,190 +1449,355 @@ function updateLightbox() {
     spinner.style.display = 'none';
     img.style.opacity = '1';
   };
-  img.src = photo.url;
+  img.src = previewUrl;
   img.alt = photo.name;
 
-  document.getElementById('lbFilename').textContent = photo.name;
-  document.getElementById('lbFileinfo').textContent = photo.size
-    ? formatBytes(photo.size) + (photo.modified ? ' · ' + formatDate(photo.modified) : '')
-    : (photo.modified ? formatDate(photo.modified) : '');
-  document.getElementById('lbCounter').textContent =
-    `${currentIndex + 1} / ${displayPhotos.length}`;
+  setText('lbFilename', photo.name);
+  const parts = [];
+  if (photo.size)     parts.push(formatBytes(photo.size));
+  if (photo.modified) parts.push(formatDate(photo.modified));
+  if (photo.width && photo.height) parts.push(`${photo.width} × ${photo.height}`);
+  setText('lbFileinfo', parts.join(' · '));
+  setText('lbCounter', `${state.currentIndex + 1} / ${state.displayPhotos.length}`);
 }
 function downloadFromLightbox() {
-  const p = displayPhotos[currentIndex];
-  downloadPhoto(null, p.url, p.name);
+  const photo = state.displayPhotos[state.currentIndex];
+  if (!photo) return;
+  api.triggerDownload(photo.path, photo.name);
+  showToast(`⬇ ${photo.name}`);
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  SELECTION & DOWNLOAD
-   └──────────────────────────────────────────────────────── */
-function togglePhotoSelect(path, checkbox) {
-  const realPath = path; // CSS.escape was for attribute safety; path stored as-is
-  if (checkbox.checked) {
-    selectedPaths.add(realPath);
-    checkbox.closest('.photo-card').classList.add('selected');
+/* ─── ZOOM & PAN ──────────────────────────────────────── */
+function applyZoom() {
+  const img = document.getElementById('lbImg');
+  const wrap = document.getElementById('lbImgWrap');
+  img.style.transform = `translate(${state.zoom.x}px, ${state.zoom.y}px) scale(${state.zoom.scale})`;
+  wrap.classList.toggle('zoomed', state.zoom.scale > 1);
+  setText('lbZoomInfo', Math.round(state.zoom.scale * 100) + '%');
+  document.getElementById('lbZoomOut').disabled = state.zoom.scale <= CONFIG.zoomMin;
+  document.getElementById('lbZoomIn').disabled  = state.zoom.scale >= CONFIG.zoomMax;
+}
+function setZoom(scale, originX, originY) {
+  const newScale = clamp(scale, CONFIG.zoomMin, CONFIG.zoomMax);
+  if (newScale === 1) {
+    state.zoom = { scale: 1, x: 0, y: 0 };
   } else {
-    selectedPaths.delete(realPath);
-    checkbox.closest('.photo-card').classList.remove('selected');
-    allSelected = false;
+    const wrap = document.getElementById('lbImgWrap');
+    const rect = wrap.getBoundingClientRect();
+    if (originX == null) originX = rect.width / 2;
+    if (originY == null) originY = rect.height / 2;
+    const factor = newScale / state.zoom.scale;
+    state.zoom.x = originX - (originX - state.zoom.x) * factor;
+    state.zoom.y = originY - (originY - state.zoom.y) * factor;
+    state.zoom.scale = newScale;
+    constrainPan();
   }
-  updateSelectionUI();
+  applyZoom();
+}
+function resetZoom() {
+  state.zoom = { scale: 1, x: 0, y: 0 };
+  applyZoom();
+}
+function constrainPan() {
+  const img = document.getElementById('lbImg');
+  const wrap = document.getElementById('lbImgWrap');
+  if (!img || !wrap) return;
+  const rect = img.getBoundingClientRect();
+  const wrapRect = wrap.getBoundingClientRect();
+  const maxX = Math.max(0, (rect.width  - wrapRect.width)  / 2);
+  const maxY = Math.max(0, (rect.height - wrapRect.height) / 2);
+  state.zoom.x = clamp(state.zoom.x, -maxX, maxX);
+  state.zoom.y = clamp(state.zoom.y, -maxY, maxY);
 }
 
-function toggleSelectAll() {
-  allSelected = !allSelected;
-  displayPhotos.forEach((photo, idx) => {
-    const cb = document.querySelector(`#photo-${idx} .card-checkbox`);
-    if (!cb) return;
-    cb.checked = allSelected;
-    const card = cb.closest('.photo-card');
-    if (allSelected) {
-      selectedPaths.add(photo.path);
-      card.classList.add('selected');
-    } else {
-      selectedPaths.delete(photo.path);
-      card.classList.remove('selected');
-    }
-  });
-  updateSelectionUI();
-}
-
-function updateSelectionUI() {
-  const count = selectedPaths.size;
-  document.getElementById('selectedLabel').textContent = `${count} ausgewählt`;
-  document.getElementById('selectedLabel').classList.toggle('visible', count > 0);
-  document.getElementById('downloadSelectedBtn').classList.toggle('visible', count > 0);
-}
-
-function downloadPhoto(event, url, filename) {
-  if (event) event.stopPropagation();
-  const a = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  showToast(`⬇ ${filename}`, false);
-}
-
-function downloadSelected() {
-  if (!selectedPaths.size) return;
-  let count = 0;
-  selectedPaths.forEach(path => {
-    const photo = allPhotos.find(p => p.path === path);
-    if (photo) { downloadPhoto(null, photo.url, photo.name); count++; }
-  });
-  showToast(`${count} Bilder werden heruntergeladen`, true);
-}
-
-/* ┌────────────────────────────────────────────────────────
-   │  VIEW MODES
-   └──────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════
+   VIEW-MODI
+═══════════════════════════════════════════════════════ */
 function setView(mode, btn) {
+  state.viewMode = mode;
   const grid = document.getElementById('galleryGrid');
-  grid.classList.remove('view-large','view-small');
-  if (mode === 'large') grid.classList.add('view-large');
-  if (mode === 'small') grid.classList.add('view-small');
+  grid.classList.remove('view-large', 'view-medium', 'view-small');
+  grid.classList.add(`view-${mode}`);
   document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
+  renderGallery();
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  STATES
-   └──────────────────────────────────────────────────────── */
-function showError(title, message) {
-  document.getElementById('galleryGrid').innerHTML = `
-    <div class="gallery-state">
-      <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-        <circle cx="32" cy="32" r="28"/><line x1="32" y1="20" x2="32" y2="36"/><circle cx="32" cy="44" r="2"/>
-      </svg>
-      <h3>${title}</h3>
-      <p>${message}</p>
-      <button class="btn btn-outline retry-btn" onclick="location.reload()">Erneut versuchen</button>
-    </div>`;
-}
-function showEmpty() {
-  document.getElementById('galleryGrid').innerHTML = `
-    <div class="gallery-state">
-      <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-        <rect x="4" y="12" width="56" height="40" rx="3"/>
-        <circle cx="22" cy="27" r="6"/><path d="M4 42l14-12 10 10 10-14 14 14"/>
-      </svg>
-      <h3>Ordner leer</h3>
-      <p>Keine Bilder in "${CONFIG.folderPath}" gefunden.</p>
-    </div>`;
+/* ═══════════════════════════════════════════════════════
+   STATES
+═══════════════════════════════════════════════════════ */
+function showState({ title, message, icon = 'warn', retry = false }) {
+  const grid = document.getElementById('galleryGrid');
+  grid.replaceChildren();
+
+  let iconSvg;
+  if (icon === 'empty') {
+    iconSvg = `<svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+      <rect x="4" y="12" width="56" height="40" rx="3"/>
+      <circle cx="22" cy="27" r="6"/><path d="M4 42l14-12 10 10 10-14 14 14"/></svg>`;
+  } else if (icon === 'search') {
+    iconSvg = `<svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+      <circle cx="28" cy="28" r="20"/><path d="M44 44l12 12"/></svg>`;
+  } else {
+    iconSvg = `<svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+      <circle cx="32" cy="32" r="28"/><line x1="32" y1="20" x2="32" y2="36"/><circle cx="32" cy="44" r="2"/></svg>`;
+  }
+
+  const stateDiv = el('div', { class: 'gallery-state' });
+  stateDiv.innerHTML = iconSvg;
+  stateDiv.appendChild(el('h3', {}, title));
+  stateDiv.appendChild(el('p', {}, message));
+  if (retry) {
+    stateDiv.appendChild(el('button', {
+      class: 'btn btn-outline',
+      type:  'button',
+      onclick: () => location.reload(),
+    }, 'Erneut versuchen'));
+  }
+  grid.appendChild(stateDiv);
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  TOAST
-   └──────────────────────────────────────────────────────── */
+function showConfigBanner(html) {
+  const b = document.getElementById('configBanner');
+  b.innerHTML = html;
+  b.classList.add('visible');
+}
+
+/* ═══════════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════════ */
 function showToast(message, isGreen = false, isRed = false) {
   const wrap = document.getElementById('toastWrap');
-  const el = document.createElement('div');
-  el.className = 'toast' + (isGreen ? ' toast-green' : isRed ? ' toast-red' : '');
-  el.textContent = message;
-  wrap.appendChild(el);
-  requestAnimationFrame(() => el.classList.add('show'));
+  const t = el('div', {
+    class: 'toast' + (isGreen ? ' toast-green' : isRed ? ' toast-red' : ''),
+  }, message);
+  wrap.appendChild(t);
+  requestAnimationFrame(() => t.classList.add('show'));
   setTimeout(() => {
-    el.classList.remove('show');
-    setTimeout(() => el.remove(), 400);
-  }, 2800);
+    t.classList.remove('show');
+    setTimeout(() => t.remove(), 400);
+  }, 3200);
 }
 
-/* ┌────────────────────────────────────────────────────────
-   │  UTILITIES
-   └──────────────────────────────────────────────────────── */
-function updatePhotoCount() {
-  document.getElementById('photoCount').textContent = allPhotos.length;
+function showProgressToast(label, total) {
+  const wrap = document.getElementById('toastWrap');
+  const bar  = el('div', { class: 'toast-bar' }, el('div', { class: 'toast-bar-fill' }));
+  const lbl  = el('div', {}, label);
+  const t = el('div', { class: 'toast progress show' }, lbl, bar);
+  wrap.appendChild(t);
+  return {
+    update(done, total, text) {
+      lbl.textContent = text || `${done} / ${total}`;
+      bar.firstChild.style.width = Math.round((done / total) * 50) + '%';
+    },
+    setBar(pct) { bar.firstChild.style.width = pct + '%'; },
+    dismiss() {
+      t.classList.remove('show');
+      setTimeout(() => t.remove(), 400);
+    },
+  };
 }
-function formatBytes(b) {
-  if (b < 1024) return b + ' B';
-  if (b < 1024 ** 2) return (b / 1024).toFixed(1) + ' KB';
-  return (b / 1024 ** 2).toFixed(1) + ' MB';
+
+function updatePhotoCount() { setText('photoCount', state.allPhotos.length); }
+
+/* ═══════════════════════════════════════════════════════
+   URL-HASH (direkter Link auf einzelnes Bild)
+═══════════════════════════════════════════════════════ */
+function handleInitialHash() {
+  const hash = location.hash;
+  if (!hash || !hash.startsWith('#bild=')) return;
+  const name = decodeURIComponent(hash.slice(6));
+  const idx = state.displayPhotos.findIndex(p => p.name === name);
+  if (idx >= 0) setTimeout(() => openLightbox(idx), 400);
 }
-function formatDate(iso) {
-  return new Date(iso).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+/* ═══════════════════════════════════════════════════════
+   EVENT WIRING
+═══════════════════════════════════════════════════════ */
+function wireEvents() {
+  document.getElementById('selectAllBtn').addEventListener('click', toggleSelectAll);
+  document.getElementById('downloadSelectedBtn').addEventListener('click', downloadSelected);
+  document.getElementById('sortSelect').addEventListener('change', sortAndRender);
+  document.getElementById('searchInput').addEventListener('input', sortAndRender);
+
+  document.querySelectorAll('.view-btn').forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view, btn));
+  });
+
+  // Lightbox-Buttons
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); navigateLightbox(-1); });
+  document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); navigateLightbox(1); });
+  document.getElementById('lbDownload').addEventListener('click', downloadFromLightbox);
+  document.getElementById('lbZoomIn').addEventListener('click',  () => setZoom(state.zoom.scale + CONFIG.zoomStep));
+  document.getElementById('lbZoomOut').addEventListener('click', () => setZoom(state.zoom.scale - CONFIG.zoomStep));
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+
+  // Keyboard-Shortcuts
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    switch (e.key) {
+      case 'Escape':     e.preventDefault(); closeLightbox(); break;
+      case 'ArrowLeft':  e.preventDefault(); navigateLightbox(-1); break;
+      case 'ArrowRight': e.preventDefault(); navigateLightbox(1); break;
+      case 'd':
+      case 'D':          e.preventDefault(); downloadFromLightbox(); break;
+      case '+':
+      case '=':          e.preventDefault(); setZoom(state.zoom.scale + CONFIG.zoomStep); break;
+      case '-':
+      case '_':          e.preventDefault(); setZoom(state.zoom.scale - CONFIG.zoomStep); break;
+      case '0':          e.preventDefault(); resetZoom(); break;
+    }
+  });
+
+  // Touch & Mouse für Zoom/Pan im Lightbox
+  const imgWrap = document.getElementById('lbImgWrap');
+  const lbImg   = document.getElementById('lbImg');
+
+  // Doppelklick zum Zoomen
+  imgWrap.addEventListener('dblclick', e => {
+    e.preventDefault();
+    const rect = imgWrap.getBoundingClientRect();
+    if (state.zoom.scale > 1) resetZoom();
+    else setZoom(2.5, e.clientX - rect.left - rect.width/2, e.clientY - rect.top - rect.height/2);
+  });
+
+  // Mausrad-Zoom (Desktop)
+  imgWrap.addEventListener('wheel', e => {
+    if (!e.ctrlKey && state.zoom.scale === 1) return;
+    e.preventDefault();
+    const rect = imgWrap.getBoundingClientRect();
+    const delta = e.deltaY < 0 ? CONFIG.zoomStep : -CONFIG.zoomStep;
+    setZoom(state.zoom.scale + delta,
+            e.clientX - rect.left - rect.width/2,
+            e.clientY - rect.top - rect.height/2);
+  }, { passive: false });
+
+  // Maus-Drag (Pan im gezoomten Zustand)
+  imgWrap.addEventListener('mousedown', e => {
+    if (state.zoom.scale <= 1) return;
+    e.preventDefault();
+    state.touch.dragging = true;
+    state.touch.dragStartX = e.clientX;
+    state.touch.dragStartY = e.clientY;
+    state.touch.dragOriginX = state.zoom.x;
+    state.touch.dragOriginY = state.zoom.y;
+    imgWrap.classList.add('dragging');
+  });
+  window.addEventListener('mousemove', e => {
+    if (!state.touch.dragging) return;
+    state.zoom.x = state.touch.dragOriginX + (e.clientX - state.touch.dragStartX);
+    state.zoom.y = state.touch.dragOriginY + (e.clientY - state.touch.dragStartY);
+    constrainPan();
+    applyZoom();
+  });
+  window.addEventListener('mouseup', () => {
+    if (!state.touch.dragging) return;
+    state.touch.dragging = false;
+    imgWrap.classList.remove('dragging');
+  });
+
+  // Touch: Swipe / Pinch / Doppel-Tap
+  imgWrap.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+      state.touch.startX = e.touches[0].clientX;
+      state.touch.startY = e.touches[0].clientY;
+      const now = Date.now();
+      if (now - state.touch.lastTap < 300) {
+        e.preventDefault();
+        const rect = imgWrap.getBoundingClientRect();
+        if (state.zoom.scale > 1) resetZoom();
+        else setZoom(2.5,
+          e.touches[0].clientX - rect.left - rect.width/2,
+          e.touches[0].clientY - rect.top - rect.height/2);
+      }
+      state.touch.lastTap = now;
+      if (state.zoom.scale > 1) {
+        state.touch.panning = true;
+        state.touch.dragOriginX = state.zoom.x;
+        state.touch.dragOriginY = state.zoom.y;
+      }
+    } else if (e.touches.length === 2) {
+      const dx = e.touches[1].clientX - e.touches[0].clientX;
+      const dy = e.touches[1].clientY - e.touches[0].clientY;
+      state.touch.startDist = Math.hypot(dx, dy);
+      state.touch.startScale = state.zoom.scale;
+    }
+  }, { passive: true });
+
+  imgWrap.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const dx = e.touches[1].clientX - e.touches[0].clientX;
+      const dy = e.touches[1].clientY - e.touches[0].clientY;
+      const dist = Math.hypot(dx, dy);
+      if (state.touch.startDist > 0) {
+        const newScale = state.touch.startScale * (dist / state.touch.startDist);
+        setZoom(newScale);
+      }
+    } else if (e.touches.length === 1 && state.touch.panning && state.zoom.scale > 1) {
+      e.preventDefault();
+      state.zoom.x = state.touch.dragOriginX + (e.touches[0].clientX - state.touch.startX);
+      state.zoom.y = state.touch.dragOriginY + (e.touches[0].clientY - state.touch.startY);
+      constrainPan();
+      applyZoom();
+    }
+  }, { passive: false });
+
+  imgWrap.addEventListener('touchend', e => {
+    state.touch.panning = false;
+    // Swipe-Navigation nur wenn nicht gezoomt
+    if (state.zoom.scale === 1 && e.changedTouches.length === 1) {
+      const dx = e.changedTouches[0].clientX - state.touch.startX;
+      const dy = e.changedTouches[0].clientY - state.touch.startY;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+        navigateLightbox(dx < 0 ? 1 : -1);
+      }
+    }
+  });
+
+  // Header-Scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('stuck', window.scrollY > 50);
+  }, { passive: true });
+
+  // Mobile Nav
+  const ham = document.getElementById('ham');
+  const navWrap = document.getElementById('navLinksWrap');
+  ham.addEventListener('click', () => {
+    const open = !ham.classList.contains('open');
+    ham.classList.toggle('open', open);
+    navWrap.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navWrap.addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      ham.classList.remove('open');
+      navWrap.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Re-render on resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (state.displayPhotos.length) renderGallery();
+      if (state.zoom.scale > 1) constrainPan(), applyZoom();
+    }, 250);
+  });
 }
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-/* ┌────────────────────────────────────────────────────────
-   │  KEYBOARD & TOUCH NAVIGATION
-   └──────────────────────────────────────────────────────── */
-document.addEventListener('keydown', e => {
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('open')) return;
-  if (e.key === 'Escape')     closeLightbox();
-  if (e.key === 'ArrowLeft')  navigateLightbox(-1);
-  if (e.key === 'ArrowRight') navigateLightbox(1);
-});
-
-document.getElementById('lightbox').addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].clientX;
-}, { passive: true });
-document.getElementById('lightbox').addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  if (Math.abs(dx) > 60) navigateLightbox(dx < 0 ? 1 : -1);
-}, { passive: true });
-
-/* ┌────────────────────────────────────────────────────────
-   │  HEADER SCROLL
-   └──────────────────────────────────────────────────────── */
-window.addEventListener('scroll', () => {
-  document.getElementById('header').classList.toggle('stuck', window.scrollY > 50);
-}, { passive: true });
-
-/* ┌────────────────────────────────────────────────────────
-   │  MOBILE NAV
-   └──────────────────────────────────────────────────────── */
-const ham     = document.getElementById('ham');
-const navWrap = document.getElementById('navLinksWrap');
-ham.addEventListener('click', () => { ham.classList.toggle('open'); navWrap.classList.toggle('open'); });
-navWrap.addEventListener('click', e => {
-  if (e.target.tagName === 'A') { ham.classList.remove('open'); navWrap.classList.remove('open'); }
-});
-
-/* ┌────────────────────────────────────────────────────────
-   │  BOOT
-   └──────────────────────────────────────────────────────── */
-document.getElementById('year').textContent = new Date().getFullYear();
+/* ═══════════════════════════════════════════════════════
+   BOOT
+═══════════════════════════════════════════════════════ */
+setText('year', new Date().getFullYear());
+wireEvents();
 loadPhotos();
 </script>
 </body>

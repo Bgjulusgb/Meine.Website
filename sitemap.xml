@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://benni-photo.com/</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://benni-photo.com/bil1.jpg</image:loc>
+      <image:title>Benjamin Gillmann Photography</image:title>
+      <image:caption>Fotograf für Sport, Musik und Events</image:caption>
+    </image:image>
+  </url>
+
+</urlset>
