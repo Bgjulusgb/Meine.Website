@@ -8,17 +8,28 @@
  * der Frontend-Galerie und der Dropbox API.
  * 
  * SETUP:
- * 1. Ersetze DEIN_DROPBOX_TOKEN mit deinem persönlichen Dropbox Access Token
- * 2. Passe DROPBOX_FOLDER_PATH an deinen gewünschten Ordner an
+ * 1. Setze die Umgebungsvariable DROPBOX_ACCESS_TOKEN
+ * 2. Optional: Passe DROPBOX_FOLDER_PATH an
+ * 
+ * UMGEBUNGSVARIABLEN (.env oder Server):
+ * - DROPBOX_ACCESS_TOKEN: Dein Dropbox Access Token
+ * - DROPBOX_FOLDER_PATH: (Optional) Ordnerpfad in Dropbox
  * 
  */
 
 // ═══════════════════════════════════════════════════════
-// KONFIGURATION
+// KONFIGURATION (aus Umgebungsvariablen)
 // ═══════════════════════════════════════════════════════
 
-define('DROPBOX_ACCESS_TOKEN', 'DEIN_DROPBOX_TOKEN');  // 🔑 Ersetze mit deinem Token!
-define('DROPBOX_FOLDER_PATH', '/meine-fotos');          // 📁 Dein Dropbox-Ordnerpfad
+// Token aus Umgebungsvariable laden
+$dropboxToken = getenv('DROPBOX_ACCESS_TOKEN');
+if ($dropboxToken === false) {
+    // Fallback auf Direktdefinition (nur für lokale Entwicklung)
+    $dropboxToken = 'DEIN_DROPBOX_TOKEN';
+}
+
+define('DROPBOX_ACCESS_TOKEN', $dropboxToken);
+define('DROPBOX_FOLDER_PATH', getenv('DROPBOX_FOLDER_PATH') ?: '/meine-fotos');  // 📁 Kann auch per ENV überschrieben werden
 define('CACHE_DURATION', 3600);                         // Cache-Dauer in Sekunden (1 Stunde)
 
 header('Content-Type: application/json; charset=utf-8');
@@ -33,7 +44,7 @@ if (DROPBOX_ACCESS_TOKEN === 'DEIN_DROPBOX_TOKEN') {
     http_response_code(401);
     echo json_encode([
         'error' => 'Authentifizierungsfehler',
-        'message' => 'Dropbox Access Token nicht konfiguriert. Bitte get-images.php bearbeiten.'
+        'message' => 'Dropbox Access Token nicht konfiguriert. Bitte die Umgebungsvariable DROPBOX_ACCESS_TOKEN setzen.'
     ]);
     exit;
 }
@@ -189,7 +200,7 @@ try {
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode([
-        'error' => 'Servergebäude',
+        'error' => 'Serverfehler',
         'message' => $e->getMessage()
     ]);
 }
