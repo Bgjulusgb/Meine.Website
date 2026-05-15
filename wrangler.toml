@@ -1,0 +1,5 @@
+name = "galerie-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+vars = { DROPBOX_FOLDER = "/meine-fotos", ALLOWED_ORIGINS = "benni-photo.com" }
