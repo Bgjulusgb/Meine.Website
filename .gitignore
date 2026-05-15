@@ -1,0 +1,33 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & Config (lokal konfigurierte Dateien)
+galerie/get-images.php
+
+# Logs
+*.log
+
+# Node (falls du Node.js verwendest)
+node_modules/
+npm-debug.log
+
+# Build/Dist
+dist/
+build/
+
+# Cache
+.cache/
+*.tmp
