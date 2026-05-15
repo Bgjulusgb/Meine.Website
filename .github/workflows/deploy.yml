@@ -16,10 +16,10 @@ jobs:
       - name: ⬇️ Code auschecken
         uses: actions/checkout@v4
 
-      - name: 🟢 Node.js Setup
+- name: 🟢 Node.js Setup
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: 📦 Wrangler installieren
         run: npm install -g wrangler
