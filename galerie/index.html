@@ -10,69 +10,61 @@
 
 <style>
 /* ═══════════════════════════════════════
-   DESIGN TOKENS (user CSS, unverändert)
+   DESIGN TOKENS
 ═══════════════════════════════════════ */
 :root {
-    --black:  #000;
-    --white:  #fff;
-    --bg-0:   #000;
-    --bg-1:   #080808;
-    --bg-2:   #0f0f0f;
-    --fg-0:   #fff;
-    --fg-1:   #888;
-    --fg-2:   #555;
-    --accent: #fff;
-    --red:    #ff5e5e;
-    --green:  #5effa0;
+  --black:  #000;
+  --white:  #fff;
+  --bg-0:   #000;
+  --bg-1:   #080808;
+  --bg-2:   #0f0f0f;
+  --fg-0:   #fff;
+  --fg-1:   #888;
+  --fg-2:   #555;
+  --accent: #fff;
+  --red:    #ff5e5e;
+  --green:  #5effa0;
 
-    --f-display: 'Cormorant Garamond', Georgia, serif;
-    --f-ui:      'Montserrat', sans-serif;
-    --f-mono:    'DM Mono', monospace;
+  --f-display: 'Cormorant Garamond', Georgia, serif;
+  --f-ui:      'Montserrat', sans-serif;
+  --f-mono:    'DM Mono', monospace;
 
-    --ease-out:  cubic-bezier(0.16,1,0.3,1);
-    --ease-in:   cubic-bezier(0.4,0,1,1);
-    --ease-io:   cubic-bezier(0.4,0,0.2,1);
+  --ease-out: cubic-bezier(0.16,1,0.3,1);
+  --ease-in:  cubic-bezier(0.4,0,1,1);
+  --ease-io:  cubic-bezier(0.4,0,0.2,1);
 
-    --sp-1: 0.25rem;
-    --sp-2: 0.5rem;
-    --sp-3: 0.75rem;
-    --sp-4: 1rem;
-    --sp-5: 1.5rem;
-    --sp-6: 2rem;
-    --sp-7: 3rem;
-    --sp-8: 4rem;
-    --sp-9: 6rem;
+  --sp-1: 0.25rem; --sp-2: 0.5rem;  --sp-3: 0.75rem;
+  --sp-4: 1rem;    --sp-5: 1.5rem;  --sp-6: 2rem;
+  --sp-7: 3rem;    --sp-8: 4rem;    --sp-9: 6rem;
+  --hit: 44px;
 
-    --hit: 44px;
-
-    --safe-top:    env(safe-area-inset-top, 0px);
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
-    --safe-left:   env(safe-area-inset-left, 0px);
-    --safe-right:  env(safe-area-inset-right, 0px);
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 @media (max-width: 600px) { html { font-size: 15px; } }
 @media (max-width: 380px) { html { font-size: 14px; } }
 
 body {
-    font-family: var(--f-ui);
-    background: var(--bg-0);
-    color: var(--fg-0);
-    overflow-x: hidden;
-    line-height: 1.6;
-    -webkit-tap-highlight-color: transparent;
+  font-family: var(--f-ui);
+  background: var(--bg-0);
+  color: var(--fg-0);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
 }
-
 img { display: block; max-width: 100%; }
 a   { color: inherit; }
 button { font-family: inherit; cursor: pointer; }
@@ -81,1225 +73,1157 @@ button { font-family: inherit; cursor: pointer; }
    PRELOADER
 ═══════════════════════════════════════ */
 .preloader {
-    position: fixed; inset: 0; z-index: 99999;
-    background: #000;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    overflow: hidden;
+  position: fixed; inset: 0; z-index: 99999;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
 }
 .preloader::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 48px 48px;
-    animation: plGrid 2.8s ease forwards;
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: plGrid 2.8s ease forwards;
 }
 @keyframes plGrid { 0%{opacity:0} 40%{opacity:1} 80%{opacity:1} 100%{opacity:0} }
 
 .pl-scan {
-    position: absolute; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg,transparent,rgba(255,255,255,0.55),transparent);
-    box-shadow: 0 0 18px rgba(255,255,255,0.35);
-    animation: plScan 1.9s var(--ease-io) forwards;
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+  box-shadow: 0 0 18px rgba(255,255,255,.35);
+  animation: plScan 1.9s var(--ease-io) forwards;
 }
 @keyframes plScan { 0%{top:-2px;opacity:0} 8%{opacity:1} 100%{top:100%;opacity:0} }
 
 .pl-body {
-    position: relative;
-    display: flex; flex-direction: column;
-    align-items: center; gap: var(--sp-6);
-    width: min(360px, 90vw);
+  position: relative;
+  display: flex; flex-direction: column;
+  align-items: center; gap: var(--sp-6);
+  width: min(360px, 90vw);
 }
-.pl-ring-wrap {
-    width: 88px; height: 88px;
-    position: relative;
-}
+.pl-ring-wrap { width: 88px; height: 88px; position: relative; }
 .pl-ring {
-    position: absolute; inset: 0; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.14);
-    animation: plRing 1.8s var(--ease-out) forwards;
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.14);
+  animation: plRing 1.8s var(--ease-out) forwards;
 }
 .pl-ring:nth-child(2) { inset:10px; animation-delay:.14s }
 .pl-ring:nth-child(3) { inset:20px; animation-delay:.28s }
 @keyframes plRing { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
 .pl-ring-wrap::after {
-    content:''; position:absolute; inset:-8px; border-radius:50%;
-    border:1px dashed rgba(255,255,255,0.07);
-    animation: plSpin 8s linear infinite;
+  content:''; position:absolute; inset:-8px; border-radius:50%;
+  border:1px dashed rgba(255,255,255,.07);
+  animation: plSpin 8s linear infinite;
 }
 @keyframes plSpin { to{transform:rotate(360deg)} }
-.pl-logo-wrap {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-}
+.pl-logo-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
 .pl-name {
-    font-family: var(--f-display);
-    font-size: clamp(1.2rem, 5vw, 2rem);
-    font-weight: 300; letter-spacing: .3em; text-transform: uppercase;
-    opacity: 0; animation: plName .9s ease .65s forwards; white-space: nowrap;
+  font-family: var(--f-display);
+  font-size: clamp(1.2rem,5vw,2rem);
+  font-weight: 300; letter-spacing: .3em; text-transform: uppercase;
+  opacity: 0; animation: plName .9s ease .65s forwards; white-space: nowrap;
 }
 @keyframes plName { from{opacity:0;letter-spacing:.7em} to{opacity:1;letter-spacing:.3em} }
 .pl-sub {
-    font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em;
-    text-transform: uppercase; color: var(--fg-2);
-    opacity: 0; animation: plUp .7s ease .9s forwards; text-align:center;
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--fg-2);
+  opacity: 0; animation: plUp .7s ease .9s forwards; text-align:center;
 }
-.pl-bar-wrap {
-    width: 100%;
-    opacity: 0; animation: plUp .5s ease 1s forwards;
-}
-.pl-bar-track {
-    height: 1px; background: rgba(255,255,255,0.07); overflow:hidden; position:relative;
-}
+.pl-bar-wrap { width:100%; opacity:0; animation:plUp .5s ease 1s forwards; }
+.pl-bar-track { height:1px; background:rgba(255,255,255,.07); overflow:hidden; }
 .pl-bar-fill {
-    height: 100%; width: 0%; background: #fff; transition: width .08s linear;
-    box-shadow: 0 0 6px rgba(255,255,255,.5);
+  height:100%; width:0%; background:#fff; transition:width .15s linear;
+  box-shadow:0 0 6px rgba(255,255,255,.5);
 }
 .pl-bar-labels {
-    display: flex; justify-content: space-between; margin-top: .6rem;
-    font-family: var(--f-mono); font-size: .58rem; letter-spacing: .1em; color: var(--fg-2);
+  display:flex; justify-content:space-between; margin-top:.6rem;
+  font-family:var(--f-mono); font-size:.58rem; letter-spacing:.1em; color:var(--fg-2);
 }
 .pl-counter { font-variant-numeric: tabular-nums; }
 @keyframes plUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-
-.preloader.exit {
-    animation: plExit .9s var(--ease-io) forwards;
-}
+.preloader.exit { animation: plExit .9s var(--ease-io) forwards; }
 @keyframes plExit { 0%{clip-path:inset(0 0 0 0)} 100%{clip-path:inset(0 0 100% 0)} }
 
 /* ═══════════════════════════════════════
    HEADER & NAV
 ═══════════════════════════════════════ */
 .header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 1.4rem 0;
-    transition: padding .4s var(--ease-io), background .4s var(--ease-io);
-    border-bottom: 1px solid transparent;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.4rem 0;
+  transition: padding .4s var(--ease-io), background .4s var(--ease-io);
+  border-bottom: 1px solid transparent;
 }
 .header.stuck {
-    padding: .8rem 0;
-    background: rgba(0,0,0,.95);
-    backdrop-filter: blur(24px);
-    border-bottom-color: rgba(255,255,255,.06);
+  padding: .8rem 0;
+  background: rgba(0,0,0,.95);
+  backdrop-filter: blur(24px);
+  border-bottom-color: rgba(255,255,255,.06);
 }
 .nav-wrap {
-    max-width: 1400px; margin: 0 auto;
-    padding: 0 clamp(1.2rem, 5vw, 2.5rem);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: var(--sp-4);
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 clamp(1.2rem,5vw,2.5rem);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
 }
 .logo {
-    display: flex; align-items: center; gap: .6rem;
-    text-decoration: none; color: var(--fg-0);
-    font-size: clamp(.68rem, 1.4vw, .8rem);
-    font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-    flex-shrink: 0; min-height: var(--hit);
+  display: flex; align-items: center; gap: .6rem;
+  text-decoration: none; color: var(--fg-0);
+  font-size: clamp(.68rem,1.4vw,.8rem); font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  flex-shrink: 0; min-height: var(--hit);
 }
-.logo-text {
-    font-family: var(--f-display);
-    font-size: 1.4rem;
-    font-weight: 300;
-    letter-spacing: .25em;
-}
-
-.nav-links {
-    display: flex; list-style: none;
-    gap: clamp(1.2rem, 3vw, 2.2rem); align-items: center;
-}
+.logo-text { font-family:var(--f-display); font-size:1.4rem; font-weight:300; letter-spacing:.25em; }
+.nav-links { display:flex; list-style:none; gap:clamp(1.2rem,3vw,2.2rem); align-items:center; }
 .nav-a {
-    color: rgba(255,255,255,.5); text-decoration: none;
-    font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
-    position: relative; padding: .4rem 0; min-height: var(--hit);
-    display: flex; align-items: center;
-    transition: color .2s ease;
+  color: rgba(255,255,255,.5); text-decoration: none;
+  font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  position:relative; padding:.4rem 0; min-height:var(--hit);
+  display:flex; align-items:center; transition:color .2s ease;
 }
 .nav-a::after {
-    content: ''; position: absolute; bottom: 0; left: 0;
-    width: 0; height: 1px; background: #fff; transition: width .3s ease;
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:1px; background:#fff; transition:width .3s ease;
 }
-.nav-a:hover, .nav-a.on { color: #fff; }
-.nav-a:hover::after, .nav-a.on::after { width: 100%; }
-
+.nav-a:hover,.nav-a.on { color:#fff; }
+.nav-a:hover::after,.nav-a.on::after { width:100%; }
 .nav-cta-btn {
-    display: inline-flex; align-items: center;
-    padding: .5rem 1.2rem; background: #fff; color: #000;
-    font-size: .66rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-    text-decoration: none; transition: background .25s, transform .25s;
-    min-height: var(--hit); flex-shrink: 0; white-space: nowrap;
+  display:inline-flex; align-items:center; padding:.5rem 1.2rem;
+  background:#fff; color:#000; font-size:.66rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; text-decoration:none;
+  transition:background .25s,transform .25s; min-height:var(--hit); flex-shrink:0;
 }
-.nav-cta-btn:hover { background: rgba(255,255,255,.85); transform: translateY(-1px); }
-
+.nav-cta-btn:hover { background:rgba(255,255,255,.85); transform:translateY(-1px); }
 .ham {
-    display: none;
-    flex-direction: column; align-items: center; justify-content: center;
-    gap: 5px; width: var(--hit); height: var(--hit);
-    background: none; border: none; padding: 10px; z-index: 1002;
+  display:none; flex-direction:column; align-items:center; justify-content:center;
+  gap:5px; width:var(--hit); height:var(--hit); background:none; border:none; padding:10px; z-index:1002;
 }
-.ham span {
-    display: block; width: 22px; height: 1px;
-    background: #fff; transition: transform .3s ease, opacity .3s ease;
-    transform-origin: center;
-}
-.ham.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.ham.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-@media (max-width: 900px) { .nav-cta-btn { display: none; } }
-@media (max-width: 768px) {
-    .nav-links-wrap {
-        position: fixed; top: 0; right: -100%;
-        width: min(300px, 82vw); height: 100dvh;
-        background: rgba(5,5,5,.98);
-        backdrop-filter: blur(24px);
-        border-left: 1px solid rgba(255,255,255,.06);
-        z-index: 1001; overflow-y: auto;
-        display: flex; flex-direction: column;
-        transition: right .36s var(--ease-io);
-        padding-bottom: calc(var(--sp-6) + var(--safe-bottom));
-    }
-    .nav-links-wrap.open { right: 0; }
-    .nav-links {
-        flex-direction: column; gap: 0; width: 100%;
-        padding: 5rem 0 var(--sp-5); align-items: flex-start;
-    }
-    .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,.04); }
-    .nav-a {
-        display: block; padding: 1rem 2rem; font-size: .88rem;
-        min-height: var(--hit); color: rgba(255,255,255,.65);
-    }
-    .ham { display: flex; }
+.ham span { display:block; width:22px; height:1px; background:#fff; transition:transform .3s ease,opacity .3s ease; transform-origin:center; }
+.ham.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+.ham.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.ham.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+@media (max-width:900px) { .nav-cta-btn { display:none; } }
+@media (max-width:768px) {
+  .nav-links-wrap {
+    position:fixed; top:0; right:-100%; width:min(300px,82vw); height:100dvh;
+    background:rgba(5,5,5,.98); backdrop-filter:blur(24px);
+    border-left:1px solid rgba(255,255,255,.06); z-index:1001; overflow-y:auto;
+    display:flex; flex-direction:column; transition:right .36s var(--ease-io);
+    padding-bottom:calc(var(--sp-6) + var(--safe-bottom));
+  }
+  .nav-links-wrap.open { right:0; }
+  .nav-links { flex-direction:column; gap:0; width:100%; padding:5rem 0 var(--sp-5); align-items:flex-start; }
+  .nav-links li { width:100%; border-bottom:1px solid rgba(255,255,255,.04); }
+  .nav-a { display:block; padding:1rem 2rem; font-size:.88rem; min-height:var(--hit); color:rgba(255,255,255,.65); }
+  .ham { display:flex; }
 }
 
 /* ═══════════════════════════════════════
    PAGE SHELL
 ═══════════════════════════════════════ */
-.page-main {
-    min-height: 100vh;
-    padding-top: 100px;
-}
+.page-main { min-height:100vh; padding-top:100px; }
 
 /* ═══════════════════════════════════════
-   GALLERY HERO / PAGE HEADER
+   GALLERY HEADER
 ═══════════════════════════════════════ */
 .gallery-header {
-    padding: clamp(3rem, 8vw, 5rem) clamp(1.2rem, 5vw, 2.5rem) clamp(2rem, 5vw, 3rem);
-    max-width: 1400px; margin: 0 auto;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: var(--sp-6);
-    flex-wrap: wrap;
+  padding: clamp(3rem,8vw,5rem) clamp(1.2rem,5vw,2.5rem) clamp(2rem,5vw,3rem);
+  max-width:1400px; margin:0 auto;
+  display:flex; align-items:flex-end; justify-content:space-between; gap:var(--sp-6); flex-wrap:wrap;
 }
-.gallery-header-left {}
-.gallery-eyebrow {
-    font-family: var(--f-mono);
-    font-size: .65rem;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-    color: var(--fg-2);
-    margin-bottom: var(--sp-3);
-}
-.gallery-title {
-    font-family: var(--f-display);
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -.02em;
-}
-.gallery-title em {
-    font-style: italic;
-    color: rgba(255,255,255,.45);
-}
-.gallery-header-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: var(--sp-3);
-}
-.gallery-count {
-    font-family: var(--f-mono);
-    font-size: .65rem;
-    letter-spacing: .15em;
-    color: var(--fg-2);
-    text-transform: uppercase;
-}
-.gallery-count span {
-    color: var(--fg-0);
-    font-size: 1.2rem;
-    font-family: var(--f-display);
-    font-weight: 300;
-    letter-spacing: 0;
-    vertical-align: middle;
-    margin-right: .3rem;
-}
+.gallery-eyebrow { font-family:var(--f-mono); font-size:.65rem; letter-spacing:.3em; text-transform:uppercase; color:var(--fg-2); margin-bottom:var(--sp-3); }
+.gallery-title { font-family:var(--f-display); font-size:clamp(2.8rem,8vw,5.5rem); font-weight:300; line-height:1; letter-spacing:-.02em; }
+.gallery-title em { font-style:italic; color:rgba(255,255,255,.45); }
+.gallery-header-right { display:flex; flex-direction:column; align-items:flex-end; gap:var(--sp-3); }
+.gallery-count { font-family:var(--f-mono); font-size:.65rem; letter-spacing:.15em; color:var(--fg-2); text-transform:uppercase; }
+.gallery-count span { color:var(--fg-0); font-size:1.2rem; font-family:var(--f-display); font-weight:300; letter-spacing:0; vertical-align:middle; margin-right:.3rem; }
+.gallery-folder { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.1em; color:var(--fg-2); }
 
 /* ═══════════════════════════════════════
-   TOOLBAR (filter / sort / bulk actions)
+   TOOLBAR
 ═══════════════════════════════════════ */
 .toolbar {
-    max-width: 1400px; margin: 0 auto;
-    padding: 0 clamp(1.2rem, 5vw, 2.5rem) var(--sp-5);
-    display: flex; align-items: center; gap: var(--sp-4);
-    flex-wrap: wrap;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    padding-bottom: var(--sp-5);
+  max-width:1400px; margin:0 auto;
+  padding:0 clamp(1.2rem,5vw,2.5rem) var(--sp-5);
+  display:flex; align-items:center; gap:var(--sp-4); flex-wrap:wrap;
+  border-bottom:1px solid rgba(255,255,255,.06); padding-bottom:var(--sp-5);
 }
-.toolbar-left {
-    display: flex; align-items: center; gap: var(--sp-3);
-    flex: 1;
-}
-.select-all-btn, .download-selected-btn {
-    display: inline-flex; align-items: center; gap: .45rem;
-    background: none; border: 1px solid rgba(255,255,255,.12);
-    color: rgba(255,255,255,.6);
-    font-family: var(--f-ui); font-size: .65rem; font-weight: 600;
-    letter-spacing: .14em; text-transform: uppercase;
-    padding: .5rem 1rem;
-    transition: all .25s ease;
-    min-height: var(--hit);
-}
-.select-all-btn:hover {
-    border-color: rgba(255,255,255,.35);
-    color: #fff;
-}
-.download-selected-btn {
-    background: #fff; color: #000; border-color: #fff;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(4px);
-    transition: all .3s var(--ease-out);
-}
-.download-selected-btn.visible {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateY(0);
-}
-.download-selected-btn:hover {
-    background: rgba(255,255,255,.85);
-}
-.selected-label {
-    font-family: var(--f-mono);
-    font-size: .62rem;
-    letter-spacing: .12em;
-    color: var(--fg-2);
-    text-transform: uppercase;
-    opacity: 0;
-    transition: opacity .3s ease;
-}
-.selected-label.visible { opacity: 1; }
+.toolbar-left { display:flex; align-items:center; gap:var(--sp-3); flex:1; }
 
-.toolbar-right {
-    display: flex; align-items: center; gap: var(--sp-3);
+.select-all-btn, .download-selected-btn {
+  display:inline-flex; align-items:center; gap:.45rem;
+  background:none; border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.6); font-family:var(--f-ui); font-size:.65rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; padding:.5rem 1rem;
+  transition:all .25s ease; min-height:var(--hit);
 }
-.view-toggle {
-    display: flex; gap: 2px;
+.select-all-btn:hover { border-color:rgba(255,255,255,.35); color:#fff; }
+.download-selected-btn {
+  background:#fff; color:#000; border-color:#fff; opacity:0;
+  pointer-events:none; transform:translateY(4px); transition:all .3s var(--ease-out);
 }
+.download-selected-btn.visible { opacity:1; pointer-events:all; transform:translateY(0); }
+.download-selected-btn:hover { background:rgba(255,255,255,.85); }
+.selected-label {
+  font-family:var(--f-mono); font-size:.62rem; letter-spacing:.12em; color:var(--fg-2);
+  text-transform:uppercase; opacity:0; transition:opacity .3s ease;
+}
+.selected-label.visible { opacity:1; }
+.toolbar-right { display:flex; align-items:center; gap:var(--sp-3); }
+.view-toggle { display:flex; gap:2px; }
 .view-btn {
-    background: none; border: none;
-    padding: .5rem;
-    color: var(--fg-2);
-    transition: color .2s ease;
-    min-height: var(--hit); min-width: var(--hit);
-    display: flex; align-items: center; justify-content: center;
+  background:none; border:none; padding:.5rem; color:var(--fg-2); transition:color .2s ease;
+  min-height:var(--hit); min-width:var(--hit); display:flex; align-items:center; justify-content:center;
 }
-.view-btn.on, .view-btn:hover { color: #fff; }
-.view-btn svg { width: 18px; height: 18px; }
+.view-btn.on,.view-btn:hover { color:#fff; }
+.view-btn svg { width:18px; height:18px; }
+
+/* Search */
+.search-wrap {
+  display:flex; align-items:center; gap:.5rem;
+  border:1px solid rgba(255,255,255,.1); padding:.4rem .8rem;
+  transition:border-color .2s ease; min-height:var(--hit);
+}
+.search-wrap:focus-within { border-color:rgba(255,255,255,.35); }
+.search-wrap svg { width:14px; height:14px; color:var(--fg-2); flex-shrink:0; }
+.search-input {
+  background:none; border:none; outline:none; color:#fff;
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.08em;
+  width:140px; caret-color:#fff;
+}
+.search-input::placeholder { color:var(--fg-2); }
+
+/* Sort */
+.sort-select {
+  appearance:none; background:none; border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.6); font-family:var(--f-ui); font-size:.65rem; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase; padding:.5rem 2rem .5rem .8rem;
+  min-height:var(--hit); cursor:pointer; transition:all .2s ease;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23555' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right .7rem center;
+}
+.sort-select:hover { border-color:rgba(255,255,255,.35); color:#fff; }
+.sort-select option { background:#111; color:#fff; }
 
 /* ═══════════════════════════════════════
    GALLERY GRID
 ═══════════════════════════════════════ */
-.gallery-section {
-    max-width: 1400px; margin: 0 auto;
-    padding: var(--sp-6) clamp(1.2rem, 5vw, 2.5rem);
-}
-
+.gallery-section { max-width:1400px; margin:0 auto; padding:var(--sp-6) clamp(1.2rem,5vw,2.5rem); }
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2px;
-    transition: all .4s var(--ease-io);
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+  gap:2px; transition:all .4s var(--ease-io);
 }
-.gallery-grid.view-large {
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-}
-.gallery-grid.view-small {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-}
+.gallery-grid.view-large { grid-template-columns:repeat(auto-fill, minmax(420px,1fr)); }
+.gallery-grid.view-small { grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); }
 
-@media (max-width: 600px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 1px; }
-    .gallery-grid.view-large { grid-template-columns: 1fr; }
-    .gallery-grid.view-small { grid-template-columns: repeat(3, 1fr); }
+@media (max-width:600px) {
+  .gallery-grid { grid-template-columns:repeat(2,1fr); gap:1px; }
+  .gallery-grid.view-large { grid-template-columns:1fr; }
+  .gallery-grid.view-small { grid-template-columns:repeat(3,1fr); }
 }
 
 /* ═══════════════════════════════════════
    PHOTO CARD
 ═══════════════════════════════════════ */
 .photo-card {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 3/2;
-    background: var(--bg-2);
-    cursor: pointer;
-    group: true;
+  position:relative; overflow:hidden; aspect-ratio:3/2;
+  background:var(--bg-2); cursor:pointer;
 }
 .photo-card.selected::after {
-    content: '';
-    position: absolute; inset: 0;
-    border: 2px solid #fff;
-    pointer-events: none;
-    z-index: 3;
+  content:''; position:absolute; inset:0;
+  border:2px solid #fff; pointer-events:none; z-index:3;
 }
-
 .photo-card img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform .6s var(--ease-out), filter .4s ease;
-    will-change: transform;
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .6s var(--ease-out), filter .4s ease, opacity .4s ease;
+  will-change:transform; opacity:0;
 }
-.photo-card:hover img {
-    transform: scale(1.04);
-    filter: brightness(.8);
-}
+.photo-card img.loaded { opacity:1; }
+.photo-card:hover img { transform:scale(1.04); filter:brightness(.8); }
 
-/* skeleton shimmer while loading */
+/* Skeleton shimmer */
 .photo-card.loading {
-    background: linear-gradient(90deg,
-        var(--bg-2) 25%,
-        rgba(255,255,255,.04) 50%,
-        var(--bg-2) 75%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.6s infinite;
+  background:linear-gradient(90deg,var(--bg-2) 25%,rgba(255,255,255,.04) 50%,var(--bg-2) 75%);
+  background-size:200% 100%; animation:shimmer 1.6s infinite;
 }
 @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.photo-card.error { background:rgba(255,94,94,.05); }
+.photo-card.error::before {
+  content:'⚠'; position:absolute; inset:0; display:flex; align-items:center;
+  justify-content:center; font-size:1.5rem; color:var(--fg-2); display:grid; place-items:center;
+}
 
-/* overlay */
+/* Overlay */
 .card-overlay {
-    position: absolute; inset: 0; z-index: 2;
-    background: linear-gradient(to top,
-        rgba(0,0,0,.75) 0%,
-        rgba(0,0,0,.2) 40%,
-        transparent 70%
-    );
-    opacity: 0;
-    transition: opacity .35s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: var(--sp-4);
-    gap: var(--sp-3);
+  position:absolute; inset:0; z-index:2;
+  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 40%,transparent 70%);
+  opacity:0; transition:opacity .35s ease;
+  display:flex; flex-direction:column; justify-content:flex-end; padding:var(--sp-4); gap:var(--sp-3);
 }
-.photo-card:hover .card-overlay { opacity: 1; }
-
+.photo-card:hover .card-overlay { opacity:1; }
 .card-filename {
-    font-family: var(--f-mono);
-    font-size: .6rem;
-    letter-spacing: .1em;
-    color: rgba(255,255,255,.65);
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-family:var(--f-mono); font-size:.6rem; letter-spacing:.1em;
+  color:rgba(255,255,255,.65); text-transform:uppercase;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-
-.card-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-}
-
+.card-actions { display:flex; align-items:center; gap:var(--sp-2); }
 .card-download-btn {
-    flex: 1;
-    display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
-    background: #fff; color: #000;
-    border: none;
-    font-family: var(--f-ui); font-size: .6rem; font-weight: 700;
-    letter-spacing: .16em; text-transform: uppercase;
-    padding: .55rem .9rem;
-    transition: all .25s ease;
-    min-height: 36px;
+  flex:1; display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+  background:#fff; color:#000; border:none;
+  font-family:var(--f-ui); font-size:.6rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; padding:.55rem .9rem;
+  transition:all .25s ease; min-height:36px;
 }
-.card-download-btn:hover {
-    background: rgba(255,255,255,.85);
-    transform: translateY(-1px);
-}
-.card-download-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+.card-download-btn:hover { background:rgba(255,255,255,.85); transform:translateY(-1px); }
+.card-download-btn svg { width:12px; height:12px; flex-shrink:0; }
 
-.card-checkbox-wrap {
-    position: absolute; top: var(--sp-3); right: var(--sp-3); z-index: 4;
-}
+/* Checkbox */
+.card-checkbox-wrap { position:absolute; top:var(--sp-3); right:var(--sp-3); z-index:4; }
 .card-checkbox {
-    appearance: none;
-    width: 22px; height: 22px;
-    border: 1px solid rgba(255,255,255,.5);
-    background: rgba(0,0,0,.5);
-    backdrop-filter: blur(8px);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all .2s ease;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    opacity: 0;
-    transform: scale(.7);
-    transition: opacity .25s ease, transform .25s var(--ease-out), background .2s ease, border-color .2s ease;
+  appearance:none; width:22px; height:22px;
+  border:1px solid rgba(255,255,255,.5); background:rgba(0,0,0,.5); backdrop-filter:blur(8px);
+  border-radius:2px; cursor:pointer; position:relative;
+  opacity:0; transform:scale(.7);
+  transition:opacity .25s ease, transform .25s var(--ease-out), background .2s ease, border-color .2s ease;
 }
-.photo-card:hover .card-checkbox,
-.card-checkbox:checked { opacity: 1; transform: scale(1); }
-.card-checkbox:checked {
-    background: #fff;
-    border-color: #fff;
-}
+.photo-card:hover .card-checkbox,.card-checkbox:checked { opacity:1; transform:scale(1); }
+.card-checkbox:checked { background:#fff; border-color:#fff; }
 .card-checkbox:checked::after {
-    content: '';
-    position: absolute;
-    width: 5px; height: 9px;
-    border-right: 2px solid #000;
-    border-bottom: 2px solid #000;
-    transform: rotate(45deg) translate(-1px,-1px);
+  content:''; position:absolute; width:5px; height:9px;
+  border-right:2px solid #000; border-bottom:2px solid #000;
+  transform:rotate(45deg) translate(-1px,-1px);
 }
 
 /* ═══════════════════════════════════════
-   EMPTY / ERROR / LOADING STATES
+   STATES
 ═══════════════════════════════════════ */
 .gallery-state {
-    grid-column: 1 / -1;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: var(--sp-5);
-    padding: var(--sp-9) var(--sp-6);
-    text-align: center;
-    min-height: 40vh;
+  grid-column:1/-1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:var(--sp-5); padding:var(--sp-9) var(--sp-6); text-align:center; min-height:40vh;
 }
-.gallery-state-icon {
-    width: 64px; height: 64px;
-    opacity: .2;
-}
-.gallery-state h3 {
-    font-family: var(--f-display);
-    font-size: 2rem; font-weight: 300;
-    color: var(--fg-1);
-}
-.gallery-state p {
-    font-family: var(--f-mono);
-    font-size: .68rem; letter-spacing: .15em;
-    color: var(--fg-2); text-transform: uppercase;
-    max-width: 340px; line-height: 1.9;
-}
-.gallery-state .btn {
-    margin-top: var(--sp-3);
-}
+.gallery-state-icon { width:64px; height:64px; opacity:.2; }
+.gallery-state h3 { font-family:var(--f-display); font-size:2rem; font-weight:300; color:var(--fg-1); }
+.gallery-state p { font-family:var(--f-mono); font-size:.68rem; letter-spacing:.15em; color:var(--fg-2); text-transform:uppercase; max-width:340px; line-height:1.9; }
+.gallery-state .retry-btn { margin-top:var(--sp-3); }
 
 /* ═══════════════════════════════════════
-   LIGHTBOX / MODAL
+   CONFIG BANNER
+═══════════════════════════════════════ */
+.config-banner {
+  background:rgba(255,94,94,.08); border:1px solid rgba(255,94,94,.25); border-radius:2px;
+  padding:var(--sp-4) var(--sp-5); margin:0 clamp(1.2rem,5vw,2.5rem) var(--sp-5);
+  max-width:1400px; margin-left:auto; margin-right:auto;
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.1em; color:var(--red); display:none;
+}
+.config-banner.visible { display:block; }
+.config-banner code { background:rgba(255,255,255,.06); padding:.15rem .4rem; font-size:.65rem; }
+
+/* ═══════════════════════════════════════
+   LIGHTBOX
 ═══════════════════════════════════════ */
 .lightbox {
-    position: fixed; inset: 0; z-index: 9000;
-    background: rgba(0,0,0,.96);
-    backdrop-filter: blur(24px);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .4s var(--ease-io);
+  position:fixed; inset:0; z-index:9000;
+  background:rgba(0,0,0,.96); backdrop-filter:blur(24px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity .4s var(--ease-io);
 }
-.lightbox.open {
-    opacity: 1;
-    pointer-events: all;
-}
-
+.lightbox.open { opacity:1; pointer-events:all; }
 .lb-inner {
-    position: relative;
-    width: min(1200px, 95vw);
-    max-height: 90dvh;
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-4);
-    transform: scale(.96);
-    transition: transform .4s var(--ease-out);
+  position:relative; width:min(1200px,95vw); max-height:90dvh;
+  display:flex; flex-direction:column; gap:var(--sp-4);
+  transform:scale(.96); transition:transform .4s var(--ease-out);
 }
-.lightbox.open .lb-inner { transform: scale(1); }
-
+.lightbox.open .lb-inner { transform:scale(1); }
 .lb-img-wrap {
-    flex: 1;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    max-height: calc(90dvh - 100px);
+  flex:1; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  max-height:calc(90dvh - 120px); position:relative;
 }
 .lb-img-wrap img {
-    max-width: 100%; max-height: 100%;
-    object-fit: contain;
-    border: 1px solid rgba(255,255,255,.06);
+  max-width:100%; max-height:100%; object-fit:contain;
+  border:1px solid rgba(255,255,255,.06); transition:opacity .25s ease;
 }
-
+.lb-spinner {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+}
+.lb-spinner-ring {
+  width:40px; height:40px; border:1px solid rgba(255,255,255,.15);
+  border-top-color:#fff; border-radius:50%; animation:plSpin .8s linear infinite;
+}
 .lb-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: var(--sp-4); flex-wrap: wrap;
-    padding: 0 var(--sp-2);
+  display:flex; align-items:center; justify-content:space-between; gap:var(--sp-4); flex-wrap:wrap; padding:0 var(--sp-2);
 }
-.lb-filename {
-    font-family: var(--f-mono);
-    font-size: .68rem;
-    letter-spacing: .12em;
-    color: var(--fg-2);
-    text-transform: uppercase;
-}
-.lb-actions {
-    display: flex; align-items: center; gap: var(--sp-3);
-}
+.lb-meta { display:flex; flex-direction:column; gap:.3rem; }
+.lb-filename { font-family:var(--f-mono); font-size:.68rem; letter-spacing:.12em; color:var(--fg-2); text-transform:uppercase; }
+.lb-fileinfo { font-family:var(--f-mono); font-size:.58rem; letter-spacing:.1em; color:var(--fg-2); }
+.lb-counter { font-family:var(--f-mono); font-size:.62rem; letter-spacing:.1em; color:var(--fg-2); }
+.lb-actions { display:flex; align-items:center; gap:var(--sp-3); }
 .lb-download-btn {
-    display: inline-flex; align-items: center; gap: .5rem;
-    background: #fff; color: #000;
-    border: none;
-    font-family: var(--f-ui); font-size: .65rem; font-weight: 700;
-    letter-spacing: .16em; text-transform: uppercase;
-    padding: .6rem 1.4rem;
-    transition: all .25s ease;
-    min-height: var(--hit);
-    cursor: pointer;
+  display:inline-flex; align-items:center; gap:.5rem;
+  background:#fff; color:#000; border:none; font-family:var(--f-ui); font-size:.65rem; font-weight:700;
+  letter-spacing:.16em; text-transform:uppercase; padding:.6rem 1.4rem;
+  transition:all .25s ease; min-height:var(--hit); cursor:pointer;
 }
-.lb-download-btn:hover {
-    background: rgba(255,255,255,.85);
-    transform: translateY(-1px);
-}
-.lb-download-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-
+.lb-download-btn:hover { background:rgba(255,255,255,.85); transform:translateY(-1px); }
+.lb-download-btn svg { width:14px; height:14px; flex-shrink:0; }
 .lb-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none; border: 1px solid rgba(255,255,255,.15);
-    color: rgba(255,255,255,.7);
-    width: 48px; height: 48px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all .25s ease;
-    z-index: 1;
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:none; border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.7);
+  width:48px; height:48px; display:flex; align-items:center; justify-content:center;
+  transition:all .25s ease; z-index:1;
 }
-.lb-nav:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.06); }
-.lb-nav.prev { left: calc(-3.5rem - 2px); }
-.lb-nav.next { right: calc(-3.5rem - 2px); }
-@media (max-width: 900px) {
-    .lb-nav.prev { left: var(--sp-2); }
-    .lb-nav.next { right: var(--sp-2); }
-}
-.lb-nav svg { width: 20px; height: 20px; }
-
+.lb-nav:hover { border-color:#fff; color:#fff; background:rgba(255,255,255,.06); }
+.lb-nav.prev { left:calc(-3.5rem - 2px); }
+.lb-nav.next { right:calc(-3.5rem - 2px); }
+@media (max-width:900px) { .lb-nav.prev{left:var(--sp-2)} .lb-nav.next{right:var(--sp-2)} }
+.lb-nav svg { width:20px; height:20px; }
 .lb-close {
-    position: fixed; top: var(--sp-5); right: var(--sp-5);
-    background: none; border: 1px solid rgba(255,255,255,.15);
-    color: rgba(255,255,255,.7);
-    width: var(--hit); height: var(--hit);
-    display: flex; align-items: center; justify-content: center;
-    transition: all .25s ease;
-    z-index: 9001;
+  position:fixed; top:var(--sp-5); right:var(--sp-5);
+  background:none; border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.7);
+  width:var(--hit); height:var(--hit); display:flex; align-items:center; justify-content:center;
+  transition:all .25s ease; z-index:9001;
 }
-.lb-close:hover { border-color: #fff; color: #fff; }
-.lb-close svg { width: 18px; height: 18px; }
+.lb-close:hover { border-color:#fff; color:#fff; }
+.lb-close svg { width:18px; height:18px; }
 
 /* ═══════════════════════════════════════
-   BTN (shared)
+   RETRY / BTN
 ═══════════════════════════════════════ */
 .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: .55rem; padding: 1rem 2.2rem;
-    font-family: var(--f-ui); font-size: .75rem; font-weight: 600;
-    letter-spacing: .18em; text-transform: uppercase;
-    text-decoration: none;
-    border: none; cursor: pointer;
-    background: #fff; color: #000;
-    transition: all .3s ease;
-    min-height: var(--hit);
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding:1rem 2.2rem; font-family:var(--f-ui); font-size:.75rem; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; text-decoration:none;
+  border:none; cursor:pointer; background:#fff; color:#000; transition:all .3s ease;
+  min-height:var(--hit);
 }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255,255,255,.15); }
-.btn-outline {
-    background: none; color: #fff;
-    border: 1px solid rgba(255,255,255,.25);
-}
-.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); box-shadow: none; }
+.btn:hover { transform:translateY(-3px); box-shadow:0 15px 35px rgba(255,255,255,.15); }
+.btn-outline { background:none; color:#fff; border:1px solid rgba(255,255,255,.25); }
+.btn-outline:hover { border-color:#fff; background:rgba(255,255,255,.06); box-shadow:none; }
 
 /* ═══════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════ */
-.footer {
-    background: #000; border-top: 1px solid rgba(255,255,255,.08);
-    padding: clamp(3rem, 6vw, 5rem) clamp(1.2rem, 5vw, 2rem);
-    text-align: center;
-    font-size: .8rem;
-    color: var(--fg-2);
-}
+.footer { background:#000; border-top:1px solid rgba(255,255,255,.08); padding:clamp(3rem,6vw,5rem) clamp(1.2rem,5vw,2rem); text-align:center; font-size:.8rem; color:var(--fg-2); }
 
 /* ═══════════════════════════════════════
-   CONFIG BANNER (dev only)
+   TOAST
 ═══════════════════════════════════════ */
-.config-banner {
-    background: rgba(255,94,94,.08);
-    border: 1px solid rgba(255,94,94,.25);
-    border-radius: 2px;
-    padding: var(--sp-4) var(--sp-5);
-    margin: 0 clamp(1.2rem, 5vw, 2.5rem) var(--sp-5);
-    max-width: 1400px;
-    margin-left: auto; margin-right: auto;
-    font-family: var(--f-mono);
-    font-size: .68rem;
-    letter-spacing: .1em;
-    color: var(--red);
-    display: none;
-}
-.config-banner.visible { display: block; }
-.config-banner strong { color: #fff; }
-
-/* ═══════════════════════════════════════
-   TOAST NOTIFICATION
-═══════════════════════════════════════ */
-.toast-wrap {
-    position: fixed;
-    bottom: calc(var(--sp-6) + var(--safe-bottom));
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
-    pointer-events: none;
-}
+.toast-wrap { position:fixed; bottom:calc(var(--sp-6) + var(--safe-bottom)); left:50%; transform:translateX(-50%); z-index:9999; display:flex; flex-direction:column; align-items:center; gap:var(--sp-2); pointer-events:none; }
 .toast {
-    background: var(--bg-1);
-    border: 1px solid rgba(255,255,255,.12);
-    color: #fff;
-    font-family: var(--f-mono);
-    font-size: .68rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    padding: .7rem 1.6rem;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: all .35s var(--ease-out);
+  background:var(--bg-1); border:1px solid rgba(255,255,255,.12); color:#fff;
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:.7rem 1.6rem; white-space:nowrap; opacity:0; transform:translateY(12px);
+  transition:all .35s var(--ease-out);
 }
-.toast.show { opacity: 1; transform: translateY(0); }
-.toast.toast-green { border-color: rgba(94,255,160,.3); color: var(--green); }
+.toast.show { opacity:1; transform:translateY(0); }
+.toast.toast-green { border-color:rgba(94,255,160,.3); color:var(--green); }
+.toast.toast-red { border-color:rgba(255,94,94,.3); color:var(--red); }
 </style>
 </head>
 <body>
 
 <!-- ═══ PRELOADER ═══ -->
 <div class="preloader" id="preloader">
-    <div class="pl-scan"></div>
-    <div class="pl-body">
-        <div class="pl-ring-wrap">
-            <div class="pl-ring"></div>
-            <div class="pl-ring"></div>
-            <div class="pl-ring"></div>
-        </div>
-        <div class="pl-name">Galerie</div>
-        <div class="pl-sub">Bilder werden geladen</div>
-        <div class="pl-bar-wrap">
-            <div class="pl-bar-track"><div class="pl-bar-fill" id="pl-bar"></div></div>
-            <div class="pl-bar-labels">
-                <span>Dropbox</span>
-                <span class="pl-counter"><span id="pl-pct">0</span>%</span>
-            </div>
-        </div>
+  <div class="pl-scan"></div>
+  <div class="pl-body">
+    <div class="pl-ring-wrap">
+      <div class="pl-ring"></div><div class="pl-ring"></div><div class="pl-ring"></div>
     </div>
+    <div class="pl-name">Galerie</div>
+    <div class="pl-sub">Verbindung zu Dropbox…</div>
+    <div class="pl-bar-wrap">
+      <div class="pl-bar-track"><div class="pl-bar-fill" id="pl-bar"></div></div>
+      <div class="pl-bar-labels">
+        <span>Dropbox API</span>
+        <span class="pl-counter"><span id="pl-pct">0</span>%</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ HEADER ═══ -->
 <header class="header" id="header">
-    <nav class="nav-wrap">
-        <a href="#" class="logo">
-            <span class="logo-text">Studio</span>
-        </a>
-        <div class="nav-links-wrap" id="navLinksWrap">
-            <ul class="nav-links">
-                <li><a href="#" class="nav-a on">Galerie</a></li>
-                <li><a href="#" class="nav-a">Über mich</a></li>
-                <li><a href="#" class="nav-a">Kontakt</a></li>
-            </ul>
-        </div>
-        <a href="#" class="nav-cta-btn">Anfrage stellen</a>
-        <button class="ham" id="ham" aria-label="Menü öffnen">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
+  <nav class="nav-wrap">
+    <a href="#" class="logo"><span class="logo-text">Studio</span></a>
+    <div class="nav-links-wrap" id="navLinksWrap">
+      <ul class="nav-links">
+        <li><a href="#" class="nav-a on">Galerie</a></li>
+        <li><a href="#" class="nav-a">Über mich</a></li>
+        <li><a href="#" class="nav-a">Kontakt</a></li>
+      </ul>
+    </div>
+    <a href="#" class="nav-cta-btn">Anfrage stellen</a>
+    <button class="ham" id="ham" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 </header>
 
 <!-- ═══ MAIN ═══ -->
 <main class="page-main">
+  <div class="config-banner" id="configBanner">
+    ⚠ <strong>Token fehlt:</strong> Bitte GitHub Secret
+    <code>DROPBOX_ACCESS_TOKEN</code> setzen und die GitHub Action erneut ausführen.
+    Oder direkt in <code>CONFIG.dropboxToken</code> setzen (nur für lokale Tests).
+  </div>
 
-    <!-- Config warning (shown when token is placeholder) -->
-    <div class="config-banner" id="configBanner">
-        <strong>Konfiguration erforderlich:</strong> Bitte überprüfe deine
-        <strong>get-images.php</strong> Datei und stelle sicher, dass der
-        <strong>Dropbox Access Token</strong> und der <strong>Ordnerpfad</strong>
-        korrekt konfiguriert sind.
+  <div class="gallery-header">
+    <div class="gallery-header-left">
+      <div class="gallery-eyebrow">Meine Arbeiten</div>
+      <h1 class="gallery-title">Foto<em>galerie</em></h1>
     </div>
-
-    <!-- Gallery header -->
-    <div class="gallery-header">
-        <div class="gallery-header-left">
-            <div class="gallery-eyebrow">Meine Arbeiten</div>
-            <h1 class="gallery-title">Foto<em>galerie</em></h1>
-        </div>
-        <div class="gallery-header-right">
-            <div class="gallery-count">
-                <span id="photoCount">—</span> Aufnahmen
-            </div>
-        </div>
+    <div class="gallery-header-right">
+      <div class="gallery-count"><span id="photoCount">—</span> Aufnahmen</div>
+      <div class="gallery-folder" id="folderLabel"></div>
     </div>
+  </div>
 
-    <!-- Toolbar -->
-    <div class="toolbar">
-        <div class="toolbar-left">
-            <button class="select-all-btn" id="selectAllBtn" onclick="toggleSelectAll()">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">
-                    <rect x="1.5" y="1.5" width="5" height="5" rx=".5"/>
-                    <rect x="9.5" y="1.5" width="5" height="5" rx=".5"/>
-                    <rect x="1.5" y="9.5" width="5" height="5" rx=".5"/>
-                    <rect x="9.5" y="9.5" width="5" height="5" rx=".5"/>
-                </svg>
-                Alle auswählen
-            </button>
-            <button class="download-selected-btn" id="downloadSelectedBtn" onclick="downloadSelected()">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
-                    <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
-                </svg>
-                Auswahl laden
-            </button>
-            <span class="selected-label" id="selectedLabel">0 ausgewählt</span>
-        </div>
-        <div class="toolbar-right">
-            <div class="view-toggle">
-                <button class="view-btn" title="Große Kacheln" onclick="setView('large')">
-                    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
-                        <rect x="1" y="1" width="7" height="7" rx=".5"/>
-                        <rect x="10" y="1" width="7" height="7" rx=".5"/>
-                        <rect x="1" y="10" width="7" height="7" rx=".5"/>
-                        <rect x="10" y="10" width="7" height="7" rx=".5"/>
-                    </svg>
-                </button>
-                <button class="view-btn on" title="Mittlere Kacheln" onclick="setView('medium')">
-                    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
-                        <rect x="1" y="1" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="6.75" y="1" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="12.5" y="1" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="1" y="6.75" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="6.75" y="6.75" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="12.5" y="6.75" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="1" y="12.5" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="6.75" y="12.5" width="4.5" height="4.5" rx=".4"/>
-                        <rect x="12.5" y="12.5" width="4.5" height="4.5" rx=".4"/>
-                    </svg>
-                </button>
-                <button class="view-btn" title="Kleine Kacheln" onclick="setView('small')">
-                    <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
-                        <rect x="1" y="1" width="3" height="3" rx=".3"/>
-                        <rect x="5" y="1" width="3" height="3" rx=".3"/>
-                        <rect x="9" y="1" width="3" height="3" rx=".3"/>
-                        <rect x="13" y="1" width="3" height="3" rx=".3"/>
-                        <rect x="1" y="5" width="3" height="3" rx=".3"/>
-                        <rect x="5" y="5" width="3" height="3" rx=".3"/>
-                        <rect x="9" y="5" width="3" height="3" rx=".3"/>
-                        <rect x="13" y="5" width="3" height="3" rx=".3"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <button class="select-all-btn" id="selectAllBtn" onclick="toggleSelectAll()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="1.5" y="1.5" width="5" height="5" rx=".5"/>
+          <rect x="9.5" y="1.5" width="5" height="5" rx=".5"/>
+          <rect x="1.5" y="9.5" width="5" height="5" rx=".5"/>
+          <rect x="9.5" y="9.5" width="5" height="5" rx=".5"/>
+        </svg>
+        Alle auswählen
+      </button>
+      <button class="download-selected-btn" id="downloadSelectedBtn" onclick="downloadSelected()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+          <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
+        </svg>
+        Auswahl laden
+      </button>
+      <span class="selected-label" id="selectedLabel">0 ausgewählt</span>
     </div>
+    <div class="toolbar-right">
+      <div class="search-wrap">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="7" cy="7" r="5"/><path d="M11 11l3 3"/>
+        </svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Suchen…" oninput="filterGallery()" />
+      </div>
+      <select class="sort-select" id="sortSelect" onchange="sortAndRender()">
+        <option value="name-asc">Name A–Z</option>
+        <option value="name-desc">Name Z–A</option>
+        <option value="date-desc">Neueste zuerst</option>
+        <option value="date-asc">Älteste zuerst</option>
+        <option value="size-desc">Größte zuerst</option>
+      </select>
+      <div class="view-toggle">
+        <button class="view-btn" title="Groß" onclick="setView('large',this)">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="1" y="1" width="7" height="7" rx=".5"/><rect x="10" y="1" width="7" height="7" rx=".5"/>
+            <rect x="1" y="10" width="7" height="7" rx=".5"/><rect x="10" y="10" width="7" height="7" rx=".5"/>
+          </svg>
+        </button>
+        <button class="view-btn on" title="Mittel" onclick="setView('medium',this)">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="1" y="1" width="4.5" height="4.5" rx=".4"/><rect x="6.75" y="1" width="4.5" height="4.5" rx=".4"/>
+            <rect x="12.5" y="1" width="4.5" height="4.5" rx=".4"/><rect x="1" y="6.75" width="4.5" height="4.5" rx=".4"/>
+            <rect x="6.75" y="6.75" width="4.5" height="4.5" rx=".4"/><rect x="12.5" y="6.75" width="4.5" height="4.5" rx=".4"/>
+          </svg>
+        </button>
+        <button class="view-btn" title="Klein" onclick="setView('small',this)">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="1" y="1" width="3" height="3" rx=".3"/><rect x="5" y="1" width="3" height="3" rx=".3"/>
+            <rect x="9" y="1" width="3" height="3" rx=".3"/><rect x="13" y="1" width="3" height="3" rx=".3"/>
+            <rect x="1" y="5" width="3" height="3" rx=".3"/><rect x="5" y="5" width="3" height="3" rx=".3"/>
+            <rect x="9" y="5" width="3" height="3" rx=".3"/><rect x="13" y="5" width="3" height="3" rx=".3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
-    <!-- Gallery grid -->
-    <section class="gallery-section">
-        <div class="gallery-grid" id="galleryGrid">
-            <!-- Cards injected by JS -->
-            <div class="gallery-state" id="initialState">
-                <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-                    <rect x="4" y="12" width="56" height="40" rx="3"/>
-                    <circle cx="22" cy="27" r="6"/>
-                    <path d="M4 42l14-12 10 10 10-14 14 14"/>
-                </svg>
-                <h3>Galerie wird geladen</h3>
-                <p>Verbindung zu Dropbox wird hergestellt…</p>
-            </div>
-        </div>
-    </section>
+  <section class="gallery-section">
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-state" id="initialState">
+        <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="4" y="12" width="56" height="40" rx="3"/>
+          <circle cx="22" cy="27" r="6"/>
+          <path d="M4 42l14-12 10 10 10-14 14 14"/>
+        </svg>
+        <h3>Galerie wird geladen</h3>
+        <p>Verbindung zu Dropbox wird hergestellt…</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- ═══ LIGHTBOX ═══ -->
 <div class="lightbox" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
-    <button class="lb-close" onclick="closeLightbox()">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M4 4l12 12M16 4L4 16"/>
-        </svg>
+  <button class="lb-close" onclick="closeLightbox()">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M4 4l12 12M16 4L4 16"/>
+    </svg>
+  </button>
+  <div class="lb-inner">
+    <button class="lb-nav prev" onclick="navigateLightbox(-1)" aria-label="Vorheriges Bild">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4L6 10l6 6"/></svg>
     </button>
-    <div class="lb-inner">
-        <button class="lb-nav prev" onclick="navigateLightbox(-1)">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 4L6 10l6 6"/>
-            </svg>
-        </button>
-        <div class="lb-img-wrap">
-            <img id="lbImg" src="" alt="" />
-        </div>
-        <div class="lb-footer">
-            <span class="lb-filename" id="lbFilename"></span>
-            <div class="lb-actions">
-                <button class="lb-download-btn" onclick="downloadFromLightbox()">
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
-                        <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
-                    </svg>
-                    Herunterladen
-                </button>
-            </div>
-        </div>
-        <button class="lb-nav next" onclick="navigateLightbox(1)">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M8 4l6 6-6 6"/>
-            </svg>
-        </button>
+    <div class="lb-img-wrap">
+      <div class="lb-spinner" id="lbSpinner"><div class="lb-spinner-ring"></div></div>
+      <img id="lbImg" src="" alt="" />
     </div>
+    <div class="lb-footer">
+      <div class="lb-meta">
+        <span class="lb-filename" id="lbFilename"></span>
+        <span class="lb-fileinfo" id="lbFileinfo"></span>
+      </div>
+      <div class="lb-actions">
+        <span class="lb-counter" id="lbCounter"></span>
+        <button class="lb-download-btn" onclick="downloadFromLightbox()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
+          </svg>
+          Herunterladen
+        </button>
+      </div>
+    </div>
+    <button class="lb-nav next" onclick="navigateLightbox(1)" aria-label="Nächstes Bild">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 4l6 6-6 6"/></svg>
+    </button>
+  </div>
 </div>
 
-<!-- ═══ TOAST ═══ -->
 <div class="toast-wrap" id="toastWrap"></div>
 
-<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
-    <p>© <span id="year"></span> Studio · Alle Rechte vorbehalten</p>
+  <p>© <span id="year"></span> Studio · Alle Rechte vorbehalten</p>
 </footer>
 
 <!-- ═══════════════════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════════════ -->
 <script>
-/* ┌─────────────────────────────────────────────────────┐
-   │  ⚙️  KONFIGURATION                                   │
-   └─────────────────────────────────────────────────────┘ */
-const API_ENDPOINT = './get-images.php';  // 🔗 PHP Endpoint für Dropbox
-const PHOTO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.tiff', '.bmp'];
+/* ┌────────────────────────────────────────────────────────
+   │  ⚙️  KONFIGURATION
+   │  Token wird von GitHub Actions via sed injiziert.
+   │  Für lokale Tests: direkt deinen Token eintragen.
+   └──────────────────────────────────────────────────────── */
+const CONFIG = {
+  dropboxToken:  '__DROPBOX_TOKEN__',   // ← wird von CI/CD ersetzt
+  folderPath:    '/meine-fotos',        // ← dein Dropbox-Ordnerpfad
+  cacheDuration: 60 * 60 * 1000,       // 1 Stunde in ms
+  imageExtensions: new Set(['jpg','jpeg','png','webp','gif','tiff','bmp']),
+  retryAttempts: 3,
+  retryDelay:    1000,                  // ms zwischen Retries
+};
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  STATE                                               │
-   └─────────────────────────────────────────────────────┘ */
-let photos = [];   // [{ name, path, url }]
+/* ┌────────────────────────────────────────────────────────
+   │  STATE
+   └──────────────────────────────────────────────────────── */
+let allPhotos     = [];   // vollständige Liste
+let displayPhotos = [];   // gefiltert + sortiert
 let selectedPaths = new Set();
-let currentIndex = 0;
-let allSelected = false;
+let currentIndex  = 0;
+let allSelected   = false;
+let touchStartX   = 0;
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  PRELOADER                                           │
-   └─────────────────────────────────────────────────────┘ */
+/* ┌────────────────────────────────────────────────────────
+   │  PRELOADER
+   └──────────────────────────────────────────────────────── */
 function setProgress(pct) {
-    document.getElementById('pl-bar').style.width = pct + '%';
-    document.getElementById('pl-pct').textContent = Math.round(pct);
+  document.getElementById('pl-bar').style.width = pct + '%';
+  document.getElementById('pl-pct').textContent = Math.round(pct);
 }
-
 function exitPreloader() {
-    const pl = document.getElementById('preloader');
-    pl.classList.add('exit');
-    pl.addEventListener('animationend', () => pl.remove(), { once: true });
+  const pl = document.getElementById('preloader');
+  pl.classList.add('exit');
+  pl.addEventListener('animationend', () => pl.remove(), { once: true });
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  INIT & LOAD PHOTOS                                  │
-   └─────────────────────────────────────────────────────┘ */
-async function loadPhotos() {
-    try {
-        setProgress(10);
-        
-        const response = await fetch(API_ENDPOINT);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        setProgress(40);
-        
-        const data = await response.json();
-        
-        if (data.error) {
-            console.error('API Error:', data.error);
-            showError('Fehler beim Laden der Bilder', data.error);
-            exitPreloader();
-            return;
-        }
-        
-        photos = data.entries || [];
-        
-        // Filter nur Bilddateien
-        photos = photos.filter(photo => {
-            const ext = '.' + photo.name.split('.').pop().toLowerCase();
-            return PHOTO_EXTENSIONS.includes(ext) && !photo.name.startsWith('.');
-        });
-        
-        setProgress(70);
-        
-        if (photos.length === 0) {
-            showEmpty();
-            exitPreloader();
-            return;
-        }
-        
-        renderGallery();
-        updatePhotoCount();
-        setProgress(100);
-        
-        setTimeout(exitPreloader, 300);
-        
-    } catch (error) {
-        console.error('LoadPhotos Error:', error);
-        showError('Fehler beim Laden der Bilder', error.message);
-        exitPreloader();
+/* ┌────────────────────────────────────────────────────────
+   │  DROPBOX API HELPERS  (direkt aus dem Browser)
+   └──────────────────────────────────────────────────────── */
+async function fetchWithRetry(url, options, attempt = 1) {
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw Object.assign(new Error(err.error_summary || `HTTP ${res.status}`), { status: res.status, body: err });
     }
+    return res.json();
+  } catch (e) {
+    if (attempt < CONFIG.retryAttempts && e.status !== 401) {
+      await sleep(CONFIG.retryDelay * attempt);
+      return fetchWithRetry(url, options, attempt + 1);
+    }
+    throw e;
+  }
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  RENDER GALLERY                                      │
-   └─────────────────────────────────────────────────────┘ */
-function renderGallery() {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = '';
-    
-    photos.forEach((photo, idx) => {
-        const card = createPhotoCard(photo, idx);
-        grid.appendChild(card);
+const dropboxHeaders = () => ({
+  'Authorization': `Bearer ${CONFIG.dropboxToken}`,
+  'Content-Type':  'application/json',
+});
+
+async function listFolder(path) {
+  const entries = [];
+  let data = await fetchWithRetry(
+    'https://api.dropboxapi.com/2/files/list_folder',
+    { method: 'POST', headers: dropboxHeaders(),
+      body: JSON.stringify({ path, recursive: false, include_media_info: true }) }
+  );
+  entries.push(...data.entries);
+  while (data.has_more) {
+    data = await fetchWithRetry(
+      'https://api.dropboxapi.com/2/files/list_folder/continue',
+      { method: 'POST', headers: dropboxHeaders(),
+        body: JSON.stringify({ cursor: data.cursor }) }
+    );
+    entries.push(...data.entries);
+  }
+  return entries;
+}
+
+async function getTemporaryLink(path) {
+  const data = await fetchWithRetry(
+    'https://api.dropboxapi.com/2/files/get_temporary_link',
+    { method: 'POST', headers: dropboxHeaders(), body: JSON.stringify({ path }) }
+  );
+  return data.link;
+}
+
+/* ┌────────────────────────────────────────────────────────
+   │  SESSION CACHE (links are 4h valid, cache for 1h)
+   └──────────────────────────────────────────────────────── */
+const CACHE_KEY = `dbx_gallery_${CONFIG.folderPath}`;
+
+function loadCache() {
+  try {
+    const raw = sessionStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const { ts, data } = JSON.parse(raw);
+    if (Date.now() - ts > CONFIG.cacheDuration) { sessionStorage.removeItem(CACHE_KEY); return null; }
+    return data;
+  } catch { return null; }
+}
+function saveCache(data) {
+  try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch {}
+}
+
+/* ┌────────────────────────────────────────────────────────
+   │  INIT & LOAD
+   └──────────────────────────────────────────────────────── */
+async function loadPhotos() {
+  // Token-Prüfung
+  if (!CONFIG.dropboxToken || CONFIG.dropboxToken === '__DROPBOX_TOKEN__') {
+    document.getElementById('configBanner').classList.add('visible');
+    showError('Token nicht konfiguriert',
+      'GitHub Secret DROPBOX_ACCESS_TOKEN fehlt. Workflow erneut ausführen.');
+    exitPreloader();
+    return;
+  }
+
+  // Cache prüfen
+  const cached = loadCache();
+  if (cached) {
+    allPhotos = cached;
+    setProgress(100);
+    sortAndRender();
+    updatePhotoCount();
+    document.getElementById('folderLabel').textContent = CONFIG.folderPath;
+    setTimeout(exitPreloader, 200);
+    showToast('Aus Cache geladen', false);
+    return;
+  }
+
+  try {
+    setProgress(10);
+    const rawEntries = await listFolder(CONFIG.folderPath);
+    setProgress(35);
+
+    // Nur Bilder, keine versteckten Dateien
+    const imageEntries = rawEntries.filter(e => {
+      if (e['.tag'] !== 'file') return false;
+      if (e.name.startsWith('.')) return false;
+      const ext = e.name.split('.').pop().toLowerCase();
+      return CONFIG.imageExtensions.has(ext);
     });
+
+    if (imageEntries.length === 0) { showEmpty(); exitPreloader(); return; }
+
+    // Temporary links parallel abrufen (max 6 gleichzeitig)
+    const results = await parallelMap(imageEntries, async (entry, i) => {
+      const url = await getTemporaryLink(entry.path_display);
+      setProgress(35 + Math.round(((i + 1) / imageEntries.length) * 60));
+      return {
+        name:     entry.name,
+        path:     entry.path_display,
+        id:       entry.id,
+        size:     entry.size || 0,
+        modified: entry.server_modified || null,
+        url,
+      };
+    }, 6);
+
+    allPhotos = results.filter(Boolean);
+    saveCache(allPhotos);
+    setProgress(100);
+    sortAndRender();
+    updatePhotoCount();
+    document.getElementById('folderLabel').textContent = CONFIG.folderPath;
+    setTimeout(exitPreloader, 300);
+
+  } catch (err) {
+    console.error('[Gallery] Fehler:', err);
+    const msg = err.status === 401
+      ? 'Ungültiger Dropbox-Token. Bitte GitHub Secret prüfen.'
+      : err.status === 409
+      ? `Ordner "${CONFIG.folderPath}" nicht gefunden. CONFIG.folderPath prüfen.`
+      : err.message || 'Unbekannter Fehler';
+    showError('Fehler beim Laden', msg);
+    exitPreloader();
+  }
+}
+
+/* Paralleles Abrufen mit Concurrency-Limit */
+async function parallelMap(items, fn, concurrency = 6) {
+  const results = new Array(items.length);
+  let idx = 0;
+  async function worker() {
+    while (idx < items.length) {
+      const i = idx++;
+      try { results[i] = await fn(items[i], i); }
+      catch (e) { console.warn('Link-Fehler für', items[i]?.name, e); results[i] = null; }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+  return results;
+}
+
+/* ┌────────────────────────────────────────────────────────
+   │  SORT & FILTER & RENDER
+   └──────────────────────────────────────────────────────── */
+function sortAndRender() {
+  const sort  = document.getElementById('sortSelect')?.value || 'name-asc';
+  const query = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+
+  let list = [...allPhotos];
+
+  // Suche
+  if (query) {
+    list = list.filter(p => p.name.toLowerCase().includes(query));
+  }
+
+  // Sortierung
+  list.sort((a, b) => {
+    switch (sort) {
+      case 'name-asc':   return a.name.localeCompare(b.name);
+      case 'name-desc':  return b.name.localeCompare(a.name);
+      case 'date-desc':  return new Date(b.modified) - new Date(a.modified);
+      case 'date-asc':   return new Date(a.modified) - new Date(b.modified);
+      case 'size-desc':  return b.size - a.size;
+      default:           return 0;
+    }
+  });
+
+  displayPhotos = list;
+  renderGallery();
+}
+
+function filterGallery() { sortAndRender(); }
+
+/* ┌────────────────────────────────────────────────────────
+   │  RENDER GALLERY
+   └──────────────────────────────────────────────────────── */
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = '';
+
+  if (displayPhotos.length === 0) {
+    grid.innerHTML = `
+      <div class="gallery-state">
+        <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="32" cy="32" r="28"/><path d="M20 44l8-8 8 8M32 36V20"/>
+        </svg>
+        <h3>Keine Ergebnisse</h3>
+        <p>Suche anpassen oder Filter zurücksetzen</p>
+      </div>`;
+    return;
+  }
+
+  // IntersectionObserver für Lazy Loading
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const img = entry.target.querySelector('img[data-src]');
+      if (img) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        img.onload  = () => { img.classList.add('loaded'); entry.target.classList.remove('loading'); };
+        img.onerror = () => entry.target.classList.replace('loading','error');
+      }
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '200px' });
+
+  displayPhotos.forEach((photo, idx) => {
+    const card = createPhotoCard(photo, idx);
+    grid.appendChild(card);
+    observer.observe(card);
+  });
 }
 
 function createPhotoCard(photo, idx) {
-    const card = document.createElement('div');
-    card.className = 'photo-card loading';
-    card.id = `photo-${idx}`;
-    card.onclick = () => openLightbox(idx);
-    
-    card.innerHTML = `
-        <div class="card-checkbox-wrap">
-            <input type="checkbox" class="card-checkbox" onchange="togglePhotoSelect('${photo.path}', this.checked)" />
-        </div>
-        <img src="${photo.url}" alt="${photo.name}" onload="this.parentElement.classList.remove('loading')" onerror="this.parentElement.classList.add('error')" />
-        <div class="card-overlay">
-            <div class="card-filename">${photo.name}</div>
-            <div class="card-actions">
-                <button class="card-download-btn" onclick="downloadPhoto(event, '${photo.url}', '${photo.name}')">
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
-                        <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
-                    </svg>
-                    Laden
-                </button>
-            </div>
-        </div>
-    `;
-    
-    return card;
+  const card = document.createElement('div');
+  card.className = 'photo-card loading';
+  card.id = `photo-${idx}`;
+
+  // Click öffnet Lightbox, aber nicht wenn Checkbox oder Download-Button geklickt
+  card.onclick = (e) => {
+    if (e.target.closest('.card-checkbox-wrap') || e.target.closest('.card-download-btn')) return;
+    openLightbox(idx);
+  };
+
+  const isSelected = selectedPaths.has(photo.path);
+  if (isSelected) card.classList.add('selected');
+
+  card.innerHTML = `
+    <div class="card-checkbox-wrap">
+      <input type="checkbox" class="card-checkbox" ${isSelected ? 'checked' : ''}
+             onclick="event.stopPropagation()"
+             onchange="togglePhotoSelect('${CSS.escape(photo.path)}', this)" />
+    </div>
+    <img data-src="${photo.url}" alt="${photo.name}" />
+    <div class="card-overlay">
+      <div class="card-filename">${photo.name}</div>
+      <div class="card-actions">
+        <button class="card-download-btn" onclick="downloadPhoto(event,'${CSS.escape(photo.url)}','${CSS.escape(photo.name)}')">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
+          </svg>
+          Laden
+        </button>
+      </div>
+    </div>`;
+  return card;
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  LIGHTBOX                                            │
-   └─────────────────────────────────────────────────────┘ */
+/* ┌────────────────────────────────────────────────────────
+   │  LIGHTBOX
+   └──────────────────────────────────────────────────────── */
 function openLightbox(idx) {
-    currentIndex = idx;
-    updateLightbox();
-    document.getElementById('lightbox').classList.add('open');
+  currentIndex = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-
 function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
 }
-
 function closeLightboxOnBackdrop(e) {
-    if (e.target.id === 'lightbox') closeLightbox();
+  if (e.target.id === 'lightbox') closeLightbox();
 }
-
 function navigateLightbox(dir) {
-    currentIndex = (currentIndex + dir + photos.length) % photos.length;
-    updateLightbox();
+  currentIndex = (currentIndex + dir + displayPhotos.length) % displayPhotos.length;
+  updateLightbox();
 }
-
 function updateLightbox() {
-    const photo = photos[currentIndex];
-    document.getElementById('lbImg').src = photo.url;
-    document.getElementById('lbFilename').textContent = photo.name;
-}
+  const photo   = displayPhotos[currentIndex];
+  const img     = document.getElementById('lbImg');
+  const spinner = document.getElementById('lbSpinner');
 
+  img.style.opacity = '0';
+  spinner.style.display = 'flex';
+
+  img.onload = () => {
+    img.style.opacity = '1';
+    spinner.style.display = 'none';
+  };
+  img.onerror = () => {
+    spinner.style.display = 'none';
+    img.style.opacity = '1';
+  };
+  img.src = photo.url;
+  img.alt = photo.name;
+
+  document.getElementById('lbFilename').textContent = photo.name;
+  document.getElementById('lbFileinfo').textContent = photo.size
+    ? formatBytes(photo.size) + (photo.modified ? ' · ' + formatDate(photo.modified) : '')
+    : (photo.modified ? formatDate(photo.modified) : '');
+  document.getElementById('lbCounter').textContent =
+    `${currentIndex + 1} / ${displayPhotos.length}`;
+}
 function downloadFromLightbox() {
-    const photo = photos[currentIndex];
-    downloadPhoto(null, photo.url, photo.name);
+  const p = displayPhotos[currentIndex];
+  downloadPhoto(null, p.url, p.name);
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  DOWNLOAD & SELECTION                                │
-   └─────────────────────────────────────────────────────┘ */
-function togglePhotoSelect(path, checked) {
-    if (checked) {
-        selectedPaths.add(path);
-    } else {
-        selectedPaths.delete(path);
-        allSelected = false;
-    }
-    updateSelectionUI();
+/* ┌────────────────────────────────────────────────────────
+   │  SELECTION & DOWNLOAD
+   └──────────────────────────────────────────────────────── */
+function togglePhotoSelect(path, checkbox) {
+  const realPath = path; // CSS.escape was for attribute safety; path stored as-is
+  if (checkbox.checked) {
+    selectedPaths.add(realPath);
+    checkbox.closest('.photo-card').classList.add('selected');
+  } else {
+    selectedPaths.delete(realPath);
+    checkbox.closest('.photo-card').classList.remove('selected');
+    allSelected = false;
+  }
+  updateSelectionUI();
 }
 
 function toggleSelectAll() {
-    allSelected = !allSelected;
-    
-    photos.forEach((photo, idx) => {
-        const checkbox = document.querySelector(`#photo-${idx} .card-checkbox`);
-        checkbox.checked = allSelected;
-        if (allSelected) {
-            selectedPaths.add(photo.path);
-        } else {
-            selectedPaths.delete(photo.path);
-        }
-    });
-    
-    updateSelectionUI();
+  allSelected = !allSelected;
+  displayPhotos.forEach((photo, idx) => {
+    const cb = document.querySelector(`#photo-${idx} .card-checkbox`);
+    if (!cb) return;
+    cb.checked = allSelected;
+    const card = cb.closest('.photo-card');
+    if (allSelected) {
+      selectedPaths.add(photo.path);
+      card.classList.add('selected');
+    } else {
+      selectedPaths.delete(photo.path);
+      card.classList.remove('selected');
+    }
+  });
+  updateSelectionUI();
 }
 
 function updateSelectionUI() {
-    const count = selectedPaths.size;
-    document.getElementById('selectedLabel').textContent = `${count} ausgewählt`;
-    
-    const labelEl = document.getElementById('selectedLabel');
-    const downloadBtn = document.getElementById('downloadSelectedBtn');
-    
-    if (count > 0) {
-        labelEl.classList.add('visible');
-        downloadBtn.classList.add('visible');
-    } else {
-        labelEl.classList.remove('visible');
-        downloadBtn.classList.remove('visible');
-    }
+  const count = selectedPaths.size;
+  document.getElementById('selectedLabel').textContent = `${count} ausgewählt`;
+  document.getElementById('selectedLabel').classList.toggle('visible', count > 0);
+  document.getElementById('downloadSelectedBtn').classList.toggle('visible', count > 0);
 }
 
 function downloadPhoto(event, url, filename) {
-    if (event) event.stopPropagation();
-    
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.click();
-    
-    showToast(`${filename} wird heruntergeladen…`);
+  if (event) event.stopPropagation();
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  showToast(`⬇ ${filename}`, false);
 }
 
 function downloadSelected() {
-    if (selectedPaths.size === 0) return;
-    
-    selectedPaths.forEach(path => {
-        const photo = photos.find(p => p.path === path);
-        if (photo) {
-            downloadPhoto(null, photo.url, photo.name);
-        }
-    });
-    
-    showToast(`${selectedPaths.size} Bilder werden heruntergeladen…`, true);
+  if (!selectedPaths.size) return;
+  let count = 0;
+  selectedPaths.forEach(path => {
+    const photo = allPhotos.find(p => p.path === path);
+    if (photo) { downloadPhoto(null, photo.url, photo.name); count++; }
+  });
+  showToast(`${count} Bilder werden heruntergeladen`, true);
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  VIEW MODES                                          │
-   └─────────────────────────────────────────────────────┘ */
-function setView(mode) {
-    const grid = document.getElementById('galleryGrid');
-    grid.classList.remove('view-large', 'view-small');
-    
-    if (mode === 'large') {
-        grid.classList.add('view-large');
-    } else if (mode === 'small') {
-        grid.classList.add('view-small');
-    }
-    
-    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('on'));
-    event.target.closest('.view-btn').classList.add('on');
+/* ┌────────────────────────────────────────────────────────
+   │  VIEW MODES
+   └──────────────────────────────────────────────────────── */
+function setView(mode, btn) {
+  const grid = document.getElementById('galleryGrid');
+  grid.classList.remove('view-large','view-small');
+  if (mode === 'large') grid.classList.add('view-large');
+  if (mode === 'small') grid.classList.add('view-small');
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  STATES (Error, Empty)                               │
-   └─────────────────────────────────────────────────────┘ */
+/* ┌────────────────────────────────────────────────────────
+   │  STATES
+   └──────────────────────────────────────────────────────── */
 function showError(title, message) {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = `
-        <div class="gallery-state">
-            <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-                <circle cx="32" cy="32" r="28"/>
-                <line x1="32" y1="20" x2="32" y2="36"/>
-                <circle cx="32" cy="44" r="2"/>
-            </svg>
-            <h3>${title}</h3>
-            <p>${message}</p>
-        </div>
-    `;
-    document.getElementById('configBanner').classList.add('visible');
+  document.getElementById('galleryGrid').innerHTML = `
+    <div class="gallery-state">
+      <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="32" cy="32" r="28"/><line x1="32" y1="20" x2="32" y2="36"/><circle cx="32" cy="44" r="2"/>
+      </svg>
+      <h3>${title}</h3>
+      <p>${message}</p>
+      <button class="btn btn-outline retry-btn" onclick="location.reload()">Erneut versuchen</button>
+    </div>`;
 }
-
 function showEmpty() {
-    const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = `
-        <div class="gallery-state">
-            <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-                <rect x="4" y="12" width="56" height="40" rx="3"/>
-                <circle cx="22" cy="27" r="6"/>
-                <path d="M4 42l14-12 10 10 10-14 14 14"/>
-            </svg>
-            <h3>Galerie ist leer</h3>
-            <p>Es wurden keine Bilder im Dropbox-Ordner gefunden.</p>
-        </div>
-    `;
+  document.getElementById('galleryGrid').innerHTML = `
+    <div class="gallery-state">
+      <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+        <rect x="4" y="12" width="56" height="40" rx="3"/>
+        <circle cx="22" cy="27" r="6"/><path d="M4 42l14-12 10 10 10-14 14 14"/>
+      </svg>
+      <h3>Ordner leer</h3>
+      <p>Keine Bilder in "${CONFIG.folderPath}" gefunden.</p>
+    </div>`;
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  TOAST NOTIFICATIONS                                 │
-   └─────────────────────────────────────────────────────┘ */
-function showToast(message, isGreen = false) {
-    const wrap = document.getElementById('toastWrap');
-    const toast = document.createElement('div');
-    toast.className = 'toast show' + (isGreen ? ' toast-green' : '');
-    toast.textContent = message;
-    wrap.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 350);
-    }, 2500);
+/* ┌────────────────────────────────────────────────────────
+   │  TOAST
+   └──────────────────────────────────────────────────────── */
+function showToast(message, isGreen = false, isRed = false) {
+  const wrap = document.getElementById('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast' + (isGreen ? ' toast-green' : isRed ? ' toast-red' : '');
+  el.textContent = message;
+  wrap.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 400);
+  }, 2800);
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  UTILITY                                             │
-   └─────────────────────────────────────────────────────┘ */
+/* ┌────────────────────────────────────────────────────────
+   │  UTILITIES
+   └──────────────────────────────────────────────────────── */
 function updatePhotoCount() {
-    document.getElementById('photoCount').textContent = photos.length;
+  document.getElementById('photoCount').textContent = allPhotos.length;
 }
+function formatBytes(b) {
+  if (b < 1024) return b + ' B';
+  if (b < 1024 ** 2) return (b / 1024).toFixed(1) + ' KB';
+  return (b / 1024 ** 2).toFixed(1) + ' MB';
+}
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString('de-DE', { day:'2-digit', month:'2-digit', year:'numeric' });
+}
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  HEADER SCROLL EFFECT                                │
-   └─────────────────────────────────────────────────────┘ */
+/* ┌────────────────────────────────────────────────────────
+   │  KEYBOARD & TOUCH NAVIGATION
+   └──────────────────────────────────────────────────────── */
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')     closeLightbox();
+  if (e.key === 'ArrowLeft')  navigateLightbox(-1);
+  if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+
+document.getElementById('lightbox').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
+document.getElementById('lightbox').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 60) navigateLightbox(dx < 0 ? 1 : -1);
+}, { passive: true });
+
+/* ┌────────────────────────────────────────────────────────
+   │  HEADER SCROLL
+   └──────────────────────────────────────────────────────── */
 window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    header.classList.toggle('stuck', window.scrollY > 50);
-});
+  document.getElementById('header').classList.toggle('stuck', window.scrollY > 50);
+}, { passive: true });
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  MOBILE NAV                                          │
-   └─────────────────────────────────────────────────────┘ */
-const ham = document.getElementById('ham');
+/* ┌────────────────────────────────────────────────────────
+   │  MOBILE NAV
+   └──────────────────────────────────────────────────────── */
+const ham     = document.getElementById('ham');
 const navWrap = document.getElementById('navLinksWrap');
-
-ham.addEventListener('click', () => {
-    ham.classList.toggle('open');
-    navWrap.classList.toggle('open');
+ham.addEventListener('click', () => { ham.classList.toggle('open'); navWrap.classList.toggle('open'); });
+navWrap.addEventListener('click', e => {
+  if (e.target.tagName === 'A') { ham.classList.remove('open'); navWrap.classList.remove('open'); }
 });
 
-navWrap.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') {
-        ham.classList.remove('open');
-        navWrap.classList.remove('open');
-    }
-});
-
-/* ┌─────────────────────────────────────────────────────┐
-   │  FOOTER YEAR                                         │
-   └─────────────────────────────────────────────────────┘ */
+/* ┌────────────────────────────────────────────────────────
+   │  BOOT
+   └──────────────────────────────────────────────────────── */
 document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ┌─────────────────────────────────────────────────────┐
-   │  INIT                                                │
-   └─────────────────────────────────────────────────────┘ */
 loadPhotos();
 </script>
 </body>
