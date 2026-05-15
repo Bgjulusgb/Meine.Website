@@ -18,14 +18,15 @@ jobs:
 
       - run: npm install -g wrangler
 
-      - name: 🔐 Dropbox-Token setzen
-        run: |
-          echo "${{ secrets.DROPBOX_ACCESS_TOKEN }}" > /tmp/token.txt
-          wrangler secret put DROPBOX_TOKEN < /tmp/token.txt
-          rm /tmp/token.txt
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+- name: 🔐 Dropbox-Token setzen
+  run: |
+    echo "${{ secrets.DROPBOX_ACCESS_TOKEN }}" > /tmp/token.txt
+    wrangler secret put DROPBOX_TOKEN < /tmp/token.txt
+    rm /tmp/token.txt
+  env:
+    CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  continue-on-error: false
 
       - name: 🚀 Worker deployen
         run: wrangler deploy worker.js --name galerie-api
