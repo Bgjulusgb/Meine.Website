@@ -1,36 +1,101 @@
-name: 🚀 Deploy Frontend
+name: Deploy Worker + Frontend
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  deploy:
+  # ─────────────────────────────────────────────────────────────
+  # 1) Cloudflare Worker (Backend, hält Dropbox-Token geheim)
+  # ─────────────────────────────────────────────────────────────
+  deploy_worker:
+    name: Cloudflare Worker
     runs-on: ubuntu-latest
+    outputs:
+      worker_url: ${{ steps.url.outputs.worker_url }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: 🔧 Worker-URL eintragen
-        run: |
-          WORKER_URL="https://galerie-api.3d95dac45e5dd7bcba40e06cc22cbccb.workers.dev"
-          sed -i "s|'__WORKER_URL__'|'${WORKER_URL}'|g" index.html
-          # Zeige die Änderungen
-          echo "=== index.html Inhalt ==="
-          head -20 index.html
-          echo "=== Git Status ==="
-          git status
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      - name: 📤 Push zu GitHub Pages Branch
+      - name: Wrangler installieren
+        run: npm install -g wrangler@latest
+
+      # Worker zuerst deployen (Reihenfolge wichtig: 'secret put' braucht
+      # einen existierenden Worker).
+      - name: Worker deployen
+        id: deploy
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+        run: wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Token nur setzen wenn Worker erfolgreich deployt UND Secret vorhanden.
+      - name: DROPBOX_TOKEN als Worker-Secret setzen
+        if: ${{ steps.deploy.outcome == 'success' && secrets.DROPBOX_ACCESS_TOKEN != '' }}
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          
-          # Prüfe, ob es Änderungen gibt
-          if git diff --quiet; then
-            echo "Keine Änderungen gefunden - Worker-URL war bereits aktuell"
-            exit 0
+          printf '%s' "${DROPBOX_ACCESS_TOKEN}" | wrangler secret put DROPBOX_TOKEN --name galerie-api
+        env:
+          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Worker-URL ermitteln
+        id: url
+        run: |
+          ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+          if [ -n "$ACCOUNT_ID" ]; then
+            URL="https://galerie-api.${ACCOUNT_ID}.workers.dev"
+          else
+            # Fallback (vorhandener Worker des Accounts):
+            URL="https://galerie-api.3d95dac45e5dd7bcba40e06cc22cbccb.workers.dev"
           fi
-          
-          git add index.html
-          git commit -m "Auto: Worker-URL aktualisiert"
-          git push origin main
+          echo "worker_url=${URL}" >> "$GITHUB_OUTPUT"
+          echo "::notice title=Worker URL::${URL}"
+
+  # ─────────────────────────────────────────────────────────────
+  # 2) Frontend zu GitHub Pages (mit injizierter Worker-URL)
+  # ─────────────────────────────────────────────────────────────
+  deploy_frontend:
+    name: Frontend zu GitHub Pages
+    needs: deploy_worker
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Worker-URL in galerie/index.html einsetzen
+        run: |
+          WORKER_URL="${{ needs.deploy_worker.outputs.worker_url }}"
+          echo "Setze Worker-URL: ${WORKER_URL}"
+          # | als Trennzeichen, da URL Slashes enthält
+          sed -i "s|__WORKER_URL__|${WORKER_URL}|g" galerie/index.html
+          # Verifizierung
+          if grep -q "__WORKER_URL__" galerie/index.html; then
+            echo "::error::Platzhalter __WORKER_URL__ nicht ersetzt!"
+            exit 1
+          fi
+          grep -n "apiBase" galerie/index.html | head -3
+
+      - name: Pages konfigurieren
+        uses: actions/configure-pages@v5
+
+      - name: Artifact hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Zu Pages deployen
+        id: deployment
+        uses: actions/deploy-pages@v4

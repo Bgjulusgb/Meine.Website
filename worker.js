@@ -3,42 +3,44 @@
  * ─────────────────────────────────────────────────────────────────
  * Aufgabe:
  *   • Hält den Dropbox-Token GEHEIM (Frontend bekommt ihn nie zu sehen).
- *   • Stellt eine kleine REST-API für die Galerie bereit:
+ *   • REST-API für die Galerie:
  *       GET  /api/photos                          → JSON-Liste aller Bilder
  *       GET  /api/thumb?path=...&size=w640h480    → Thumbnail (image/jpeg)
  *       GET  /api/download?path=...               → 302 zur Original-Datei
- *   • Aktiviert CORS nur für die in ALLOWED_ORIGINS erlaubten Domains.
+ *       GET  /api/health                          → einfacher Health-Check
+ *   • CORS nur für die in ALLOWED_ORIGINS erlaubten Domains.
  *
- * Setup (einmalig):
- *   1. https://dash.cloudflare.com → Workers & Pages → "Create Worker"
+ * Setup:
+ *   1. Cloudflare Dashboard → Workers & Pages → "Create Worker"
  *   2. Diesen Code einfügen, deployen.
- *   3. Im Worker unter "Settings" → "Variables and Secrets":
- *        - Secret  DROPBOX_TOKEN      = dein neuer Dropbox-Token
- *        - Var     DROPBOX_FOLDER     = /meine-fotos
- *        - Var     ALLOWED_ORIGINS    = https://deinedomain.de,https://www.deinedomain.de
- *   4. Die Worker-URL (z.B. https://galerie-api.dein-account.workers.dev)
- *      ins Frontend (CONFIG.apiBase) eintragen.
- *
- * Kosten: 100.000 Anfragen/Tag sind im kostenlosen Plan inklusive.
+ *   3. In Settings → Variables and Secrets:
+ *        - Secret  DROPBOX_TOKEN     = dein Dropbox-Token
+ *        - Var     DROPBOX_FOLDER    = /meine-fotos
+ *        - Var     ALLOWED_ORIGINS   = https://benni-photo.com,https://www.benni-photo.com
+ *   4. Worker-URL ins Frontend (CONFIG.apiBase) eintragen.
  */
 
 const IMAGE_EXTS = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'tiff', 'bmp', 'heic', 'avif']);
+
+const VALID_SIZES = new Set([
+  'w32h32', 'w64h64', 'w128h128', 'w256h256',
+  'w480h320', 'w640h480', 'w960h640', 'w1024h768', 'w2048h1536',
+]);
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin') || '';
 
-    // ─── CORS-Preflight ────────────────────────────────────────────
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(origin, env) });
     }
 
-    // ─── Routing ───────────────────────────────────────────────────
     try {
-      if (url.pathname === '/api/photos')   return await handlePhotos(env, origin);
+      if (url.pathname === '/api/photos')   return await handlePhotos(env, origin, ctx);
       if (url.pathname === '/api/thumb')    return await handleThumb(url, env, origin, ctx);
       if (url.pathname === '/api/download') return await handleDownload(url, env, origin);
+      if (url.pathname === '/api/health')   return json({ status: 'ok', time: Date.now() }, 200, origin, env);
 
       return json({ error: 'Not found' }, 404, origin, env);
     } catch (err) {
@@ -48,9 +50,29 @@ export default {
   },
 };
 
-/* ─── Endpoint: /api/photos ─────────────────────────────────────── */
-async function handlePhotos(env, origin) {
+/* ─── /api/photos ─────────────────────────────────────────────── */
+async function handlePhotos(env, origin, ctx) {
+  if (!env.DROPBOX_TOKEN) throw httpErr(500, 'DROPBOX_TOKEN nicht konfiguriert');
+
   const folder = env.DROPBOX_FOLDER || '/';
+
+  // Edge-Cache: für 60s wiederverwenden (entlastet Dropbox-API)
+  const cacheKey = new Request(`https://internal/photos${encodeURIComponent(folder)}`);
+  const cache = caches.default;
+  const cached = await cache.match(cacheKey);
+  if (cached) {
+    const body = await cached.text();
+    return new Response(body, {
+      status: 200,
+      headers: {
+        'Content-Type':                'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': isAllowed(origin, env) ? origin : '',
+        'X-Cache':                     'HIT',
+        'Cache-Control':               'public, max-age=60',
+      },
+    });
+  }
+
   const entries = await listFolderRecursive(folder, env.DROPBOX_TOKEN);
 
   const photos = entries
@@ -65,27 +87,39 @@ async function handlePhotos(env, origin) {
       path:     e.path_lower,
       size:     e.size ?? 0,
       modified: e.server_modified ?? null,
-      // Mit Aspect-Ratio aus Media-Info, falls vorhanden (für Masonry)
       width:    e.media_info?.metadata?.dimensions?.width  ?? null,
       height:   e.media_info?.metadata?.dimensions?.height ?? null,
     }));
 
-  return json({ photos, folder }, 200, origin, env, {
-    'Cache-Control': 'public, max-age=60', // 1 Min Cache am Edge
+  const body = JSON.stringify({ photos, folder });
+  const response = new Response(body, {
+    status: 200,
+    headers: {
+      'Content-Type':                'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': isAllowed(origin, env) ? origin : '',
+      'X-Cache':                     'MISS',
+      'Cache-Control':               'public, max-age=60',
+      'X-Content-Type-Options':      'nosniff',
+    },
   });
+
+  ctx.waitUntil(cache.put(cacheKey, new Response(body, {
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
+  })));
+
+  return response;
 }
 
-/* ─── Endpoint: /api/thumb?path=...&size=w640h480 ───────────────── */
+/* ─── /api/thumb?path=...&size=w640h480 ───────────────────────── */
 async function handleThumb(url, env, origin, ctx) {
+  if (!env.DROPBOX_TOKEN) throw httpErr(500, 'DROPBOX_TOKEN nicht konfiguriert');
+
   const path = url.searchParams.get('path');
   const size = url.searchParams.get('size') || 'w640h480';
 
   if (!path || !path.startsWith('/')) throw httpErr(400, 'Invalid path');
-  if (!/^w(32|64|128|256|480|640|960|1024|2048)h(32|32|96|128|320|480|640|768|1536)$/.test(size)) {
-    throw httpErr(400, 'Invalid size');
-  }
+  if (!VALID_SIZES.has(size))         throw httpErr(400, 'Invalid size');
 
-  // Versuch: Cache lesen
   const cacheKey = new Request(url.toString(), { method: 'GET' });
   const cache = caches.default;
   const cached = await cache.match(cacheKey);
@@ -94,8 +128,8 @@ async function handleThumb(url, env, origin, ctx) {
   const res = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
     method: 'POST',
     headers: {
-      'Authorization':     `Bearer ${env.DROPBOX_TOKEN}`,
-      'Dropbox-API-Arg':   JSON.stringify({
+      'Authorization':   `Bearer ${env.DROPBOX_TOKEN}`,
+      'Dropbox-API-Arg': JSON.stringify({
         resource: { '.tag': 'path', path },
         format:   { '.tag': 'jpeg' },
         size:     { '.tag': size },
@@ -109,29 +143,27 @@ async function handleThumb(url, env, origin, ctx) {
     throw httpErr(res.status, `Thumbnail-Fehler: ${errText.slice(0, 200)}`);
   }
 
-  // Antwort mit langem Cache, da Bild + Pfad stabil sind
   const response = new Response(res.body, {
     status: 200,
     headers: {
       'Content-Type':                'image/jpeg',
-      'Cache-Control':               'public, max-age=86400, immutable', // 1 Tag
+      'Cache-Control':               'public, max-age=86400, immutable',
       'Access-Control-Allow-Origin': isAllowed(origin, env) ? origin : '',
       'X-Content-Type-Options':      'nosniff',
     },
   });
 
-  // Im Hintergrund cachen
   ctx.waitUntil(cache.put(cacheKey, response.clone()));
   return response;
 }
 
-/* ─── Endpoint: /api/download?path=... ──────────────────────────── */
+/* ─── /api/download?path=... ──────────────────────────────────── */
 async function handleDownload(url, env, origin) {
+  if (!env.DROPBOX_TOKEN) throw httpErr(500, 'DROPBOX_TOKEN nicht konfiguriert');
+
   const path = url.searchParams.get('path');
   if (!path || !path.startsWith('/')) throw httpErr(400, 'Invalid path');
 
-  // Temporary Link von Dropbox holen (4 h gültig) und Browser dorthin schicken.
-  // Das spart Bandbreite des Workers und liefert die Original-Datei direkt.
   const res = await fetch('https://api.dropboxapi.com/2/files/get_temporary_link', {
     method: 'POST',
     headers: {
@@ -157,7 +189,7 @@ async function handleDownload(url, env, origin) {
   });
 }
 
-/* ─── Dropbox-Helfer ─────────────────────────────────────────────── */
+/* ─── Dropbox-Helfer ──────────────────────────────────────────── */
 async function listFolderRecursive(path, token) {
   const out = [];
   let data = await dbx('https://api.dropboxapi.com/2/files/list_folder', token, {
@@ -186,7 +218,7 @@ async function dbx(endpoint, token, body) {
   return res.json();
 }
 
-/* ─── Utils ─────────────────────────────────────────────────────── */
+/* ─── Utils ───────────────────────────────────────────────────── */
 function corsHeaders(origin, env) {
   const allowed = isAllowed(origin, env);
   return {
@@ -199,9 +231,14 @@ function corsHeaders(origin, env) {
 }
 
 function isAllowed(origin, env) {
-  if (!origin) return false;
+  if (!origin) return true;  // Direct fetch (kein CORS-Origin) auch erlauben (Browser-Cache, etc.)
   const list = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
-  return list.length === 0 ? true : list.includes(origin);
+  if (list.length === 0) return true;
+  return list.some(allowed => {
+    if (allowed === origin) return true;
+    if (allowed === '*')    return true;
+    return false;
+  });
 }
 
 function json(obj, status, origin, env, extraHeaders = {}) {

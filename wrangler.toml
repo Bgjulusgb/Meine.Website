@@ -1,5 +1,11 @@
 name = "galerie-api"
 main = "worker.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-10-01"
 
-vars = { DROPBOX_FOLDER = "/meine-fotos", ALLOWED_ORIGINS = "benni-photo.com" }
+# Frei zugängliche Variablen (kein Secret)
+[vars]
+DROPBOX_FOLDER  = "/meine-fotos"
+ALLOWED_ORIGINS = "https://benni-photo.com,https://www.benni-photo.com,https://bgjulusgb.github.io"
+
+# Secrets werden per Dashboard oder `wrangler secret put DROPBOX_TOKEN` gesetzt
+# (NICHT hier eintragen!)
