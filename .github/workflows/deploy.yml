@@ -1,57 +1,14 @@
-name: 🚀 Deploy Galerie (Worker + Frontend)
+name: 🚀 Deploy Galerie (Frontend)
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:  # Manuell triggern im Actions-Tab möglich
+  workflow_dispatch:
 
 jobs:
-  # ═══════════════════════════════════════════════════════════════════
-  # Job 1: Deploye den Worker zu Cloudflare
-  # ═══════════════════════════════════════════════════════════════════
-  deploy_worker:
-    name: 1️⃣ Worker zu Cloudflare
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Code auschecken
-        uses: actions/checkout@v4
-
-- name: 🟢 Node.js Setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: 📦 Wrangler installieren
-        run: npm install -g wrangler
-
-      # Der Secret wird per CLI gesetzt: `wrangler secret put DROPBOX_TOKEN < token.txt`
-      - name: 🔐 Dropbox-Token als Geheimnis setzen
-        run: |
-          echo "${{ secrets.DROPBOX_ACCESS_TOKEN }}" > /tmp/dropbox_token.txt
-          wrangler secret put DROPBOX_TOKEN < /tmp/dropbox_token.txt
-          rm /tmp/dropbox_token.txt  # Aufräumen (Sicherheit)
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
-      - name: 🚀 Worker deployen
-        run: wrangler deploy worker.js --name galerie-api
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
-      - name: ✅ Worker-URL anzeigen
-        run: |
-          ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-          echo "✨ Worker deployt zu: https://galerie-api.${ACCOUNT_ID}.workers.dev"
-
-  # ═══════════════════════════════════════════════════════════════════
-  # Job 2: Deploye Frontend zu GitHub Pages
-  # ═══════════════════════════════════════════════════════════════════
   deploy_frontend:
-    name: 2️⃣ Frontend zu GitHub Pages
+    name: Frontend zu GitHub Pages
     runs-on: ubuntu-latest
-    needs: deploy_worker  # Warte, bis Worker fertig ist
     permissions:
       contents: read
       pages: write
@@ -64,19 +21,17 @@ jobs:
       - name: ⬇️ Code auschecken
         uses: actions/checkout@v4
 
+      - name: 🟢 Node.js Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: 🔧 Worker-URL in index.html eintragen
         run: |
           ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
           WORKER_URL="https://galerie-api.${ACCOUNT_ID}.workers.dev"
-          
-          # Ersetze den Platzhalter in index.html
           sed -i "s|'__WORKER_URL__'|'${WORKER_URL}'|g" index.html
-          
-          echo "✅ index.html konfiguriert mit:"
-          echo "   Worker-URL: ${WORKER_URL}"
-          
-          # Verifizierung: Zeige die Zeile an
-          grep -n "apiBase" index.html | head -1
+          echo "✅ Worker-URL: ${WORKER_URL}"
 
       - name: 📤 Artifact hochladen
         uses: actions/upload-pages-artifact@v3
@@ -86,7 +41,3 @@ jobs:
       - name: 🌐 Zu GitHub Pages deployen
         id: deployment
         uses: actions/deploy-pages@v2
-
-      - name: ✅ Deployment abgeschlossen
-        run: |
-          echo "🎉 Frontend deployt zu: ${{ steps.deployment.outputs.page_url }}"
