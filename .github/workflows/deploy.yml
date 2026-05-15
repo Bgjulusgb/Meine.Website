@@ -36,6 +36,7 @@ jobs:
   deploy_frontend:
     name: 2️⃣ Frontend zu GitHub Pages
     runs-on: ubuntu-latest
+    needs: deploy_worker  # ← WICHTIG: Wartet auf Worker-Deploy
     permissions:
       contents: read
       pages: write
