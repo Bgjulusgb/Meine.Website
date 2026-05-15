@@ -14,11 +14,23 @@ jobs:
         run: |
           WORKER_URL="https://galerie-api.3d95dac45e5dd7bcba40e06cc22cbccb.workers.dev"
           sed -i "s|'__WORKER_URL__'|'${WORKER_URL}'|g" index.html
+          # Zeige die Änderungen
+          echo "=== index.html Inhalt ==="
+          head -20 index.html
+          echo "=== Git Status ==="
+          git status
 
       - name: 📤 Push zu GitHub Pages Branch
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+          
+          # Prüfe, ob es Änderungen gibt
+          if git diff --quiet; then
+            echo "Keine Änderungen gefunden - Worker-URL war bereits aktuell"
+            exit 0
+          fi
+          
           git add index.html
           git commit -m "Auto: Worker-URL aktualisiert"
           git push origin main
