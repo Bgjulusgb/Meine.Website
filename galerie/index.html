@@ -7,8 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Mono:wght@300;400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<!-- Dropbox SDK -->
-<script src="https://unpkg.com/dropbox/dist/Dropbox-sdk.min.js"></script>
 
 <style>
 /* ═══════════════════════════════════════
@@ -829,9 +827,10 @@ button { font-family: inherit; cursor: pointer; }
 
     <!-- Config warning (shown when token is placeholder) -->
     <div class="config-banner" id="configBanner">
-        <strong>Konfiguration erforderlich:</strong> Bitte trage deinen
-        <strong>Dropbox Access Token</strong> und den <strong>Ordnerpfad</strong>
-        oben im JavaScript-Block ein (Variablen <code>DROPBOX_ACCESS_TOKEN</code> und <code>FOLDER_PATH</code>).
+        <strong>Konfiguration erforderlich:</strong> Bitte überprüfe deine
+        <strong>get-images.php</strong> Datei und stelle sicher, dass der
+        <strong>Dropbox Access Token</strong> und der <strong>Ordnerpfad</strong>
+        korrekt konfiguriert sind.
     </div>
 
     <!-- Gallery header -->
@@ -971,28 +970,27 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ -->
 <script>
 /* ┌─────────────────────────────────────────────────────┐
-   │  ⚙️  KONFIGURATION — hier deine Zugangsdaten eintragen │
+   │  ⚙️  KONFIGURATION                                   │
    └─────────────────────────────────────────────────────┘ */
-const DROPBOX_ACCESS_TOKEN = 'DEIN_ACCESS_TOKEN_HIER';  // 🔑 Deinen Dropbox Access Token eintragen
-const FOLDER_PATH          = '/meine-fotos';             // 📁 Dropbox-Ordnerpfad eintragen (z.B. '/hochzeit-2024')
-const PHOTO_EXTENSIONS     = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.tiff', '.bmp'];
+const API_ENDPOINT = './get-images.php';  // 🔗 PHP Endpoint für Dropbox
+const PHOTO_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.tiff', '.bmp'];
 
 /* ┌─────────────────────────────────────────────────────┐
    │  STATE                                               │
    └─────────────────────────────────────────────────────┘ */
-let photos         = [];   // [{ name, path, tempLink }]
-let selectedPaths  = new Set();
-let currentIndex   = 0;
-let dbx            = null;
-let allSelected    = false;
+let photos = [];   // [{ name, path, url }]
+let selectedPaths = new Set();
+let currentIndex = 0;
+let allSelected = false;
 
 /* ┌─────────────────────────────────────────────────────┐
    │  PRELOADER                                           │
    └─────────────────────────────────────────────────────┘ */
 function setProgress(pct) {
     document.getElementById('pl-bar').style.width = pct + '%';
-    document.getElementById('pl-pct').textContent  = Math.round(pct);
+    document.getElementById('pl-pct').textContent = Math.round(pct);
 }
+
 function exitPreloader() {
     const pl = document.getElementById('preloader');
     pl.classList.add('exit');
@@ -1000,114 +998,55 @@ function exitPreloader() {
 }
 
 /* ┌─────────────────────────────────────────────────────┐
-   │  INIT                                                │
+   │  INIT & LOAD PHOTOS                                  │
    └─────────────────────────────────────────────────────┘ */
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Sticky header
-    window.addEventListener('scroll', () => {
-        document.getElementById('header').classList.toggle('stuck', window.scrollY > 60);
-    });
-
-    // Hamburger
-    const ham = document.getElementById('ham');
-    const navWrap = document.getElementById('navLinksWrap');
-    ham.addEventListener('click', () => {
-        ham.classList.toggle('open');
-        navWrap.classList.toggle('open');
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', e => {
-        if (!document.getElementById('lightbox').classList.contains('open')) return;
-        if (e.key === 'Escape')      closeLightbox();
-        if (e.key === 'ArrowLeft')   navigateLightbox(-1);
-        if (e.key === 'ArrowRight')  navigateLightbox(1);
-    });
-
-    if (DROPBOX_ACCESS_TOKEN === 'DEIN_ACCESS_TOKEN_HIER') {
-        document.getElementById('configBanner').classList.add('visible');
-        setProgress(100);
-        setTimeout(() => {
-            exitPreloader();
-            showState('error',
-                'Konfiguration fehlt',
-                'Bitte trage deinen Dropbox Access Token\nund den Ordnerpfad oben im Skript ein.'
-            );
-        }, 2200);
-        return;
-    }
-
-    loadGallery();
-});
-
-/* ┌─────────────────────────────────────────────────────┐
-   │  DROPBOX INTEGRATION                                 │
-   └─────────────────────────────────────────────────────┘ */
-async function loadGallery() {
+async function loadPhotos() {
     try {
-        dbx = new Dropbox.Dropbox({ accessToken: DROPBOX_ACCESS_TOKEN });
-        setProgress(20);
-
-        // List all files in folder (handles pagination)
-        let entries = [];
-        let response = await dbx.filesListFolder({ path: FOLDER_PATH });
-        entries = entries.concat(response.result.entries);
-        setProgress(40);
-
-        while (response.result.has_more) {
-            response = await dbx.filesListFolderContinue({ cursor: response.result.cursor });
-            entries = entries.concat(response.result.entries);
+        setProgress(10);
+        
+        const response = await fetch(API_ENDPOINT);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
-
-        // Filter image files only
-        const imageEntries = entries.filter(e =>
-            e['.tag'] === 'file' &&
-            PHOTO_EXTENSIONS.some(ext => e.name.toLowerCase().endsWith(ext))
-        );
-
-        setProgress(60);
-
-        if (imageEntries.length === 0) {
+        
+        setProgress(40);
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            console.error('API Error:', data.error);
+            showError('Fehler beim Laden der Bilder', data.error);
             exitPreloader();
-            showState('empty', 'Keine Bilder gefunden',
-                `Der Ordner "${FOLDER_PATH}" enthält keine unterstützten Bilddateien.`);
             return;
         }
-
-        // Get temporary links for all images (in parallel batches of 10)
-        const batchSize = 10;
-        let loaded = 0;
-        for (let i = 0; i < imageEntries.length; i += batchSize) {
-            const batch = imageEntries.slice(i, i + batchSize);
-            const links = await Promise.all(
-                batch.map(e => dbx.filesGetTemporaryLink({ path: e.path_display }))
-            );
-            links.forEach((res, idx) => {
-                photos.push({
-                    name: batch[idx].name,
-                    path: batch[idx].path_display,
-                    tempLink: res.result.link
-                });
-            });
-            loaded += batch.length;
-            setProgress(60 + (loaded / imageEntries.length) * 35);
-        }
-
-        setProgress(100);
-        document.getElementById('photoCount').textContent = photos.length;
-
-        setTimeout(() => {
+        
+        photos = data.entries || [];
+        
+        // Filter nur Bilddateien
+        photos = photos.filter(photo => {
+            const ext = '.' + photo.name.split('.').pop().toLowerCase();
+            return PHOTO_EXTENSIONS.includes(ext) && !photo.name.startsWith('.');
+        });
+        
+        setProgress(70);
+        
+        if (photos.length === 0) {
+            showEmpty();
             exitPreloader();
-            renderGallery();
-        }, 400);
-
-    } catch (err) {
-        console.error('Dropbox Fehler:', err);
+            return;
+        }
+        
+        renderGallery();
+        updatePhotoCount();
+        setProgress(100);
+        
+        setTimeout(exitPreloader, 300);
+        
+    } catch (error) {
+        console.error('LoadPhotos Error:', error);
+        showError('Fehler beim Laden der Bilder', error.message);
         exitPreloader();
-        const msg = err.error?.error_summary || err.message || 'Unbekannter Fehler';
-        showState('error', 'Verbindungsfehler', msg);
     }
 }
 
@@ -1117,77 +1056,81 @@ async function loadGallery() {
 function renderGallery() {
     const grid = document.getElementById('galleryGrid');
     grid.innerHTML = '';
-
-    photos.forEach((photo, index) => {
-        const card = document.createElement('div');
-        card.className = 'photo-card';
-        card.dataset.index = index;
-
-        card.innerHTML = `
-            <img
-                src="${photo.tempLink}"
-                alt="${escHtml(photo.name)}"
-                loading="lazy"
-                onload="this.parentElement.classList.remove('loading')"
-            />
-            <label class="card-checkbox-wrap" onclick="event.stopPropagation()">
-                <input
-                    type="checkbox"
-                    class="card-checkbox"
-                    data-path="${escHtml(photo.path)}"
-                    onchange="toggleCardSelect(this, ${index})"
-                />
-            </label>
-            <div class="card-overlay">
-                <div class="card-filename">${escHtml(photo.name)}</div>
-                <div class="card-actions">
-                    <button class="card-download-btn" onclick="event.stopPropagation(); downloadPhoto(${index})">
-                        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
-                            <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
-                        </svg>
-                        Herunterladen
-                    </button>
-                </div>
-            </div>
-        `;
-
-        card.addEventListener('click', () => openLightbox(index));
+    
+    photos.forEach((photo, idx) => {
+        const card = createPhotoCard(photo, idx);
         grid.appendChild(card);
-
-        // Staggered entrance animation
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(16px)';
-        requestAnimationFrame(() => {
-            setTimeout(() => {
-                card.style.transition = 'opacity .5s ease, transform .5s var(--ease-out)';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, Math.min(index * 35, 600));
-        });
     });
 }
 
-/* ┌─────────────────────────────────────────────────────┐
-   │  VIEW TOGGLE                                         │
-   └─────────────────────────────────────────────────────┘ */
-function setView(size) {
-    const grid = document.getElementById('galleryGrid');
-    grid.className = 'gallery-grid view-' + size;
-    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('on'));
-    event.currentTarget.classList.add('on');
+function createPhotoCard(photo, idx) {
+    const card = document.createElement('div');
+    card.className = 'photo-card loading';
+    card.id = `photo-${idx}`;
+    card.onclick = () => openLightbox(idx);
+    
+    card.innerHTML = `
+        <div class="card-checkbox-wrap">
+            <input type="checkbox" class="card-checkbox" onchange="togglePhotoSelect('${photo.path}', this.checked)" />
+        </div>
+        <img src="${photo.url}" alt="${photo.name}" onload="this.parentElement.classList.remove('loading')" onerror="this.parentElement.classList.add('error')" />
+        <div class="card-overlay">
+            <div class="card-filename">${photo.name}</div>
+            <div class="card-actions">
+                <button class="card-download-btn" onclick="downloadPhoto(event, '${photo.url}', '${photo.name}')">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+                        <path d="M8 2v8M5 7l3 3 3-3M2 12v1a1 1 0 001 1h10a1 1 0 001-1v-1"/>
+                    </svg>
+                    Laden
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return card;
 }
 
 /* ┌─────────────────────────────────────────────────────┐
-   │  SELECTION LOGIC                                     │
+   │  LIGHTBOX                                            │
    └─────────────────────────────────────────────────────┘ */
-function toggleCardSelect(checkbox, index) {
-    const card = checkbox.closest('.photo-card');
-    if (checkbox.checked) {
-        selectedPaths.add(photos[index].path);
-        card.classList.add('selected');
+function openLightbox(idx) {
+    currentIndex = idx;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+}
+
+function closeLightboxOnBackdrop(e) {
+    if (e.target.id === 'lightbox') closeLightbox();
+}
+
+function navigateLightbox(dir) {
+    currentIndex = (currentIndex + dir + photos.length) % photos.length;
+    updateLightbox();
+}
+
+function updateLightbox() {
+    const photo = photos[currentIndex];
+    document.getElementById('lbImg').src = photo.url;
+    document.getElementById('lbFilename').textContent = photo.name;
+}
+
+function downloadFromLightbox() {
+    const photo = photos[currentIndex];
+    downloadPhoto(null, photo.url, photo.name);
+}
+
+/* ┌─────────────────────────────────────────────────────┐
+   │  DOWNLOAD & SELECTION                                │
+   └─────────────────────────────────────────────────────┘ */
+function togglePhotoSelect(path, checked) {
+    if (checked) {
+        selectedPaths.add(path);
     } else {
-        selectedPaths.delete(photos[index].path);
-        card.classList.remove('selected');
+        selectedPaths.delete(path);
         allSelected = false;
     }
     updateSelectionUI();
@@ -1195,162 +1138,169 @@ function toggleCardSelect(checkbox, index) {
 
 function toggleSelectAll() {
     allSelected = !allSelected;
-    selectedPaths.clear();
-
-    document.querySelectorAll('.card-checkbox').forEach((cb, i) => {
-        cb.checked = allSelected;
-        const card = cb.closest('.photo-card');
+    
+    photos.forEach((photo, idx) => {
+        const checkbox = document.querySelector(`#photo-${idx} .card-checkbox`);
+        checkbox.checked = allSelected;
         if (allSelected) {
-            selectedPaths.add(photos[i].path);
-            card.classList.add('selected');
+            selectedPaths.add(photo.path);
         } else {
-            card.classList.remove('selected');
+            selectedPaths.delete(photo.path);
         }
     });
+    
     updateSelectionUI();
 }
 
 function updateSelectionUI() {
     const count = selectedPaths.size;
-    const label = document.getElementById('selectedLabel');
-    const dlBtn = document.getElementById('downloadSelectedBtn');
-    const selBtn = document.getElementById('selectAllBtn');
-
-    label.textContent = `${count} ausgewählt`;
-    label.classList.toggle('visible', count > 0);
-    dlBtn.classList.toggle('visible', count > 0);
-    selBtn.textContent = allSelected ? 'Auswahl aufheben' : 'Alle auswählen';
-}
-
-/* ┌─────────────────────────────────────────────────────┐
-   │  DOWNLOAD                                            │
-   └─────────────────────────────────────────────────────┘ */
-async function downloadPhoto(index) {
-    const photo = photos[index];
-    try {
-        // Refresh temp link to ensure it's still valid
-        const res = await dbx.filesGetTemporaryLink({ path: photo.path });
-        const link = res.result.link;
-
-        const a = document.createElement('a');
-        a.href = link;
-        a.download = photo.name;
-        a.target = '_blank';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-
-        showToast('Download gestartet: ' + photo.name, 'green');
-    } catch (err) {
-        console.error('Download-Fehler:', err);
-        showToast('Download fehlgeschlagen', '');
+    document.getElementById('selectedLabel').textContent = `${count} ausgewählt`;
+    
+    const labelEl = document.getElementById('selectedLabel');
+    const downloadBtn = document.getElementById('downloadSelectedBtn');
+    
+    if (count > 0) {
+        labelEl.classList.add('visible');
+        downloadBtn.classList.add('visible');
+    } else {
+        labelEl.classList.remove('visible');
+        downloadBtn.classList.remove('visible');
     }
 }
 
-async function downloadFromLightbox() {
-    await downloadPhoto(currentIndex);
+function downloadPhoto(event, url, filename) {
+    if (event) event.stopPropagation();
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    
+    showToast(`${filename} wird heruntergeladen…`);
 }
 
-async function downloadSelected() {
+function downloadSelected() {
     if (selectedPaths.size === 0) return;
-
-    showToast(`${selectedPaths.size} Download(s) werden gestartet…`, 'green');
-
-    for (const path of selectedPaths) {
-        const index = photos.findIndex(p => p.path === path);
-        if (index !== -1) {
-            await downloadPhoto(index);
-            await delay(400); // small delay between downloads
+    
+    selectedPaths.forEach(path => {
+        const photo = photos.find(p => p.path === path);
+        if (photo) {
+            downloadPhoto(null, photo.url, photo.name);
         }
-    }
+    });
+    
+    showToast(`${selectedPaths.size} Bilder werden heruntergeladen…`, true);
 }
 
 /* ┌─────────────────────────────────────────────────────┐
-   │  LIGHTBOX                                            │
+   │  VIEW MODES                                          │
    └─────────────────────────────────────────────────────┘ */
-function openLightbox(index) {
-    currentIndex = index;
-    renderLightboxImage();
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-function closeLightboxOnBackdrop(e) {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-}
-
-function navigateLightbox(dir) {
-    currentIndex = (currentIndex + dir + photos.length) % photos.length;
-    renderLightboxImage();
-}
-
-function renderLightboxImage() {
-    const photo = photos[currentIndex];
-    const img   = document.getElementById('lbImg');
-    img.style.opacity = '0';
-    img.src = photo.tempLink;
-    img.alt = photo.name;
-    img.onload = () => {
-        img.style.transition = 'opacity .3s ease';
-        img.style.opacity = '1';
-    };
-    document.getElementById('lbFilename').textContent = photo.name;
-}
-
-/* ┌─────────────────────────────────────────────────────┐
-   │  STATES (empty / error)                              │
-   └─────────────────────────────────────────────────────┘ */
-function showState(type, title, message) {
+function setView(mode) {
     const grid = document.getElementById('galleryGrid');
-    const icon = type === 'error'
-        ? `<svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-               <circle cx="32" cy="32" r="28"/>
-               <path d="M32 20v14M32 40v2"/>
-           </svg>`
-        : `<svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
-               <rect x="4" y="12" width="56" height="40" rx="3"/>
-               <path d="M22 32h20M32 22v20"/>
-           </svg>`;
+    grid.classList.remove('view-large', 'view-small');
+    
+    if (mode === 'large') {
+        grid.classList.add('view-large');
+    } else if (mode === 'small') {
+        grid.classList.add('view-small');
+    }
+    
+    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('on'));
+    event.target.closest('.view-btn').classList.add('on');
+}
 
+/* ┌─────────────────────────────────────────────────────┐
+   │  STATES (Error, Empty)                               │
+   └─────────────────────────────────────────────────────┘ */
+function showError(title, message) {
+    const grid = document.getElementById('galleryGrid');
     grid.innerHTML = `
         <div class="gallery-state">
-            ${icon}
-            <h3>${escHtml(title)}</h3>
-            <p>${escHtml(message)}</p>
+            <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+                <circle cx="32" cy="32" r="28"/>
+                <line x1="32" y1="20" x2="32" y2="36"/>
+                <circle cx="32" cy="44" r="2"/>
+            </svg>
+            <h3>${title}</h3>
+            <p>${message}</p>
+        </div>
+    `;
+    document.getElementById('configBanner').classList.add('visible');
+}
+
+function showEmpty() {
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = `
+        <div class="gallery-state">
+            <svg class="gallery-state-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1">
+                <rect x="4" y="12" width="56" height="40" rx="3"/>
+                <circle cx="22" cy="27" r="6"/>
+                <path d="M4 42l14-12 10 10 10-14 14 14"/>
+            </svg>
+            <h3>Galerie ist leer</h3>
+            <p>Es wurden keine Bilder im Dropbox-Ordner gefunden.</p>
         </div>
     `;
 }
 
 /* ┌─────────────────────────────────────────────────────┐
-   │  TOAST                                               │
+   │  TOAST NOTIFICATIONS                                 │
    └─────────────────────────────────────────────────────┘ */
-function showToast(msg, type = '') {
+function showToast(message, isGreen = false) {
     const wrap = document.getElementById('toastWrap');
-    const t = document.createElement('div');
-    t.className = 'toast' + (type === 'green' ? ' toast-green' : '');
-    t.textContent = msg;
-    wrap.appendChild(t);
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => t.classList.add('show'));
-    });
+    const toast = document.createElement('div');
+    toast.className = 'toast show' + (isGreen ? ' toast-green' : '');
+    toast.textContent = message;
+    wrap.appendChild(toast);
+    
     setTimeout(() => {
-        t.classList.remove('show');
-        t.addEventListener('transitionend', () => t.remove(), { once: true });
-    }, 3000);
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 350);
+    }, 2500);
 }
 
 /* ┌─────────────────────────────────────────────────────┐
-   │  HELPERS                                             │
+   │  UTILITY                                             │
    └─────────────────────────────────────────────────────┘ */
-function escHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function updatePhotoCount() {
+    document.getElementById('photoCount').textContent = photos.length;
 }
-function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+/* ┌─────────────────────────────────────────────────────┐
+   │  HEADER SCROLL EFFECT                                │
+   └─────────────────────────────────────────────────────┘ */
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    header.classList.toggle('stuck', window.scrollY > 50);
+});
+
+/* ┌─────────────────────────────────────────────────────┐
+   │  MOBILE NAV                                          │
+   └─────────────────────────────────────────────────────┘ */
+const ham = document.getElementById('ham');
+const navWrap = document.getElementById('navLinksWrap');
+
+ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    navWrap.classList.toggle('open');
+});
+
+navWrap.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+        ham.classList.remove('open');
+        navWrap.classList.remove('open');
+    }
+});
+
+/* ┌─────────────────────────────────────────────────────┐
+   │  FOOTER YEAR                                         │
+   └─────────────────────────────────────────────────────┘ */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ┌─────────────────────────────────────────────────────┐
+   │  INIT                                                │
+   └─────────────────────────────────────────────────────┘ */
+loadPhotos();
 </script>
 </body>
 </html>
