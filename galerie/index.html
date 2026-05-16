@@ -995,8 +995,8 @@ button { font-family: inherit; cursor: pointer; }
 
   <div class="gallery-header">
     <div>
-      <div class="gallery-eyebrow">Kundengalerie</div>
-      <h1 class="gallery-title">Foto<em>galerie</em></h1>
+      <div class="gallery-eyebrow" id="galleryEyebrow">Kundengalerie</div>
+      <h1 class="gallery-title" id="galleryTitle">Foto<em>galerie</em></h1>
     </div>
     <div class="gallery-header-right">
       <div class="gallery-count"><span id="photoCount">—</span> Aufnahmen</div>
@@ -1126,12 +1126,23 @@ button { font-family: inherit; cursor: pointer; }
 
 <footer class="footer">
   <div>
-    <a href="/" class="logo">
+    <a href="https://benni-photo.com" class="logo">
       <img src="/Transparent_Logo.svg" alt="" style="height:28px;" />
       <span class="logo-name">Benjamin Gillmann</span>
     </a>
     <p>© <span id="year"></span> Benjamin Gillmann Photography · Alle Rechte vorbehalten</p>
     <p style="margin-top:0.8rem; font-size:0.75rem;">Sport · Musik · Events</p>
+    <p style="margin-top:1.2rem; font-size:0.72rem; color:var(--fg-2);">
+      <a href="https://benni-photo.com/#contact" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Kontakt</a>
+      &nbsp;·&nbsp;
+      <a href="https://benni-photo.com/impressum.html" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Impressum</a>
+      &nbsp;·&nbsp;
+      <a href="https://benni-photo.com/datenschutz.html" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">Datenschutz</a>
+    </p>
+    <p style="margin-top:0.6rem; font-size:0.68rem; color:var(--fg-2);">
+      Diese Galerie ist ausschließlich für eingeladene Kunden zugänglich.
+      Bilder sind urheberrechtlich geschützt und dürfen nicht ohne Genehmigung weitergegeben werden.
+    </p>
   </div>
 </footer>
 
@@ -1148,8 +1159,24 @@ button { font-family: inherit; cursor: pointer; }
    Worker-URL wird durch GitHub Actions ersetzt (sed in deploy.yml).
    Für lokale Tests die URL direkt eintragen.
 ═══════════════════════════════════════════════════════ */
+// URL-Parameter auslesen (vor Object.freeze, einmalig beim Laden)
+const _urlParams  = new URLSearchParams(location.search);
+// ?client=NAME → Unterordner in Dropbox; z.B. /galerie/?client=lena
+const _clientSlug = (() => {
+  const c = (_urlParams.get('client') || '').trim().replace(/[^a-zA-Z0-9_\-äöüÄÖÜß ]/g, '');
+  return c.slice(0, 64) || null;
+})();
+// Anzeigename: "Lena" aus "lena", oder leer für Standardgalerie
+const _clientName = _clientSlug
+  ? _clientSlug.charAt(0).toUpperCase() + _clientSlug.slice(1)
+  : null;
+
 const CONFIG = Object.freeze({
   apiBase: 'https://galerie-api.gillmannbenjamin99.workers.dev',
+
+  // Aktiver Kunden-Unterordner (aus URL ?client=)
+  clientSlug: _clientSlug,
+  clientName: _clientName,
 
   // Muss mit PASSWORD_SALT im worker.js übereinstimmen!
   passwordSalt: 'bg-gallery-salt-v1',
@@ -1516,7 +1543,8 @@ const api = {
   },
 
   async getPhotos() {
-    const res = await this.request('/api/photos');
+    const qs  = CONFIG.clientSlug ? `?subfolder=${encodeURIComponent(CONFIG.clientSlug)}` : '';
+    const res = await this.request(`/api/photos${qs}`);
     return res.json();
   },
 
@@ -1592,7 +1620,9 @@ function exitPreloader() {
 /* ═══════════════════════════════════════════════════════
    SESSION-CACHE
 ═══════════════════════════════════════════════════════ */
-const CACHE_KEY = 'bg_gallery_cache_v3';
+// Cache-Key schließt den Kunden-Unterordner ein, damit verschiedene Galerien
+// nicht dieselben gecachten Fotos sehen.
+const CACHE_KEY = `bg_gallery_cache_v3${CONFIG.clientSlug ? '_' + CONFIG.clientSlug : ''}`;
 function loadCache() {
   try {
     const raw = sessionStorage.getItem(CACHE_KEY);
@@ -2553,6 +2583,25 @@ const DebugPanel = (() => {
 ═══════════════════════════════════════════════════════ */
 async function boot() {
   setText('year', new Date().getFullYear());
+
+  // Kunden-Namen in Galerie-Header und Seiten-Titel einsetzen
+  if (CONFIG.clientName) {
+    // Galerie-Eyebrow + Titel
+    setText('galleryEyebrow', 'Kundengalerie');
+    const titleEl = document.getElementById('galleryTitle');
+    if (titleEl) {
+      titleEl.innerHTML = `Galerie <em>${CONFIG.clientName}</em>`;
+    }
+    // Browser-Tab-Titel
+    document.title = `${CONFIG.clientName} – Kundengalerie · Benjamin Gillmann`;
+    // Login-Willkommen
+    const loginTitle = document.getElementById('loginTitle');
+    if (loginTitle) loginTitle.textContent = `Galerie ${CONFIG.clientName}`;
+    const loginSub = document.querySelector('.login-sub');
+    if (loginSub) loginSub.textContent =
+      `Hallo${' '}${CONFIG.clientName}! Bitte gib das Passwort ein, das du von Benjamin Gillmann erhalten hast.`;
+  }
+
   wireEvents();
 
   // Globaler Shortcut: Ctrl+Shift+D blendet Debug-Panel ein

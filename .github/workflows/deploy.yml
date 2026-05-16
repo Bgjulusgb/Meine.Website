@@ -39,31 +39,37 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      # Dropbox-Secrets im Worker setzen (nur wenn Worker erfolgreich deployt wurde).
-      # Empfohlen: OAuth2 Refresh-Token (läuft nie ab).
-      # Fallback:  Statischer Access-Token (läuft nach ~4h ab).
-      - name: Dropbox-Secrets im Worker setzen
+      # Alle Worker-Secrets setzen (nur wenn Worker erfolgreich deployt).
+      # Dropbox: OAuth2 Refresh-Token (empfohlen) oder statischer Token (Fallback).
+      # Galerie-Passwort: optional, aus GitHub Secret GALLERY_PASSWORD_HASH.
+      - name: Worker-Secrets setzen
         if: ${{ steps.deploy.outcome == 'success' }}
         run: |
-          # OAuth2 Refresh-Flow (bevorzugt – alle drei Secrets müssen gesetzt sein)
+          # ── Dropbox-Token ─────────────────────────────────────────
           if [ -n "${DROPBOX_REFRESH_TOKEN}" ] && [ -n "${DROPBOX_APP_KEY}" ] && [ -n "${DROPBOX_APP_SECRET}" ]; then
             printf '%s' "${DROPBOX_REFRESH_TOKEN}" | wrangler secret put DROPBOX_REFRESH_TOKEN --name galerie-api
             printf '%s' "${DROPBOX_APP_KEY}"       | wrangler secret put DROPBOX_APP_KEY       --name galerie-api
             printf '%s' "${DROPBOX_APP_SECRET}"    | wrangler secret put DROPBOX_APP_SECRET    --name galerie-api
-            echo "::notice::Dropbox OAuth2 Refresh-Token konfiguriert."
+            echo "::notice::Dropbox OAuth2 Refresh-Token konfiguriert (läuft nie ab)."
           elif [ -n "${DROPBOX_ACCESS_TOKEN}" ]; then
             printf '%s' "${DROPBOX_ACCESS_TOKEN}" | wrangler secret put DROPBOX_TOKEN --name galerie-api
-            echo "::warning::Statischer Dropbox-Access-Token gesetzt (läuft nach ~4h ab). Besser: DROPBOX_REFRESH_TOKEN + DROPBOX_APP_KEY + DROPBOX_APP_SECRET verwenden."
+            echo "::warning::Statischer Dropbox-Token gesetzt (~4h Gültigkeit). Empfehlung: OAuth2 Refresh-Token verwenden."
           else
-            echo "::warning::Kein Dropbox-Secret konfiguriert. Galerie wird keine Bilder laden können."
+            echo "::warning::Kein Dropbox-Token konfiguriert – Bilder können nicht geladen werden."
+          fi
+          # ── Galerie-Passwort (optional) ────────────────────────────
+          if [ -n "${GALLERY_PASSWORD_HASH}" ]; then
+            printf '%s' "${GALLERY_PASSWORD_HASH}" | wrangler secret put GALLERY_PASSWORD_HASH --name galerie-api
+            echo "::notice::Galerie-Passwortschutz aktiviert."
           fi
         env:
-          DROPBOX_REFRESH_TOKEN: ${{ secrets.DROPBOX_REFRESH_TOKEN }}
-          DROPBOX_APP_KEY:       ${{ secrets.DROPBOX_APP_KEY }}
-          DROPBOX_APP_SECRET:    ${{ secrets.DROPBOX_APP_SECRET }}
-          DROPBOX_ACCESS_TOKEN:  ${{ secrets.DROPBOX_ACCESS_TOKEN }}
-          CLOUDFLARE_API_TOKEN:  ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DROPBOX_REFRESH_TOKEN:  ${{ secrets.DROPBOX_REFRESH_TOKEN }}
+          DROPBOX_APP_KEY:        ${{ secrets.DROPBOX_APP_KEY }}
+          DROPBOX_APP_SECRET:     ${{ secrets.DROPBOX_APP_SECRET }}
+          DROPBOX_ACCESS_TOKEN:   ${{ secrets.DROPBOX_ACCESS_TOKEN }}
+          GALLERY_PASSWORD_HASH:  ${{ secrets.GALLERY_PASSWORD_HASH }}
+          CLOUDFLARE_API_TOKEN:   ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID:  ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Worker-URL ermitteln
         id: url
