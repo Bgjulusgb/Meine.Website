@@ -682,6 +682,227 @@ button { font-family: inherit; cursor: pointer; }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255,255,255,.15); }
 .btn-outline { background: none; color: #fff; border: 1px solid rgba(255,255,255,.25); }
 .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); box-shadow: none; }
+
+/* ═══════════════════════════════════════
+   LOGIN SCREEN
+═══════════════════════════════════════ */
+.login-overlay {
+  position: fixed; inset: 0; z-index: 99998;
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 70%);
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-5);
+  animation: loginFadeIn .5s var(--ease-out);
+}
+.login-overlay::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+@keyframes loginFadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+.login-card {
+  position: relative;
+  width: 100%; max-width: 420px;
+  background: rgba(15,15,15,.85);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  padding: clamp(2rem, 6vw, 3rem);
+  backdrop-filter: blur(20px);
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+.login-logo {
+  width: 56px; height: 56px; object-fit: contain;
+  margin: 0 auto var(--sp-5);
+  opacity: .85;
+}
+.login-eyebrow {
+  font-family: var(--f-mono); font-size: .62rem;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--fg-2); margin-bottom: var(--sp-3);
+}
+.login-title {
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  letter-spacing: -.01em; line-height: 1.1;
+  margin-bottom: var(--sp-2);
+}
+.login-sub {
+  color: var(--fg-1); font-size: .85rem;
+  margin-bottom: var(--sp-6);
+}
+.login-form { display: flex; flex-direction: column; gap: var(--sp-3); }
+.login-input-wrap {
+  position: relative;
+  display: flex; align-items: center;
+}
+.login-input {
+  flex: 1; width: 100%;
+  height: 48px; padding: 0 3rem 0 1rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 3px;
+  color: #fff; font-family: var(--f-ui); font-size: .95rem;
+  letter-spacing: .05em;
+  transition: border-color .2s, background .2s;
+}
+.login-input:focus { outline: none; border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.06); }
+.login-input::placeholder { color: var(--fg-2); letter-spacing: normal; }
+.login-toggle {
+  position: absolute; right: 4px; top: 4px;
+  width: 40px; height: 40px;
+  background: none; border: none; color: var(--fg-1);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 3px;
+}
+.login-toggle:hover { color: #fff; background: rgba(255,255,255,.05); }
+.login-toggle svg { width: 18px; height: 18px; }
+
+.login-submit {
+  height: 48px; margin-top: var(--sp-2);
+  background: #fff; color: #000;
+  border: none; cursor: pointer;
+  font-family: var(--f-ui); font-size: .75rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  transition: background .2s, transform .2s;
+}
+.login-submit:hover { background: rgba(255,255,255,.85); transform: translateY(-1px); }
+.login-submit:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+.login-error {
+  min-height: 1.2em;
+  color: var(--red); font-size: .8rem;
+  text-align: left; margin-top: var(--sp-2);
+}
+.login-remember {
+  display: flex; align-items: center; gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  font-size: .78rem; color: var(--fg-1);
+  cursor: pointer; user-select: none;
+}
+.login-remember input { accent-color: #fff; }
+
+.login-footer {
+  margin-top: var(--sp-6); padding-top: var(--sp-4);
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-family: var(--f-mono); font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--fg-2);
+}
+
+/* ═══════════════════════════════════════
+   DEBUG PANEL
+═══════════════════════════════════════ */
+.debug-toggle {
+  position: fixed; bottom: 12px; right: 12px; z-index: 90000;
+  width: 36px; height: 36px;
+  background: rgba(0,0,0,.85);
+  border: 1px solid rgba(255,255,255,.15);
+  color: #fff; font-family: var(--f-mono); font-size: .85rem;
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: .35; transition: opacity .2s;
+}
+.debug-toggle:hover { opacity: 1; }
+
+.debug-panel {
+  position: fixed; bottom: 56px; right: 12px; z-index: 90001;
+  width: min(420px, calc(100vw - 24px)); max-height: 70vh;
+  background: rgba(0,0,0,.95);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 4px;
+  font-family: var(--f-mono);
+  display: none; flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+.debug-panel.open { display: flex; }
+.debug-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .6rem .9rem;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  color: #fff;
+}
+.debug-close {
+  background: none; border: none; color: var(--fg-1);
+  cursor: pointer; font-size: 1.1rem; line-height: 1;
+  padding: 4px 8px;
+}
+.debug-body {
+  padding: .8rem; overflow-y: auto;
+  font-size: .72rem; color: #ddd; line-height: 1.5;
+}
+.debug-section { margin-bottom: .9rem; }
+.debug-section-title {
+  font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--fg-2); margin-bottom: .4rem;
+}
+.debug-row {
+  display: flex; justify-content: space-between; gap: .6rem;
+  padding: 2px 0;
+  border-bottom: 1px dashed rgba(255,255,255,.04);
+}
+.debug-row .k { color: var(--fg-1); flex-shrink: 0; }
+.debug-row .v {
+  color: #fff; text-align: right; word-break: break-all;
+  font-feature-settings: "tnum";
+}
+.debug-row .v.ok  { color: var(--green); }
+.debug-row .v.err { color: var(--red); }
+.debug-row .v.warn{ color: #ffb95e; }
+
+.debug-actions {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-top: .4rem;
+}
+.debug-btn {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: #fff;
+  padding: .35rem .6rem;
+  font-family: var(--f-mono); font-size: .62rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  cursor: pointer; border-radius: 2px;
+}
+.debug-btn:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.25); }
+
+.debug-log {
+  max-height: 160px; overflow-y: auto;
+  background: rgba(0,0,0,.4);
+  padding: .5rem; margin-top: .4rem;
+  font-size: .65rem; color: var(--fg-1);
+  border: 1px solid rgba(255,255,255,.04);
+  white-space: pre-wrap; word-break: break-word;
+}
+.debug-log .lg-ok  { color: var(--green); }
+.debug-log .lg-err { color: var(--red); }
+.debug-log .lg-warn{ color: #ffb95e; }
+.debug-log .lg-info{ color: #5ebbff; }
+.debug-log .lg-time{ color: var(--fg-2); margin-right: .4rem; }
+
+/* Erweiterter Fehler-State */
+.gallery-state details {
+  margin-top: var(--sp-3);
+  max-width: 540px; text-align: left;
+  font-size: .8rem;
+}
+.gallery-state details summary {
+  cursor: pointer; color: var(--fg-1);
+  padding: .4rem 0;
+}
+.gallery-state details summary:hover { color: #fff; }
+.gallery-state pre {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  padding: .8rem;
+  font-family: var(--f-mono); font-size: .68rem;
+  color: var(--fg-1); white-space: pre-wrap; word-break: break-word;
+  border-radius: 3px; max-height: 240px; overflow-y: auto;
+}
 </style>
 </head>
 <body>
@@ -707,6 +928,46 @@ button { font-family: inherit; cursor: pointer; }
     </div>
   </div>
 </div>
+
+<!-- ═══ LOGIN OVERLAY (Passwort-Schutz) ═══ -->
+<div class="login-overlay" id="loginOverlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-card">
+    <img src="/Transparent_Logo.svg" alt="" class="login-logo" />
+    <div class="login-eyebrow">Geschützter Bereich</div>
+    <h2 class="login-title" id="loginTitle">Kunden­galerie</h2>
+    <p class="login-sub">Bitte gib das Passwort ein, das du von uns erhalten hast.</p>
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <div class="login-input-wrap">
+        <input type="password" class="login-input" id="loginPassword"
+               placeholder="Passwort" autocomplete="current-password"
+               aria-label="Passwort" required />
+        <button type="button" class="login-toggle" id="loginToggle" aria-label="Passwort anzeigen">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z"/>
+            <circle cx="10" cy="10" r="2.5"/>
+          </svg>
+        </button>
+      </div>
+      <label class="login-remember">
+        <input type="checkbox" id="loginRemember" />
+        <span>Auf diesem Gerät merken</span>
+      </label>
+      <div class="login-error" id="loginError" role="alert"></div>
+      <button type="submit" class="login-submit" id="loginSubmit">Anmelden</button>
+    </form>
+    <div class="login-footer">Benjamin Gillmann Photography</div>
+  </div>
+</div>
+
+<!-- ═══ DEBUG PANEL (verborgen, ?debug=1 oder Ctrl+Shift+D) ═══ -->
+<button class="debug-toggle" id="debugToggle" type="button" style="display:none" aria-label="Debug-Panel">⚙</button>
+<aside class="debug-panel" id="debugPanel" aria-label="Debug-Informationen">
+  <div class="debug-head">
+    <span>Debug Panel</span>
+    <button class="debug-close" id="debugClose" type="button" aria-label="Schließen">×</button>
+  </div>
+  <div class="debug-body" id="debugBody">Lade…</div>
+</aside>
 
 <!-- ═══ HEADER ═══ -->
 <header class="header" id="header">
@@ -890,6 +1151,9 @@ button { font-family: inherit; cursor: pointer; }
 const CONFIG = Object.freeze({
   apiBase: 'https://galerie-api.gillmannbenjamin99.workers.dev',
 
+  // Muss mit PASSWORD_SALT im worker.js übereinstimmen!
+  passwordSalt: 'bg-gallery-salt-v1',
+
   thumbConcurrency: 8,
   zipConcurrency:   4,
 
@@ -903,6 +1167,224 @@ const CONFIG = Object.freeze({
   zoomMax:          5,
   zoomStep:         0.5,
 });
+
+/* ═══════════════════════════════════════════════════════
+   DEBUG / LOGGER
+═══════════════════════════════════════════════════════ */
+const DEBUG = (() => {
+  const params = new URLSearchParams(location.search);
+  const enabled = params.has('debug') || localStorage.getItem('bg_debug') === '1';
+  const logs = [];
+  const stats = { lastRequest: null, lastResponse: null, lastError: null, requestCount: 0 };
+
+  function log(level, ...args) {
+    const ts = new Date().toLocaleTimeString('de-DE', { hour12: false });
+    const msg = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+    logs.push({ ts, level, msg });
+    if (logs.length > 100) logs.shift();
+    if (enabled || level === 'err') console[level === 'err' ? 'error' : level === 'warn' ? 'warn' : 'log']('[Gallery]', ...args);
+    refreshDebug();
+  }
+
+  function refreshDebug() {
+    if (!enabled) return;
+    const body = document.getElementById('debugBody');
+    if (!body) return;
+    body.innerHTML = renderDebugBody();
+  }
+
+  function renderDebugBody() {
+    const auth = AUTH ? AUTH.status() : { hasToken: false, required: null };
+    const cache = (() => {
+      try {
+        const raw = sessionStorage.getItem(CACHE_KEY);
+        if (!raw) return { count: 0, age: null };
+        const { ts, data } = JSON.parse(raw);
+        return { count: (data?.photos || data || []).length, age: Math.round((Date.now() - ts) / 1000) };
+      } catch { return { count: 0, age: null }; }
+    })();
+    const last = stats.lastResponse || {};
+    const err  = stats.lastError;
+
+    return `
+      <div class="debug-section">
+        <div class="debug-section-title">Konfiguration</div>
+        <div class="debug-row"><span class="k">Worker</span><span class="v">${escapeHtml(CONFIG.apiBase)}</span></div>
+        <div class="debug-row"><span class="k">Origin</span><span class="v">${escapeHtml(location.origin)}</span></div>
+        <div class="debug-row"><span class="k">User Agent</span><span class="v">${escapeHtml(navigator.userAgent.split(' ').slice(-2).join(' '))}</span></div>
+      </div>
+      <div class="debug-section">
+        <div class="debug-section-title">Auth</div>
+        <div class="debug-row"><span class="k">Passwortpflicht</span><span class="v ${auth.required === true ? 'warn' : auth.required === false ? 'ok' : ''}">${auth.required === null ? 'unbekannt' : auth.required ? 'JA' : 'NEIN'}</span></div>
+        <div class="debug-row"><span class="k">Token vorhanden</span><span class="v ${auth.hasToken ? 'ok' : 'err'}">${auth.hasToken ? 'ja' : 'nein'}</span></div>
+        <div class="debug-row"><span class="k">Speicher</span><span class="v">${auth.storage || '—'}</span></div>
+        <div class="debug-actions">
+          <button class="debug-btn" id="dbgClearAuth">Auth löschen</button>
+          <button class="debug-btn" id="dbgTestAuth">Auth testen</button>
+        </div>
+      </div>
+      <div class="debug-section">
+        <div class="debug-section-title">Cache</div>
+        <div class="debug-row"><span class="k">Fotos im Cache</span><span class="v">${cache.count}</span></div>
+        <div class="debug-row"><span class="k">Alter</span><span class="v">${cache.age == null ? '—' : cache.age + ' s'}</span></div>
+        <div class="debug-actions"><button class="debug-btn" id="dbgClearCache">Cache leeren</button></div>
+      </div>
+      <div class="debug-section">
+        <div class="debug-section-title">Letzte API-Anfrage</div>
+        <div class="debug-row"><span class="k">Requests gesamt</span><span class="v">${stats.requestCount}</span></div>
+        <div class="debug-row"><span class="k">Pfad</span><span class="v">${escapeHtml(stats.lastRequest?.path || '—')}</span></div>
+        <div class="debug-row"><span class="k">Methode</span><span class="v">${escapeHtml(stats.lastRequest?.method || '—')}</span></div>
+        <div class="debug-row"><span class="k">Status</span><span class="v ${last.ok ? 'ok' : last.status ? 'err' : ''}">${last.status || '—'}</span></div>
+        <div class="debug-row"><span class="k">Dauer</span><span class="v">${last.ms ? last.ms + ' ms' : '—'}</span></div>
+        ${err ? `<div class="debug-row"><span class="k">Fehler</span><span class="v err">${escapeHtml(err)}</span></div>` : ''}
+      </div>
+      <div class="debug-section">
+        <div class="debug-section-title">Diagnose</div>
+        <div class="debug-actions">
+          <button class="debug-btn" id="dbgHealth">/api/health</button>
+          <button class="debug-btn" id="dbgDiagnose">/api/diagnose</button>
+        </div>
+        <div class="debug-log" id="dbgDiagOut">Klicke einen Button…</div>
+      </div>
+      <div class="debug-section">
+        <div class="debug-section-title">Logs (letzte ${logs.length})</div>
+        <div class="debug-log">${logs.slice(-25).reverse().map(l =>
+          `<div><span class="lg-time">${l.ts}</span><span class="lg-${l.level}">${escapeHtml(l.msg)}</span></div>`
+        ).join('') || '<i>keine Einträge</i>'}</div>
+      </div>
+    `;
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  return {
+    enabled,
+    info: (...a) => log('info', ...a),
+    warn: (...a) => log('warn', ...a),
+    err:  (...a) => log('err',  ...a),
+    ok:   (...a) => log('ok',   ...a),
+    stats,
+    refresh: refreshDebug,
+    render:  renderDebugBody,
+  };
+})();
+
+/* ═══════════════════════════════════════════════════════
+   AUTH MODULE
+═══════════════════════════════════════════════════════ */
+const AUTH = (() => {
+  const KEY = 'bg_gallery_auth_v1';
+  let cache = null; // { token, required, stored }
+
+  function getStored() {
+    try {
+      const raw = sessionStorage.getItem(KEY);
+      if (raw) return { token: raw, storage: 'session' };
+    } catch {}
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) return { token: raw, storage: 'local' };
+    } catch {}
+    return { token: null, storage: null };
+  }
+
+  function setStored(token, persist) {
+    try {
+      sessionStorage.removeItem(KEY);
+      localStorage.removeItem(KEY);
+    } catch {}
+    if (!token) return;
+    try {
+      (persist ? localStorage : sessionStorage).setItem(KEY, token);
+    } catch (e) { DEBUG.warn('Auth-Speicherung fehlgeschlagen:', e.message); }
+  }
+
+  function token() {
+    if (cache?.token) return cache.token;
+    const s = getStored();
+    if (s.token) cache = { ...cache, token: s.token, storage: s.storage };
+    return s.token;
+  }
+
+  function clear() {
+    cache = null;
+    setStored(null);
+    DEBUG.info('Auth gelöscht');
+  }
+
+  async function hashPassword(pw) {
+    const buf = await crypto.subtle.digest('SHA-256',
+      new TextEncoder().encode(`${CONFIG.passwordSalt}:${pw}`));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function login(password, remember) {
+    const hash = await hashPassword(password);
+    const url  = `${api.base()}/api/auth`;
+    DEBUG.info('Login wird geprüft…');
+    const res = await fetch(url, {
+      method: 'POST',
+      credentials: 'omit',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ hash }),
+    });
+    let data = {};
+    try { data = await res.json(); } catch {}
+    if (!res.ok) {
+      DEBUG.err('Login fehlgeschlagen:', data.error || res.status);
+      const err = new Error(data.error || `HTTP ${res.status}`);
+      err.code = data.code; err.status = res.status; err.detail = data.detail;
+      throw err;
+    }
+    if (data.passwordRequired === false) {
+      DEBUG.info('Worker hat kein Passwort konfiguriert – Galerie ist offen.');
+      cache = { token: '', required: false, storage: null };
+      setStored(null);
+      return { required: false };
+    }
+    cache = { token: hash, required: true, storage: remember ? 'local' : 'session' };
+    setStored(hash, remember);
+    DEBUG.ok('Login erfolgreich');
+    return { required: true, token: hash };
+  }
+
+  async function checkRequired() {
+    try {
+      const url = `${api.base()}/api/auth`;
+      DEBUG.info('Prüfe ob Passwort nötig…');
+      const res = await fetch(url, {
+        method: 'POST',
+        credentials: 'omit',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (data.passwordRequired === false) {
+        cache = { ...cache, required: false };
+        return false;
+      }
+      cache = { ...cache, required: true };
+      return true;
+    } catch (e) {
+      DEBUG.warn('Auth-Check fehlgeschlagen:', e.message);
+      cache = { ...cache, required: null };
+      return null;
+    }
+  }
+
+  function status() {
+    const t = token();
+    return {
+      hasToken: !!t,
+      required: cache?.required ?? null,
+      storage:  cache?.storage  ?? (t ? getStored().storage : null),
+    };
+  }
+
+  return { login, clear, token, checkRequired, status, hashPassword };
+})();
 
 /* ═══════════════════════════════════════════════════════
    STATE
@@ -971,33 +1453,92 @@ function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
 ═══════════════════════════════════════════════════════ */
 const api = {
   base() {
-    let b = CONFIG.apiBase.replace(/\/$/, '');
+    let b = (CONFIG.apiBase || '').replace(/\/$/, '');
     if (b && !/^https?:\/\//.test(b)) b = 'https://' + b;
     return b;
   },
 
+  authHeaders() {
+    const t = AUTH.token();
+    return t ? { 'Authorization': `Bearer ${t}` } : {};
+  },
+
+  async request(path, opts = {}) {
+    const url = `${this.base()}${path}`;
+    const t0  = performance.now();
+    DEBUG.stats.requestCount++;
+    DEBUG.stats.lastRequest = { path, method: opts.method || 'GET', time: Date.now() };
+    DEBUG.info(`→ ${opts.method || 'GET'} ${path}`);
+
+    let res;
+    try {
+      res = await fetch(url, {
+        credentials: 'omit',
+        ...opts,
+        headers: { ...this.authHeaders(), ...(opts.headers || {}) },
+      });
+    } catch (e) {
+      DEBUG.stats.lastError = e.message;
+      DEBUG.err(`✗ Netzwerk-Fehler: ${e.message}`);
+      DEBUG.refresh();
+      throw apiErr(0, e.message || 'Netzwerk-Fehler', 'NETWORK');
+    }
+    const ms = Math.round(performance.now() - t0);
+    DEBUG.stats.lastResponse = { status: res.status, ok: res.ok, ms };
+
+    if (!res.ok) {
+      let data = null;
+      try { data = await res.clone().json(); } catch {}
+      const msg  = data?.error  || `HTTP ${res.status}`;
+      const code = data?.code   || 'HTTP';
+      const det  = data?.detail || null;
+      DEBUG.stats.lastError = `${code}: ${msg}`;
+      DEBUG.err(`✗ ${res.status} ${path} – ${msg}`);
+      DEBUG.refresh();
+      throw apiErr(res.status, msg, code, det);
+    }
+
+    DEBUG.ok(`✓ ${res.status} ${path} (${ms} ms)`);
+    DEBUG.refresh();
+    return res;
+  },
+
   async getPhotos() {
-    const res = await fetch(`${this.base()}/api/photos`, { credentials: 'omit' });
-    if (!res.ok) throw apiErr(res.status, `Bilder-Liste fehlgeschlagen (${res.status})`);
+    const res = await this.request('/api/photos');
     return res.json();
+  },
+
+  async health() {
+    const res = await this.request('/api/health');
+    return res.json();
+  },
+
+  async diagnose() {
+    const res = await this.request('/api/diagnose');
+    return res.json();
+  },
+
+  _appendToken(u) {
+    const t = AUTH.token();
+    if (t) u.searchParams.set('token', t);
+    return u;
   },
 
   thumbUrl(path, size) {
     const u = new URL(`${this.base()}/api/thumb`);
     u.searchParams.set('path', path);
     u.searchParams.set('size', size || CONFIG.thumbSize);
-    return u.toString();
+    return this._appendToken(u).toString();
   },
 
   downloadUrl(path) {
     const u = new URL(`${this.base()}/api/download`);
     u.searchParams.set('path', path);
-    return u.toString();
+    return this._appendToken(u).toString();
   },
 
   async fetchOriginal(path) {
-    const res = await fetch(this.downloadUrl(path), { credentials: 'omit', redirect: 'follow' });
-    if (!res.ok) throw apiErr(res.status, `Datei laden fehlgeschlagen (${res.status})`);
+    const res = await this.request(`/api/download?path=${encodeURIComponent(path)}`, { redirect: 'follow' });
     return res.blob();
   },
 
@@ -1012,7 +1553,13 @@ const api = {
   },
 };
 
-function apiErr(status, msg) { const e = new Error(msg); e.status = status; return e; }
+function apiErr(status, msg, code, detail) {
+  const e = new Error(msg);
+  e.status = status;
+  e.code   = code;
+  if (detail) e.detail = detail;
+  return e;
+}
 
 /* ═══════════════════════════════════════════════════════
    PRELOADER
@@ -1054,7 +1601,7 @@ function saveCache(data) {
    INIT & LOAD
 ═══════════════════════════════════════════════════════ */
 async function loadPhotos() {
-  if (!CONFIG.apiBase || CONFIG.apiBase === '__WORKER_URL__' || CONFIG.apiBase.includes('CHANGE-ME') || !CONFIG.apiBase.startsWith('https://')) {
+  if (!CONFIG.apiBase || CONFIG.apiBase.includes('CHANGE-ME') || !CONFIG.apiBase.startsWith('https://')) {
     showConfigBanner(`
       <strong>Konfiguration fehlt:</strong>
       Bitte <code>CONFIG.apiBase</code> in <code>galerie/index.html</code>
@@ -1092,7 +1639,7 @@ async function loadPhotos() {
     if (!Array.isArray(photos) || photos.length === 0) {
       showState({
         title:   'Ordner leer',
-        message: 'Keine Bilder gefunden.',
+        message: `Im Dropbox-Ordner ${folder ? `"${folder}"` : ''} wurden keine Bilder gefunden.`,
         icon:    'empty',
       });
       exitPreloader();
@@ -1110,13 +1657,56 @@ async function loadPhotos() {
     handleInitialHash();
 
   } catch (err) {
-    console.error('[Gallery]', err);
+    DEBUG.err('loadPhotos:', err.message, err.code, err.status);
+
+    if (err.status === 401 || err.code === 'AUTH_REQUIRED') {
+      AUTH.clear();
+      exitPreloader();
+      showLoginOverlay('Sitzung abgelaufen. Bitte erneut anmelden.');
+      return;
+    }
+
+    let title = 'Fehler beim Laden';
     let msg;
-    if (err.status === 401 || err.status === 403)      msg = 'Server lehnt die Anfrage ab. Token im Worker prüfen.';
-    else if (err.status === 404)                       msg = 'Endpunkt nicht gefunden. Worker-URL prüfen.';
-    else if (err.message?.includes('Failed to fetch')) msg = 'Server nicht erreichbar. Internet & Worker-Status prüfen.';
-    else                                               msg = err.message || 'Unbekannter Fehler';
-    showState({ title: 'Fehler beim Laden', message: msg, icon: 'warn', retry: true });
+    let hint = null;
+
+    if (err.status === 0 || err.code === 'NETWORK') {
+      msg  = 'Server nicht erreichbar.';
+      hint = 'Internet-Verbindung & Worker-Status prüfen. CORS könnte blockieren.';
+    } else if (err.status === 403) {
+      msg  = 'Zugriff verweigert (403).';
+      hint = 'CORS-Origin prüfen. Diese Domain muss in ALLOWED_ORIGINS stehen.';
+    } else if (err.status === 404) {
+      msg  = 'Endpunkt nicht gefunden (404).';
+      hint = 'Worker-URL stimmt nicht. apiBase in galerie/index.html überprüfen.';
+    } else if (err.code === 'NO_TOKEN') {
+      msg  = 'DROPBOX_TOKEN ist nicht im Worker gesetzt.';
+      hint = 'Im Cloudflare-Dashboard unter Worker-Settings das Secret DROPBOX_TOKEN setzen.';
+    } else if (err.code === 'DROPBOX_API' || err.code === 'DROPBOX_THUMB' || err.code === 'DROPBOX_DOWNLOAD') {
+      msg  = 'Dropbox lehnt die Anfrage ab: ' + err.message;
+      hint = 'Token wahrscheinlich abgelaufen oder Ordner-Pfad falsch. /api/diagnose im Debug-Panel ausführen.';
+    } else if (err.status >= 500) {
+      msg  = `Server-Fehler (${err.status}): ${err.message}`;
+      hint = 'Worker-Logs in Cloudflare prüfen.';
+    } else {
+      msg  = err.message || 'Unbekannter Fehler';
+    }
+
+    showState({
+      title,
+      message: msg,
+      icon: 'warn',
+      retry: true,
+      details: {
+        Status:    err.status,
+        Code:      err.code || '—',
+        Endpunkt:  DEBUG.stats.lastRequest?.path || '—',
+        Worker:    CONFIG.apiBase,
+        Origin:    location.origin,
+        Hinweis:   hint || '—',
+        Detail:    err.detail || '—',
+      },
+    });
     exitPreloader();
   }
 }
@@ -1526,7 +2116,7 @@ function setView(mode, btn) {
 /* ═══════════════════════════════════════════════════════
    STATES
 ═══════════════════════════════════════════════════════ */
-function showState({ title, message, icon = 'warn', retry = false }) {
+function showState({ title, message, icon = 'warn', retry = false, details = null }) {
   const grid = document.getElementById('galleryGrid');
   grid.replaceChildren();
 
@@ -1547,12 +2137,32 @@ function showState({ title, message, icon = 'warn', retry = false }) {
   stateDiv.innerHTML = iconSvg;
   stateDiv.appendChild(el('h3', {}, title));
   stateDiv.appendChild(el('p', {}, message));
+
+  if (details) {
+    const det = document.createElement('details');
+    const sum = document.createElement('summary');
+    sum.textContent = 'Technische Details anzeigen';
+    det.appendChild(sum);
+    const pre = document.createElement('pre');
+    pre.textContent = Object.entries(details)
+      .map(([k, v]) => `${k.padEnd(10)}: ${v}`).join('\n');
+    det.appendChild(pre);
+    stateDiv.appendChild(det);
+  }
+
   if (retry) {
-    stateDiv.appendChild(el('button', {
+    const actions = el('div', { style: 'display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-top:1rem' });
+    actions.appendChild(el('button', {
       class: 'btn btn-outline',
       type:  'button',
       onclick: () => location.reload(),
     }, 'Erneut versuchen'));
+    actions.appendChild(el('button', {
+      class: 'btn btn-outline',
+      type:  'button',
+      onclick: () => DebugPanel.open(),
+    }, 'Debug öffnen'));
+    stateDiv.appendChild(actions);
   }
   grid.appendChild(stateDiv);
 }
@@ -1794,11 +2404,155 @@ function wireEvents() {
 }
 
 /* ═══════════════════════════════════════════════════════
+   LOGIN SCREEN
+═══════════════════════════════════════════════════════ */
+const LoginScreen = (() => {
+  const overlay  = () => document.getElementById('loginOverlay');
+  const form     = () => document.getElementById('loginForm');
+  const pwInput  = () => document.getElementById('loginPassword');
+  const errorEl  = () => document.getElementById('loginError');
+  const submit   = () => document.getElementById('loginSubmit');
+  const remember = () => document.getElementById('loginRemember');
+  const toggleBtn= () => document.getElementById('loginToggle');
+
+  function show(msg) {
+    overlay().style.display = 'flex';
+    errorEl().textContent = msg || '';
+    setTimeout(() => pwInput().focus(), 50);
+  }
+  function hide() { overlay().style.display = 'none'; }
+
+  function wire(onSuccess) {
+    toggleBtn().addEventListener('click', () => {
+      const inp = pwInput();
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    });
+    form().addEventListener('submit', async e => {
+      e.preventDefault();
+      const pw = pwInput().value.trim();
+      if (!pw) { errorEl().textContent = 'Bitte Passwort eingeben.'; return; }
+      submit().disabled = true;
+      submit().textContent = 'Prüfe…';
+      errorEl().textContent = '';
+      try {
+        const result = await AUTH.login(pw, remember().checked);
+        DEBUG.refresh();
+        hide();
+        onSuccess?.(result);
+      } catch (err) {
+        if (err.status === 401) errorEl().textContent = 'Falsches Passwort.';
+        else if (err.status === 0) errorEl().textContent = 'Server nicht erreichbar.';
+        else errorEl().textContent = err.message || 'Anmeldung fehlgeschlagen.';
+        DEBUG.refresh();
+      } finally {
+        submit().disabled = false;
+        submit().textContent = 'Anmelden';
+      }
+    });
+  }
+
+  return { show, hide, wire };
+})();
+
+function showLoginOverlay(msg) { LoginScreen.show(msg); }
+
+/* ═══════════════════════════════════════════════════════
+   DEBUG PANEL
+═══════════════════════════════════════════════════════ */
+const DebugPanel = (() => {
+  const panel  = () => document.getElementById('debugPanel');
+  const toggle = () => document.getElementById('debugToggle');
+
+  function open()  { panel().classList.add('open');  DEBUG.refresh(); wireBodyEvents(); }
+  function close() { panel().classList.remove('open'); }
+
+  function wireBodyEvents() {
+    // Delegated handlers innerhalb des Panels
+    const body = document.getElementById('debugBody');
+    body.onclick = async e => {
+      const id = e.target.id;
+      if (id === 'dbgClearAuth')  { AUTH.clear(); DEBUG.refresh(); showToast('Auth gelöscht'); }
+      else if (id === 'dbgClearCache') { sessionStorage.removeItem(CACHE_KEY); DEBUG.refresh(); showToast('Cache gelöscht'); }
+      else if (id === 'dbgTestAuth')   {
+        const req = await AUTH.checkRequired();
+        showToast('Auth-Check: passwordRequired=' + (req === null ? 'unbekannt' : req));
+        DEBUG.refresh();
+      }
+      else if (id === 'dbgHealth') {
+        const out = document.getElementById('dbgDiagOut');
+        out.textContent = 'Lade…';
+        try { out.textContent = JSON.stringify(await api.health(), null, 2); }
+        catch (err) { out.textContent = `Fehler ${err.status}: ${err.message}`; }
+      }
+      else if (id === 'dbgDiagnose') {
+        const out = document.getElementById('dbgDiagOut');
+        out.textContent = 'Lade…';
+        try { out.textContent = JSON.stringify(await api.diagnose(), null, 2); }
+        catch (err) { out.textContent = `Fehler ${err.status}: ${err.message}`; }
+      }
+    };
+  }
+
+  function wireToggle() {
+    if (!DEBUG.enabled) return;
+    toggle().style.display = 'flex';
+    toggle().addEventListener('click', () => panel().classList.contains('open') ? close() : open());
+    document.getElementById('debugClose').addEventListener('click', close);
+    // Auto-open beim Start, wenn ?debug=1
+    if (new URLSearchParams(location.search).has('debug')) open();
+  }
+
+  return { open, close, wireToggle };
+})();
+
+/* ═══════════════════════════════════════════════════════
    BOOT
 ═══════════════════════════════════════════════════════ */
-setText('year', new Date().getFullYear());
-wireEvents();
-loadPhotos();
+async function boot() {
+  setText('year', new Date().getFullYear());
+  wireEvents();
+
+  // Globaler Shortcut: Ctrl+Shift+D blendet Debug-Panel ein
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+      e.preventDefault();
+      localStorage.setItem('bg_debug', '1');
+      location.reload();
+    }
+  });
+
+  DebugPanel.wireToggle();
+  LoginScreen.wire(() => loadPhotos());
+
+  // 1) Wenn URL-Konfig kaputt → loadPhotos zeigt Banner und beendet
+  if (!CONFIG.apiBase || CONFIG.apiBase.includes('CHANGE-ME') || !CONFIG.apiBase.startsWith('https://')) {
+    return loadPhotos();
+  }
+
+  // 2) Prüfen ob Worker Passwort erwartet
+  let pwRequired;
+  try {
+    pwRequired = await AUTH.checkRequired();
+  } catch (e) {
+    DEBUG.err('Auth-Check fehlgeschlagen:', e.message);
+    pwRequired = null;
+  }
+
+  // 3) Wenn Passwort nötig und kein Token → Login
+  if (pwRequired === true && !AUTH.token()) {
+    exitPreloader();
+    LoginScreen.show();
+    return;
+  }
+  if (pwRequired === false) {
+    AUTH.clear(); // sicherheitshalber alten Token wegwerfen
+  }
+
+  // 4) Galerie laden
+  loadPhotos();
+}
+
+boot();
 </script>
 </body>
 </html>

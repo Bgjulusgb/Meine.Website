@@ -2,10 +2,30 @@ name = "galerie-api"
 main = "worker.js"
 compatibility_date = "2024-10-01"
 
-# Frei zugängliche Variablen (kein Secret)
+# ─── Frei zugängliche Variablen ──────────────────────────────────
 [vars]
 DROPBOX_FOLDER  = "/meine-fotos"
 ALLOWED_ORIGINS = "https://benni-photo.com,https://www.benni-photo.com,https://bgjulusgb.github.io"
 
-# Secrets werden per Dashboard oder `wrangler secret put DROPBOX_TOKEN` gesetzt
-# (NICHT hier eintragen!)
+# ─── Secrets (NIE hier eintragen!) ──────────────────────────────
+# Per Dashboard oder CLI setzen:
+#   wrangler secret put DROPBOX_TOKEN
+#   wrangler secret put GALLERY_PASSWORD_HASH   (optional)
+#
+# DROPBOX_TOKEN
+#   Dropbox-Access-Token mit files.metadata.read und files.content.read.
+#   Achtung: Standard-Tokens sind kurzlebig (4h). Für Produktion einen
+#   Long-Lived Token oder Refresh-Token-Flow nutzen.
+#
+# GALLERY_PASSWORD_HASH (optional – ohne ist die Galerie öffentlich)
+#   SHA-256 von "bg-gallery-salt-v1:DEIN_PASSWORT" als Hex-String.
+#
+#   Hash erzeugen (im Browser-Konsole F12):
+#     const SALT = 'bg-gallery-salt-v1';
+#     const buf  = await crypto.subtle.digest('SHA-256',
+#                    new TextEncoder().encode(`${SALT}:DEIN_PASSWORT`));
+#     console.log([...new Uint8Array(buf)]
+#       .map(b => b.toString(16).padStart(2,'0')).join(''));
+#
+#   Oder in Bash:
+#     printf 'bg-gallery-salt-v1:DEIN_PASSWORT' | sha256sum
