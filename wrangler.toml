@@ -7,18 +7,32 @@ compatibility_date = "2024-10-01"
 DROPBOX_FOLDER  = "/meine-fotos"
 ALLOWED_ORIGINS = "https://benni-photo.com,https://www.benni-photo.com,https://bgjulusgb.github.io"
 
-# ─── Secrets (NIE hier eintragen!) ──────────────────────────────
-# Per Dashboard oder CLI setzen:
+# ─── Secrets (NIE hier eintragen! Per Dashboard oder CLI setzen) ─
+#
+# ── Empfohlen: OAuth2 Refresh-Token (läuft nie ab) ──────────────
+#
+#   Dropbox Developer Console → Deine App → Settings → OAuth 2
+#   1. "Generate" unter "Generated access token" → einmalig verwenden, um Refresh-Token zu erhalten
+#      Besser: OAuth2 PKCE-Flow oder Offline-Access beantragen.
+#
+#   Secrets setzen:
+#     wrangler secret put DROPBOX_REFRESH_TOKEN   # OAuth2 Refresh-Token
+#     wrangler secret put DROPBOX_APP_KEY         # App-Key (Einstellungsseite)
+#     wrangler secret put DROPBOX_APP_SECRET      # App-Secret (Einstellungsseite)
+#
+#   Oder via GitHub Actions Secrets:
+#     DROPBOX_REFRESH_TOKEN, DROPBOX_APP_KEY, DROPBOX_APP_SECRET
+#
+# ── Fallback: Statischer Access-Token (läuft nach ~4h ab) ────────
+#
 #   wrangler secret put DROPBOX_TOKEN
-#   wrangler secret put GALLERY_PASSWORD_HASH   (optional)
+#   (NICHT empfohlen für Produktion – Token muss regelmäßig erneuert werden)
 #
-# DROPBOX_TOKEN
-#   Dropbox-Access-Token mit files.metadata.read und files.content.read.
-#   Achtung: Standard-Tokens sind kurzlebig (4h). Für Produktion einen
-#   Long-Lived Token oder Refresh-Token-Flow nutzen.
+# ── Passwortschutz (optional) ───────────────────────────────────
 #
-# GALLERY_PASSWORD_HASH (optional – ohne ist die Galerie öffentlich)
+# GALLERY_PASSWORD_HASH
 #   SHA-256 von "bg-gallery-salt-v1:DEIN_PASSWORT" als Hex-String.
+#   Ohne dieses Secret ist die Galerie öffentlich zugänglich.
 #
 #   Hash erzeugen (im Browser-Konsole F12):
 #     const SALT = 'bg-gallery-salt-v1';
@@ -29,3 +43,6 @@ ALLOWED_ORIGINS = "https://benni-photo.com,https://www.benni-photo.com,https://b
 #
 #   Oder in Bash:
 #     printf 'bg-gallery-salt-v1:DEIN_PASSWORT' | sha256sum
+#
+#   Setzen:
+#     wrangler secret put GALLERY_PASSWORD_HASH

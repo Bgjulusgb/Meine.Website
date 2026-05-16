@@ -10,11 +10,17 @@
  *   GET  /api/download?path=...               → 302 zur Original-Datei
  *
  * Environment Variables / Secrets:
- *   DROPBOX_TOKEN         (Secret)   – Dropbox-Access-Token
- *   DROPBOX_FOLDER        (Var)      – z.B. /meine-fotos
- *   ALLOWED_ORIGINS       (Var)      – Komma-Liste oder leer = alle
- *   GALLERY_PASSWORD_HASH (Var/Sec)  – optional: SHA-256(SALT + ':' + Passwort)
- *                                      Bei leerem Wert ist die Galerie offen.
+ *   Empfohlen (OAuth2 Refresh – Token läuft nie ab):
+ *     DROPBOX_REFRESH_TOKEN  (Secret) – OAuth2 Refresh-Token
+ *     DROPBOX_APP_KEY        (Secret) – App-Key aus Dropbox Developer Console
+ *     DROPBOX_APP_SECRET     (Secret) – App-Secret aus Dropbox Developer Console
+ *
+ *   Alternativ (kurzlebig, läuft nach ~4h ab):
+ *     DROPBOX_TOKEN          (Secret) – Kurzlebiger Access-Token
+ *
+ *   DROPBOX_FOLDER           (Var)    – z.B. /meine-fotos
+ *   ALLOWED_ORIGINS          (Var)    – Komma-Liste oder leer = alle
+ *   GALLERY_PASSWORD_HASH    (Var/Sec)– optional: SHA-256(SALT + ':' + Passwort)
  *
  * Passwort-Hash erzeugen (im Browser-Konsole oder Node):
  *   const SALT = 'bg-gallery-salt-v1';
@@ -24,7 +30,11 @@
  *   console.log(hex);
  */
 
-const VERSION = 'galerie-api/2.0.0';
+const VERSION = 'galerie-api/2.1.0';
+
+// Isolate-level token cache – bleibt für die Lebensdauer der Worker-Instanz erhalten
+// (typisch 30 Sekunden bis wenige Minuten). Verhindert unnötige Token-Refresh-Anfragen.
+let _tokenCache = { token: null, expiresAt: 0 };
 const PASSWORD_SALT = 'bg-gallery-salt-v1';
 
 const IMAGE_EXTS = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'tiff', 'bmp', 'heic', 'avif']);
@@ -35,6 +45,54 @@ const VALID_SIZES = new Set([
 ]);
 
 const PUBLIC_PATHS = new Set(['/api/health', '/api/diagnose', '/api/auth']);
+
+/* ═════════════════════════════════════════════════════════
+   TOKEN – OAuth2 Refresh-Flow mit Isolate-Cache
+═════════════════════════════════════════════════════════ */
+async function getDropboxToken(env) {
+  // Gecachten Token verwenden (mit 5-Minuten-Puffer vor Ablauf)
+  if (_tokenCache.token && Date.now() < _tokenCache.expiresAt - 5 * 60 * 1000) {
+    return _tokenCache.token;
+  }
+
+  // OAuth2 Refresh-Flow (empfohlen – Token läuft nie ab)
+  if (env.DROPBOX_REFRESH_TOKEN && env.DROPBOX_APP_KEY && env.DROPBOX_APP_SECRET) {
+    const res = await fetch('https://api.dropbox.com/oauth2/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type:    'refresh_token',
+        refresh_token: env.DROPBOX_REFRESH_TOKEN,
+        client_id:     env.DROPBOX_APP_KEY,
+        client_secret: env.DROPBOX_APP_SECRET,
+      }),
+    });
+    if (!res.ok) {
+      const errText = await res.text();
+      throw httpErr(500, `Token-Refresh fehlgeschlagen (${res.status})`, 'TOKEN_REFRESH_FAILED', errText.slice(0, 300));
+    }
+    const data = await res.json();
+    if (!data.access_token) {
+      throw httpErr(500, 'Token-Refresh: kein access_token in Antwort', 'TOKEN_REFRESH_FAILED');
+    }
+    // expires_in in Sekunden (Dropbox: 14400 = 4h)
+    const ttl = (data.expires_in || 14400) * 1000;
+    _tokenCache = { token: data.access_token, expiresAt: Date.now() + ttl };
+    return data.access_token;
+  }
+
+  // Fallback: statischer Access-Token (kurzlebig)
+  if (env.DROPBOX_TOKEN) return env.DROPBOX_TOKEN;
+
+  throw httpErr(500,
+    'Kein Dropbox-Token konfiguriert. Bitte DROPBOX_REFRESH_TOKEN + DROPBOX_APP_KEY + DROPBOX_APP_SECRET (oder DROPBOX_TOKEN) als Worker-Secrets setzen.',
+    'NO_TOKEN',
+  );
+}
+
+function hasAnyDropboxToken(env) {
+  return !!(env.DROPBOX_REFRESH_TOKEN || env.DROPBOX_TOKEN);
+}
 
 export default {
   async fetch(request, env, ctx) {
@@ -129,24 +187,30 @@ async function handleAuth(request, env, origin) {
    DIAGNOSE
 ═════════════════════════════════════════════════════════ */
 async function handleDiagnose(env, origin) {
+  const useRefreshFlow = !!(env.DROPBOX_REFRESH_TOKEN && env.DROPBOX_APP_KEY && env.DROPBOX_APP_SECRET);
   const out = {
-    version:           VERSION,
-    time:              new Date().toISOString(),
-    hasDropboxToken:   !!env.DROPBOX_TOKEN,
-    dropboxTokenLen:   env.DROPBOX_TOKEN ? env.DROPBOX_TOKEN.length : 0,
-    folder:            env.DROPBOX_FOLDER || '(default: /)',
-    allowedOrigins:    (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean),
-    passwordProtected: !!(env.GALLERY_PASSWORD_HASH || '').trim(),
-    requestOrigin:     origin || null,
-    originAllowed:     isAllowed(origin, env),
-    dropboxCheck:      null,
+    version:            VERSION,
+    time:               new Date().toISOString(),
+    tokenMode:          useRefreshFlow ? 'oauth2_refresh' : (env.DROPBOX_TOKEN ? 'static_token' : 'none'),
+    hasRefreshToken:    !!env.DROPBOX_REFRESH_TOKEN,
+    hasAppKey:          !!env.DROPBOX_APP_KEY,
+    hasAppSecret:       !!env.DROPBOX_APP_SECRET,
+    hasStaticToken:     !!env.DROPBOX_TOKEN,
+    staticTokenLen:     env.DROPBOX_TOKEN ? env.DROPBOX_TOKEN.length : 0,
+    folder:             env.DROPBOX_FOLDER || '(default: /)',
+    allowedOrigins:     (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean),
+    passwordProtected:  !!(env.GALLERY_PASSWORD_HASH || '').trim(),
+    requestOrigin:      origin || null,
+    originAllowed:      isAllowed(origin, env),
+    dropboxCheck:       null,
   };
 
-  if (env.DROPBOX_TOKEN) {
+  if (hasAnyDropboxToken(env)) {
     try {
+      const token = await getDropboxToken(env);
       const res = await fetch('https://api.dropboxapi.com/2/users/get_current_account', {
         method:  'POST',
-        headers: { 'Authorization': `Bearer ${env.DROPBOX_TOKEN}` },
+        headers: { 'Authorization': `Bearer ${token}` },
       });
       if (res.ok) {
         const data = await res.json();
@@ -162,7 +226,7 @@ async function handleDiagnose(env, origin) {
       out.dropboxCheck = { ok: false, error: e.message };
     }
   } else {
-    out.dropboxCheck = { ok: false, error: 'DROPBOX_TOKEN nicht gesetzt' };
+    out.dropboxCheck = { ok: false, error: 'Kein Dropbox-Token konfiguriert' };
   }
 
   return json(out, 200, origin, env, { 'Cache-Control': 'no-store' });
@@ -172,7 +236,7 @@ async function handleDiagnose(env, origin) {
    /api/photos
 ═════════════════════════════════════════════════════════ */
 async function handlePhotos(env, origin, ctx) {
-  if (!env.DROPBOX_TOKEN) throw httpErr(500, 'DROPBOX_TOKEN nicht konfiguriert', 'NO_TOKEN');
+  if (!hasAnyDropboxToken(env)) throw httpErr(500, 'Kein Dropbox-Token konfiguriert', 'NO_TOKEN');
 
   const folder = env.DROPBOX_FOLDER || '';
 
@@ -193,7 +257,8 @@ async function handlePhotos(env, origin, ctx) {
     });
   }
 
-  const entries = await listFolderRecursive(folder, env.DROPBOX_TOKEN);
+  const token   = await getDropboxToken(env);
+  const entries = await listFolderRecursive(folder, token);
 
   const photos = entries
     .filter(e => e['.tag'] === 'file' && !e.name.startsWith('.'))
@@ -235,7 +300,7 @@ async function handlePhotos(env, origin, ctx) {
    /api/thumb
 ═════════════════════════════════════════════════════════ */
 async function handleThumb(url, env, origin, ctx) {
-  if (!env.DROPBOX_TOKEN) throw httpErr(500, 'DROPBOX_TOKEN nicht konfiguriert', 'NO_TOKEN');
+  if (!hasAnyDropboxToken(env)) throw httpErr(500, 'Kein Dropbox-Token konfiguriert', 'NO_TOKEN');
 
   const path = url.searchParams.get('path');
   const size = url.searchParams.get('size') || 'w640h480';
@@ -248,10 +313,11 @@ async function handleThumb(url, env, origin, ctx) {
   const cached   = await cache.match(cacheKey);
   if (cached) return cached;
 
+  const token = await getDropboxToken(env);
   const res = await fetch('https://content.dropboxapi.com/2/files/get_thumbnail_v2', {
     method: 'POST',
     headers: {
-      'Authorization':   `Bearer ${env.DROPBOX_TOKEN}`,
+      'Authorization':   `Bearer ${token}`,
       'Dropbox-API-Arg': JSON.stringify({
         resource: { '.tag': 'path', path },
         format:   { '.tag': 'jpeg' },
@@ -285,15 +351,16 @@ async function handleThumb(url, env, origin, ctx) {
    /api/download
 ═════════════════════════════════════════════════════════ */
 async function handleDownload(url, env, origin) {
-  if (!env.DROPBOX_TOKEN) throw httpErr(500, 'DROPBOX_TOKEN nicht konfiguriert', 'NO_TOKEN');
+  if (!hasAnyDropboxToken(env)) throw httpErr(500, 'Kein Dropbox-Token konfiguriert', 'NO_TOKEN');
 
   const path = url.searchParams.get('path');
   if (!path || !path.startsWith('/')) throw httpErr(400, 'Invalid path', 'BAD_PATH');
 
+  const token = await getDropboxToken(env);
   const res = await fetch('https://api.dropboxapi.com/2/files/get_temporary_link', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${env.DROPBOX_TOKEN}`,
+      'Authorization': `Bearer ${token}`,
       'Content-Type':  'application/json',
     },
     body: JSON.stringify({ path }),

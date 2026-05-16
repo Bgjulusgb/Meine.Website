@@ -978,7 +978,7 @@ button { font-family: inherit; cursor: pointer; }
     </a>
     <div class="nav-links-wrap" id="navLinksWrap">
       <ul class="nav-links">
-        <li><a href="/" class="nav-a">Home</a></li>
+        <li><a href="https://benni-photo.com" class="nav-a">← benni-photo.com</a></li>
         <li><a href="/galerie/" class="nav-a on">Galerie</a></li>
         <li><a href="mailto:b.b@black.com" class="nav-a">Kontakt</a></li>
       </ul>
@@ -1566,7 +1566,8 @@ function apiErr(status, msg, code, detail) {
 ═══════════════════════════════════════════════════════ */
 function setProgress(pct) {
   const p = clamp(pct, 0, 100);
-  document.getElementById('pl-bar').style.width = p + '%';
+  const bar = document.getElementById('pl-bar');
+  if (bar) bar.style.width = p + '%';
   setText('pl-pct', Math.round(p));
 }
 function exitPreloader() {
@@ -2416,11 +2417,13 @@ const LoginScreen = (() => {
   const toggleBtn= () => document.getElementById('loginToggle');
 
   function show(msg) {
-    overlay().style.display = 'flex';
+    const el = overlay();
+    if (!el) return;
+    el.style.display = 'flex';
     errorEl().textContent = msg || '';
-    setTimeout(() => pwInput().focus(), 50);
+    setTimeout(() => pwInput()?.focus(), 50);
   }
-  function hide() { overlay().style.display = 'none'; }
+  function hide() { const el = overlay(); if (el) el.style.display = 'none'; }
 
   function wire(onSuccess) {
     toggleBtn().addEventListener('click', () => {
