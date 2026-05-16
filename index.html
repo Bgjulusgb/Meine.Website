@@ -8,7 +8,7 @@
     <title>Benjamin Gillmann Photography · Fotograf für Sport, Musik &amp; Events</title>
 
     <!-- ── Basis-SEO ── -->
-    <meta name="description" content="Benjamin Gillmann – professioneller Fotograf für Sport, Musik &amp; Events. Authentische Aufnahmen aus Profi-Sport, Live-Konzerten und privaten Anlässen. Jetzt anfragen.">
+    <meta name="description" content="Benjamin Gillmann – Fotograf für Sport, Musik &amp; Events. Authentische Aufnahmen aus Profisport, Live-Konzerten und privaten Anlässen. Jetzt anfragen.">
     <meta name="keywords" content="Fotograf, Sportfotograf, Eventfotograf, Konzertfotograf, Musikfotograf, Benjamin Gillmann, Fotografie Deutschland, Football Fotograf, Live-Fotografie">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -39,6 +39,7 @@
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preload" as="image" href="bil1.jpg" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1100,6 +1101,35 @@
         }
         .reveal, .reveal-l, .reveal-r { opacity: 1; transform: none; }
     }
+
+    /* Schnellkontakt floating button (mobile only) */
+    .quick-contact {
+        position: fixed;
+        right: calc(1rem + var(--safe-right));
+        bottom: calc(1rem + var(--safe-bottom));
+        z-index: 900;
+        display: none;
+        align-items: center;
+        gap: .5rem;
+        min-height: var(--hit);
+        padding: .75rem 1.1rem;
+        background: rgba(255,255,255,0.95);
+        color: #000;
+        border-radius: 999px;
+        font-family: var(--f-ui);
+        font-size: .85rem;
+        font-weight: 600;
+        letter-spacing: .04em;
+        text-decoration: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+        transition: transform .25s var(--ease-out), background .25s var(--ease-out);
+    }
+    .quick-contact:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    .quick-contact:hover { transform: translateY(-2px); }
+    .quick-contact i { font-size: 1rem; }
+    @media (max-width: 768px) {
+        .quick-contact { display: inline-flex; }
+    }
     </style>
 </head>
 <body class="no-scroll">
@@ -1190,7 +1220,7 @@
 ══════════════════════════════════ -->
 <section class="hero" id="home" aria-label="Willkommen">
     <div class="hero-img" aria-hidden="true">
-        <img src="bil1.jpg" alt="" fetchpriority="high">
+        <img src="bil1.jpg" alt="Benjamin Gillmann Photography – Sport- und Eventfotografie" fetchpriority="high" decoding="async">
     </div>
     <div class="hero-overlay"  aria-hidden="true"></div>
     <div class="hero-vignette" aria-hidden="true"></div>
@@ -1250,7 +1280,7 @@
     <div class="container">
         <div class="about-grid">
             <div class="about-img-wrap reveal-l">
-                <img src="Profil.jpg" alt="Benjamin Gillmann – Fotograf" loading="lazy">
+                <img src="Profil.jpg" alt="Benjamin Gillmann – Fotograf aus Deutschland" loading="lazy" decoding="async">
             </div>
             <div class="about-text-col">
                 <div class="eyebrow reveal">Über mich</div>
@@ -1337,7 +1367,7 @@
             <div class="pf-item" data-cat="sport" tabindex="0" role="button"
                  aria-label="Sportfotografie Football – vergrößern"
                  data-src="Fursty_Razorback_Football.jpg" data-title="Fursty Razorbacks – Sportfotografie">
-                <img src="Fursty_Razorback_Football.jpg" alt="Fursty Razorbacks Football" loading="lazy">
+                <img src="Fursty_Razorback_Football.jpg" alt="Sportfotografie – Fursty Razorbacks American Football" loading="lazy" decoding="async">
                 <div class="pf-overlay" aria-hidden="true"></div>
                 <div class="pf-info"><div class="pf-title">Fursty Razorbacks</div><div class="pf-cat">Sportfotografie</div></div>
                 <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1345,7 +1375,7 @@
             <div class="pf-item" data-cat="sport" tabindex="0" role="button"
                  aria-label="Ravens Football – vergrößern"
                  data-src="Ravens_Football.jpg" data-title="Ravens Football – Sportfotografie">
-                <img src="Ravens_Football.jpg" alt="Ravens Football" loading="lazy">
+                <img src="Ravens_Football.jpg" alt="Sportfotografie – Ravens American Football" loading="lazy" decoding="async">
                 <div class="pf-overlay" aria-hidden="true"></div>
                 <div class="pf-info"><div class="pf-title">Ravens Football</div><div class="pf-cat">Sportfotografie</div></div>
                 <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1353,7 +1383,7 @@
             <div class="pf-item" data-cat="event" tabindex="0" role="button"
                  aria-label="Papierkatze Event – vergrößern"
                  data-src="papierkatze-10.jpg" data-title="Papierkatze – Eventfotografie">
-                <img src="papierkatze-10.jpg" alt="Papierkatze Event" loading="lazy">
+                <img src="papierkatze-10.jpg" alt="Eventfotografie – Papierkatze Veranstaltung" loading="lazy" decoding="async">
                 <div class="pf-overlay" aria-hidden="true"></div>
                 <div class="pf-info"><div class="pf-title">Papierkatze</div><div class="pf-cat">Eventfotografie</div></div>
                 <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1361,7 +1391,7 @@
             <div class="pf-item" data-cat="musik" tabindex="0" role="button"
                  aria-label="Live Musik – vergrößern"
                  data-src="musik.jpg" data-title="Live Musik – Musikfotografie">
-                <img src="musik.jpg" alt="Musikfotografie Live" loading="lazy">
+                <img src="musik.jpg" alt="Musikfotografie – Live-Konzert" loading="lazy" decoding="async">
                 <div class="pf-overlay" aria-hidden="true"></div>
                 <div class="pf-info"><div class="pf-title">Live Musik</div><div class="pf-cat">Musikfotografie</div></div>
                 <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1369,7 +1399,7 @@
             <div class="pf-item" data-cat="event" tabindex="0" role="button"
                  aria-label="Events – vergrößern"
                  data-src="event.jpg" data-title="Events – Eventfotografie">
-                <img src="event.jpg" alt="Eventfotografie" loading="lazy">
+                <img src="event.jpg" alt="Eventfotografie – private Veranstaltung" loading="lazy" decoding="async">
                 <div class="pf-overlay" aria-hidden="true"></div>
                 <div class="pf-info"><div class="pf-title">Events</div><div class="pf-cat">Eventfotografie</div></div>
                 <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1377,7 +1407,7 @@
             <div class="pf-item" data-cat="sport" tabindex="0" role="button"
                  aria-label="Action Shot – vergrößern"
                  data-src="sport2.jpg" data-title="Action Shot – Sportfotografie">
-                <img src="sport2.jpg" alt="Action Shot" loading="lazy">
+                <img src="sport2.jpg" alt="Sportfotografie – Action Shot" loading="lazy" decoding="async">
                 <div class="pf-overlay" aria-hidden="true"></div>
                 <div class="pf-info"><div class="pf-title">Action Shot</div><div class="pf-cat">Sportfotografie</div></div>
                 <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1466,6 +1496,12 @@
 </section>
 
 </main>
+
+<!-- Schnellkontakt (mobile floating button) -->
+<a href="#contact" class="quick-contact" aria-label="Schnellkontakt – zum Kontaktformular springen">
+    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+    <span>Kontakt</span>
+</a>
 
 <!-- ══════════════════════════════════
      FOOTER
@@ -1834,7 +1870,35 @@ document.getElementById('contactForm').addEventListener('submit', e => {
       "address": { "@type": "PostalAddress", "addressCountry": "DE" },
       "priceRange": "€€",
       "serviceType": ["Sportfotografie", "Eventfotografie", "Konzertfotografie"],
-      "areaServed": { "@type": "Country", "name": "Deutschland" }
+      "areaServed": { "@type": "Country", "name": "Deutschland" },
+      "openingHours": "Mo-Sa 09:00-20:00",
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sportfotografie", "description": "Authentische Sportfotografie für Vereine, Athleten und Veranstalter." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Eventfotografie", "description": "Professionelle Fotografie für private und geschäftliche Veranstaltungen." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Konzert- und Musikfotografie", "description": "Live-Fotografie für Bands, Künstler und Konzertveranstalter." } }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Benjamin Gillmann",
+      "jobTitle": "Fotograf",
+      "url": "https://benni-photo.com",
+      "image": "https://benni-photo.com/Profil.jpg",
+      "worksFor": { "@type": "Organization", "name": "Benjamin Gillmann Photography" },
+      "address": { "@type": "PostalAddress", "addressCountry": "DE" },
+      "knowsAbout": ["Sportfotografie", "Eventfotografie", "Konzertfotografie", "Musikfotografie"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://benni-photo.com/" }
+      ]
     }
     </script>
     <script type="application/ld+json">

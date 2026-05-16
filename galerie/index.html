@@ -933,9 +933,9 @@ button { font-family: inherit; cursor: pointer; }
 <div class="login-overlay" id="loginOverlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
   <div class="login-card">
     <img src="/Transparent_Logo.svg" alt="" class="login-logo" />
-    <div class="login-eyebrow">Geschützter Bereich</div>
+    <div class="login-eyebrow">Willkommen!</div>
     <h2 class="login-title" id="loginTitle">Kunden­galerie</h2>
-    <p class="login-sub">Bitte gib das Passwort ein, das du von uns erhalten hast.</p>
+    <p class="login-sub">Bitte gib das Passwort ein, das du von Benjamin Gillmann erhalten hast.</p>
     <form class="login-form" id="loginForm" autocomplete="off">
       <div class="login-input-wrap">
         <input type="password" class="login-input" id="loginPassword"
@@ -1351,6 +1351,8 @@ const AUTH = (() => {
   }
 
   async function checkRequired() {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 10000);
     try {
       const url = `${api.base()}/api/auth`;
       DEBUG.info('Prüfe ob Passwort nötig…');
@@ -1359,6 +1361,7 @@ const AUTH = (() => {
         credentials: 'omit',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),
+        signal: ctrl.signal,
       });
       const data = await res.json().catch(() => ({}));
       if (data.passwordRequired === false) {
@@ -1371,6 +1374,8 @@ const AUTH = (() => {
       DEBUG.warn('Auth-Check fehlgeschlagen:', e.message);
       cache = { ...cache, required: null };
       return null;
+    } finally {
+      clearTimeout(timer);
     }
   }
 
@@ -1471,18 +1476,25 @@ const api = {
     DEBUG.info(`→ ${opts.method || 'GET'} ${path}`);
 
     let res;
+    const ctrl = new AbortController();
+    const timeoutMs = opts.timeout || 15000;
+    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
     try {
       res = await fetch(url, {
         credentials: 'omit',
+        signal: ctrl.signal,
         ...opts,
         headers: { ...this.authHeaders(), ...(opts.headers || {}) },
       });
     } catch (e) {
+      clearTimeout(timer);
       DEBUG.stats.lastError = e.message;
+      const isTimeout = e.name === 'AbortError';
       DEBUG.err(`✗ Netzwerk-Fehler: ${e.message}`);
       DEBUG.refresh();
-      throw apiErr(0, e.message || 'Netzwerk-Fehler', 'NETWORK');
+      throw apiErr(0, isTimeout ? 'Zeitüberschreitung' : (e.message || 'Netzwerk-Fehler'), isTimeout ? 'TIMEOUT' : 'NETWORK');
     }
+    clearTimeout(timer);
     const ms = Math.round(performance.now() - t0);
     DEBUG.stats.lastResponse = { status: res.status, ok: res.ok, ms };
 
@@ -1660,7 +1672,9 @@ async function loadPhotos() {
   } catch (err) {
     DEBUG.err('loadPhotos:', err.message, err.code, err.status);
 
-    if (err.status === 401 || err.code === 'AUTH_REQUIRED') {
+    // Nur bei echtem Gallery-Auth-Fehler (Worker-eigener Code) Login zeigen.
+    // Ein 401 von Dropbox (code='DROPBOX_API') ist KEIN Gallery-Auth-Problem.
+    if (err.code === 'AUTH_REQUIRED') {
       AUTH.clear();
       exitPreloader();
       showLoginOverlay('Sitzung abgelaufen. Bitte erneut anmelden.');
@@ -1670,27 +1684,46 @@ async function loadPhotos() {
     let title = 'Fehler beim Laden';
     let msg;
     let hint = null;
+    let showContact = false;
 
-    if (err.status === 0 || err.code === 'NETWORK') {
-      msg  = 'Server nicht erreichbar.';
-      hint = 'Internet-Verbindung & Worker-Status prüfen. CORS könnte blockieren.';
+    if (err.code === 'TIMEOUT') {
+      title = 'Server antwortet nicht';
+      msg = 'Die Verbindung zum Foto-Server dauert zu lange. Bitte versuche es in ein paar Minuten erneut.';
+      hint = 'Timeout nach 15s.';
+      showContact = true;
+    } else if (err.status === 0 || err.code === 'NETWORK') {
+      title = 'Keine Verbindung';
+      msg  = 'Keine Internetverbindung. Bitte Verbindung prüfen und erneut versuchen.';
+      hint = 'Netzwerk-/CORS-Fehler.';
+    } else if (err.code === 'DROPBOX_API' || err.code === 'DROPBOX_THUMB' || err.code === 'DROPBOX_DOWNLOAD' || err.code === 'NO_TOKEN' || err.code === 'TOKEN_REFRESH_FAILED') {
+      title = 'Server-Verbindung fehlgeschlagen';
+      msg = 'Der Foto-Server kann momentan keine Bilder abrufen. Der Administrator wurde informiert. Bitte später erneut versuchen.';
+      hint = err.code === 'NO_TOKEN' ? 'DROPBOX_TOKEN nicht gesetzt.' : 'Dropbox-Token wahrscheinlich abgelaufen.';
+      showContact = true;
     } else if (err.status === 403) {
-      msg  = 'Zugriff verweigert (403).';
+      title = 'Zugriff verweigert';
+      msg = 'Diese Seite ist für deinen Zugang nicht freigeschaltet.';
       hint = 'CORS-Origin prüfen. Diese Domain muss in ALLOWED_ORIGINS stehen.';
+      showContact = true;
     } else if (err.status === 404) {
-      msg  = 'Endpunkt nicht gefunden (404).';
-      hint = 'Worker-URL stimmt nicht. apiBase in galerie/index.html überprüfen.';
-    } else if (err.code === 'NO_TOKEN') {
-      msg  = 'DROPBOX_TOKEN ist nicht im Worker gesetzt.';
-      hint = 'Im Cloudflare-Dashboard unter Worker-Settings das Secret DROPBOX_TOKEN setzen.';
-    } else if (err.code === 'DROPBOX_API' || err.code === 'DROPBOX_THUMB' || err.code === 'DROPBOX_DOWNLOAD') {
-      msg  = 'Dropbox lehnt die Anfrage ab: ' + err.message;
-      hint = 'Token wahrscheinlich abgelaufen oder Ordner-Pfad falsch. /api/diagnose im Debug-Panel ausführen.';
+      title = 'Galerie nicht gefunden';
+      msg = 'Die Galerie konnte nicht gefunden werden. Bitte den Link prüfen.';
+      hint = 'Worker-URL stimmt nicht.';
+      showContact = true;
     } else if (err.status >= 500) {
-      msg  = `Server-Fehler (${err.status}): ${err.message}`;
-      hint = 'Worker-Logs in Cloudflare prüfen.';
+      title = 'Server-Problem';
+      msg = 'Der Server hat ein Problem. Bitte versuche es später erneut.';
+      hint = `HTTP ${err.status}.`;
+      showContact = true;
+    } else if (err.status === 401) {
+      // 401 ohne AUTH_REQUIRED-Code => weiterhin als Server-Problem behandeln
+      title = 'Server-Verbindung fehlgeschlagen';
+      msg = 'Bilder können momentan nicht geladen werden. Bitte versuche es in ein paar Minuten erneut.';
+      hint = 'Unerwarteter 401 ohne Auth-Code.';
+      showContact = true;
     } else {
-      msg  = err.message || 'Unbekannter Fehler';
+      msg  = err.message || 'Unbekannter Fehler. Bitte später erneut versuchen.';
+      showContact = true;
     }
 
     showState({
@@ -1698,6 +1731,7 @@ async function loadPhotos() {
       message: msg,
       icon: 'warn',
       retry: true,
+      contact: showContact,
       details: {
         Status:    err.status,
         Code:      err.code || '—',
@@ -2117,7 +2151,7 @@ function setView(mode, btn) {
 /* ═══════════════════════════════════════════════════════
    STATES
 ═══════════════════════════════════════════════════════ */
-function showState({ title, message, icon = 'warn', retry = false, details = null }) {
+function showState({ title, message, icon = 'warn', retry = false, details = null, contact = false }) {
   const grid = document.getElementById('galleryGrid');
   grid.replaceChildren();
 
@@ -2164,6 +2198,12 @@ function showState({ title, message, icon = 'warn', retry = false, details = nul
       onclick: () => DebugPanel.open(),
     }, 'Debug öffnen'));
     stateDiv.appendChild(actions);
+  }
+  if (contact) {
+    const contactP = document.createElement('p');
+    contactP.style.cssText = 'margin-top:1.2rem;font-size:.85rem;color:var(--fg-1)';
+    contactP.innerHTML = 'Wenn das Problem bestehen bleibt: <a href="mailto:?subject=Galerie-Problem" style="color:var(--fg-0);text-decoration:underline">Benjamin kontaktieren</a>';
+    stateDiv.appendChild(contactP);
   }
   grid.appendChild(stateDiv);
 }
@@ -2532,7 +2572,8 @@ async function boot() {
     return loadPhotos();
   }
 
-  // 2) Prüfen ob Worker Passwort erwartet
+  // 2) Prüfen ob Worker Passwort erwartet (mit Timeout in checkRequired)
+  setText('pl-sub', 'Verbindung wird hergestellt…');
   let pwRequired;
   try {
     pwRequired = await AUTH.checkRequired();
@@ -2552,7 +2593,16 @@ async function boot() {
   }
 
   // 4) Galerie laden
-  loadPhotos();
+  setText('pl-sub', 'Galerie wird geladen…');
+  // Nach 3s: Hinweis dass es beim ersten Aufruf länger dauern kann
+  const slowHint = setTimeout(() => {
+    setText('pl-sub', 'Das kann beim ersten Aufruf einen Moment dauern…');
+  }, 3000);
+  try {
+    await loadPhotos();
+  } finally {
+    clearTimeout(slowHint);
+  }
 }
 
 boot();
