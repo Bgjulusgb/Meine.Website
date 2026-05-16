@@ -669,9 +669,112 @@ button { font-family: inherit; cursor: pointer; }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255,255,255,.15); }
 .btn-outline { background: none; color: #fff; border: 1px solid rgba(255,255,255,.25); }
 .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.06); box-shadow: none; }
+
+/* ═══════════════════════════════════════
+   LOGIN OVERLAY
+═══════════════════════════════════════ */
+.login-overlay {
+  position: fixed; inset: 0; z-index: 90000;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-4);
+  animation: loginFade .4s var(--ease-out);
+}
+@keyframes loginFade { from { opacity: 0 } to { opacity: 1 } }
+.login-card {
+  width: 100%; max-width: 420px;
+  background: var(--bg-1); border: 1px solid rgba(255,255,255,.08);
+  padding: var(--sp-7) var(--sp-6); text-align: center;
+  display: flex; flex-direction: column; gap: var(--sp-4);
+}
+.login-eyebrow {
+  font-family: var(--f-mono); font-size: .68rem;
+  letter-spacing: .25em; text-transform: uppercase; color: var(--fg-1);
+}
+.login-title {
+  font-family: var(--f-display); font-size: 2rem;
+  font-weight: 300; line-height: 1.1; color: #fff;
+}
+.login-title em { font-style: italic; color: var(--fg-1); }
+.login-sub { font-size: .82rem; color: var(--fg-1); margin-bottom: var(--sp-3); }
+.login-input-wrap { position: relative; }
+.login-input {
+  width: 100%; padding: 0.9rem 2.6rem 0.9rem 1rem;
+  background: var(--bg-0); color: #fff;
+  border: 1px solid rgba(255,255,255,.12);
+  font-family: var(--f-ui); font-size: .9rem;
+  letter-spacing: 0.05em; outline: none;
+  transition: border-color .2s;
+  min-height: var(--hit);
+}
+.login-input:focus { border-color: rgba(255,255,255,.4); }
+.login-toggle {
+  position: absolute; right: 0.6rem; top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--fg-1); padding: 0.4rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.login-toggle:hover { color: #fff; }
+.login-toggle svg { width: 20px; height: 20px; }
+.login-remember {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: .8rem; color: var(--fg-1);
+  cursor: pointer; user-select: none;
+  text-align: left;
+}
+.login-remember input { width: 1rem; height: 1rem; cursor: pointer; accent-color: #fff; }
+.login-error {
+  min-height: 1.2em; font-size: .8rem; color: var(--red);
+  text-align: left;
+}
+.login-submit {
+  padding: 0.95rem 1rem; background: #fff; color: #000;
+  border: none; font-family: var(--f-ui); font-size: .8rem;
+  font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  cursor: pointer; min-height: var(--hit);
+  transition: opacity .2s;
+}
+.login-submit:hover:not([disabled]) { opacity: 0.85; }
+.login-submit[disabled] { opacity: 0.5; cursor: wait; }
+.login-footer {
+  font-family: var(--f-mono); font-size: .65rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--fg-2); margin-top: var(--sp-3);
+}
 </style>
 </head>
 <body>
+
+<!-- ═══ LOGIN OVERLAY (Passwort-Schutz) ═══ -->
+<div class="login-overlay" id="loginOverlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-card">
+    <div class="login-eyebrow" id="loginEyebrow">Willkommen!</div>
+    <h2 class="login-title" id="loginTitle">Kunden<em>galerie</em></h2>
+    <p class="login-sub" id="loginSub">Bitte gib das Passwort ein, das du von Benjamin Gillmann erhalten hast.</p>
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <div class="login-input-wrap">
+        <input type="password" class="login-input" id="loginPassword"
+               placeholder="Passwort" autocomplete="current-password"
+               aria-label="Passwort" required />
+        <button type="button" class="login-toggle" id="loginToggle" aria-label="Passwort anzeigen">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z"/>
+            <circle cx="10" cy="10" r="2.5"/>
+          </svg>
+        </button>
+      </div>
+      <label class="login-remember">
+        <input type="checkbox" id="loginRemember" />
+        <span>Auf diesem Gerät merken</span>
+      </label>
+      <div class="login-error" id="loginError" role="alert"></div>
+      <button type="submit" class="login-submit" id="loginSubmit">Anmelden</button>
+    </form>
+    <div class="login-footer">Benjamin Gillmann Photography</div>
+  </div>
+</div>
 
 <!-- ═══ PRELOADER ═══ -->
 <div class="preloader" id="preloader" role="status" aria-label="Galerie wird geladen">
@@ -1041,8 +1144,7 @@ const api = {
 function apiErr(status, msg, code) { const e = new Error(msg); e.status = status; e.code = code || 'HTTP'; return e; }
 
 /* ═══════════════════════════════════════════════════════
-   AUTH – Liest gespeicherten Token aus Storage
-   (Gleicher Key wie Hauptgalerie → Token wird geteilt)
+   AUTH – Vollständiges Passwort-Login (gleicher Storage wie Hauptgalerie)
 ═══════════════════════════════════════════════════════ */
 const AUTH = (() => {
   const STORAGE_KEY = 'bg_gallery_auth_v1';
@@ -1055,6 +1157,14 @@ const AUTH = (() => {
     } catch { return null; }
   }
 
+  function setStored(hash, remember) {
+    sessionStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY);
+    if (!hash) return;
+    const store = remember ? localStorage : sessionStorage;
+    store.setItem(STORAGE_KEY, JSON.stringify({ hash, ts: Date.now() }));
+  }
+
   function token() {
     const s = getStored();
     return s?.hash || null;
@@ -1065,7 +1175,99 @@ const AUTH = (() => {
     return t ? { 'Authorization': `Bearer ${t}` } : {};
   }
 
-  return { token, headers };
+  function clear() { setStored(null); }
+
+  async function hashPassword(pw) {
+    const buf = await crypto.subtle.digest('SHA-256',
+      new TextEncoder().encode(`${CONFIG.passwordSalt}:${pw}`));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function checkRequired() {
+    const ctrl  = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 10000);
+    try {
+      const res = await fetch(`${api.base()}/api/auth`, {
+        method: 'POST', credentials: 'omit', signal: ctrl.signal,
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({}),
+      });
+      clearTimeout(timer);
+      const data = await res.json().catch(() => ({}));
+      return data?.passwordRequired === true;
+    } catch { clearTimeout(timer); return null; }
+  }
+
+  async function login(password, remember) {
+    const hash = await hashPassword(password);
+    const res = await fetch(`${api.base()}/api/auth`, {
+      method: 'POST', credentials: 'omit',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ hash }),
+    });
+    let data = {};
+    try { data = await res.json(); } catch {}
+    if (!res.ok) {
+      const err = new Error(data.error || `HTTP ${res.status}`);
+      err.status = res.status; err.code = data.code;
+      throw err;
+    }
+    if (data.passwordRequired === false) {
+      setStored(null);
+      return { required: false };
+    }
+    setStored(hash, !!remember);
+    return { required: true, token: hash };
+  }
+
+  return { token, headers, clear, login, checkRequired, hashPassword };
+})();
+
+/* ═══════════════════════════════════════════════════════
+   LOGIN SCREEN
+═══════════════════════════════════════════════════════ */
+const LoginScreen = (() => {
+  const $ = id => document.getElementById(id);
+
+  function show(msg) {
+    const el = $('loginOverlay');
+    if (!el) return;
+    el.style.display = 'flex';
+    if (msg) { const e = $('loginError'); if (e) e.textContent = msg; }
+    setTimeout(() => $('loginPassword')?.focus(), 80);
+  }
+  function hide() {
+    const el = $('loginOverlay');
+    if (el) el.style.display = 'none';
+  }
+
+  function wire(onSuccess) {
+    $('loginToggle')?.addEventListener('click', () => {
+      const inp = $('loginPassword');
+      if (inp) inp.type = inp.type === 'password' ? 'text' : 'password';
+    });
+    $('loginForm')?.addEventListener('submit', async e => {
+      e.preventDefault();
+      const pw  = $('loginPassword').value.trim();
+      const err = $('loginError');
+      const sub = $('loginSubmit');
+      if (!pw) { err.textContent = 'Bitte Passwort eingeben.'; return; }
+      sub.disabled = true; sub.textContent = 'Prüfe…'; err.textContent = '';
+      try {
+        await AUTH.login(pw, $('loginRemember').checked);
+        hide();
+        onSuccess?.();
+      } catch (e) {
+        if (e.status === 401) err.textContent = 'Falsches Passwort.';
+        else if (e.status === 0) err.textContent = 'Server nicht erreichbar.';
+        else err.textContent = e.message || 'Anmeldung fehlgeschlagen.';
+      } finally {
+        sub.disabled = false; sub.textContent = 'Anmelden';
+      }
+    });
+  }
+
+  return { show, hide, wire };
 })();
 
 /* ═══════════════════════════════════════════════════════
@@ -1179,7 +1381,11 @@ async function loadPhotos() {
       title = 'Server-Verbindung fehlgeschlagen';
       msg = 'Bilder können momentan nicht geladen werden. Bitte später erneut versuchen.';
     } else if (err.code === 'AUTH_REQUIRED') {
-      msg = 'Diese Galerie ist passwortgeschützt. Bitte nutze die Hauptgalerie zum Anmelden.';
+      // Token abgelaufen oder Passwort geändert → Login wieder zeigen
+      AUTH.clear();
+      exitPreloader();
+      LoginScreen.show('Sitzung abgelaufen. Bitte erneut anmelden.');
+      return;
     } else if (err.status === 403) {
       msg = 'Zugriff verweigert. Diese Domain ist nicht freigegeben.';
     } else if (err.status === 404) {
@@ -1731,9 +1937,56 @@ if (CONFIG.clientName) {
 
 wireEvents();
 
-// Langsamer Preloader-Hinweis nach 3s
-const _slowHint = setTimeout(() => setText('pl-sub', 'Das kann beim ersten Aufruf einen Moment dauern…'), 3000);
-loadPhotos().finally(() => clearTimeout(_slowHint));
+// Login-Begrüßung anpassen wenn ?client= in URL
+if (CONFIG.clientName) {
+  const loginTitle = document.getElementById('loginTitle');
+  const loginSub   = document.getElementById('loginSub');
+  if (loginTitle) loginTitle.innerHTML = `Galerie <em>${CONFIG.clientName}</em>`;
+  if (loginSub)   loginSub.textContent =
+    `Hallo ${CONFIG.clientName}! Bitte gib das Passwort ein, das du von Benjamin Gillmann erhalten hast.`;
+}
+
+// Login-Formular verdrahten – nach erfolgreichem Login lädt die Galerie
+LoginScreen.wire(() => {
+  setText('pl-sub', 'Galerie wird geladen…');
+  const slow = setTimeout(() => setText('pl-sub', 'Das kann beim ersten Aufruf einen Moment dauern…'), 3000);
+  loadPhotos().finally(() => clearTimeout(slow));
+});
+
+/* ═══════════════════════════════════════════════════════
+   BOOT-FLOW
+═══════════════════════════════════════════════════════ */
+async function boot() {
+  // 1) URL-Konfig prüfen
+  if (!CONFIG.apiBase || !CONFIG.apiBase.startsWith('https://')) {
+    return loadPhotos();
+  }
+
+  // 2) Worker fragen ob Passwort nötig
+  setText('pl-sub', 'Verbindung wird hergestellt…');
+  const pwRequired = await AUTH.checkRequired();
+
+  // 3) Passwort nötig & kein Token → Login zeigen
+  if (pwRequired === true && !AUTH.token()) {
+    exitPreloader();
+    LoginScreen.show();
+    return;
+  }
+  if (pwRequired === false) {
+    AUTH.clear(); // Aufräumen falls Passwortschutz deaktiviert wurde
+  }
+
+  // 4) Galerie laden
+  setText('pl-sub', 'Galerie wird geladen…');
+  const slow = setTimeout(() => setText('pl-sub', 'Das kann beim ersten Aufruf einen Moment dauern…'), 3000);
+  try {
+    await loadPhotos();
+  } finally {
+    clearTimeout(slow);
+  }
+}
+
+boot();
 </script>
 </body>
 </html>
