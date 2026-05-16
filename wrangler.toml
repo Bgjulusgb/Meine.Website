@@ -4,45 +4,59 @@ compatibility_date = "2024-10-01"
 
 # ─── Frei zugängliche Variablen ──────────────────────────────────
 [vars]
-DROPBOX_FOLDER  = "/meine-fotos"
+# Root-Ordner in Dropbox. Unterordner = je ein Kunde.
+# Beispiel-Struktur in Dropbox:
+#   /kundengalerien/lena/       → benni-photo.com/galerie/?client=lena
+#   /kundengalerien/max/        → benni-photo.com/galerie/?client=max
+#   /kundengalerien/            → benni-photo.com/galerie/  (ohne Subfolder)
+DROPBOX_FOLDER  = "/kundengalerien"
+
+# CORS: Welche Origins dürfen die API aufrufen (kommagetrennt)
 ALLOWED_ORIGINS = "https://benni-photo.com,https://www.benni-photo.com,https://bgjulusgb.github.io"
 
-# ─── Secrets (NIE hier eintragen! Per Dashboard oder CLI setzen) ─
+# ─── Secrets (NIE hier eintragen!) ───────────────────────────────
+# Setzen via Cloudflare Dashboard → Workers → galerie-api → Settings → Variables
+# ODER via CLI:  wrangler secret put SECRET_NAME
 #
-# ── Empfohlen: OAuth2 Refresh-Token (läuft nie ab) ──────────────
+# ── Empfohlen: OAuth2 Refresh-Token (läuft nie ab) ────────────────
 #
-#   Dropbox Developer Console → Deine App → Settings → OAuth 2
-#   1. "Generate" unter "Generated access token" → einmalig verwenden, um Refresh-Token zu erhalten
-#      Besser: OAuth2 PKCE-Flow oder Offline-Access beantragen.
+#   Schritt 1: Dropbox Developer Console → https://www.dropbox.com/developers/apps
+#              → App auswählen oder neu anlegen
+#              → App key + App secret kopieren
 #
-#   Secrets setzen:
-#     wrangler secret put DROPBOX_REFRESH_TOKEN   # OAuth2 Refresh-Token
-#     wrangler secret put DROPBOX_APP_KEY         # App-Key (Einstellungsseite)
-#     wrangler secret put DROPBOX_APP_SECRET      # App-Secret (Einstellungsseite)
+#   Schritt 2: OAuth2 Authorization URL öffnen (APP_KEY einsetzen):
+#              https://www.dropbox.com/oauth2/authorize?client_id=APP_KEY&response_type=code&token_access_type=offline
 #
-#   Oder via GitHub Actions Secrets:
-#     DROPBOX_REFRESH_TOKEN, DROPBOX_APP_KEY, DROPBOX_APP_SECRET
+#   Schritt 3: Im Browser autorisieren → Code erhalten
 #
-# ── Fallback: Statischer Access-Token (läuft nach ~4h ab) ────────
+#   Schritt 4: Code gegen Token tauschen (APP_KEY, APP_SECRET, CODE einsetzen):
+#              curl -X POST https://api.dropbox.com/oauth2/token \
+#                -u "APP_KEY:APP_SECRET" \
+#                -d "code=CODE&grant_type=authorization_code"
+#              → "refresh_token" in der Antwort = dein dauerhafter Token
+#
+#   Schritt 5: Als GitHub Secrets hinterlegen:
+#              DROPBOX_REFRESH_TOKEN, DROPBOX_APP_KEY, DROPBOX_APP_SECRET
+#
+#   wrangler secret put DROPBOX_REFRESH_TOKEN
+#   wrangler secret put DROPBOX_APP_KEY
+#   wrangler secret put DROPBOX_APP_SECRET
+#
+# ── Fallback: Statischer Token (läuft nach ~4h ab) ───────────────
 #
 #   wrangler secret put DROPBOX_TOKEN
-#   (NICHT empfohlen für Produktion – Token muss regelmäßig erneuert werden)
+#   (Nur für Tests – in Produktion OAuth2 Refresh nutzen)
 #
-# ── Passwortschutz (optional) ───────────────────────────────────
+# ── Passwortschutz (optional) ────────────────────────────────────
 #
-# GALLERY_PASSWORD_HASH
-#   SHA-256 von "bg-gallery-salt-v1:DEIN_PASSWORT" als Hex-String.
-#   Ohne dieses Secret ist die Galerie öffentlich zugänglich.
+#   GALLERY_PASSWORD_HASH  =  SHA-256("bg-gallery-salt-v1:PASSWORT") als Hex
 #
-#   Hash erzeugen (im Browser-Konsole F12):
-#     const SALT = 'bg-gallery-salt-v1';
-#     const buf  = await crypto.subtle.digest('SHA-256',
-#                    new TextEncoder().encode(`${SALT}:DEIN_PASSWORT`));
-#     console.log([...new Uint8Array(buf)]
-#       .map(b => b.toString(16).padStart(2,'0')).join(''));
+#   Hash erzeugen (Browser-Konsole, F12):
+#     const buf = await crypto.subtle.digest('SHA-256',
+#       new TextEncoder().encode('bg-gallery-salt-v1:DEIN_PASSWORT'));
+#     console.log([...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join(''));
 #
-#   Oder in Bash:
+#   Oder Bash:
 #     printf 'bg-gallery-salt-v1:DEIN_PASSWORT' | sha256sum
 #
-#   Setzen:
-#     wrangler secret put GALLERY_PASSWORD_HASH
+#   wrangler secret put GALLERY_PASSWORD_HASH
