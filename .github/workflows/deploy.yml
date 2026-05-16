@@ -56,8 +56,8 @@ jobs:
           if [ -n "$ACCOUNT_ID" ]; then
             URL="https://galerie-api.${ACCOUNT_ID}.workers.dev"
           else
-            # Fallback (vorhandener Worker des Accounts):
-            URL="https://galerie-api.3d95dac45e5dd7bcba40e06cc22cbccb.workers.dev"
+            # Fallback: Worker-Subdomain des Accounts
+            URL="https://galerie-api.gillmannbenjamin99.workers.dev"
           fi
           echo "worker_url=${URL}" >> "$GITHUB_OUTPUT"
           echo "::notice title=Worker URL::${URL}"
