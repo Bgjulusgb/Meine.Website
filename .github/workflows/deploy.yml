@@ -75,18 +75,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Worker-URL in galerie/index.html einsetzen
+      - name: Worker-URL aus apiBase prüfen
         run: |
-          WORKER_URL="${{ needs.deploy_worker.outputs.worker_url }}"
-          echo "Setze Worker-URL: ${WORKER_URL}"
-          # | als Trennzeichen, da URL Slashes enthält
-          sed -i "s|__WORKER_URL__|${WORKER_URL}|g" galerie/index.html
-          # Verifizierung
-          if grep -q "__WORKER_URL__" galerie/index.html; then
-            echo "::error::Platzhalter __WORKER_URL__ nicht ersetzt!"
+          # Worker-URL ist in galerie/index.html fest eingetragen.
+          # Hier nur verifizieren, dass eine HTTPS-URL gesetzt ist.
+          if ! grep -qE "apiBase:\s*'https://[^']+'" galerie/index.html; then
+            echo "::error::CONFIG.apiBase in galerie/index.html enthält keine HTTPS-URL!"
             exit 1
           fi
-          grep -n "apiBase" galerie/index.html | head -3
+          echo "Aktuelle apiBase:"
+          grep -nE "apiBase:\s*'[^']+'" galerie/index.html | head -1
 
       - name: Pages konfigurieren
         uses: actions/configure-pages@v5
