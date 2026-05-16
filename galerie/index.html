@@ -888,7 +888,7 @@ button { font-family: inherit; cursor: pointer; }
    Für lokale Tests die URL direkt eintragen.
 ═══════════════════════════════════════════════════════ */
 const CONFIG = Object.freeze({
-  apiBase: '__WORKER_URL__',
+  apiBase: 'https://galerie-api.gillmannbenjamin99.workers.dev',
 
   thumbConcurrency: 8,
   zipConcurrency:   4,
@@ -1054,12 +1054,12 @@ function saveCache(data) {
    INIT & LOAD
 ═══════════════════════════════════════════════════════ */
 async function loadPhotos() {
-  if (!CONFIG.apiBase || CONFIG.apiBase === '__WORKER_URL__' || CONFIG.apiBase.includes('CHANGE-ME')) {
+  if (!CONFIG.apiBase || CONFIG.apiBase === '__WORKER_URL__' || CONFIG.apiBase.includes('CHANGE-ME') || !CONFIG.apiBase.startsWith('https://')) {
     showConfigBanner(`
       <strong>Konfiguration fehlt:</strong>
-      Worker-URL nicht gesetzt. Die GitHub Action muss den Platzhalter
-      <code>__WORKER_URL__</code> in <code>galerie/index.html</code> ersetzen
-      oder die URL direkt in <code>CONFIG.apiBase</code> eintragen.
+      Bitte <code>CONFIG.apiBase</code> in <code>galerie/index.html</code>
+      auf die vollständige HTTPS-URL deines Cloudflare Workers setzen
+      (z.B. <code>https://galerie-api.dein-name.workers.dev</code>).
     `);
     showState({
       title:   'Konfiguration fehlt',

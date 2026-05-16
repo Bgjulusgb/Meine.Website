@@ -851,7 +851,7 @@ button { font-family: inherit; cursor: pointer; }
 ═══════════════════════════════════════════════════════ */
 const CONFIG = Object.freeze({
   // Beispiel: 'https://galerie-api.dein-account.workers.dev'
-apiBase: 'galerie-api.gillmannbenjamin99.workers.dev',
+  apiBase: 'https://galerie-api.gillmannbenjamin99.workers.dev',
 
   // Wie viele Thumbnails parallel laden
   thumbConcurrency: 8,
@@ -1014,7 +1014,7 @@ function saveCache(data) {
 ═══════════════════════════════════════════════════════ */
 async function loadPhotos() {
   // Konfiguration prüfen
-  if (!CONFIG.apiBase || CONFIG.apiBase.includes('CHANGE-ME')) {
+  if (!CONFIG.apiBase || CONFIG.apiBase.includes('CHANGE-ME') || !CONFIG.apiBase.startsWith('https://')) {
     showConfigBanner(`
       <strong>Konfiguration fehlt:</strong>
       Bitte in der Datei <code>index.html</code> den Wert <code>CONFIG.apiBase</code>
