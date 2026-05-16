@@ -4,13 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
-<meta name="description" content="Fotogalerie – ausgewählte Aufnahmen." />
-<title>Fotogalerie</title>
+<meta name="description" content="Private Kundengalerie – Benjamin Gillmann Photography." />
+<meta name="robots" content="noindex, nofollow" />
+<title>Kundengalerie · Benjamin Gillmann Photography</title>
 
 <!-- Sicherheit: Inhaltliche Beschränkungen. Worker-URL musst du an deine anpassen. -->
 <meta http-equiv="Content-Security-Policy"
       content="default-src 'self';
-               img-src 'self' data: blob: https://*.workers.dev;
+               img-src 'self' data: blob: https://*.workers.dev https://benni-photo.com;
                connect-src 'self' https://*.workers.dev;
                style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                font-src https://fonts.gstatic.com;
@@ -836,7 +837,16 @@ button { font-family: inherit; cursor: pointer; }
 <div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="true"></div>
 
 <footer class="footer">
-  <p>© <span id="year"></span> Studio · Alle Rechte vorbehalten</p>
+  <p>© <span id="year"></span> Benjamin Gillmann Photography · Alle Rechte vorbehalten</p>
+  <p style="margin-top:0.6rem; font-size:0.75rem; opacity:0.6;">
+    <a href="https://benni-photo.com" style="color:inherit;">benni-photo.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://benni-photo.com/#contact" style="color:inherit;">Kontakt</a>
+    &nbsp;·&nbsp;
+    <a href="https://benni-photo.com/impressum.html" style="color:inherit;">Impressum</a>
+    &nbsp;·&nbsp;
+    <a href="https://benni-photo.com/datenschutz.html" style="color:inherit;">Datenschutz</a>
+  </p>
 </footer>
 
 <!-- JSZip für ZIP-Downloads (vom CDN; integrity-geprüft) -->
@@ -849,9 +859,23 @@ button { font-family: inherit; cursor: pointer; }
    ⚙️  KONFIGURATION
    Trage hier die URL deines Cloudflare Workers ein.
 ═══════════════════════════════════════════════════════ */
+// URL-Parameter: ?client=NAME für Unterordner-Routing
+const _urlParams  = new URLSearchParams(location.search);
+const _clientSlug = (() => {
+  const c = (_urlParams.get('client') || '').trim().replace(/[^a-zA-Z0-9_\-äöüÄÖÜß ]/g, '');
+  return c.slice(0, 64) || null;
+})();
+const _clientName = _clientSlug
+  ? _clientSlug.charAt(0).toUpperCase() + _clientSlug.slice(1)
+  : null;
+
 const CONFIG = Object.freeze({
   // Beispiel: 'https://galerie-api.dein-account.workers.dev'
   apiBase: 'https://galerie-api.gillmannbenjamin99.workers.dev',
+
+  // Aktiver Kunden-Unterordner (aus URL ?client=)
+  clientSlug: _clientSlug,
+  clientName: _clientName,
 
   // Wie viele Thumbnails parallel laden
   thumbConcurrency: 8,
@@ -865,6 +889,9 @@ const CONFIG = Object.freeze({
 
   // Cache-Dauer in Millisekunden (1 Stunde)
   cacheDuration:    60 * 60 * 1000,
+
+  // Passwort-Salt (muss mit worker.js übereinstimmen)
+  passwordSalt: 'bg-gallery-salt-v1',
 });
 
 /* ═══════════════════════════════════════════════════════
@@ -933,52 +960,121 @@ function sanitizeFilename(name) {
    API-CLIENT (spricht den Cloudflare Worker an)
 ═══════════════════════════════════════════════════════ */
 const api = {
-  base: () => CONFIG.apiBase.replace(/\/$/, ''),
+  base() {
+    let b = (CONFIG.apiBase || '').replace(/\/$/, '');
+    if (b && !/^https?:\/\//.test(b)) b = 'https://' + b;
+    return b;
+  },
+
+  // Fetch mit Timeout + Auth-Header
+  async _fetch(url, opts = {}, timeoutMs = 15000) {
+    const ctrl  = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+    try {
+      const res = await fetch(url, {
+        credentials: 'omit',
+        signal: ctrl.signal,
+        ...opts,
+        headers: { ...AUTH.headers(), ...(opts.headers || {}) },
+      });
+      clearTimeout(timer);
+      if (!res.ok) {
+        let data = null;
+        try { data = await res.clone().json(); } catch {}
+        const msg  = data?.error || `HTTP ${res.status}`;
+        const code = data?.code  || 'HTTP';
+        throw apiErr(res.status, msg, code);
+      }
+      return res;
+    } catch (e) {
+      clearTimeout(timer);
+      if (e.name === 'AbortError') throw apiErr(0, 'Zeitüberschreitung (15s)', 'TIMEOUT');
+      if (e.status) throw e;
+      throw apiErr(0, e.message || 'Netzwerk-Fehler', 'NETWORK');
+    }
+  },
 
   async getPhotos() {
-    const res = await fetch(`${this.base()}/api/photos`, { credentials: 'omit' });
-    if (!res.ok) throw apiErr(res.status, `Bilder-Liste fehlgeschlagen (${res.status})`);
+    // Subfolder für Multi-Kunden-Support
+    const qs  = CONFIG.clientSlug ? `?subfolder=${encodeURIComponent(CONFIG.clientSlug)}` : '';
+    const res = await this._fetch(`${this.base()}/api/photos${qs}`);
     return res.json();
+  },
+
+  // Token an URL anhängen (für <img src> und direkte Links)
+  _withToken(u) {
+    const t = AUTH.token();
+    if (t) u.searchParams.set('token', t);
+    return u;
   },
 
   thumbUrl(path, size) {
     const u = new URL(`${this.base()}/api/thumb`);
     u.searchParams.set('path', path);
     u.searchParams.set('size', size || CONFIG.thumbSize);
-    return u.toString();
+    return this._withToken(u).toString();
   },
 
-  /** Original-Datei als Blob abrufen (für ZIP-Erstellung). */
+  // Datei als Blob abrufen (für ZIP) – Worker streamt jetzt direkt (kein Redirect)
   async fetchOriginal(path) {
     const u = new URL(`${this.base()}/api/download`);
     u.searchParams.set('path', path);
-    const res = await fetch(u.toString(), { credentials: 'omit', redirect: 'follow' });
-    if (!res.ok) throw apiErr(res.status, `Datei laden fehlgeschlagen (${res.status})`);
+    const res = await this._fetch(this._withToken(u).toString());
     return res.blob();
   },
 
-  /** Trigger direkten Download im Browser. */
+  // Download als <a>-Klick auslösen
   triggerDownload(path, filename) {
     const u = new URL(`${this.base()}/api/download`);
     u.searchParams.set('path', path);
+    this._withToken(u);
     const a = document.createElement('a');
-    a.href = u.toString();
+    a.href     = u.toString();
     a.download = sanitizeFilename(filename);
-    a.rel = 'noopener';
+    a.rel      = 'noopener';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
   },
 };
 
-function apiErr(status, msg) { const e = new Error(msg); e.status = status; return e; }
+function apiErr(status, msg, code) { const e = new Error(msg); e.status = status; e.code = code || 'HTTP'; return e; }
+
+/* ═══════════════════════════════════════════════════════
+   AUTH – Liest gespeicherten Token aus Storage
+   (Gleicher Key wie Hauptgalerie → Token wird geteilt)
+═══════════════════════════════════════════════════════ */
+const AUTH = (() => {
+  const STORAGE_KEY = 'bg_gallery_auth_v1';
+
+  function getStored() {
+    try {
+      const s = sessionStorage.getItem(STORAGE_KEY) || localStorage.getItem(STORAGE_KEY);
+      if (!s) return null;
+      return JSON.parse(s);
+    } catch { return null; }
+  }
+
+  function token() {
+    const s = getStored();
+    return s?.hash || null;
+  }
+
+  function headers() {
+    const t = token();
+    return t ? { 'Authorization': `Bearer ${t}` } : {};
+  }
+
+  return { token, headers };
+})();
 
 /* ═══════════════════════════════════════════════════════
    PRELOADER
 ═══════════════════════════════════════════════════════ */
 function setProgress(pct) {
-  const p = Math.max(0, Math.min(100, pct));
-  document.getElementById('pl-bar').style.width = p + '%';
+  const p   = Math.max(0, Math.min(100, pct));
+  const bar = document.getElementById('pl-bar');
+  if (bar) bar.style.width = p + '%';
   setText('pl-pct', Math.round(p));
 }
 function exitPreloader() {
@@ -991,7 +1087,8 @@ function exitPreloader() {
 /* ═══════════════════════════════════════════════════════
    SESSION-CACHE
 ═══════════════════════════════════════════════════════ */
-const CACHE_KEY = `gallery_cache_v2`;
+// Cache-Key schließt Client ein – verschiedene Kunden teilen keinen Cache
+const CACHE_KEY = `gallery_cache_v3${CONFIG.clientSlug ? '_' + CONFIG.clientSlug : ''}`;
 function loadCache() {
   try {
     const raw = sessionStorage.getItem(CACHE_KEY);
@@ -1033,7 +1130,8 @@ async function loadPhotos() {
   // Cache prüfen
   const cached = loadCache();
   if (cached) {
-    state.allPhotos = cached;
+    const photos = Array.isArray(cached) ? cached : (cached.photos || []);
+    state.allPhotos = photos;
     setProgress(100);
     sortAndRender();
     updatePhotoCount();
@@ -1052,7 +1150,7 @@ async function loadPhotos() {
     if (!Array.isArray(photos) || photos.length === 0) {
       showState({
         title:   'Ordner leer',
-        message: 'Keine Bilder gefunden.',
+        message: folder ? `Im Ordner „${folder}" wurden keine Bilder gefunden.` : 'Keine Bilder gefunden.',
         icon:    'empty',
       });
       exitPreloader();
@@ -1060,7 +1158,7 @@ async function loadPhotos() {
     }
 
     state.allPhotos = photos;
-    saveCache(photos);
+    saveCache({ photos, folder });
 
     setText('folderLabel', folder || '');
     setProgress(100);
@@ -1069,13 +1167,30 @@ async function loadPhotos() {
     setTimeout(exitPreloader, 250);
 
   } catch (err) {
-    console.error('[Gallery]', err);
-    const msg = err.status === 401 || err.status === 403
-      ? 'Server lehnt die Anfrage ab. Token im Worker prüfen.'
-      : err.status === 404
-      ? 'Endpunkt nicht gefunden. Worker-URL prüfen.'
-      : err.message || 'Unbekannter Fehler';
-    showState({ title: 'Fehler beim Laden', message: msg, icon: 'warn', retry: true });
+    let title = 'Fehler beim Laden';
+    let msg;
+
+    // Dropbox-/Token-Fehler → kein Login-Loop, freundliche Meldung
+    if (err.code === 'TIMEOUT') {
+      msg = 'Server antwortet nicht. Bitte in ein paar Minuten erneut versuchen.';
+    } else if (err.code === 'NETWORK') {
+      msg = 'Keine Internetverbindung. Bitte Verbindung prüfen.';
+    } else if (err.code === 'DROPBOX_API' || err.code === 'NO_TOKEN' || err.code === 'TOKEN_REFRESH_FAILED') {
+      title = 'Server-Verbindung fehlgeschlagen';
+      msg = 'Bilder können momentan nicht geladen werden. Bitte später erneut versuchen.';
+    } else if (err.code === 'AUTH_REQUIRED') {
+      msg = 'Diese Galerie ist passwortgeschützt. Bitte nutze die Hauptgalerie zum Anmelden.';
+    } else if (err.status === 403) {
+      msg = 'Zugriff verweigert. Diese Domain ist nicht freigegeben.';
+    } else if (err.status === 404) {
+      msg = 'Galerie-Endpunkt nicht gefunden. Worker-URL prüfen.';
+    } else if (err.status >= 500) {
+      msg = 'Server-Problem. Bitte später erneut versuchen.';
+    } else {
+      msg = err.message || 'Unbekannter Fehler.';
+    }
+
+    showState({ title, message: msg, icon: 'warn', retry: true });
     exitPreloader();
   }
 }
@@ -1604,8 +1719,21 @@ function wireEvents() {
    BOOT
 ═══════════════════════════════════════════════════════ */
 setText('year', new Date().getFullYear());
+
+// Kunden-Namen in Seitentitel + Header setzen
+if (CONFIG.clientName) {
+  document.title = `${CONFIG.clientName} – Kundengalerie · Benjamin Gillmann`;
+  const h1 = document.querySelector('h1');
+  if (h1) h1.innerHTML = `Galerie <em>${CONFIG.clientName}</em>`;
+  const eyebrow = document.querySelector('.gallery-eyebrow');
+  if (eyebrow) eyebrow.textContent = 'Kundengalerie';
+}
+
 wireEvents();
-loadPhotos();
+
+// Langsamer Preloader-Hinweis nach 3s
+const _slowHint = setTimeout(() => setText('pl-sub', 'Das kann beim ersten Aufruf einen Moment dauern…'), 3000);
+loadPhotos().finally(() => clearTimeout(_slowHint));
 </script>
 </body>
 </html>
