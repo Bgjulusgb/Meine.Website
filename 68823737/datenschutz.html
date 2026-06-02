@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="author" content="Benjamin Gillmann">
+    <meta name="theme-color" content="#000000">
+    <title>Datenschutzerklärung · Benjamin Gillmann Photography</title>
+
+    <meta name="description" content="Datenschutzerklärung von Benjamin Gillmann Photography – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://benni-photo.com/datenschutz.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Benjamin Gillmann Photography">
+    <meta property="og:title" content="Datenschutzerklärung · Benjamin Gillmann Photography">
+    <meta property="og:url" content="https://benni-photo.com/datenschutz.html">
+    <meta property="og:locale" content="de_DE">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+    :root {
+        --bg-0:#000; --bg-1:#080808; --fg-0:#fff; --fg-1:#9a9a9a; --fg-2:#555;
+        --f-display:'Cormorant Garamond',Georgia,serif;
+        --f-ui:'Montserrat',sans-serif;
+        --f-mono:'DM Mono',monospace;
+        --hit:44px;
+        --safe-top:env(safe-area-inset-top,0px);
+        --safe-bottom:env(safe-area-inset-bottom,0px);
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { font-size:16px; scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    @media (max-width:600px){ html{font-size:15px} }
+    body { font-family:var(--f-ui); background:var(--bg-0); color:var(--fg-0); line-height:1.7; overflow-x:hidden; }
+    a { color:inherit; }
+    img { display:block; max-width:100%; }
+
+    .skip-link { position:absolute; left:-999px; top:10px; background:#fff; color:#000; padding:8px 14px; z-index:10001; font-size:.85rem; }
+    .skip-link:focus { left:10px; }
+
+    /* HEADER */
+    .header {
+        position:fixed; top:0; left:0; right:0; z-index:1000;
+        padding:1rem 0; background:rgba(0,0,0,.92);
+        backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+        border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-wrap {
+        max-width:1100px; margin:0 auto; padding:0 clamp(1.2rem,5vw,2.5rem);
+        display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    }
+    .logo {
+        display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--fg-0);
+        font-size:clamp(.65rem,1.3vw,.78rem); font-weight:600; letter-spacing:.14em;
+        text-transform:uppercase; min-height:var(--hit);
+    }
+    .logo img { height:28px; width:auto; }
+    .nav-back {
+        display:flex; align-items:center; gap:.45rem; font-family:var(--f-mono);
+        font-size:.58rem; letter-spacing:.18em; text-transform:uppercase;
+        color:rgba(255,255,255,.45); text-decoration:none; transition:color .2s; min-height:var(--hit);
+    }
+    .nav-back:hover { color:#fff; }
+    .nav-back i { font-size:.5rem; }
+
+    /* HERO */
+    .imp-hero {
+        padding:calc(7rem + var(--safe-top)) clamp(1.4rem,6vw,5rem) clamp(1.5rem,4vw,2.5rem);
+        border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .imp-eyebrow {
+        font-family:var(--f-mono); font-size:.58rem; letter-spacing:.28em; text-transform:uppercase;
+        color:rgba(255,255,255,.35); margin-bottom:.8rem; display:flex; align-items:center; gap:.75rem;
+    }
+    .imp-eyebrow::before { content:''; display:block; width:20px; height:1px; background:rgba(255,255,255,.25); }
+    .imp-hero h1 {
+        font-family:var(--f-display); font-size:clamp(2.6rem,8vw,5rem);
+        font-weight:300; line-height:.95; letter-spacing:-.02em;
+    }
+    .imp-hero h1 em { font-style:italic; }
+    .imp-stand { font-family:var(--f-mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg-2); margin-top:1rem; }
+
+    /* CONTENT */
+    .imp-wrap {
+        max-width:780px; margin:0 auto;
+        padding:clamp(2.5rem,7vw,4.5rem) clamp(1.4rem,6vw,2.5rem) clamp(4rem,8vw,6rem);
+    }
+    .imp-block { margin-bottom:clamp(2rem,5vw,3rem); }
+    .imp-block h2 {
+        font-family:var(--f-mono); font-size:.62rem; letter-spacing:.22em; text-transform:uppercase;
+        color:rgba(255,255,255,.55); margin-bottom:1rem; padding-bottom:.6rem;
+        border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .imp-block h2 span.num { color:rgba(255,255,255,.3); margin-right:.6rem; }
+    .imp-block p { color:var(--fg-1); font-size:clamp(.9rem,1.6vw,.98rem); margin-bottom:.6rem; }
+    .imp-block p a { color:#fff; text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(255,255,255,.3); }
+    .imp-block p a:hover { text-decoration-color:#fff; }
+    .imp-name { color:#fff; font-weight:600; }
+    .imp-legal { font-family:var(--f-mono); font-size:.78rem; color:var(--fg-2); margin-top:.4rem; }
+
+    .imp-list { list-style:none; margin:.4rem 0 .8rem; display:flex; flex-direction:column; gap:.35rem; }
+    .imp-list li { color:var(--fg-1); font-size:clamp(.88rem,1.5vw,.95rem); padding-left:1.1rem; position:relative; }
+    .imp-list li::before { content:'–'; position:absolute; left:0; color:var(--fg-2); }
+
+    .imp-contact { display:flex; flex-direction:column; gap:.55rem; margin-top:1.1rem; }
+    .imp-row {
+        display:flex; align-items:center; gap:1rem; padding:.8rem 1rem;
+        border:1px solid rgba(255,255,255,.07); text-decoration:none; color:var(--fg-1);
+        font-size:clamp(.86rem,1.5vw,.94rem); transition:color .2s,border-color .2s,background .2s;
+    }
+    .imp-row:hover { color:#fff; border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.025); }
+    .imp-icon {
+        width:34px; height:34px; flex-shrink:0; border:1px solid rgba(255,255,255,.1);
+        display:flex; align-items:center; justify-content:center; font-size:.78rem;
+    }
+
+    /* FOOTER */
+    .footer { background:#000; border-top:1px solid rgba(255,255,255,.05);
+        padding:2rem clamp(1.4rem,6vw,2.5rem) calc(1.5rem + var(--safe-bottom)); }
+    .footer-inner {
+        max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
+        flex-wrap:wrap; gap:.75rem; font-family:var(--f-mono); font-size:.55rem; letter-spacing:.1em; color:var(--fg-2);
+    }
+    .footer-inner a { color:var(--fg-2); text-decoration:none; transition:color .2s; }
+    .footer-inner a:hover { color:#fff; }
+    .footer-inner .f-links { display:flex; gap:1.5rem; align-items:center; }
+
+    :focus-visible { outline:2px solid rgba(255,255,255,.6); outline-offset:3px; }
+    </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+<header class="header" role="banner">
+    <div class="nav-wrap">
+        <a href="/" class="logo" aria-label="Benjamin Gillmann Photography – Startseite">
+            <img src="Transparent_Logo.svg" alt="Logo Benjamin Gillmann">
+            <span>Benjamin Gillmann</span>
+        </a>
+        <a href="/" class="nav-back" aria-label="Zur Startseite">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+            Startseite
+        </a>
+    </div>
+</header>
+
+<main id="main">
+
+    <section class="imp-hero">
+        <div class="imp-eyebrow">Rechtliches</div>
+        <h1>Datenschutz<br><em>erklärung</em></h1>
+        <p class="imp-stand">Stand: Mai 2026</p>
+    </section>
+
+    <div class="imp-wrap">
+
+        <div class="imp-block">
+            <h2><span class="num">1</span>Verantwortlicher</h2>
+            <p><span class="imp-name">Benjamin Gillmann</span></p>
+            <p>B.B – Photography &amp; Videography</p>
+            <p>Deutschland</p>
+            <div class="imp-contact">
+                <a class="imp-row" href="mailto:b.b@black.com">
+                    <span class="imp-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+                    <span>b.b@black.com</span>
+                </a>
+                <a class="imp-row" href="https://www.benni-photo.com" target="_blank" rel="noopener">
+                    <span class="imp-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></span>
+                    <span>www.benni-photo.com</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">2</span>Zugriffsdaten / Server-Logfiles</h2>
+            <p>Beim Aufrufen dieser Website werden durch den Hosting-Dienstleister automatisch technische Daten in sogenannten Server-Logfiles verarbeitet. Dazu können insbesondere gehören:</p>
+            <ul class="imp-list">
+                <li>Browsertyp und Browserversion</li>
+                <li>verwendetes Betriebssystem</li>
+                <li>aufgerufene Seiten / Dateien</li>
+                <li>Datum und Uhrzeit des Zugriffs</li>
+                <li>Referrer-URL</li>
+                <li>IP-Adresse</li>
+            </ul>
+            <p>Diese Daten sind technisch erforderlich, um die Website bereitzustellen, ihre Stabilität und Sicherheit zu gewährleisten und technische Fehler zu analysieren.</p>
+            <p class="imp-legal">Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer technisch fehlerfreien und sicheren Bereitstellung dieser Website.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">3</span>Hosting (GitHub Pages) &amp; Domain (STRATO)</h2>
+            <p>Diese Website wird über <strong>GitHub Pages</strong> bereitgestellt, einen Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seiten verarbeitet GitHub technische Zugriffsdaten (u. a. die IP-Adresse), um die Inhalte auszuliefern und die Sicherheit zu gewährleisten.</p>
+            <p>Dabei kann es zu einer Übermittlung von Daten in die USA kommen. GitHub stützt sich hierfür auf geeignete Garantien (u. a. Zertifizierung unter dem EU-US Data Privacy Framework bzw. EU-Standardvertragsklauseln). Weitere Informationen: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</p>
+            <p>Die Domain <strong>benni-photo.com</strong> wird über die STRATO AG, Berlin, verwaltet. Datenschutzhinweise: <a href="https://www.strato.de/datenschutz/" target="_blank" rel="noopener">strato.de/datenschutz</a>.</p>
+            <p class="imp-legal">Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer zuverlässigen und sicheren Bereitstellung der Website.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">4</span>Externe Schriftarten &amp; Icons</h2>
+            <p>Diese Website bindet Schriftarten von <strong>Google Fonts</strong> (Google Ireland Limited / Google LLC, USA) sowie Symbole von <strong>Font Awesome</strong> über das Content-Delivery-Netzwerk von <strong>Cloudflare</strong> (Cloudflare, Inc., USA) ein. Beim Laden dieser Ressourcen wird deine IP-Adresse an die jeweiligen Anbieter übermittelt; dabei kann eine Übertragung in die USA erfolgen.</p>
+            <p>Die Einbindung dient einer einheitlichen, ansprechenden und gut lesbaren Darstellung dieser Website. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutz</a> &middot; <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare Privacy Policy</a>.</p>
+            <p class="imp-legal">Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO – berechtigtes Interesse an einer optisch ansprechenden Gestaltung.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">5</span>Keine Webanalyse, kein Tracking, keine Cookies</h2>
+            <p>Diese Website verwendet keine Analyse- oder Tracking-Dienste, kein Werbe-Tracking und setzt keine Cookies zu Analyse- oder Marketingzwecken. Es werden keine Nutzungsprofile erstellt.</p>
+            <p class="imp-legal">Sollten künftig Analyse- oder Statistikfunktionen ergänzt werden, wird diese Erklärung entsprechend aktualisiert.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">6</span>Kontaktformular &amp; Kontaktaufnahme</h2>
+            <p>Wenn du mir über das Kontaktformular oder per E-Mail eine Nachricht sendest, werden die von dir eingegebenen Daten verarbeitet, um deine Anfrage zu bearbeiten. Dabei können insbesondere folgende Daten verarbeitet werden:</p>
+            <ul class="imp-list">
+                <li>Name</li>
+                <li>E-Mail-Adresse</li>
+                <li>Inhalt der Nachricht</li>
+            </ul>
+            <p>Die Verarbeitung erfolgt ausschließlich zum Zweck der Bearbeitung deiner Anfrage und der Kommunikation mit dir.</p>
+            <p class="imp-legal">Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO, sofern deine Anfrage auf die Anbahnung oder Durchführung eines Vertrags gerichtet ist – andernfalls Art. 6 Abs. 1 lit. f DSGVO (Bearbeitung eingehender Kontaktanfragen).</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">7</span>Bilder und Inhalte auf dieser Website</h2>
+            <p>Auf dieser Website werden eigene Foto- und Videoarbeiten veröffentlicht. Die Veröffentlichung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO sowie – soweit anwendbar – § 23 KUG. Berechtigtes Interesse ist die Präsentation meiner fotografischen und kreativen Arbeit.</p>
+            <p>Alle auf dieser Website veröffentlichten Bilder, Videos, Texte und sonstigen Inhalte unterliegen, soweit nicht anders angegeben, meinem Urheberrecht. Eine Verwendung, Vervielfältigung oder Weitergabe ohne vorherige schriftliche Genehmigung ist nicht gestattet.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">8</span>SSL-/TLS-Verschlüsselung</h2>
+            <p>Diese Website nutzt eine SSL-/TLS-Verschlüsselung (HTTPS). Dadurch werden übermittelte Inhalte geschützt und können nicht ohne Weiteres von Dritten mitgelesen werden.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">9</span>Rechte betroffener Personen</h2>
+            <p>Dir stehen nach der DSGVO grundsätzlich folgende Rechte zu:</p>
+            <ul class="imp-list">
+                <li>Auskunft gemäß Art. 15 DSGVO</li>
+                <li>Berichtigung gemäß Art. 16 DSGVO</li>
+                <li>Löschung gemäß Art. 17 DSGVO</li>
+                <li>Einschränkung der Verarbeitung gemäß Art. 18 DSGVO</li>
+                <li>Datenübertragbarkeit gemäß Art. 20 DSGVO</li>
+                <li>Widerspruch gemäß Art. 21 DSGVO</li>
+                <li>Beschwerde bei einer zuständigen Datenschutzaufsichtsbehörde</li>
+            </ul>
+            <p>Wenn du Fragen zur Verarbeitung deiner Daten hast oder deine Rechte geltend machen möchtest, kannst du dich jederzeit an mich wenden: <a href="mailto:b.b@black.com">b.b@black.com</a>.</p>
+        </div>
+
+        <div class="imp-block">
+            <h2><span class="num">10</span>Änderungen dieser Datenschutzerklärung</h2>
+            <p>Ich behalte mir vor, diese Datenschutzerklärung anzupassen, wenn dies aufgrund technischer, rechtlicher oder inhaltlicher Änderungen meiner Website erforderlich wird. Es gilt jeweils die aktuelle, auf dieser Seite veröffentlichte Fassung.</p>
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>&copy; 2026 Benjamin Gillmann Photography · Alle Rechte vorbehalten</span>
+        <div class="f-links">
+            <a href="/">Startseite</a>
+            <a href="portfolio/">Portfolio</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="https://www.instagram.com/benjamin_gillmann/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="author" content="Benjamin Gillmann">
+    <meta name="theme-color" content="#000000">
+    <title>Portfolio · Benjamin Gillmann Photography</title>
+
+    <meta name="description" content="Portfolio von Benjamin Gillmann – Konzert-, Musik- &amp; Sportfotografie aus München: Sportfreunde Stiller, Wanda, Punk, Metal, Pop und American Football. 41 ausgewählte Arbeiten.">
+    <meta name="keywords" content="Konzertfotografie, Musikfotografie, Sportfotografie, Fotograf München, Sportfreunde Stiller, Wanda, American Football, Live-Fotografie, Benjamin Gillmann">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="geo.region" content="DE-BY">
+    <meta name="geo.placename" content="München">
+    <link rel="canonical" href="https://benni-photo.com/portfolio/">
+
+    <meta property="og:type"        content="website">
+    <meta property="og:site_name"   content="Benjamin Gillmann Photography">
+    <meta property="og:title"       content="Portfolio · Benjamin Gillmann Photography">
+    <meta property="og:description" content="Konzert-, Musik- &amp; Sportfotografie – 41 ausgewählte Arbeiten aus München und deutschlandweit.">
+    <meta property="og:url"         content="https://benni-photo.com/portfolio/">
+    <meta property="og:locale"      content="de_DE">
+    <meta property="og:image"       content="https://benni-photo.com/portfolio/Sportfreunde_Stiller_Olympiahalle%20(1).jpg">
+    <meta property="og:image:width"  content="1920">
+    <meta property="og:image:height" content="1280">
+    <meta property="og:image:alt"   content="Sportfreunde Stiller Konzert in der Olympiahalle München">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Portfolio · Benjamin Gillmann Photography">
+    <meta name="twitter:description" content="Konzert-, Musik- &amp; Sportfotografie – 41 ausgewählte Arbeiten.">
+    <meta name="twitter:image"       content="https://benni-photo.com/portfolio/Sportfreunde_Stiller_Olympiahalle%20(1).jpg">
+
+    <link rel="icon"             type="image/x-icon"   href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180"        href="../apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+    /* ═══ TOKENS ═══ */
+    :root {
+        --bg-0:  #000; --bg-1: #080808; --bg-2: #0f0f0f;
+        --fg-0:  #fff; --fg-1: #888;    --fg-2:  #555;
+        --red:   #ff5e5e; --green: #5effa0;
+
+        --f-display: 'Cormorant Garamond', Georgia, serif;
+        --f-ui:      'Montserrat', sans-serif;
+        --f-mono:    'DM Mono', monospace;
+
+        --ease-out: cubic-bezier(0.16,1,0.3,1);
+        --ease-io:  cubic-bezier(0.4,0,0.2,1);
+
+        --hit: 44px;
+        --safe-top:    env(safe-area-inset-top, 0px);
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+        font-size: 16px; scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+    }
+    @media (max-width:600px){ html{font-size:15px} }
+
+    body {
+        font-family: var(--f-ui); background: var(--bg-0); color: var(--fg-0);
+        overflow-x: hidden; line-height: 1.6;
+    }
+    body.no-scroll { overflow: hidden; }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ═══ SKIP ═══ */
+    .skip-link {
+        position: absolute; left:-999px; top:10px; background:#fff; color:#000;
+        padding:8px 14px; z-index:10001; font-size:.85rem;
+    }
+    .skip-link:focus { left:10px; }
+
+    /* ═══ HEADER ═══ */
+    .header {
+        position: fixed; top:0; left:0; right:0; z-index:1000;
+        padding: 1.2rem 0;
+        transition: padding .4s ease, background .4s ease, border-color .4s ease;
+        border-bottom: 1px solid transparent;
+    }
+    .header.stuck {
+        padding: .7rem 0;
+        background: rgba(0,0,0,.96);
+        backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        border-bottom-color: rgba(255,255,255,.06);
+    }
+    .nav-wrap {
+        max-width: 1440px; margin: 0 auto;
+        padding: 0 clamp(1.2rem, 5vw, 2.5rem);
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .logo {
+        display: flex; align-items: center; gap: .6rem;
+        text-decoration: none; color: var(--fg-0);
+        font-size: clamp(.65rem, 1.3vw, .78rem);
+        font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+        flex-shrink: 0; min-height: var(--hit);
+    }
+    .logo img { height: 28px; width: auto; transition: transform .3s ease; }
+    .logo:hover img { transform: scale(1.07); }
+
+    .nav-right { display: flex; align-items: center; gap: clamp(.8rem, 2.5vw, 2rem); }
+    .nav-back {
+        display: flex; align-items: center; gap: .45rem;
+        font-family: var(--f-mono); font-size: .58rem;
+        letter-spacing: .18em; text-transform: uppercase;
+        color: rgba(255,255,255,.45); text-decoration: none;
+        transition: color .2s;
+    }
+    .nav-back:hover { color: #fff; }
+    .nav-back i { font-size: .5rem; }
+
+    .nav-ig {
+        display: flex; align-items: center; justify-content: center;
+        width: 36px; height: 36px;
+        border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.45);
+        text-decoration: none; font-size: .88rem; transition: all .25s;
+    }
+    .nav-ig:hover { color: #fff; border-color: rgba(255,255,255,.5); }
+
+    .nav-contact {
+        display: inline-flex; align-items: center;
+        padding: .45rem 1.1rem; background: #fff; color: #000;
+        font-size: .62rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+        text-decoration: none; transition: background .25s; min-height: var(--hit);
+        white-space: nowrap; flex-shrink: 0;
+    }
+    .nav-contact:hover { background: rgba(255,255,255,.85); }
+    @media (max-width:600px){ .nav-contact { display:none; } }
+
+    /* ═══ HERO ═══ */
+    .hero {
+        min-height: 55vh; display: flex; flex-direction: column;
+        justify-content: flex-end;
+        padding: calc(7rem + var(--safe-top)) clamp(1.4rem,6vw,5rem) clamp(3rem,8vh,5rem);
+        position: relative; overflow: hidden;
+        background: var(--bg-0);
+    }
+    .hero::before {
+        content:''; position:absolute; inset:0;
+        background: radial-gradient(ellipse at 60% 40%, rgba(255,255,255,.025) 0%, transparent 65%);
+        pointer-events: none;
+    }
+    .hero-label {
+        font-family: var(--f-mono); font-size: .58rem;
+        letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.35);
+        margin-bottom: .8rem; display: flex; align-items: center; gap: .75rem;
+    }
+    .hero-label::before { content:''; display:block; width:20px; height:1px; background:rgba(255,255,255,.25); }
+
+    .hero-title {
+        font-family: var(--f-display);
+        font-size: clamp(3.5rem, 12vw, 9rem);
+        font-weight: 300; line-height: .9; letter-spacing: -.02em; color: #fff;
+        margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; }
+
+    .hero-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .hero-meta-item {
+        display: flex; align-items: center; gap: .55rem;
+        font-family: var(--f-mono); font-size: .55rem;
+        letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.4);
+    }
+    .hero-meta-item i { font-size: .52rem; }
+    .hero-divider { width: 100%; height: 1px; background: rgba(255,255,255,.06); margin-top: clamp(2rem,5vw,3.5rem); }
+
+    /* ═══ FILTER TABS ═══ */
+    .filter-bar {
+        position: sticky; top: calc(var(--safe-top) + 56px); z-index: 900;
+        background: rgba(0,0,0,.96); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        padding: 0 clamp(1.2rem,5vw,2.5rem);
+    }
+    .filter-inner {
+        max-width: 1440px; margin: 0 auto;
+        display: flex; align-items: center;
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .filter-inner::-webkit-scrollbar { display:none; }
+
+    .ftab {
+        flex-shrink: 0; padding: 1rem 1.4rem;
+        background: transparent; border: none;
+        font-family: var(--f-mono); font-size: .58rem; letter-spacing: .16em;
+        text-transform: uppercase; color: rgba(255,255,255,.4);
+        cursor: pointer; position: relative;
+        transition: color .22s; white-space: nowrap; min-height: var(--hit);
+    }
+    .ftab::after {
+        content:''; position:absolute; bottom:0; left:0; right:0;
+        height:1px; background:#fff;
+        transform: scaleX(0); transform-origin: left;
+        transition: transform .3s var(--ease-out);
+    }
+    .ftab:hover { color: rgba(255,255,255,.7); }
+    .ftab.active { color:#fff; }
+    .ftab.active::after { transform: scaleX(1); }
+
+    .ftab-count {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 18px; height: 18px; border-radius: 50%;
+        background: rgba(255,255,255,.08); font-size: .5rem;
+        margin-left: .4rem; vertical-align: middle;
+        transition: background .22s;
+    }
+    .ftab.active .ftab-count { background: rgba(255,255,255,.2); }
+
+    /* ═══ PHOTO WALL ═══ */
+    .photo-wall-sec { padding: 3px 0 0; }
+
+    .photo-wall {
+        columns: 4 220px;
+        gap: 3px;
+        padding: 0 3px;
+    }
+    @media (max-width: 900px) { .photo-wall { columns: 3; } }
+    @media (max-width: 560px) { .photo-wall { columns: 2; } }
+    @media (max-width: 360px) { .photo-wall { columns: 1; } }
+
+    .gi {
+        break-inside: avoid;
+        margin-bottom: 3px;
+        position: relative; overflow: hidden;
+        background: #0a0a0a; cursor: pointer;
+    }
+    .gi img {
+        width: 100%; height: auto; display: block;
+        filter: grayscale(12%) brightness(.9);
+        transition: filter .55s ease, transform .7s var(--ease-io);
+        will-change: transform;
+    }
+    .gi:hover img { transform: scale(1.04); filter: none; }
+
+    .gi-overlay {
+        position: absolute; inset:0; z-index:2;
+        background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 50%);
+        opacity: 0; transition: opacity .35s ease;
+    }
+    .gi:hover .gi-overlay { opacity: 1; }
+
+    .gi-info {
+        position: absolute; bottom:0; left:0; right:0;
+        padding: .9rem 1.1rem; z-index:3;
+        transform: translateY(6px); opacity:0;
+        transition: all .35s var(--ease-io);
+    }
+    .gi:hover .gi-info { transform: translateY(0); opacity:1; }
+
+    .gi-title {
+        font-family: var(--f-display);
+        font-size: clamp(.85rem,1.8vw,1.05rem);
+        font-weight: 400; color:#fff; margin-bottom:.1rem;
+    }
+    .gi-sub {
+        font-family: var(--f-mono); font-size:.5rem;
+        letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.5);
+    }
+
+    .gi-plus {
+        position: absolute; top:.8rem; right:.8rem; z-index:3;
+        width:30px; height:30px;
+        border:1px solid rgba(255,255,255,.2);
+        background: rgba(0,0,0,.35); backdrop-filter:blur(6px);
+        display:flex; align-items:center; justify-content:center;
+        color:#fff; font-size:.65rem;
+        opacity:0; transform:scale(.8); transition: all .3s;
+    }
+    .gi:hover .gi-plus { opacity:1; transform:scale(1); }
+
+    @media (hover:none) {
+        .gi-overlay { opacity:1; }
+        .gi-info { transform:translateY(0); opacity:1; }
+        .gi-plus { opacity:1; transform:scale(1); }
+    }
+
+    .gi.hidden { display:none; }
+
+    /* ═══ PRESS STRIP ═══ */
+    .press-strip {
+        margin: clamp(3rem,7vw,5rem) 0 0;
+        border-top: 1px solid rgba(255,255,255,.06);
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        padding: clamp(2rem,5vw,3.5rem) clamp(1.2rem,5vw,2.5rem);
+        background: var(--bg-1);
+    }
+    .press-inner {
+        max-width:1440px; margin:0 auto;
+        display:grid; grid-template-columns:1fr 1fr; gap: clamp(2rem,6vw,5rem); align-items:center;
+    }
+    @media (max-width:760px){ .press-inner { grid-template-columns:1fr; } }
+
+    .press-label {
+        font-family: var(--f-mono); font-size:.56rem; letter-spacing:.22em;
+        text-transform:uppercase; color:var(--fg-2);
+        display:flex; align-items:center; gap:.75rem; margin-bottom:1.2rem;
+    }
+    .press-label::before { content:''; display:block; width:20px; height:1px; background:var(--fg-2); }
+    .press-pub {
+        font-family: var(--f-display); font-size: clamp(1rem,2.5vw,1.35rem);
+        font-weight:600; letter-spacing:.03em; color:rgba(255,255,255,.5); margin-bottom:.75rem;
+    }
+    .press-headline {
+        font-family: var(--f-display); font-size: clamp(1.2rem,3.5vw,1.8rem);
+        font-weight:300; line-height:1.22; color:#fff; margin-bottom:1rem;
+    }
+    .press-desc {
+        font-family: var(--f-ui); font-size:clamp(.84rem,1.5vw,.9rem);
+        color:var(--fg-1); line-height:1.85; margin-bottom:1.4rem;
+    }
+    .press-cta {
+        display:inline-flex; align-items:center; gap:.55rem;
+        font-family: var(--f-mono); font-size:.56rem; letter-spacing:.16em;
+        text-transform:uppercase; color:rgba(255,255,255,.5); text-decoration:none;
+        border-bottom:1px solid rgba(255,255,255,.15); padding-bottom:2px;
+        transition: color .2s, border-color .2s;
+    }
+    .press-cta:hover { color:#fff; border-color:rgba(255,255,255,.55); }
+
+    .press-badge { display:flex; flex-direction:column; align-items:flex-start; gap:.9rem; }
+    .badge {
+        display:flex; align-items:center; gap:1rem;
+        padding:1rem 1.2rem; border:1px solid rgba(255,255,255,.07);
+        background: rgba(255,255,255,.02); transition: border-color .3s;
+    }
+    .badge:hover { border-color: rgba(255,255,255,.18); }
+    .badge i { font-size:1.1rem; color:rgba(255,255,255,.35); flex-shrink:0; }
+    .badge-text strong { display:block; font-size:clamp(.82rem,1.4vw,.9rem); color:#fff; margin-bottom:.15rem; }
+    .badge-text span   { font-family:var(--f-mono); font-size:.52rem; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-2); }
+
+    /* ═══ CONTACT STRIP ═══ */
+    .contact-strip {
+        padding: clamp(3rem,7vw,5rem) clamp(1.2rem,5vw,2.5rem);
+        background: var(--bg-0);
+    }
+    .contact-inner {
+        max-width:1440px; margin:0 auto;
+        display:grid; grid-template-columns:1fr 1fr; gap: clamp(2rem,6vw,5rem); align-items:start;
+    }
+    @media (max-width:760px){ .contact-inner { grid-template-columns:1fr; } }
+
+    .c-label {
+        font-family:var(--f-mono); font-size:.56rem; letter-spacing:.22em;
+        text-transform:uppercase; color:var(--fg-2);
+        display:flex; align-items:center; gap:.75rem; margin-bottom:1.2rem;
+    }
+    .c-label::before { content:''; display:block; width:20px; height:1px; background:var(--fg-2); }
+    .c-head {
+        font-family:var(--f-display); font-size:clamp(1.6rem,5vw,3rem);
+        font-weight:300; line-height:1.05; color:#fff; margin-bottom:1rem;
+    }
+    .c-head em { font-style:italic; }
+    .c-body { color:var(--fg-1); font-size:clamp(.86rem,1.5vw,.94rem); line-height:1.85; }
+
+    .c-list { display:flex; flex-direction:column; gap:.6rem; margin-top:.4rem; }
+    .c-row {
+        display:flex; align-items:center; gap:1rem;
+        padding:.85rem 1rem; border:1px solid rgba(255,255,255,.06);
+        text-decoration:none; color:var(--fg-1); font-size:clamp(.84rem,1.4vw,.9rem);
+        transition: color .2s, border-color .2s, background .2s;
+    }
+    .c-row:hover { color:#fff; border-color:rgba(255,255,255,.22); background:rgba(255,255,255,.025); }
+    .c-icon {
+        width:32px; height:32px; flex-shrink:0;
+        border:1px solid rgba(255,255,255,.08);
+        display:flex; align-items:center; justify-content:center; font-size:.7rem;
+        transition:border-color .2s;
+    }
+    .c-row:hover .c-icon { border-color:rgba(255,255,255,.35); }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+        background:#000; border-top:1px solid rgba(255,255,255,.05);
+        padding: 2rem clamp(1.2rem,5vw,2.5rem) calc(1.5rem + var(--safe-bottom));
+    }
+    .footer-inner {
+        max-width:1440px; margin:0 auto;
+        display:flex; align-items:center; justify-content:space-between;
+        flex-wrap:wrap; gap:.75rem;
+        font-family:var(--f-mono); font-size:.55rem; letter-spacing:.1em; color:var(--fg-2);
+    }
+    .footer-inner a { color:var(--fg-2); text-decoration:none; transition:color .2s; }
+    .footer-inner a:hover { color:#fff; }
+
+    /* ═══ LIGHTBOX ═══ */
+    .lb {
+        position:fixed; inset:0; z-index:10000;
+        background: rgba(0,0,0,.98); backdrop-filter:blur(20px);
+        display:flex; align-items:center; justify-content:center;
+        padding: clamp(.8rem,4vw,3rem);
+        opacity:0; visibility:hidden; transition:opacity .35s, visibility .35s;
+    }
+    .lb.on { opacity:1; visibility:visible; }
+    .lb-wrap { display:flex; flex-direction:column; align-items:center; max-width:100%; max-height:90dvh; }
+    .lb-img {
+        max-width:100%; max-height:82dvh; max-height:82vh;
+        object-fit:contain; display:block;
+        animation: lbIn .35s var(--ease-io);
+    }
+    @keyframes lbIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+    .lb-cap {
+        margin-top:.9rem; font-family:var(--f-display);
+        font-size:.9rem; color:rgba(255,255,255,.4); text-align:center;
+    }
+    .lb-btn {
+        position:fixed; z-index:10002;
+        width:var(--hit); height:var(--hit);
+        border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.6);
+        color:#fff; display:flex; align-items:center; justify-content:center;
+        cursor:pointer; font-size:.88rem; transition:all .22s;
+    }
+    #lbClose { top:1rem; right:1rem; }
+    #lbClose:hover { border-color:rgba(255,255,255,.5); transform:rotate(90deg); }
+    #lbPrev { left:1rem; top:50%; transform:translateY(-50%); }
+    #lbNext { right:1rem; top:50%; transform:translateY(-50%); }
+    #lbPrev:hover, #lbNext:hover { background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.4); }
+    #lbPrev:hover { transform:translateY(-50%); }
+    #lbNext:hover { transform:translateY(-50%); }
+    .lb-counter {
+        position:fixed; top:1rem; left:50%; transform:translateX(-50%);
+        font-family:var(--f-mono); font-size:.55rem; letter-spacing:.18em;
+        color:rgba(255,255,255,.35);
+    }
+    @media (max-width:480px){ #lbPrev{left:.4rem} #lbNext{right:.4rem} }
+
+    /* ═══ BACK TOP ═══ */
+    .back-top {
+        position:fixed; bottom:calc(1.5rem + var(--safe-bottom)); right:1.5rem; z-index:100;
+        width:40px; height:40px;
+        background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+        color:#fff; font-size:.75rem;
+        display:flex; align-items:center; justify-content:center; cursor:pointer;
+        opacity:0; visibility:hidden; transition:all .3s;
+    }
+    .back-top.show { opacity:1; visibility:visible; }
+    .back-top:hover { background:rgba(255,255,255,.12); transform:translateY(-3px); }
+
+    :focus-visible { outline:2px solid rgba(255,255,255,.6); outline-offset:3px; }
+    @media (prefers-reduced-motion:reduce) {
+        *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+    }
+    </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+<!-- ══ HEADER ══ -->
+<header class="header" id="header" role="banner">
+    <div class="nav-wrap">
+        <a href="../" class="logo" aria-label="Zurück zur Startseite">
+            <img src="../Transparent_Logo.svg" alt="Logo Benjamin Gillmann">
+            <span>Benjamin Gillmann</span>
+        </a>
+        <div class="nav-right">
+            <a href="../" class="nav-back" aria-label="Zur Startseite">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Startseite
+            </a>
+            <a href="https://www.instagram.com/benjamin_gillmann/" class="nav-ig"
+               aria-label="Instagram" target="_blank" rel="noopener">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:benjamin.gillmann@black.com" class="nav-contact" aria-label="Akkreditierungsanfrage">
+                Anfrage senden
+            </a>
+        </div>
+    </div>
+</header>
+
+<main id="main">
+
+<!-- ══ HERO ══ -->
+<section class="hero" aria-label="Portfolio Einführung">
+    <div class="hero-label" aria-hidden="true">Akkreditierungsmappe · 2024–2025</div>
+    <h1 class="hero-title"><em>Portfolio</em><br>Benjamin Gillmann</h1>
+    <div class="hero-meta" role="list">
+        <div class="hero-meta-item" role="listitem">
+            <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
+            Konzertfotografie
+        </div>
+        <div class="hero-meta-item" role="listitem">
+            <i class="fa-solid fa-music" aria-hidden="true"></i>
+            Musikfotografie
+        </div>
+        <div class="hero-meta-item" role="listitem">
+            <i class="fa-solid fa-person-running" aria-hidden="true"></i>
+            Sportfotografie
+        </div>
+        <div class="hero-meta-item" role="listitem">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            München · Deutschland
+        </div>
+    </div>
+    <div class="hero-divider" aria-hidden="true"></div>
+</section>
+
+<!-- ══ FILTER ══ -->
+<nav class="filter-bar" aria-label="Galerie filtern">
+    <div class="filter-inner">
+        <button class="ftab active" data-filter="all">
+            Alle <span class="ftab-count">41</span>
+        </button>
+        <button class="ftab" data-filter="stiller">
+            Sportfreunde Stiller <span class="ftab-count">8</span>
+        </button>
+        <button class="ftab" data-filter="wanda">
+            Wanda <span class="ftab-count">8</span>
+        </button>
+        <button class="ftab" data-filter="pop">
+            Pop <span class="ftab-count">5</span>
+        </button>
+        <button class="ftab" data-filter="metal">
+            Metal <span class="ftab-count">3</span>
+        </button>
+        <button class="ftab" data-filter="punk">
+            Punk <span class="ftab-count">11</span>
+        </button>
+        <button class="ftab" data-filter="football">
+            Football <span class="ftab-count">4</span>
+        </button>
+        <button class="ftab" data-filter="quadrat">
+            10 im Quadrat <span class="ftab-count">2</span>
+        </button>
+    </div>
+</nav>
+
+<!-- ══ PHOTO WALL ══ -->
+<section class="photo-wall-sec" aria-label="Fotogalerie">
+    <div class="photo-wall" id="photoWall">
+
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (1).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (1).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1920" height="1280" loading="eager" decoding="async" fetchpriority="high">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-1.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-1.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1920" height="1377" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (1).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (1).jpg" alt="Punk Konzert live – Konzertfotografie" width="2400" height="1800" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="pop" tabindex="0" role="button"
+             aria-label="Pop Konzert live – Konzertfotografie – vergrößern"
+             data-src="Portfolio Pop (1).jpg"
+             data-title="Pop Konzert · Konzertfotografie">
+            <img src="Portfolio Pop (1).jpg" alt="Pop Konzert live – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Pop Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="football" tabindex="0" role="button"
+             aria-label="Fursty Razorbacks American Football – Sportfotografie – vergrößern"
+             data-src="Fursty_Razorback_Football.jpg"
+             data-title="Fursty Razorbacks · American Football">
+            <img src="Fursty_Razorback_Football.jpg" alt="Fursty Razorbacks American Football – Sportfotografie" width="1920" height="1311" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Fursty Razorbacks</div><div class="gi-sub">American Football</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="metal" tabindex="0" role="button"
+             aria-label="Metal Konzert live – Konzertfotografie – vergrößern"
+             data-src="Metal (1).jpg"
+             data-title="Metal Konzert · Konzertfotografie">
+            <img src="Metal (1).jpg" alt="Metal Konzert live – Konzertfotografie" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Metal Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="quadrat" tabindex="0" role="button"
+             aria-label="Ausstellung »10 im Quadrat« München – Süddeutsche Zeitung – vergrößern"
+             data-src="10-im-Qadrat-Belli.jpg"
+             data-title="10 im Quadrat · Ausstellung · SZ">
+            <img src="10-im-Qadrat-Belli.jpg" alt="Ausstellung »10 im Quadrat« München – Süddeutsche Zeitung" width="1536" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">10 im Quadrat</div><div class="gi-sub">Ausstellung · SZ</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (2).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (2).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1536" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-2.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-2.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (2).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (2).jpg" alt="Punk Konzert live – Konzertfotografie" width="2400" height="1600" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="pop" tabindex="0" role="button"
+             aria-label="Pop Konzert live – Konzertfotografie – vergrößern"
+             data-src="Portfolio Pop (2).jpg"
+             data-title="Pop Konzert · Konzertfotografie">
+            <img src="Portfolio Pop (2).jpg" alt="Pop Konzert live – Konzertfotografie" width="1440" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Pop Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="football" tabindex="0" role="button"
+             aria-label="Fursty Razorbacks American Football – Sportfotografie – vergrößern"
+             data-src="Fursty_Razorback_Football (2).jpg"
+             data-title="Fursty Razorbacks · American Football">
+            <img src="Fursty_Razorback_Football (2).jpg" alt="Fursty Razorbacks American Football – Sportfotografie" width="1920" height="1219" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Fursty Razorbacks</div><div class="gi-sub">American Football</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="metal" tabindex="0" role="button"
+             aria-label="Metal Konzert live – Konzertfotografie – vergrößern"
+             data-src="Metal (2).jpg"
+             data-title="Metal Konzert · Konzertfotografie">
+            <img src="Metal (2).jpg" alt="Metal Konzert live – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Metal Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="quadrat" tabindex="0" role="button"
+             aria-label="Ausstellung »10 im Quadrat« München – Süddeutsche Zeitung – vergrößern"
+             data-src="10-im-Qadrat-Belli-2.jpg"
+             data-title="10 im Quadrat · Ausstellung · SZ">
+            <img src="10-im-Qadrat-Belli-2.jpg" alt="Ausstellung »10 im Quadrat« München – Süddeutsche Zeitung" width="1754" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">10 im Quadrat</div><div class="gi-sub">Ausstellung · SZ</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (3).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (3).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-3.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-3.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (3).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (3).jpg" alt="Punk Konzert live – Konzertfotografie" width="2400" height="1600" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="pop" tabindex="0" role="button"
+             aria-label="Pop Konzert live – Konzertfotografie – vergrößern"
+             data-src="Portfolio Pop (4).jpg"
+             data-title="Pop Konzert · Konzertfotografie">
+            <img src="Portfolio Pop (4).jpg" alt="Pop Konzert live – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Pop Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="football" tabindex="0" role="button"
+             aria-label="Fursty Razorbacks American Football – Sportfotografie – vergrößern"
+             data-src="Fursty_Razorback_Football (3).jpg"
+             data-title="Fursty Razorbacks · American Football">
+            <img src="Fursty_Razorback_Football (3).jpg" alt="Fursty Razorbacks American Football – Sportfotografie" width="1920" height="1512" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Fursty Razorbacks</div><div class="gi-sub">American Football</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="metal" tabindex="0" role="button"
+             aria-label="Metal Konzert live – Konzertfotografie – vergrößern"
+             data-src="Metal (3).jpg"
+             data-title="Metal Konzert · Konzertfotografie">
+            <img src="Metal (3).jpg" alt="Metal Konzert live – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Metal Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (4).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (4).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-4.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-4.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (4).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (4).jpg" alt="Punk Konzert live – Konzertfotografie" width="1600" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="pop" tabindex="0" role="button"
+             aria-label="Pop Konzert live – Konzertfotografie – vergrößern"
+             data-src="Portfolio Pop (5).jpg"
+             data-title="Pop Konzert · Konzertfotografie">
+            <img src="Portfolio Pop (5).jpg" alt="Pop Konzert live – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Pop Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="football" tabindex="0" role="button"
+             aria-label="Fursty Razorbacks American Football – Sportfotografie – vergrößern"
+             data-src="Fursty_Razorback_Football (4).jpg"
+             data-title="Fursty Razorbacks · American Football">
+            <img src="Fursty_Razorback_Football (4).jpg" alt="Fursty Razorbacks American Football – Sportfotografie" width="1438" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Fursty Razorbacks</div><div class="gi-sub">American Football</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (5).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (5).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-5.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-5.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (5).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (5).jpg" alt="Punk Konzert live – Konzertfotografie" width="1920" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="pop" tabindex="0" role="button"
+             aria-label="Pop Konzert live – Konzertfotografie – vergrößern"
+             data-src="Portfolio Pop (6).jpg"
+             data-title="Pop Konzert · Konzertfotografie">
+            <img src="Portfolio Pop (6).jpg" alt="Pop Konzert live – Konzertfotografie" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Pop Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (6).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (6).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-6.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-6.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (6).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (6).jpg" alt="Punk Konzert live – Konzertfotografie" width="1600" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (7).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (7).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1920" height="1279" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-7.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-7.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1280" height="1920" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (7).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (7).jpg" alt="Punk Konzert live – Konzertfotografie" width="1600" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="stiller" tabindex="0" role="button"
+             aria-label="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie – vergrößern"
+             data-src="Sportfreunde_Stiller_Olympiahalle (8).jpg"
+             data-title="Sportfreunde Stiller · Olympiahalle München">
+            <img src="Sportfreunde_Stiller_Olympiahalle (8).jpg" alt="Sportfreunde Stiller Konzert Olympiahalle München – Konzertfotografie" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Sportfreunde Stiller</div><div class="gi-sub">Olympiahalle München</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="wanda" tabindex="0" role="button"
+             aria-label="Wanda Konzert live – Konzertfotografie München – vergrößern"
+             data-src="Auftritt-im-Wanda-8.jpg"
+             data-title="Wanda · Live · Konzert">
+            <img src="Auftritt-im-Wanda-8.jpg" alt="Wanda Konzert live – Konzertfotografie München" width="1920" height="1280" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Wanda</div><div class="gi-sub">Live · Konzert</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (8).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (8).jpg" alt="Punk Konzert live – Konzertfotografie" width="2400" height="1600" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (9).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (9).jpg" alt="Punk Konzert live – Konzertfotografie" width="1600" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (10).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (10).jpg" alt="Punk Konzert live – Konzertfotografie" width="1600" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+        <div class="gi" data-cat="punk" tabindex="0" role="button"
+             aria-label="Punk Konzert live – Konzertfotografie – vergrößern"
+             data-src="Punk (11).jpg"
+             data-title="Punk Konzert · Konzertfotografie">
+            <img src="Punk (11).jpg" alt="Punk Konzert live – Konzertfotografie" width="1920" height="2400" loading="lazy" decoding="async">
+            <div class="gi-overlay" aria-hidden="true"></div>
+            <div class="gi-info"><div class="gi-title">Punk Konzert</div><div class="gi-sub">Konzertfotografie</div></div>
+            <div class="gi-plus" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+        </div>
+    </div>
+</section>
+
+<section class="press-strip" aria-labelledby="press-h">
+    <div class="press-inner">
+        <div>
+            <div class="press-label">Presse &amp; Ausstellungen</div>
+            <div class="press-pub">Süddeutsche Zeitung</div>
+            <h2 class="press-headline" id="press-h">»10 im Quadrat« – Junge Fotografen, junge Musiker</h2>
+            <p class="press-desc">
+                Meine Porträtarbeiten junger Musiker wurden als Teil der Ausstellung <strong>»10 im Quadrat«</strong> in München präsentiert – ein Projekt, das Fotografie und Musik im Dialog vereint und von der Süddeutschen Zeitung veröffentlicht wurde.
+            </p>
+            <a href="https://www.sueddeutsche.de/projekte/artikel/muenchen/10-im-quadrat-ausstellung-junge-fotografen-junge-musiker-portraets-e331356/"
+               class="press-cta" target="_blank" rel="noopener">
+                Artikel lesen <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="press-badge">
+            <div class="badge">
+                <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+                <div class="badge-text">
+                    <strong>Süddeutsche Zeitung</strong>
+                    <span>Veröffentlicht · München 2024</span>
+                </div>
+            </div>
+            <div class="badge">
+                <i class="fa-solid fa-image" aria-hidden="true"></i>
+                <div class="badge-text">
+                    <strong>Ausstellung »10 im Quadrat«</strong>
+                    <span>Junge Fotografen &amp; Musiker · München</span>
+                </div>
+            </div>
+            <div class="badge">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                <div class="badge-text">
+                    <strong>@benjamin_gillmann</strong>
+                    <span>Instagram · Aktuelle Arbeiten</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CONTACT / AKKREDITIERUNG ══ -->
+<section class="contact-strip" aria-labelledby="ct-h">
+    <div class="contact-inner">
+        <div>
+            <div class="c-label">Akkreditierung &amp; Kontakt</div>
+            <h2 class="c-head" id="ct-h">Anfrage &amp;<br><em>Buchung</em></h2>
+            <p class="c-body">
+                Für Akkreditierungsanfragen, Booking und Zusammenarbeit – ich freue mich auf Ihre Nachricht. Konzerte, Festivals, Sportveranstaltungen und Events deutschlandweit.
+            </p>
+        </div>
+        <div>
+            <div class="c-list">
+                <a class="c-row" href="mailto:benjamin.gillmann@black.com">
+                    <div class="c-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></div>
+                    <span>benjamin.gillmann@black.com</span>
+                </a>
+                <a class="c-row" href="https://www.instagram.com/benjamin_gillmann/"
+                   target="_blank" rel="noopener">
+                    <div class="c-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></div>
+                    <span>@benjamin_gillmann</span>
+                </a>
+                <a class="c-row" href="../">
+                    <div class="c-icon" aria-hidden="true"><i class="fa-solid fa-globe"></i></div>
+                    <span>benni-photo.com</span>
+                </a>
+                <div class="c-row" style="cursor:default;">
+                    <div class="c-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+                    <span>München &amp; deutschlandweit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+        <span>&copy; 2026 Benjamin Gillmann Photography · Alle Rechte vorbehalten</span>
+        <div style="display:flex;gap:1.5rem;align-items:center;">
+            <a href="../impressum.html">Impressum</a>
+            <a href="../datenschutz.html">Datenschutz</a>
+            <a href="../">Startseite</a>
+            <a href="https://www.instagram.com/benjamin_gillmann/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Zurück nach oben">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- ══ LIGHTBOX ══ -->
+<div id="lb" class="lb" role="dialog" aria-modal="true" aria-label="Bildansicht">
+    <button id="lbClose" class="lb-btn" aria-label="Schließen"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <button id="lbPrev"  class="lb-btn" aria-label="Vorheriges Bild"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+    <button id="lbNext"  class="lb-btn" aria-label="Nächstes Bild"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    <div class="lb-counter" id="lbCounter" aria-live="polite"></div>
+    <div class="lb-wrap">
+        <img id="lbImg" class="lb-img" src="" alt="Bildansicht">
+        <div id="lbCap" class="lb-cap"></div>
+    </div>
+</div>
+
+<script>
+/* ── HEADER ── */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => header.classList.toggle('stuck', window.scrollY > 40), {passive:true});
+
+/* ── ALL ITEMS ── */
+const allItems = [...document.querySelectorAll('.gi')];
+
+/* ── FILTER ── */
+const ftabs = document.querySelectorAll('.ftab');
+
+function applyFilter(f) {
+    ftabs.forEach(t => t.classList.toggle('active', t.dataset.filter === f));
+    allItems.forEach(item => {
+        item.classList.toggle('hidden', f !== 'all' && item.dataset.cat !== f);
+    });
+}
+
+ftabs.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
+
+/* ── LIGHTBOX ── */
+let lbIdx = 0;
+const lb      = document.getElementById('lb');
+const lbImg   = document.getElementById('lbImg');
+const lbCap   = document.getElementById('lbCap');
+const lbCount = document.getElementById('lbCounter');
+
+function visibleItems() { return allItems.filter(i => !i.classList.contains('hidden')); }
+
+function openLB(item) {
+    const vis = visibleItems();
+    lbIdx = vis.indexOf(item);
+    showLBItem(vis[lbIdx]);
+    lb.classList.add('on');
+    document.body.classList.add('no-scroll');
+    document.getElementById('lbClose').focus();
+}
+
+function showLBItem(item) {
+    const vis = visibleItems();
+    lbImg.src = item.dataset.src;
+    lbCap.textContent = item.dataset.title || '';
+    lbCount.textContent = `${vis.indexOf(item) + 1} / ${vis.length}`;
+    lbImg.style.animation = 'none';
+    lbImg.offsetHeight;
+    lbImg.style.animation = '';
+}
+
+function closeLB() { lb.classList.remove('on'); document.body.classList.remove('no-scroll'); }
+
+function navLB(dir) {
+    const vis = visibleItems();
+    if(!vis.length) return;
+    lbIdx = (lbIdx + dir + vis.length) % vis.length;
+    showLBItem(vis[lbIdx]);
+}
+
+document.getElementById('lbClose').addEventListener('click', closeLB);
+document.getElementById('lbPrev').addEventListener('click',  () => navLB(-1));
+document.getElementById('lbNext').addEventListener('click',  () => navLB(1));
+lb.addEventListener('click', e => { if(e.target === lb) closeLB(); });
+
+document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('on')) return;
+    if(e.key === 'Escape')     closeLB();
+    if(e.key === 'ArrowLeft')  navLB(-1);
+    if(e.key === 'ArrowRight') navLB(1);
+});
+
+let tsX = 0;
+lb.addEventListener('touchstart', e => { tsX = e.changedTouches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tsX;
+    if(Math.abs(dx) > 50) navLB(dx < 0 ? 1 : -1);
+}, {passive:true});
+
+allItems.forEach(item => {
+    item.addEventListener('click', () => openLB(item));
+    item.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLB(item); }
+    });
+});
+
+/* ── BACK TO TOP ── */
+const btBtn = document.getElementById('backTop');
+window.addEventListener('scroll', () => btBtn.classList.toggle('show', window.scrollY > 600), {passive:true});
+btBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Portfolio – Benjamin Gillmann Photography",
+  "description": "Konzert-, Musik- und Sportfotografie – ausgewählte Arbeiten von Benjamin Gillmann aus München und deutschlandweit.",
+  "url": "https://benni-photo.com/portfolio/",
+  "numberOfItems": 41,
+  "genre": ["Konzertfotografie", "Musikfotografie", "Sportfotografie"],
+  "author": {
+    "@type": "Person",
+    "name": "Benjamin Gillmann",
+    "url": "https://benni-photo.com",
+    "sameAs": ["https://www.instagram.com/benjamin_gillmann/"]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://benni-photo.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://benni-photo.com/portfolio/" }
+  ]
+}
+</script>
+
+</body>
+</html>
