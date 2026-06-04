@@ -117,15 +117,6 @@
     "height": 2048
   },
   {
-    "file": "konzert/flaschen_grün-16.jpg",
-    "title": "flaschen grün 16",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "flaschen grün 16 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1638,
-    "height": 2048
-  },
-  {
     "file": "konzert/flaschen_grün-18.jpg",
     "title": "flaschen grün 18",
     "cat": "konzert",
@@ -351,13 +342,49 @@
     "height": 2048
   },
   {
-    "file": "konzert/Sportfreunde_Stiller_Olympiahalle (2).jpg",
+    "file": "konzert/Sportfreunde_Stiller_Olympiahalle (2) copy.jpg",
+    "title": "Sportfreunde Stiller Olympiahalle copy",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Sportfreunde Stiller Olympiahalle copy – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1536,
+    "height": 1920
+  },
+  {
+    "file": "konzert/Sportfreunde_Stiller_Olympiahalle (3).jpg",
     "title": "Sportfreunde Stiller Olympiahalle",
     "cat": "konzert",
     "catLabel": "Musik",
     "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1536,
+    "width": 1920,
+    "height": 1280
+  },
+  {
+    "file": "konzert/Sportfreunde_Stiller_Olympiahalle (5).jpg",
+    "title": "Sportfreunde Stiller Olympiahalle",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1280,
     "height": 1920
+  },
+  {
+    "file": "konzert/Sportfreunde_Stiller_Olympiahalle (7).jpg",
+    "title": "Sportfreunde Stiller Olympiahalle",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1920,
+    "height": 1279
+  },
+  {
+    "file": "konzert/Sportfreunde_Stiller_Olympiahalle (8).jpg",
+    "title": "Sportfreunde Stiller Olympiahalle",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1920,
+    "height": 1280
   },
   {
     "file": "konzert/Stahlzeit (1).jpg",
@@ -388,15 +415,6 @@
   },
   {
     "file": "konzert/Stahlzeit (4).jpg",
-    "title": "Stahlzeit",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1356
-  },
-  {
-    "file": "konzert/Stahlzeit (5).jpg",
     "title": "Stahlzeit",
     "cat": "konzert",
     "catLabel": "Musik",
@@ -504,94 +522,76 @@
     "height": 2048
   },
   {
-    "file": "red-carpet/47-_DSC1715.jpg",
-    "title": "47 DSC1715",
+    "file": "red-carpet/die_drei_fragezeichen (1).jpg",
+    "title": "die drei fragezeichen",
     "cat": "red-carpet",
     "catLabel": "Red Carpet",
-    "alt": "47 DSC1715 – Red-Carpet-Fotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1712
-  },
-  {
-    "file": "red-carpet/50-_DSC1660.jpg",
-    "title": "50 DSC1660",
-    "cat": "red-carpet",
-    "catLabel": "Red Carpet",
-    "alt": "50 DSC1660 – Red-Carpet-Fotografie von Benjamin Gillmann",
-    "width": 1623,
-    "height": 1623
-  },
-  {
-    "file": "red-carpet/54-_DSC1594.jpg",
-    "title": "54 DSC1594",
-    "cat": "red-carpet",
-    "catLabel": "Red Carpet",
-    "alt": "54 DSC1594 – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 1536,
     "height": 2048
   },
   {
-    "file": "red-carpet/56-_DSC1582.jpg",
-    "title": "56 DSC1582",
+    "file": "red-carpet/die_drei_fragezeichen (2).jpg",
+    "title": "die drei fragezeichen",
     "cat": "red-carpet",
     "catLabel": "Red Carpet",
-    "alt": "56 DSC1582 – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1536
   },
   {
-    "file": "red-carpet/60-_DSC1553.jpg",
-    "title": "60 DSC1553",
+    "file": "red-carpet/die_drei_fragezeichen (3).jpg",
+    "title": "die drei fragezeichen",
     "cat": "red-carpet",
     "catLabel": "Red Carpet",
-    "alt": "60 DSC1553 – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1536
   },
   {
-    "file": "red-carpet/63-_DSC1517.jpg",
-    "title": "63 DSC1517",
+    "file": "red-carpet/die_drei_fragezeichen (4).jpg",
+    "title": "die drei fragezeichen",
     "cat": "red-carpet",
     "catLabel": "Red Carpet",
-    "alt": "63 DSC1517 – Red-Carpet-Fotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 2048
-  },
-  {
-    "file": "red-carpet/65-_DSC1497.jpg",
-    "title": "65 DSC1497",
-    "cat": "red-carpet",
-    "catLabel": "Red Carpet",
-    "alt": "65 DSC1497 – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1365
   },
   {
-    "file": "red-carpet/68-_DSC1476.jpg",
-    "title": "68 DSC1476",
+    "file": "red-carpet/die_drei_fragezeichen (5).jpg",
+    "title": "die drei fragezeichen",
     "cat": "red-carpet",
     "catLabel": "Red Carpet",
-    "alt": "68 DSC1476 – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1536
   },
   {
-    "file": "red-carpet/70-_DSC1465.jpg",
-    "title": "70 DSC1465",
+    "file": "red-carpet/die_drei_fragezeichen (6).jpg",
+    "title": "die drei fragezeichen",
     "cat": "red-carpet",
     "catLabel": "Red Carpet",
-    "alt": "70 DSC1465 – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "width": 2048,
+    "height": 1365
+  },
+  {
+    "file": "red-carpet/die_drei_fragezeichen (7).jpg",
+    "title": "die drei fragezeichen",
+    "cat": "red-carpet",
+    "catLabel": "Red Carpet",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
+    "width": 2048,
+    "height": 1536
+  },
+  {
+    "file": "red-carpet/die_drei_fragezeichen (8).jpg",
+    "title": "die drei fragezeichen",
+    "cat": "red-carpet",
+    "catLabel": "Red Carpet",
+    "alt": "die drei fragezeichen – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 1536,
     "height": 2048
-  },
-  {
-    "file": "red-carpet/72-_DSC1422.jpg",
-    "title": "72 DSC1422",
-    "cat": "red-carpet",
-    "catLabel": "Red Carpet",
-    "alt": "72 DSC1422 – Red-Carpet-Fotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1536
   },
   {
     "file": "red-carpet/woodwalkers_2 (1).jpg",
@@ -610,15 +610,6 @@
     "alt": "woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1365
-  },
-  {
-    "file": "red-carpet/woodwalkers_2 (2).jpg",
-    "title": "woodwalkers 2",
-    "cat": "red-carpet",
-    "catLabel": "Red Carpet",
-    "alt": "woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann",
-    "width": 1365,
-    "height": 2048
   },
   {
     "file": "red-carpet/woodwalkers_2 (3).jpg",
@@ -664,15 +655,6 @@
     "alt": "woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann",
     "width": 1839,
     "height": 2048
-  },
-  {
-    "file": "red-carpet/woodwalkers_2 (8).jpg",
-    "title": "woodwalkers 2",
-    "cat": "red-carpet",
-    "catLabel": "Red Carpet",
-    "alt": "woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1365
   },
   {
     "file": "red-carpet/woodwalkers_2 (9).jpg",
@@ -1422,15 +1404,6 @@
     "height": 1365
   },
   {
-    "file": "meine-kunst/10-im-quadrat-bilder/Max/max_02.jpg",
-    "title": "10 im Quadrat – Max",
-    "cat": "meine-kunst",
-    "catLabel": "Meine Kunst",
-    "alt": "»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1434
-  },
-  {
     "file": "meine-kunst/10-im-quadrat-bilder/Max/max_03.jpg",
     "title": "10 im Quadrat – Max",
     "cat": "meine-kunst",
@@ -1438,15 +1411,6 @@
     "alt": "»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann",
     "width": 1247,
     "height": 2048
-  },
-  {
-    "file": "meine-kunst/10-im-quadrat-bilder/Max/max_05.jpg",
-    "title": "10 im Quadrat – Max",
-    "cat": "meine-kunst",
-    "catLabel": "Meine Kunst",
-    "alt": "»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1365
   },
   {
     "file": "meine-kunst/10-im-quadrat-bilder/Max/max_07.jpg",

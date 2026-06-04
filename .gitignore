@@ -1,13 +1,22 @@
-﻿# Lokale VS-Code-Historie
-.history/
-# Claude / lokale Tool-Einstellungen
-.claude/
-# Grosse Video-Dateien (ueber GitHubs 100-MB-Limit, nur lokal)
+# ── Große, ungenutzte Videodateien ───────────────────────────────────────────
+# .mov-Backups (z. B. in 10-im-quadrat-bilder/Kristina/) liegen über GitHubs
+# 100-MB-Limit und würden den Push blockieren. Nur lokales Backup, nicht deployt.
 *.mov
-start_video_header.mp4
-# Temporaer / Planungsnotizen
-*.tmp
-plan3_6.md
-# Python-Bytecode
+
+# ── Editor-/Tool-Verlauf & lokale Konfiguration ──────────────────────────────
+.history/
+.vscode/
+.claude/settings.local.json
+
+# ── Python (Build-Skripte) ───────────────────────────────────────────────────
 __pycache__/
 *.pyc
+
+# ── Temporäre & Backup-Dateien ───────────────────────────────────────────────
+*.tmp
+*.zip
+.DS_Store
+Thumbs.db
+
+# ── Lokaler Ordner außerhalb des Site-Roots (falls je mitversioniert) ─────────
+das hier nicht benutzen/

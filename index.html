@@ -58,8 +58,8 @@
         --bg-1:   #080808;
         --bg-2:   #0f0f0f;
         --fg-0:   #fff;
-        --fg-1:   #888;
-        --fg-2:   #555;
+        --fg-1:   #d4d4d4;   /* helles Grau – Fließtext, gut lesbar */
+        --fg-2:   #bdbdbd;   /* helleres Grau – Labels/Eyebrows */
         --accent: #fff;
         --red:    #ff5e5e;
         --green:  #5effa0;
@@ -160,7 +160,7 @@
     .preloader {
         position: fixed; inset: 0; z-index: 99999; background: #000;
         display: flex; align-items: center; justify-content: center; overflow: hidden;
-        animation: plSafety .8s ease 3s forwards;
+        animation: plSafety .8s ease 5.5s forwards;   /* CSS-Notausstieg, falls JS fehlt */
     }
     @keyframes plSafety { to { opacity: 0; visibility: hidden; pointer-events: none; } }
     .preloader::before {
@@ -185,6 +185,12 @@
     @keyframes plRing { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
     .pl-ring-wrap::after { content:''; position:absolute; inset:-8px; border-radius:50%; border:1px dashed rgba(255,255,255,.07); animation: plSpin 8s linear infinite; }
     @keyframes plSpin { to{transform:rotate(360deg)} }
+    /* Konischer Fortschritts-Ring um das Logo (von JS via --p gefüllt) */
+    .pl-ring-prog { position:absolute; inset:-5px; border-radius:50%;
+        background: conic-gradient(#fff calc(var(--p,0)*1%), rgba(255,255,255,.07) 0);
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+                mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+        opacity:0; animation: plFadeIn .6s ease .4s forwards; filter: drop-shadow(0 0 5px rgba(255,255,255,.4)); }
     .pl-logo-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
     .pl-logo { width: 44px; height: 44px; object-fit: contain; opacity: 0; animation: plFadeIn .7s ease .45s forwards; }
     @keyframes plFadeIn { from{opacity:0;transform:scale(.75)} to{opacity:1;transform:scale(1)} }
@@ -192,10 +198,12 @@
     @keyframes plName { from{opacity:0;letter-spacing:.7em} to{opacity:1;letter-spacing:.3em} }
     .pl-sub { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--fg-2); opacity: 0; animation: plUp .7s ease .9s forwards; text-align: center; }
     .pl-bar-wrap { width: 100%; opacity: 0; animation: plUp .5s ease 1s forwards; }
-    .pl-bar-track { height: 1px; background: rgba(255,255,255,.07); overflow: hidden; position: relative; }
-    .pl-bar-fill { height: 100%; width: 0; background: #fff; transition: width .08s linear; box-shadow: 0 0 6px rgba(255,255,255,.5); }
-    .pl-bar-labels { display: flex; justify-content: space-between; margin-top: .6rem; font-family: var(--f-mono); font-size: .58rem; letter-spacing: .1em; color: var(--fg-2); }
-    .pl-counter { font-variant-numeric: tabular-nums; }
+    .pl-bar-track { height: 3px; background: rgba(255,255,255,.09); border-radius: 999px; overflow: hidden; position: relative; }
+    .pl-bar-fill { height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, rgba(255,255,255,.5), #fff); transition: width .14s var(--ease-io); box-shadow: 0 0 12px rgba(255,255,255,.55); position: relative; }
+    .pl-bar-fill::after { content:''; position:absolute; inset:0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent); transform: translateX(-100%); animation: plSheen 1.1s ease-in-out infinite; }
+    @keyframes plSheen { to { transform: translateX(100%); } }
+    .pl-bar-labels { display: flex; justify-content: space-between; margin-top: .7rem; font-family: var(--f-mono); font-size: .58rem; letter-spacing: .1em; color: var(--fg-2); }
+    .pl-counter { font-variant-numeric: tabular-nums; color: #fff; }
     @keyframes plUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
     .preloader.exit { animation: plExit .9s var(--ease-io) forwards; }
     @keyframes plExit { 0%{clip-path:inset(0 0 0 0)} 100%{clip-path:inset(0 0 100% 0)} }
@@ -346,7 +354,7 @@
     .hero-eyebrow {
         display: flex; align-items: center; gap: var(--sp-4);
         font-family: var(--f-mono); font-size: clamp(.55rem, 1.1vw, .63rem);
-        letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.42);
+        letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.62);
         margin-bottom: clamp(.8rem, 2vh, 1.4rem);
         opacity: 0; animation: fadeUp .9s ease .2s forwards;
     }
@@ -364,7 +372,7 @@
     .hero-title em { font-style: italic; font-weight: 300; }
     .hero-sub {
         font-size: clamp(.68rem, 1.4vw, .88rem);
-        letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.42);
+        letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.62);
         margin-bottom: clamp(1.6rem, 4vh, 2.5rem);
         opacity: 0; animation: fadeUp .9s ease .5s forwards;
     }
@@ -503,7 +511,7 @@
     /* Desktop: Avatar verborgen (großes Bild links bleibt); Mobile siehe unten */
     .about-head { display: block; }
     .about-avatar { display: none; }
-    .about-body { color: var(--fg-1); font-size: clamp(.82rem, 1.4vw, .9rem); line-height: 1.7; margin-bottom: 1.4rem; }
+    .about-body { color: #e6e6e6; font-size: clamp(1.02rem, 1.9vw, 1.2rem); line-height: 1.75; margin-bottom: 1.4rem; letter-spacing: .002em; }
     .stats-row {
         display: grid; grid-template-columns: repeat(3,1fr);
         gap: clamp(.8rem, 2.5vw, 1.8rem);
@@ -680,6 +688,13 @@
     @media (max-width: 700px) { .photo-wall { columns: 2; } }
     @media (max-width: 400px) { .photo-wall { columns: 1; } }
 
+    /* Startseiten-Vorschau: kuratierte Collage aus main-portfolio/ als Masonry.
+       Bilder behalten ihr Seitenverhältnis (height:auto) – kein Zuschneiden, auf
+       Handys korrekt. Mindestens 2 Spalten, damit der Collage-Look erhalten bleibt. */
+    #pfGrid { columns: 4 220px; }
+    @media (max-width: 700px) { #pfGrid { columns: 2; } }
+    @media (max-width: 400px) { #pfGrid { columns: 2; } }
+
     .pf-item {
         break-inside: avoid;
         margin-bottom: 3px;
@@ -846,19 +861,25 @@
     .reveal   { opacity: 0; transform: translateY(26px); }
     .reveal-l { opacity: 0; transform: translateX(-26px); }
     .reveal-r { opacity: 0; transform: translateX(26px); }
-    .reveal, .reveal-l, .reveal-r { transition: opacity .8s var(--ease-io), transform .8s var(--ease-io); }
-    .in-view { opacity: 1 !important; transform: none !important; }
+    .reveal-s { opacity: 0; transform: scale(.92); }                  /* sanftes Zoom-In */
+    .reveal-blur { opacity: 0; transform: translateY(20px); filter: blur(8px); }
+    .reveal, .reveal-l, .reveal-r, .reveal-s, .reveal-blur { transition: opacity .8s var(--ease-io), transform .8s var(--ease-io), filter .8s var(--ease-io); will-change: opacity, transform; }
+    .in-view { opacity: 1 !important; transform: none !important; filter: none !important; }
     .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s}
-    .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+    .d4{transition-delay:.4s} .d5{transition-delay:.5s} .d6{transition-delay:.6s} .d7{transition-delay:.7s}
+
+    /* ═══ PARALLAX (sanft, via JS getrieben) ═══ */
+    [data-speed] { will-change: transform; }
 
     /* ═══ FOCUS / REDUCE MOTION ═══ */
     :focus-visible { outline: 2px solid rgba(255,255,255,.6); outline-offset: 3px; }
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-        .reveal, .reveal-l, .reveal-r { opacity: 1; transform: none; }
+        .reveal, .reveal-l, .reveal-r, .reveal-s, .reveal-blur { opacity: 1; transform: none; filter: none; }
         .cursor-glow { display: none; }
         .scroll-progress { transition: none; }
         .hero-img img { transform: none !important; }
+        [data-speed] { transform: none !important; }
     }
     </style>
 </head>
@@ -872,6 +893,7 @@
             <div class="pl-ring"></div>
             <div class="pl-ring"></div>
             <div class="pl-ring"></div>
+            <div class="pl-ring-prog" id="plRingProg" style="--p:0"></div>
             <div class="pl-logo-wrap">
                 <img src="Transparent_Logo.svg" alt="" class="pl-logo">
             </div>
@@ -953,7 +975,7 @@
     <div class="container">
         <div class="about-grid">
             <div class="about-img-wrap reveal-l">
-                <img src="Profil.jpg" alt="Benjamin Gillmann – Fotograf aus Deutschland" width="760" height="751" loading="lazy" decoding="async">
+                <img src="Profil.jpg" alt="Benjamin Gillmann – Fotograf aus Deutschland" width="760" height="751" loading="lazy" decoding="async" data-speed="0.04">
             </div>
             <div class="about-text-col">
                 <div class="about-head">
@@ -976,45 +998,45 @@
 <section class="section services-sec" id="services" aria-labelledby="svc-h">
     <div class="container">
         <div class="eyebrow reveal">Leistungen</div>
-        <h2 class="sec-title reveal" id="svc-h">Was ich<br><em>anbiete</em></h2>
+        <h2 class="sec-title reveal" id="svc-h">Was ich<br><em>fotografiere</em></h2>
         <div class="services-grid">
-            <a class="svc-card reveal" href="portfolio/sport/" data-nav aria-label="Sportfotografie – Portfolio ansehen">
-                <img class="svc-bg" src="leistung-sportfotografie.jpg" data-fallback="portfolio/sport/ffb_fursty_068.jpg" alt="" loading="lazy" decoding="async">
+            <a class="svc-card reveal-s" href="portfolio/sport/" data-nav aria-label="Sportfotografie – Portfolio ansehen">
+                <img class="svc-bg" src="images/leistung-sportfotografie.jpg" data-fallback="portfolio/sport/ffb_fursty_068.jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">01</div>
                 <h3 class="svc-title">Sportfotografie</h3>
                 <p class="svc-desc">Dynamische Actionaufnahmen voller Emotion – von Football bis Leichtathletik. Schnelle Reaktion, präzise Bildkomposition.</p>
                 <span class="svc-cta">Portfolio ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="svc-card reveal d1" href="portfolio/konzert/" data-nav aria-label="Musikfotografie – Portfolio ansehen">
-                <img class="svc-bg" src="leistung-musikfotografie.jpg" data-fallback="portfolio/konzert/Auftritt-im-Wanda-1.jpg" alt="" loading="lazy" decoding="async">
+            <a class="svc-card reveal-s d1" href="portfolio/konzert/" data-nav aria-label="Musikfotografie – Portfolio ansehen">
+                <img class="svc-bg" src="images/leistung-musikfotografie.jpg" data-fallback="portfolio/konzert/Auftritt-im-Wanda-1.jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">02</div>
                 <h3 class="svc-title">Musikfotografie</h3>
                 <p class="svc-desc">Atmosphärische Konzertbilder, die Energie und Emotion einfangen – von kleinen Clubs bis zu großen Bühnen.</p>
                 <span class="svc-cta">Portfolio ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="svc-card reveal d2" href="portfolio/event/" data-nav aria-label="Eventfotografie – Portfolio ansehen">
-                <img class="svc-bg" src="leistung-eventfotografie.jpg" data-fallback="portfolio/event/start_into_media_nr_005.jpg" alt="" loading="lazy" decoding="async">
+            <a class="svc-card reveal-s d2" href="portfolio/event/" data-nav aria-label="Eventfotografie – Portfolio ansehen">
+                <img class="svc-bg" src="images/leistung-eventfotografie.jpg" data-fallback="portfolio/event/start_into_media_nr_005.jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">03</div>
                 <h3 class="svc-title">Eventfotografie</h3>
-                <p class="svc-desc">Professionelle, unaufdringliche Dokumentation Ihrer Veranstaltung – authentische Momente statt gestellter Posen.</p>
+                <p class="svc-desc">Sorgfältige, unaufdringliche Dokumentation Ihrer Veranstaltung – authentische Momente statt gestellter Posen.</p>
                 <span class="svc-cta">Portfolio ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="svc-card reveal d3" href="portfolio/red-carpet/" data-nav aria-label="Red-Carpet-Fotografie – Portfolio ansehen">
-                <img class="svc-bg" src="leistung-red-carpet.jpg" data-fallback="portfolio/red-carpet/47-_DSC1715.jpg" alt="" loading="lazy" decoding="async">
+            <a class="svc-card reveal-s d3" href="portfolio/red-carpet/" data-nav aria-label="Red-Carpet-Fotografie – Portfolio ansehen">
+                <img class="svc-bg" src="images/leistung-red-carpet.jpg" data-fallback="portfolio/red-carpet/47-_DSC1715.jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">04</div>
                 <h3 class="svc-title">Red&nbsp;Carpet</h3>
                 <p class="svc-desc">Premieren, Galas und Events auf dem roten Teppich – elegante Porträts und der entscheidende Moment.</p>
                 <span class="svc-cta">Portfolio ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="svc-card reveal d4" href="portfolio/meine-kunst/" data-nav aria-label="Meine Kunst – Portfolio ansehen">
-                <img class="svc-bg" src="leistung-meine-kunst.jpg" data-fallback="portfolio/meine-kunst/choreo_said%20(1).jpg" alt="" loading="lazy" decoding="async">
+            <a class="svc-card reveal-s d4" href="portfolio/meine-kunst/" data-nav aria-label="Meine Kunst – Portfolio ansehen">
+                <img class="svc-bg" src="images/leistung-meine-kunst.jpg" data-fallback="portfolio/meine-kunst/choreo_said%20(1).jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">05</div>
                 <h3 class="svc-title">Meine Kunst</h3>
                 <p class="svc-desc">Künstlerische Porträts und freie Arbeiten – u.&nbsp;a. das Ausstellungsprojekt »10 im Quadrat«.</p>
                 <span class="svc-cta">Portfolio ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
-            <a class="svc-card reveal d5" href="portfolio/theater-und-musical/" data-nav aria-label="Theater- &amp; Musicalfotografie – Portfolio ansehen">
-                <img class="svc-bg" src="leistung-theater-musical.jpg" data-fallback="portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20(14%20von%201).jpg" alt="" loading="lazy" decoding="async">
+            <a class="svc-card reveal-s d5" href="portfolio/theater-und-musical/" data-nav aria-label="Theater- &amp; Musicalfotografie – Portfolio ansehen">
+                <img class="svc-bg" src="images/leistung-theater-musical.jpg" data-fallback="portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20(45%20von%20265).jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">06</div>
                 <h3 class="svc-title">Theater &amp; Musical</h3>
                 <p class="svc-desc">Bühnenfotografie aus Theater, Musical und Show – Licht, Bewegung und Ausdruck im richtigen Augenblick.</p>
@@ -1036,7 +1058,7 @@
                     Porträts im Dialog zwischen Bild und Klang – eine Ausstellung junger Fotografen und Musiker, veröffentlicht und begleitet von der Süddeutschen Zeitung.
                 </p>
                 <div class="press-meta">
-                    <span><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> München 2024</span>
+                    <span><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> München 2026</span>
                     <span><i class="fa-solid fa-newspaper" aria-hidden="true"></i> Süddeutsche Zeitung</span>
                 </div>
                 <a href="https://www.sueddeutsche.de/projekte/artikel/muenchen/10-im-quadrat-ausstellung-junge-fotografen-junge-musiker-portraets-e331356/"
@@ -1052,7 +1074,7 @@
                 <p>
                     Die Ausstellung brachte zehn Fotografen und zehn Musiker zusammen, um in einem Dialog zwischen Bild und Klang etwas Bleibendes zu schaffen. Ein Meilenstein meiner dokumentarischen Arbeit.
                 </p>
-                <a href="#portfolio" class="btn btn-outline" style="margin-top:.5rem;">
+                <a href="portfolio/meine-kunst/" data-nav class="btn btn-outline" style="margin-top:.5rem;">
                     Portfolio ansehen
                     <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
@@ -1147,7 +1169,7 @@
                     <img src="Transparent_Logo.svg" alt="" aria-hidden="true">
                     <span class="logo-name">Benjamin Gillmann</span>
                 </a>
-                <p>Professioneller Fotograf für Sport, Musik und Events in München und deutschlandweit.</p>
+                <p>Angehender Fotograf für Sport, Musik und Events in München und deutschlandweit.</p>
             </div>
             <div>
                 <div class="footer-col-h">Navigation</div>
@@ -1200,31 +1222,59 @@
 </div>
 
 <script>
-/* ── PRELOADER (zeigt sich bei jedem Reload) ── */
+/* ── PRELOADER (echter Ladefortschritt, sanft interpoliert) ── */
 (function(){
     const pl = document.getElementById('preloader');
     if(!pl) return;
-    const fill = document.getElementById('plFill');
+    const fill  = document.getElementById('plFill');
     const count = document.getElementById('plCount');
-    const DURATION = 1200, t0 = performance.now();
-    const ease = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
-    let finished = false;
+    const ring  = document.getElementById('plRingProg');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let cur = 0, target = 12, done = false, raf = 0;
+
+    const apply = p => {
+        const v = Math.min(100, Math.max(0, p));
+        if(fill)  fill.style.width = v + '%';
+        if(count) count.textContent = Math.round(v) + '%';
+        if(ring)  ring.style.setProperty('--p', v.toFixed(1));
+    };
     function finish(){
-        if(finished) return; finished = true;
-        pl.classList.add('exit');
-        setTimeout(() => { pl.style.display = 'none'; }, 900);
+        if(done) return; done = true;
+        cancelAnimationFrame(raf);
+        const seal = () => { apply(100); pl.classList.add('exit'); setTimeout(() => { pl.style.display = 'none'; }, 760); };
+        if(reduce){ seal(); return; }
+        (function close(){
+            cur += (100 - cur) * 0.28 + 0.6;
+            if(cur >= 99.4){ seal(); } else { apply(cur); raf = requestAnimationFrame(close); }
+        })();
     }
-    function tick(now){
-        const r = Math.min((now - t0) / DURATION, 1);
-        const p = Math.round(ease(r) * 100);
-        if(fill) fill.style.width = p + '%';
-        if(count) count.textContent = p + '%';
-        if(r < 1) requestAnimationFrame(tick);
-        else setTimeout(finish, 250);
+    if(reduce){ apply(100); window.addEventListener('load', finish); setTimeout(finish, 600); return; }
+
+    // Echter Fortschritt: Anteil bereits geladener kritischer Bilder (lazy-Bilder
+    // unterhalb des Folds zählen nicht mit) – gewichtet mit dem DOM-Status.
+    function realProgress(){
+        const imgs = [...document.images].filter(im => im.loading !== 'lazy');
+        const imgPart = imgs.length ? imgs.filter(im => im.complete && im.naturalWidth > 0).length / imgs.length : 1;
+        const domPart = document.readyState === 'loading' ? 0 : 1;
+        return (domPart * 0.35 + imgPart * 0.65) * 96;   // < 100 bis window.load abschließt
     }
-    requestAnimationFrame(tick);
-    // Sicherheitsnetz: spätestens kurz nach vollständigem Laden ausblenden
-    window.addEventListener('load', () => setTimeout(finish, DURATION + 200));
+
+    if(document.readyState !== 'loading') target = 50;
+    document.addEventListener('DOMContentLoaded', () => { target = Math.max(target, 60); });
+    window.addEventListener('load', () => setTimeout(finish, 200));
+
+    const t0 = performance.now();
+    (function tick(now){
+        if(done) return;
+        const elapsed = (now || performance.now()) - t0;
+        const timeFloor = 16 + elapsed / 26;             // sanfter Grundverlauf, kein Hängen
+        target = Math.min(96, Math.max(target, timeFloor, realProgress()));
+        cur += (target - cur) * 0.08;                    // weiche Annäherung
+        apply(cur);
+        raf = requestAnimationFrame(tick);
+    })(performance.now());
+
+    setTimeout(finish, 5000);   // Sicherheitsnetz
 })();
 
 /* ── SERVICE-HINTERGRUNDBILDER: eigenes Bild → Portfolio-Fallback → dunkler Verlauf ── */
@@ -1243,13 +1293,23 @@ document.querySelectorAll('.svc-bg').forEach(img => {
     const prog = document.getElementById('scrollProgress');
     const heroImg = document.querySelector('.hero-img img');
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const plx = reduce ? [] : [...document.querySelectorAll('[data-speed]')];
+    const vh = () => window.innerHeight;
     let ticking = false;
     function update(){
         const y = window.scrollY || 0;
         const docH = document.documentElement.scrollHeight - window.innerHeight;
         if(prog) prog.style.transform = 'scaleX(' + (docH > 0 ? Math.min(Math.max(y / docH, 0), 1) : 0) + ')';
-        if(heroImg && !reduce && y < window.innerHeight){
+        if(heroImg && !reduce && y < vh()){
             heroImg.style.transform = 'translate3d(0,' + (y * 0.15) + 'px,0) scale(1.08)';
+        }
+        // sanfte Tiefen-Parallax für getaggte Elemente (nur im Sichtbereich)
+        for(const el of plx){
+            const r = el.getBoundingClientRect();
+            if(r.bottom < -200 || r.top > vh() + 200) continue;
+            const speed = parseFloat(el.dataset.speed) || 0;
+            const mid = r.top + r.height / 2 - vh() / 2;
+            el.style.transform = 'translate3d(0,' + (-mid * speed).toFixed(2) + 'px,0)';
         }
         ticking = false;
     }
@@ -1350,7 +1410,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); 
 const revObs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); revObs.unobserve(e.target); } });
 }, {threshold:.08, rootMargin:'0px 0px -48px 0px'});
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => revObs.observe(el));
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-s,.reveal-blur').forEach(el => revObs.observe(el));
 
 /* ── ABSCHNITTS-ÜBERGÄNGE (Trenner zieht sich beim Scrollen auf) ── */
 (function(){
@@ -1398,8 +1458,9 @@ document.head.appendChild(pfStyle);
 
 const CAT_LABELS = { all:'Alle', sport:'Sport', konzert:'Musik', event:'Events', 'red-carpet':'Red Carpet', 'meine-kunst':'Meine Kunst', 'theater-und-musical':'Theater & Musical' };
 const CAT_ORDER  = ['all','sport','konzert','event','red-carpet','meine-kunst','theater-und-musical'];
-const FEATURED_PER_CAT = 3;   // 3 zufällige Bilder pro Kategorie auf der Startseite
-const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+/* Startseiten-Vorschau: kuratierte Collage – ausschließlich Bilder aus dem
+   Ordner main-portfolio/ (Manifest main-portfolio/images.json, bereits nach
+   Kategorie + Nummer sortiert). */
 const pfGrid    = document.getElementById('pfGrid');
 const pfFilters = document.getElementById('pfFilters');
 const pfEmpty   = document.getElementById('pfEmpty');
@@ -1473,7 +1534,7 @@ function buildFilters(cats){
 }
 function renderPortfolio(items){
     pfGrid.innerHTML = items.map((it, i) => {
-        const src   = encodeURI('portfolio/' + it.file);
+        const src   = encodeURI('main-portfolio/' + it.file);
         const alt   = esc(it.alt || it.title || '');
         const title = esc(it.title || '');
         const cat   = esc(it.cat || '');
@@ -1498,21 +1559,14 @@ function renderPortfolio(items){
         item.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); item.click(); } });
     });
 }
-fetch('portfolio/images.json', {cache:'no-cache'})
+fetch('main-portfolio/images.json', {cache:'no-cache'})
     .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(items => {
         if(!Array.isArray(items) || !items.length) throw new Error('leeres Manifest');
-        // 3 zufällige Bilder pro Kategorie für die Startseiten-Vorschau
-        const byCat = {};
-        items.forEach(it => { if(it.cat){ (byCat[it.cat] = byCat[it.cat] || []).push(it); } });
-        const featured = [];
-        CAT_ORDER.filter(c => c !== 'all').forEach(cat => {
-            const pool = byCat[cat];
-            if(pool && pool.length) shuffle(pool.slice()).slice(0, FEATURED_PER_CAT).forEach(x => featured.push(x));
-        });
-        shuffle(featured);   // Kategorien durchmischen (nicht gruppiert anzeigen)
-        buildFilters(new Set(featured.map(i => i.cat)));
-        renderPortfolio(featured);
+        // Kuratierte Collage: alle Bilder aus main-portfolio/ in der vom Manifest
+        // vorgegebenen Reihenfolge (nach Kategorie + Nummer sortiert) als Masonry.
+        buildFilters(new Set(items.map(i => i.cat).filter(Boolean)));
+        renderPortfolio(items);
         pfMoreEl = document.createElement('div'); pfMoreEl.className = 'pf-more'; pfMoreEl.hidden = true;
         pfGrid.after(pfMoreEl);
         updateMore('all');
@@ -1547,7 +1601,7 @@ document.getElementById('contactForm').addEventListener('submit', e => {
   "@type": "ProfessionalService",
   "@id": "https://benni-photo.com/#business",
   "name": "Benjamin Gillmann Photography",
-  "description": "Professioneller Fotograf für Sport, Musik und Events in München und deutschlandweit – Konzertfotografie, Sportfotografie und Eventfotografie.",
+  "description": "Angehender Fotograf für Sport, Musik und Events in München und deutschlandweit – Konzertfotografie, Sportfotografie und Eventfotografie.",
   "url": "https://benni-photo.com",
   "image": [
     "https://benni-photo.com/url_preview.jpg",

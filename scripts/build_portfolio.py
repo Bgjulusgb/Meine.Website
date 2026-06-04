@@ -110,6 +110,60 @@ def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
     return items
 
 
+def detect_main_cat(stem: str) -> str:
+    """Kategorie eines main-portfolio-Bildes aus dem Dateinamen ableiten.
+    Beispiele: 'event (1)' -> 'event', 'konzert (3)' -> 'konzert',
+    'red-carpet (2)' -> 'red-carpet'. Unbekannt -> '' (leer)."""
+    base = re.sub(r"\s*\([^)]*\)", "", stem).strip().lower().replace(" ", "-")
+    if base in CATEGORIES:
+        return base
+    for key in CATEGORIES:
+        if base.startswith(key):
+            return key
+    return ""
+
+
+def collect_main_portfolio(main_dir: Path) -> list[dict]:
+    """Kuratierte Startseiten-Auswahl aus main-portfolio/ sammeln und sortieren.
+    file = Dateiname relativ zu main-portfolio/ (im JS mit 'main-portfolio/' prefixed).
+    Sortierung: nach Kategorie (CAT_ORDER), dann nach der Nummer im Namen."""
+    items: list[dict] = []
+    for p in sorted(main_dir.rglob("*"), key=lambda x: str(x).lower()):
+        if not p.is_file() or p.suffix.lower() not in IMAGE_EXTS:
+            continue
+        if p.name.lower() in DENYLIST:
+            continue
+        cat = detect_main_cat(p.stem)
+        cfg = CATEGORIES.get(cat)
+        # Bei generischen Namen ("konzert (1)") den Kategorietitel verwenden,
+        # bei sprechenden Namen den aufbereiteten Dateinamen.
+        pretty = prettify(p.stem)
+        generic = (not pretty) or pretty.strip().lower().replace(" ", "-") == cat
+        title = (cfg["title"] if cfg else "Arbeit") if generic else pretty
+        label = cfg["label"] if cfg else "Portfolio"
+        alt = cfg["alt"].format(t=title) if cfg else f"{title} – Foto von Benjamin Gillmann"
+        item = {
+            "file": p.relative_to(main_dir).as_posix(),
+            "title": title,
+            "cat": cat,
+            "catLabel": label,
+            "alt": alt,
+        }
+        w, h = dims(p)
+        if w and h:
+            item["width"] = w
+            item["height"] = h
+        items.append(item)
+
+    def sort_key(it: dict):
+        ci = CAT_ORDER.index(it["cat"]) if it["cat"] in CAT_ORDER else len(CAT_ORDER)
+        m = re.search(r"\((\d+)\)", it["file"])
+        return (ci, int(m.group(1)) if m else 0, it["file"].lower())
+
+    items.sort(key=sort_key)
+    return items
+
+
 def write_json(data, out: Path) -> None:
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -198,6 +252,15 @@ def main(argv: list[str]) -> int:
     write_json(aggregated, portfolio_dir / "images.json")
     write_sitemap(by_cat, site_root / "sitemap.xml")
     print(f"OK: {total} Bilder gesamt -> {portfolio_dir / 'images.json'} + {site_root / 'sitemap.xml'}")
+
+    # Kuratierte Startseiten-Auswahl (separater Ordner main-portfolio/, Geschwister von portfolio/).
+    main_dir = site_root / "main-portfolio"
+    if main_dir.is_dir():
+        main_items = collect_main_portfolio(main_dir)
+        write_json(main_items, main_dir / "images.json")
+        print(f"  ✓ main-portfolio: {len(main_items)} Bilder -> {main_dir / 'images.json'}")
+    else:
+        print("  (übersprungen: main-portfolio/ existiert nicht)")
     if not _HAS_PIL:
         print("Hinweis: Pillow nicht installiert -> width/height fehlen (kein CLS-Schutz).",
               file=sys.stderr)
