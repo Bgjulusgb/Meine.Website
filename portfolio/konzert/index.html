@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://cloudflareinsights.com; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="author" content="Benjamin Gillmann">
+    <meta name="theme-color" content="#000000">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+    <!-- Titel/Beschreibung/Canonical/OG werden zusätzlich per JS kategoriespezifisch gesetzt. -->
+    <title>Portfolio · Benjamin Gillmann Photography</title>
+    <meta name="description" content="Fotografie-Portfolio von Benjamin Gillmann – Sport, Musik, Events, Red Carpet, Theater &amp; Musical und freie Kunst.">
+
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+    :root {
+        --bg-0:#000; --fg-0:#fff; --fg-1:#888; --fg-2:#555; --red:#ff5e5e;
+        --f-display:'Cormorant Garamond',Georgia,serif;
+        --f-ui:'Montserrat',sans-serif; --f-mono:'DM Mono',monospace;
+        --ease-out:cubic-bezier(0.16,1,0.3,1); --ease-io:cubic-bezier(0.4,0,0.2,1);
+        --hit:44px;
+        --safe-top:env(safe-area-inset-top,0px); --safe-bottom:env(safe-area-inset-bottom,0px);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{font-size:16px;scroll-behavior:smooth;background:#000;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+    @media (max-width:600px){html{font-size:15px;}}
+    @media (max-width:380px){html{font-size:14px;}}
+    body{font-family:var(--f-ui);background:var(--bg-0);color:var(--fg-0);overflow-x:hidden;line-height:1.6;}
+    body.no-scroll{overflow:hidden;}
+    img{display:block;max-width:100%;}
+    a{color:inherit;}
+    button{font-family:inherit;cursor:pointer;}
+
+    /* Hintergrund-FX */
+    .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+    .bg-fx::before{content:'';position:absolute;inset:-25%;
+        background:radial-gradient(38% 38% at 24% 28%,rgba(255,255,255,.05),transparent 60%),
+                   radial-gradient(34% 34% at 80% 72%,rgba(255,255,255,.035),transparent 60%);
+        animation:bgDrift 40s ease-in-out infinite alternate;will-change:transform;}
+    @keyframes bgDrift{0%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(2.5%,-2%,0) scale(1.08);}100%{transform:translate3d(-2%,2.5%,0) scale(1.04);}}
+
+    /* Scroll-Fortschritt */
+    .scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:1001;background:#fff;transform:scaleX(0);transform-origin:0 50%;transition:transform .1s linear;will-change:transform;}
+
+    /* PRELOADER (Loading-Animation beim Aufruf) */
+    .preloader{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;animation:plSafety .8s ease 3s forwards;}
+    @keyframes plSafety{to{opacity:0;visibility:hidden;pointer-events:none;}}
+    .pl-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);box-shadow:0 0 18px rgba(255,255,255,.35);animation:plScan 1.9s var(--ease-io) forwards;}
+    @keyframes plScan{0%{top:-2px;opacity:0}8%{opacity:1}100%{top:100%;opacity:0}}
+    .pl-body{position:relative;display:flex;flex-direction:column;align-items:center;gap:2rem;width:min(360px,90vw);}
+    .pl-ring-wrap{width:88px;height:88px;position:relative;}
+    .pl-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.14);animation:plRing 1.8s var(--ease-out) forwards;}
+    .pl-ring:nth-child(2){inset:10px;animation-delay:.14s;}
+    .pl-ring:nth-child(3){inset:20px;animation-delay:.28s;}
+    @keyframes plRing{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+    .pl-ring-wrap::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px dashed rgba(255,255,255,.07);animation:plSpin 8s linear infinite;}
+    @keyframes plSpin{to{transform:rotate(360deg)}}
+    .pl-logo-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+    .pl-logo{width:44px;height:44px;object-fit:contain;opacity:0;animation:plFadeIn .7s ease .45s forwards;}
+    @keyframes plFadeIn{from{opacity:0;transform:scale(.75)}to{opacity:1;transform:scale(1)}}
+    .pl-name{font-family:var(--f-display);font-size:clamp(1.1rem,4vw,1.7rem);font-weight:300;letter-spacing:.3em;text-transform:uppercase;opacity:0;animation:plName .9s ease .65s forwards;white-space:nowrap;text-align:center;}
+    @keyframes plName{from{opacity:0;letter-spacing:.7em}to{opacity:1;letter-spacing:.3em}}
+    .pl-sub{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2);opacity:0;animation:plUp .7s ease .9s forwards;text-align:center;}
+    @keyframes plUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .preloader.exit{animation:plExit .9s var(--ease-io) forwards;}
+    @keyframes plExit{0%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 100% 0)}}
+
+    /* Seitenübergang (Fade beim Verlassen) */
+    .page-fade{position:fixed;inset:0;z-index:99998;background:#000;opacity:0;visibility:hidden;transition:opacity .45s var(--ease-io),visibility .45s;}
+    .page-fade.on{opacity:1;visibility:visible;}
+
+    /* HEADER */
+    .header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 0;transition:padding .4s ease,background .4s ease,border-color .4s ease;border-bottom:1px solid transparent;}
+    .header.stuck{padding:.7rem 0;background:rgba(0,0,0,.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom-color:rgba(255,255,255,.06);}
+    .nav-wrap{max-width:1400px;margin:0 auto;padding:0 clamp(1.2rem,5vw,2.5rem);display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+    .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--fg-0);font-size:clamp(.68rem,1.4vw,.8rem);font-weight:600;letter-spacing:.14em;text-transform:uppercase;min-height:var(--hit);}
+    .logo img{height:28px;width:auto;transition:transform .3s ease;}
+    .logo:hover img{transform:scale(1.07);}
+    @media (max-width:360px){.logo-name{display:none;}}
+    .nav-links{display:flex;list-style:none;gap:clamp(1rem,3vw,2rem);align-items:center;}
+    .nav-a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;position:relative;padding:.4rem 0;min-height:var(--hit);display:flex;align-items:center;transition:color .2s ease;}
+    .nav-a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#fff;transition:width .3s ease;}
+    .nav-a:hover{color:#fff;}
+    .nav-a:hover::after{width:100%;}
+    @media (max-width:520px){.nav-a{font-size:.62rem;letter-spacing:.1em;}}
+
+    /* INTRO */
+    .g-intro{padding:calc(7rem + var(--safe-top)) clamp(1.2rem,5vw,2.5rem) clamp(1.5rem,4vw,2.5rem);max-width:1400px;margin:0 auto;}
+    .crumb{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-2);margin-bottom:1.2rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+    .crumb a{color:var(--fg-2);text-decoration:none;transition:color .2s;}
+    .crumb a:hover{color:#fff;}
+    .eyebrow{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-2);display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+    .eyebrow::before{content:'';width:22px;height:1px;background:var(--fg-2);}
+    .g-title{font-family:var(--f-display);font-size:clamp(2.2rem,8vw,4.5rem);font-weight:300;line-height:1.02;letter-spacing:-.01em;margin-bottom:1rem;}
+    .g-title em{font-style:italic;}
+    .g-desc{color:var(--fg-1);font-size:clamp(.86rem,1.5vw,.98rem);line-height:1.8;max-width:620px;}
+    .g-count{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-2);margin-top:1.2rem;}
+    .g-note{margin-top:1.4rem;max-width:640px;padding:.9rem 1.1rem;border-left:2px solid rgba(255,255,255,.22);background:rgba(255,255,255,.03);color:var(--fg-1);font-size:clamp(.8rem,1.4vw,.9rem);line-height:1.7;}
+    .g-note a{color:#fff;text-decoration:underline;text-underline-offset:3px;transition:color .2s;}
+    .g-note a:hover{color:var(--fg-1);}
+
+    /* MASONRY-WALL */
+    .photo-wall{columns:4 220px;gap:4px;padding:0 clamp(.6rem,2vw,1rem) clamp(3rem,6vw,5rem);max-width:1500px;margin:0 auto;}
+    @media (max-width:1024px) and (min-width:701px){.photo-wall{columns:3;}}
+    @media (max-width:700px){.photo-wall{columns:2;}}
+    @media (max-width:400px){.photo-wall{columns:1;}}
+    .pf-item{break-inside:avoid;margin-bottom:4px;position:relative;overflow:hidden;cursor:pointer;background:#111;}
+    /* Skeleton-Shimmer bis das Bild geladen ist */
+    .pf-item::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(100deg,#131313 30%,#1e1e1e 50%,#131313 70%);background-size:200% 100%;animation:pfShimmer 1.4s linear infinite;transition:opacity .5s ease;}
+    .pf-item.loaded-wrap::after{opacity:0;}
+    @keyframes pfShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .pf-item img{position:relative;z-index:1;width:100%;height:auto;display:block;opacity:0;transform:translateY(10px);filter:grayscale(22%) brightness(.9);transition:opacity .7s ease,transform .7s var(--ease-io),filter .55s ease;}
+    .pf-item img.loaded{opacity:1;transform:translateY(0);}
+    .pf-item:hover img{filter:none;transform:scale(1.04);}
+    .pf-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);opacity:0;transition:opacity .35s;}
+    .pf-item:hover .pf-overlay{opacity:1;}
+    .pf-info{position:absolute;bottom:0;left:0;right:0;padding:.8rem 1rem;z-index:3;transform:translateY(6px);opacity:0;transition:all .35s var(--ease-io);}
+    .pf-item:hover .pf-info{transform:translateY(0);opacity:1;}
+    .pf-title{font-family:var(--f-display);font-size:clamp(.85rem,1.8vw,1rem);font-weight:400;color:#fff;}
+    .pf-zoom{position:absolute;top:.7rem;right:.7rem;z-index:3;width:28px;height:28px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.62rem;opacity:0;transform:scale(.8);transition:all .3s;}
+    .pf-item:hover .pf-zoom{opacity:1;transform:scale(1);}
+    @media (hover:none){.pf-overlay{opacity:1;}.pf-info{transform:translateY(0);opacity:1;}.pf-zoom{opacity:1;transform:scale(1);}}
+    .pf-empty{text-align:center;color:var(--fg-2);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;padding:4rem 1rem;}
+
+    /* LIGHTBOX */
+    .lightbox{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.97);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:clamp(.8rem,4vw,3rem);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;}
+    .lightbox.on{opacity:1;visibility:visible;}
+    .lb-img{max-width:100%;max-height:85vh;max-height:85dvh;object-fit:contain;display:block;animation:lbIn .4s var(--ease-io);}
+    @keyframes lbIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .lb-cap{margin-top:1.2rem;font-family:var(--f-display);font-size:.9rem;color:rgba(255,255,255,.42);text-align:center;}
+    .lb-close,.lb-prev,.lb-next{position:fixed;z-index:10002;width:var(--hit);height:var(--hit);border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.55);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;transition:all .24s;}
+    .lb-close{top:1.1rem;right:1.1rem;}
+    .lb-close:hover{border-color:rgba(255,255,255,.5);transform:rotate(90deg);}
+    .lb-prev{left:1rem;top:50%;transform:translateY(-50%);}
+    .lb-next{right:1rem;top:50%;transform:translateY(-50%);}
+    .lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);}
+    @media (max-width:480px){.lb-prev{left:.4rem;}.lb-next{right:.4rem;}}
+
+    /* BACK TO TOP */
+    .back-top{position:fixed;bottom:calc(1.5rem + var(--safe-bottom));right:1.5rem;z-index:100;width:42px;height:42px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.78rem;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;}
+    .back-top.show{opacity:1;visibility:visible;}
+    .back-top:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);}
+    @media (max-width:480px){.back-top{bottom:calc(1rem + var(--safe-bottom));right:1rem;}}
+
+    /* FOOTER */
+    .footer{background:#000;border-top:1px solid rgba(255,255,255,.05);padding:clamp(2.5rem,5vw,4rem) clamp(1.2rem,5vw,2rem) calc(clamp(1.2rem,3vw,2rem) + var(--safe-bottom));}
+    .footer-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+    .footer-inner a{color:var(--fg-1);text-decoration:none;transition:color .2s;font-size:.8rem;}
+    .footer-inner a:hover{color:#fff;}
+    .footer-copy{color:var(--fg-2);font-family:var(--f-mono);font-size:.58rem;letter-spacing:.1em;}
+    .footer-links{display:flex;gap:1.4rem;flex-wrap:wrap;}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease-io),transform .8s var(--ease-io);}
+    .in-view{opacity:1 !important;transform:none !important;}
+
+    :focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:3px;}
+    @media (prefers-reduced-motion:reduce){
+        *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+        .reveal{opacity:1;transform:none;}
+        .pf-item img{opacity:1;transform:none;}
+        .pf-item::after{opacity:0;}
+    }
+    </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" role="status" aria-label="Galerie wird geladen">
+    <div class="pl-scan" aria-hidden="true"></div>
+    <div class="pl-body">
+        <div class="pl-ring-wrap" aria-hidden="true">
+            <div class="pl-ring"></div><div class="pl-ring"></div><div class="pl-ring"></div>
+            <div class="pl-logo-wrap"><img src="../../Transparent_Logo.svg" alt="" class="pl-logo"></div>
+        </div>
+        <div class="pl-name" id="plName">Portfolio</div>
+        <div class="pl-sub">Benjamin Gillmann Photography</div>
+    </div>
+</div>
+
+<div class="bg-fx" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<div class="page-fade" id="pageFade" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header class="header" id="header" role="banner">
+    <div class="nav-wrap">
+        <a href="../../" class="logo" data-nav aria-label="Benjamin Gillmann Photography – Startseite">
+            <img src="../../Transparent_Logo.svg" alt="Logo">
+            <span class="logo-name">Benjamin Gillmann</span>
+        </a>
+        <nav><ul class="nav-links">
+            <li><a href="../../#portfolio" class="nav-a" data-nav>Portfolio</a></li>
+            <li><a href="../../#services" class="nav-a" data-nav>Leistungen</a></li>
+            <li><a href="../../#contact" class="nav-a" data-nav>Kontakt</a></li>
+        </ul></nav>
+    </div>
+</header>
+
+<main id="main">
+    <section class="g-intro">
+        <div class="crumb" aria-label="Brotkrümel-Navigation">
+            <a href="../../" data-nav>Start</a> <span aria-hidden="true">/</span>
+            <a href="../../#portfolio" data-nav>Portfolio</a> <span aria-hidden="true">/</span>
+            <span id="crumbCat" aria-current="page">Kategorie</span>
+        </div>
+        <div class="eyebrow reveal" id="gEyebrow">Portfolio</div>
+        <h1 class="g-title reveal" id="gTitle">Portfolio</h1>
+        <p class="g-desc reveal" id="gDesc"></p>
+        <div class="g-count reveal" id="gCount" aria-live="polite"></div>
+        <div class="g-note reveal" id="gNote" hidden></div>
+    </section>
+
+    <div class="photo-wall" id="gGrid" aria-busy="true" aria-label="Bildergalerie"></div>
+    <p id="gEmpty" class="pf-empty" hidden>Galerie konnte nicht geladen werden.</p>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+        <span class="footer-copy">&copy; 2026 Benjamin Gillmann Photography</span>
+        <div class="footer-links">
+            <a href="../../#portfolio" data-nav>Alle Portfolios</a>
+            <a href="../../#contact" data-nav>Kontakt</a>
+            <a href="../../impressum.html">Impressum</a>
+            <a href="../../datenschutz.html">Datenschutz</a>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Zurück nach oben"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+    <button id="lbClose" class="lb-close" aria-label="Schließen"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <button id="lbPrev" class="lb-prev" aria-label="Vorheriges Bild"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+    <button id="lbNext" class="lb-next" aria-label="Nächstes Bild"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    <div style="display:flex;flex-direction:column;align-items:center;max-width:100%;max-height:90dvh">
+        <img id="lbImg" class="lb-img" src="" alt="Bildansicht">
+        <div id="lbCap" class="lb-cap"></div>
+    </div>
+</div>
+
+<script>
+/* ── Kategorie-Metadaten (eine Datei für alle Portfolios) ── */
+const CAT_META = {
+    "sport":               {label:"Sport",            h:"Sport",                desc:"Dynamische Action- und Sportfotografie – von American Football bis Leichtathletik. Schnelle Reaktion, präzise Bildkomposition."},
+    "konzert":             {label:"Musik",            h:"Konzert &amp; Musik",  desc:"Atmosphärische Konzert- und Musikfotografie, die Energie und Emotion einfängt – von kleinen Clubs bis zu großen Bühnen."},
+    "event":               {label:"Events",           h:"Events",               desc:"Authentische Dokumentation von Veranstaltungen und besonderen Momenten."},
+    "red-carpet":          {label:"Red Carpet",       h:"Red Carpet",           desc:"Red-Carpet- und Premieren-Fotografie mit Gespür für den entscheidenden Moment."},
+    "meine-kunst":         {label:"Meine Kunst",      h:"Meine Kunst",          desc:"Künstlerische Porträts und freie Arbeiten – unter anderem aus dem Ausstellungsprojekt »10 im Quadrat«.",
+        note:'Die Porträtserie <strong>»10 im Quadrat«</strong> entstand für ein gemeinsames Ausstellungsprojekt junger Fotografen und Musiker in München – dokumentiert und veröffentlicht von der <a href="https://www.sueddeutsche.de/projekte/artikel/muenchen/10-im-quadrat-ausstellung-junge-fotografen-junge-musiker-portraets-e331356/" target="_blank" rel="noopener noreferrer">Süddeutschen Zeitung</a>.'},
+    "theater-und-musical": {label:"Theater &amp; Musical", h:"Theater &amp; Musical", desc:"Bühnenfotografie aus Theater, Musical und Show – Licht, Bewegung und Ausdruck."}
+};
+
+/* Kategorie aus dem Pfad ableiten: /portfolio/<cat>/ */
+function detectCat(){
+    const parts = location.pathname.split('/').filter(Boolean);
+    const i = parts.lastIndexOf('portfolio');
+    let cat = (i >= 0 && parts[i+1]) ? parts[i+1] : parts[parts.length-1];
+    if(cat && cat.endsWith('.html')) cat = parts[parts.length-2] || '';
+    return decodeURIComponent(cat || '');
+}
+const CAT = detectCat();
+const META = CAT_META[CAT] || {label:"Portfolio", h:"Portfolio", desc:"Ausgewählte Arbeiten von Benjamin Gillmann."};
+const plain = s => String(s).replace(/&amp;/g,'&');
+
+/* ── Head/SEO kategoriespezifisch setzen ── */
+(function(){
+    const labelPlain = plain(META.h);
+    document.title = labelPlain + ' Portfolio · Benjamin Gillmann Photography';
+    const descTxt = META.desc;
+    function meta(sel, attr, val){ let el=document.querySelector(sel); if(el) el.setAttribute(attr,val); }
+    meta('meta[name="description"]','content',descTxt);
+    const canon = 'https://benni-photo.com/portfolio/' + encodeURIComponent(CAT) + '/';
+    let link=document.querySelector('link[rel="canonical"]');
+    if(!link){ link=document.createElement('link'); link.rel='canonical'; document.head.appendChild(link); }
+    link.href = canon;
+    // Open Graph
+    [['og:type','website'],['og:title',labelPlain+' · Benjamin Gillmann Photography'],
+     ['og:description',descTxt],['og:url',canon],['og:locale','de_DE']].forEach(([p,c])=>{
+        let m=document.createElement('meta'); m.setAttribute('property',p); m.content=c; document.head.appendChild(m);
+    });
+    // Sichtbare Texte
+    document.getElementById('plName').innerHTML = META.h;
+    document.getElementById('gEyebrow').textContent = 'Portfolio · ' + labelPlain;
+    document.getElementById('gTitle').innerHTML = META.h;
+    document.getElementById('gDesc').textContent = descTxt;
+    document.getElementById('crumbCat').textContent = labelPlain;
+    if(META.note){ const n=document.getElementById('gNote'); n.innerHTML = META.note; n.hidden = false; }
+})();
+
+/* ── PRELOADER ── */
+(function(){
+    const pl=document.getElementById('preloader'); if(!pl) return;
+    let done=false;
+    function finish(){ if(done) return; done=true; pl.classList.add('exit'); setTimeout(()=>pl.style.display='none',900); }
+    window.addEventListener('load',()=>setTimeout(finish,500));
+    setTimeout(finish,2600);
+})();
+
+/* ── STICKY HEADER + SCROLL-FORTSCHRITT ── */
+(function(){
+    const header=document.getElementById('header'), prog=document.getElementById('scrollProgress'), bt=document.getElementById('backTop');
+    let ticking=false;
+    function update(){
+        const y=window.scrollY||0;
+        header.classList.toggle('stuck',y>40);
+        bt.classList.toggle('show',y>400);
+        const docH=document.documentElement.scrollHeight-window.innerHeight;
+        if(prog) prog.style.transform='scaleX('+(docH>0?Math.min(Math.max(y/docH,0),1):0)+')';
+        ticking=false;
+    }
+    window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(update);}},{passive:true});
+    document.getElementById('backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    update();
+})();
+
+/* ── SEITENÜBERGANG (Fade beim Verlassen) ── */
+(function(){
+    const fade=document.getElementById('pageFade');
+    const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(!fade) return;
+    window.addEventListener('pageshow',()=>fade.classList.remove('on'));
+    if(reduce) return;
+    document.addEventListener('click',e=>{
+        const a=e.target.closest('a[data-nav]');
+        if(!a) return;
+        const href=a.getAttribute('href');
+        if(!href||href.startsWith('#')||href.startsWith('http')||a.target==='_blank') return;
+        e.preventDefault();
+        fade.classList.add('on');
+        setTimeout(()=>{location.href=href;},420);
+    });
+})();
+
+/* ── REVEAL ── */
+const revObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');revObs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ── LIGHTBOX ── */
+const grid=document.getElementById('gGrid'), gEmpty=document.getElementById('gEmpty');
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
+let lbIdx=-1, lbItems=[];
+const items=()=>[...grid.querySelectorAll('.pf-item')];
+function openLB(src,title,idx){ lbImg.src=src; lbCap.textContent=title; lb.classList.add('on'); document.body.classList.add('no-scroll'); lbIdx=idx; lbItems=items(); document.getElementById('lbClose').focus(); }
+function closeLB(){ lb.classList.remove('on'); document.body.classList.remove('no-scroll'); }
+function navLB(d){ if(!lbItems.length) return; lbIdx=(lbIdx+d+lbItems.length)%lbItems.length; const it=lbItems[lbIdx]; openLB(it.dataset.src,it.dataset.title,lbIdx); }
+document.getElementById('lbClose').addEventListener('click',closeLB);
+document.getElementById('lbPrev').addEventListener('click',()=>navLB(-1));
+document.getElementById('lbNext').addEventListener('click',()=>navLB(1));
+lb.addEventListener('click',e=>{if(e.target===lb) closeLB();});
+document.addEventListener('keydown',e=>{ if(!lb.classList.contains('on')) return; if(e.key==='Escape')closeLB(); if(e.key==='ArrowLeft')navLB(-1); if(e.key==='ArrowRight')navLB(1); });
+let tsX=0;
+lb.addEventListener('touchstart',e=>{tsX=e.changedTouches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tsX; if(Math.abs(dx)>50) navLB(dx<0?1:-1);},{passive:true});
+
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function render(list){
+    grid.innerHTML=list.map((it,i)=>{
+        const src=encodeURI(it.file);
+        const alt=esc(it.alt||it.title||'');
+        const title=esc(it.title||'');
+        const dim=(it.width&&it.height)?` width="${it.width}" height="${it.height}"`:'';
+        // Die ersten Bilder eifrig + priorisiert laden, der Rest lazy
+        const eager=i<6?` loading="eager" fetchpriority="high"`:` loading="lazy"`;
+        return `<div class="pf-item" tabindex="0" role="button" aria-label="${alt} – vergrößern" data-src="${src}" data-title="${title}">
+    <img src="${src}" alt="${alt}"${dim}${eager} decoding="async">
+    <div class="pf-overlay" aria-hidden="true"></div>
+    <div class="pf-info"><div class="pf-title">${title}</div></div>
+    <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
+</div>`;
+    }).join('');
+    grid.removeAttribute('aria-busy');
+    grid.querySelectorAll('.pf-item img').forEach(img=>{
+        const mark=()=>{ img.classList.add('loaded'); img.parentElement.classList.add('loaded-wrap'); };
+        if(img.complete && img.naturalWidth) mark();
+        else { img.addEventListener('load',mark,{once:true}); img.addEventListener('error',()=>img.parentElement.classList.add('loaded-wrap'),{once:true}); }
+    });
+    items().forEach(item=>{
+        item.addEventListener('click',()=>{ lbItems=items(); openLB(item.dataset.src,item.dataset.title,lbItems.indexOf(item)); });
+        item.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); item.click(); } });
+    });
+    document.getElementById('gCount').textContent = list.length + (list.length===1?' Bild':' Bilder');
+    // JSON-LD ImageGallery
+    try{
+        const ld={ "@context":"https://schema.org","@type":"ImageGallery",
+            "name":plain(META.h)+" – Benjamin Gillmann Photography",
+            "url":"https://benni-photo.com/portfolio/"+encodeURIComponent(CAT)+"/",
+            "author":{"@type":"Person","name":"Benjamin Gillmann"},
+            "image":list.slice(0,30).map(it=>"https://benni-photo.com/portfolio/"+encodeURIComponent(CAT)+"/"+encodeURI(it.file)) };
+        const s=document.createElement('script'); s.type='application/ld+json'; s.textContent=JSON.stringify(ld); document.head.appendChild(s);
+    }catch(e){}
+}
+
+fetch('./images.json',{cache:'no-cache'})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(list=>{ if(!Array.isArray(list)||!list.length) throw new Error('leer'); render(list); })
+    .catch(()=>{ grid.removeAttribute('aria-busy'); if(gEmpty) gEmpty.hidden=false; document.getElementById('gCount').textContent=''; });
+</script>
+</body>
+</html>

@@ -1,126 +1,121 @@
-# Benjamin Gillmann Photography Website
+# Benjamin Gillmann Photography — Website
 
-## ✨ UI/UX Korrekturen durchgeführt
-
-### 🎯 Hauptverbesserungen
-
-#### 1. **Preloader**
-- ✅ Vollständig funktionsfähiger Preloader mit Lade-Animation
-- ✅ Smooth Fade-Out nach dem Laden
-- ✅ Moderne Dot-Animation
-- ✅ Responsive Design für Mobile
-
-#### 2. **Navigation**
-- ✅ Sticky Header beim Scrollen
-- ✅ Mobile Navigation mit Hamburger-Menu
-- ✅ Smooth Scroll zu Sektionen
-- ✅ Active State für aktuelle Sektion
-- ✅ Schließt automatisch beim Klick auf Link
-- ✅ Verhindert Body-Scroll wenn Menü offen
-
-#### 3. **Scroll-Verhalten**
-- ✅ Smooth Scroll zu allen Ankern
-- ✅ Scroll-to-Top Button mit Fade-In Animation
-- ✅ Keyboard-Navigation Support (Enter/Space)
-- ✅ Erscheint ab 300px Scroll-Position
-
-#### 4. **Animationen**
-- ✅ Intersection Observer für Scroll-Animationen
-- ✅ Fade-In, Scale-In, Slide-In Effekte
-- ✅ Optimierte Performance
-- ✅ Staggered Delays für professionellen Look
-
-#### 5. **Lightbox/Galerie**
-- ✅ Vollständig funktionsfähige Lightbox
-- ✅ Keyboard-Navigation (ESC zum Schließen)
-- ✅ Focus-Trap für Accessibility
-- ✅ Smooth Transitions
-- ✅ Click-Outside zum Schließen
-
-#### 6. **Kontaktformular**
-- ✅ Vollständige Validierung
-- ✅ Inline-Fehlermeldungen
-- ✅ Success-Message nach Submit
-- ✅ E-Mail Regex-Validierung
-- ✅ Focus auf erstes Fehlerfeld
-
-#### 7. **Accessibility (A11Y)**
-- ✅ ARIA-Labels für alle interaktiven Elemente
-- ✅ Keyboard-Navigation für alle Features
-- ✅ Skip-to-Content Link
-- ✅ Focus-Trap in Modal/Lightbox
-- ✅ Semantisches HTML
-- ✅ Alt-Texte für Bilder
-
-#### 8. **Performance**
-- ✅ Lazy Loading für Bilder vorbereitet
-- ✅ Optimierte Animationen mit IntersectionObserver
-- ✅ Efficient Event Listeners
-- ✅ Debounced Scroll Events
-
-#### 9. **Mobile Responsiveness**
-- ✅ Vollständig responsive Navigation
-- ✅ Touch-optimierte Buttons und Links
-- ✅ Mobile-first Media Queries
-- ✅ Optimierte Schriftgrößen
-- ✅ Gestapelte Layouts auf Mobile
-
-#### 10. **Zusätzliche Features**
-- ✅ Stat Counter Animation
-- ✅ Typing Cursor Animation
-- ✅ Service Card Hover Effects
-- ✅ Portfolio Item Hover Effects
-- ✅ Testimonial Cards
-- ✅ Footer mit Social Links
-- ✅ Console Greeting
-
-### 📱 Responsive Breakpoints
-- **Desktop**: > 968px
-- **Tablet**: 768px - 968px
-- **Mobile**: < 768px
-
-### 🎨 Fehlende Assets
-Bitte ergänzen Sie folgende Bilddateien im Root-Verzeichnis:
-
-1. `logo.png` - Ihr Logo (empfohlen: 200x200px PNG mit transparentem Hintergrund)
-2. `hero-image.jpg` - Hero Background (empfohlen: 1920x1080px)
-3. `about-image.jpg` - About Section Bild (empfohlen: 800x800px)
-4. `portfolio1.jpg` bis `portfolio6.jpg` - Portfolio Bilder (empfohlen: 1200x900px)
-5. `favicon.ico` - Favicon (16x16px oder 32x32px)
-6. `apple-touch-icon.png` - Apple Touch Icon (180x180px)
-
-### 🚀 Browser-Support
-- ✅ Chrome/Edge (aktuelle Versionen)
-- ✅ Firefox (aktuelle Versionen)
-- ✅ Safari (iOS 12+)
-- ✅ Mobile Browsers
-
-### 💡 Nächste Schritte
-
-1. **Bilder hinzufügen**: Ersetzen Sie die Platzhalter-Bildpfade mit echten Bildern
-2. **Inhalte anpassen**: Passen Sie Texte, Links und Kontaktdaten an
-3. **Social Media**: Fügen Sie echte Social Media Links hinzu
-4. **Analytics**: Optional Google Analytics oder ähnliches integrieren
-5. **SEO**: Meta-Tags sind bereits vorhanden, ggf. anpassen
-
-### 🐛 Testing
-
-Testen Sie folgende Funktionen:
-- [ ] Mobile Navigation öffnen/schließen
-- [ ] Smooth Scroll zu allen Sektionen
-- [ ] Kontaktformular Validierung
-- [ ] Lightbox öffnen/schließen mit ESC
-- [ ] Scroll-to-Top Button
-- [ ] Alle Hover-Effekte
-- [ ] Responsive Layout auf verschiedenen Geräten
-
-### 📝 Notizen
-
-- Alle Animationen sind performance-optimiert mit GPU-Beschleunigung
-- Die Website verwendet moderne CSS Features (CSS Grid, Flexbox, Custom Properties)
-- JavaScript ist vanilla (keine Framework-Abhängigkeiten)
-- Alle Farben und Abstände sind über CSS Variables zentral steuerbar
+Statische Fotografen-Website (HTML/CSS/Vanilla-JS, **kein Build-Framework**).
+Gehostet über **GitHub Pages**, Domain bei **Strato**, davor **Cloudflare**
+(HTTPS, Security-Header, Caching, Web-Analytics). Live: <https://benni-photo.com>
 
 ---
 
-**Entwickelt mit ❤️ für Benjamin Gillmann Photography**
+## 1. Projektstruktur
+
+```
+Meine.Website-main/            ← Site-Root (genau dieser Ordner wird deployt)
+├── index.html                 ← Startseite (Hero, Über mich, Leistungen, Presse,
+│                                 Portfolio-Vorschau, Kontakt) – komplett self-contained
+├── impressum.html · datenschutz.html · 404.html
+├── manifest.json · robots.txt · sitemap.xml   ← sitemap wird generiert (s. u.)
+├── .well-known/security.txt
+├── leistung-*.jpg             ← Titelbilder der Leistungs-Kärtchen (siehe platzhalter-namen.md)
+├── hero.jpg · Profil.jpg · Transparent_Logo.svg · favicons …
+├── portfolio/
+│   ├── images.json            ← AGGREGIERT (alle Kategorien) – speist die Startseiten-Vorschau
+│   └── <kategorie>/           ← sport · konzert · event · red-carpet · meine-kunst · theater-und-musical
+│       ├── index.html         ← Galerie-Seite (für alle Kategorien identisch, datengetrieben)
+│       ├── images.json        ← Manifest NUR dieser Kategorie (generiert)
+│       └── <bilder …>         ← die Fotos (meine-kunst hat zusätzlich Unter-Unterordner)
+├── scripts/
+│   ├── compress_images.py     ← Bilder web-tauglich komprimieren (in-place)
+│   └── build_portfolio.py     ← images.json (alle) + sitemap.xml erzeugen
+└── .github/workflows/portfolio-manifest.yml   ← baut images.json + sitemap bei jedem Push automatisch
+```
+
+> Hinweis: Der Ordner `das hier nicht benutzen/` (eine Ebene über dem Site-Root)
+> wird **nicht** deployt; er enthält alte/zusätzliche Bilder und wird nur mitkomprimiert.
+
+### Die 6 Portfolio-Kategorien
+| Ordner | Anzeigename | Leistungs-Kärtchen |
+|--------|-------------|--------------------|
+| `sport` | Sport | Sportfotografie |
+| `konzert` | Musik | Musikfotografie |
+| `event` | Events | Eventfotografie |
+| `red-carpet` | Red Carpet | Red Carpet |
+| `meine-kunst` | Meine Kunst | Meine Kunst |
+| `theater-und-musical` | Theater & Musical | Theater & Musical |
+
+---
+
+## 2. Neue Bilder hinzufügen (der normale Arbeitsablauf)
+
+1. Foto(s) in den passenden Ordner legen: `portfolio/<kategorie>/`
+   (Dateiname = später der Titel im Hover; sprechende Namen helfen dem SEO).
+2. **Komprimieren** (Pflicht, sonst werden die Dateien zu groß):
+   ```bash
+   python scripts/compress_images.py
+   ```
+3. **Manifeste + Sitemap erzeugen:**
+   ```bash
+   python scripts/build_portfolio.py
+   ```
+4. Committen & pushen. Die GitHub Action regeneriert `images.json`/`sitemap.xml`
+   sowieso noch einmal automatisch und deployt neu.
+
+Die Galerie-Seite der Kategorie und die Startseiten-Vorschau (3 zufällige Bilder
+pro Kategorie) ziehen sich die neuen Bilder danach automatisch.
+
+---
+
+## 3. Bilder komprimieren — `scripts/compress_images.py`
+
+Verkleinert **in-place** (Dateinamen & Ordner bleiben gleich) auf max. **2048 px**
+lange Kante, JPEG-Qualität **82**. Idempotent: bereits kleine Bilder werden
+übersprungen, ein Ergebnis wird nie größer als das Original geschrieben.
+
+```bash
+python scripts/compress_images.py --dry-run   # nur anzeigen, was passieren würde
+python scripts/compress_images.py             # portfolio/ + 'das hier nicht benutzen'
+python scripts/compress_images.py <ordner>    # eigener Ordner
+```
+Benötigt **Pillow** (`pip install Pillow`). ⚠️ Überschreibt Originale – vorher sichern.
+
+---
+
+## 4. Manifeste & Sitemap — `scripts/build_portfolio.py`
+
+Scannt jede Kategorie (rekursiv) und schreibt:
+- `portfolio/<kategorie>/images.json` — pro Kategorie (für die Galerie-Seite),
+- `portfolio/images.json` — aggregiert (für die Startseiten-Vorschau),
+- `sitemap.xml` — mit allen Bildern (Bild-SEO) + den 6 Galerie-Seiten.
+
+```bash
+python scripts/build_portfolio.py
+```
+Läuft auch automatisch via GitHub Action bei jeder Änderung unter `portfolio/`.
+
+---
+
+## 5. Lokal testen
+
+```bash
+# im Site-Root (Meine.Website-main/) starten:
+python -m http.server 8000
+# dann http://localhost:8000 öffnen
+```
+Wichtig: über `http://` öffnen (nicht per Datei-Doppelklick) – sonst kann der
+Browser die `images.json` per `fetch` nicht laden.
+
+---
+
+## 6. Deployment & Betrieb
+- **GitHub Pages** deployt den Site-Root automatisch beim Push (`CNAME` = Domain).
+- **Cloudflare** setzt Security-Header & Caching — siehe `CLOUDFLARE.md`.
+- **SEO**-Einrichtung (Search Console, Sitemap einreichen …) — siehe `SEO.md`.
+- Kontakt/Impressum/Datenschutz/`security.txt`: E-Mail `benjamin.gillmann@black.com`.
+
+---
+
+## 7. Wichtige Konventionen
+- Eine **Galerie-Vorlage für alle**: `portfolio/<kategorie>/index.html` ist überall
+  identisch und erkennt ihre Kategorie am Ordnerpfad. Änderungen am Layout in
+  **einer** Datei vornehmen und mit denselben Inhalten in die anderen Ordner kopieren.
+- Animationen sind GPU-schonend (nur `transform`/`opacity`) und respektieren
+  `prefers-reduced-motion`; schwere Effekte sind auf Touch/Mobile deaktiviert.

@@ -437,8 +437,17 @@
     /* ═══ SECTIONS ═══ */
     .section { padding: clamp(2.4rem, 6vw, 5rem) clamp(1.2rem, 5vw, 2rem); }
     .container { max-width: 1380px; margin: 0 auto; }
-    /* Feine Hairline-Divider statt harter Farbblöcke → Abschnitte fließen ineinander */
-    main > section + section { border-top: 1px solid rgba(255,255,255,.05); }
+    /* Animierte Trenner: zarte Linie zieht sich beim Scrollen mittig auf → flüssiger Übergang */
+    main > section { position: relative; }
+    main > section + section { border-top: none; }
+    main > section + section::before {
+        content: ''; position: absolute; top: -1px; left: 50%;
+        width: min(1100px, 86%); height: 1px;
+        transform: translateX(-50%) scaleX(0); transform-origin: center;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+        transition: transform 1.1s var(--ease-out); pointer-events: none;
+    }
+    main > section.sec-in::before { transform: translateX(-50%) scaleX(1); }
     /* Deep-Links (#about, /#portfolio …) landen nicht unter dem Sticky-Header */
     section[id] { scroll-margin-top: 84px; }
     .eyebrow {
@@ -1343,6 +1352,16 @@ const revObs = new IntersectionObserver(entries => {
 }, {threshold:.08, rootMargin:'0px 0px -48px 0px'});
 document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => revObs.observe(el));
 
+/* ── ABSCHNITTS-ÜBERGÄNGE (Trenner zieht sich beim Scrollen auf) ── */
+(function(){
+    const secs = document.querySelectorAll('main > section');
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){ secs.forEach(s => s.classList.add('sec-in')); return; }
+    const so = new IntersectionObserver(es => {
+        es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('sec-in'); so.unobserve(e.target); } });
+    }, {threshold:0, rootMargin:'0px 0px -12% 0px'});
+    secs.forEach(s => so.observe(s));
+})();
+
 /* ── COUNTERS ── */
 const cntObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -1364,14 +1383,17 @@ document.querySelectorAll('.stat-num').forEach(el => cntObs.observe(el));
 /* ── PORTFOLIO (dynamisch aus portfolio/images.json) ── */
 const pfStyle = document.createElement('style');
 pfStyle.textContent = `@keyframes pfIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-.pf-item img{opacity:0;transition:opacity .6s ease,filter .55s ease,transform .7s var(--ease-io)}
-.pf-item img.loaded{opacity:1}
+.pf-item::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(100deg,#131313 30%,#1e1e1e 50%,#131313 70%);background-size:200% 100%;animation:pfShimmer 1.4s linear infinite;transition:opacity .5s ease}
+.pf-item.loaded-wrap::after{opacity:0}
+@keyframes pfShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.pf-item img{position:relative;z-index:1;opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s var(--ease-io),filter .55s ease}
+.pf-item img.loaded{opacity:1;transform:translateY(0)}
 .pf-more{text-align:center;padding:1.6rem 1.2rem 0}
 .pf-more-link{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;border:1px solid rgba(255,255,255,.18);padding:.8rem 1.4rem;min-height:var(--hit);transition:color .2s,border-color .2s,background .2s,transform .2s}
 .pf-more-link:hover{color:#fff;border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.05);transform:translateY(-2px)}
 .pf-more-link i{transition:transform .3s ease}
 .pf-more-link:hover i{transform:translateX(4px)}
-@media (prefers-reduced-motion:reduce){.pf-item img{opacity:1}}`;
+@media (prefers-reduced-motion:reduce){.pf-item img{opacity:1;transform:none}.pf-item::after{opacity:0}}`;
 document.head.appendChild(pfStyle);
 
 const CAT_LABELS = { all:'Alle', sport:'Sport', konzert:'Musik', event:'Events', 'red-carpet':'Red Carpet', 'meine-kunst':'Meine Kunst', 'theater-und-musical':'Theater & Musical' };
@@ -1450,15 +1472,16 @@ function buildFilters(cats){
     });
 }
 function renderPortfolio(items){
-    pfGrid.innerHTML = items.map(it => {
+    pfGrid.innerHTML = items.map((it, i) => {
         const src   = encodeURI('portfolio/' + it.file);
         const alt   = esc(it.alt || it.title || '');
         const title = esc(it.title || '');
         const cat   = esc(it.cat || '');
         const catLabel = esc(it.catLabel || CAT_LABELS[it.cat] || it.cat || '');
         const dims  = (it.width && it.height) ? ` width="${it.width}" height="${it.height}"` : '';
+        const eager = i < 4 ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"';
         return `<div class="pf-item" data-cat="${cat}" tabindex="0" role="button" aria-label="${alt} – vergrößern" data-src="${src}" data-title="${title}">
-    <img src="${src}" alt="${alt}"${dims} loading="lazy" decoding="async">
+    <img src="${src}" alt="${alt}"${dims}${eager} decoding="async">
     <div class="pf-overlay" aria-hidden="true"></div>
     <div class="pf-info"><div class="pf-title">${title}</div><div class="pf-cat">${catLabel}</div></div>
     <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
@@ -1466,8 +1489,9 @@ function renderPortfolio(items){
     }).join('');
     pfGrid.removeAttribute('aria-busy');
     pfGrid.querySelectorAll('.pf-item img').forEach(img => {
-        if(img.complete) img.classList.add('loaded');
-        else img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
+        const mark = () => { img.classList.add('loaded'); img.parentElement.classList.add('loaded-wrap'); };
+        if(img.complete && img.naturalWidth) mark();
+        else { img.addEventListener('load', mark, {once:true}); img.addEventListener('error', () => img.parentElement.classList.add('loaded-wrap'), {once:true}); }
     });
     pfItems().forEach(item => {
         item.addEventListener('click', () => { lbItems=getVisible(); openLB(item.dataset.src,item.dataset.title,lbItems.indexOf(item)); });
@@ -1486,6 +1510,7 @@ fetch('portfolio/images.json', {cache:'no-cache'})
             const pool = byCat[cat];
             if(pool && pool.length) shuffle(pool.slice()).slice(0, FEATURED_PER_CAT).forEach(x => featured.push(x));
         });
+        shuffle(featured);   // Kategorien durchmischen (nicht gruppiert anzeigen)
         buildFilters(new Set(featured.map(i => i.cat)));
         renderPortfolio(featured);
         pfMoreEl = document.createElement('div'); pfMoreEl.className = 'pf-more'; pfMoreEl.hidden = true;

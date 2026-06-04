@@ -1,0 +1,13 @@
+﻿# Lokale VS-Code-Historie
+.history/
+# Claude / lokale Tool-Einstellungen
+.claude/
+# Grosse Video-Dateien (ueber GitHubs 100-MB-Limit, nur lokal)
+*.mov
+start_video_header.mp4
+# Temporaer / Planungsnotizen
+*.tmp
+plan3_6.md
+# Python-Bytecode
+__pycache__/
+*.pyc

@@ -1,0 +1,208 @@
+#!/usr/bin/env python3
+"""Erzeugt die Portfolio-Manifeste und die sitemap.xml automatisch aus den
+Bildern in den Kategorie-Unterordnern von portfolio/.
+
+Struktur:
+    portfolio/
+      <kategorie>/            z. B. sport, konzert, event, red-carpet,
+        <bilder...>           meine-kunst, theater-und-musical
+        images.json          <- pro Kategorie (von diesem Skript erzeugt)
+      images.json            <- aggregiert über alle Kategorien (für die Startseite)
+
+Aufruf:
+    python scripts/build_portfolio.py             # Standard: portfolio/ + ./ (Site-Root)
+    python scripts/build_portfolio.py <portfolio_dir> <site_root>
+
+- Bildmaße werden via Pillow gelesen (ohne Pillow fehlen width/height -> kein CLS-Schutz).
+- Jede Kategorie wird REKURSIV gescannt (z. B. meine-kunst/10-im-quadrat-bilder/<person>/).
+- Neue Bilder einfach in den passenden Kategorieordner legen und committen – die GitHub
+  Action ruft dieses Skript auf und aktualisiert alle images.json + sitemap.xml automatisch.
+"""
+from __future__ import annotations
+
+import json
+import re
+import sys
+from pathlib import Path
+from urllib.parse import quote
+from xml.sax.saxutils import escape
+
+try:
+    from PIL import Image  # type: ignore
+    _HAS_PIL = True
+except Exception:  # pragma: no cover - Pillow optional
+    _HAS_PIL = False
+
+# ── Konfiguration ────────────────────────────────────────────────────────────
+SITE_URL = "https://benni-photo.com"
+IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".avif"}
+DENYLIST = {"images.json", "index.html"}
+
+# Reihenfolge + Beschriftung der Kategorien. Schlüssel = Ordnername in portfolio/.
+# "alt" ist eine Vorlage; {t} wird durch den aus dem Dateinamen abgeleiteten Titel ersetzt.
+CATEGORIES: dict[str, dict] = {
+    "sport":               dict(label="Sport",            title="Sport",
+                                 alt="{t} – Sportfotografie von Benjamin Gillmann"),
+    "konzert":             dict(label="Musik",            title="Konzert",
+                                 alt="{t} – Konzert- & Musikfotografie von Benjamin Gillmann"),
+    "event":               dict(label="Events",           title="Event",
+                                 alt="{t} – Eventfotografie von Benjamin Gillmann"),
+    "red-carpet":          dict(label="Red Carpet",       title="Red Carpet",
+                                 alt="{t} – Red-Carpet-Fotografie von Benjamin Gillmann"),
+    "meine-kunst":         dict(label="Meine Kunst",      title="Porträt",
+                                 alt="{t} – künstlerische Porträtfotografie von Benjamin Gillmann"),
+    "theater-und-musical": dict(label="Theater & Musical", title="Theater & Musical",
+                                 alt="{t} – Theater- & Musicalfotografie von Benjamin Gillmann"),
+}
+CAT_ORDER = list(CATEGORIES.keys())
+
+
+def prettify(stem: str) -> str:
+    """Lesbaren Titel aus einem Dateinamen ableiten."""
+    s = stem.replace("_", " ").replace("-", " ")
+    s = re.sub(r"\(\s*\d+\s*(von\s*\d+)?\s*\)", "", s, flags=re.IGNORECASE)  # (14 von 265)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+
+def dims(path: Path):
+    if not _HAS_PIL:
+        return (None, None)
+    try:
+        with Image.open(path) as im:
+            return im.size  # (width, height)
+    except Exception:
+        return (None, None)
+
+
+def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
+    """Alle Bilder einer Kategorie REKURSIV sammeln. file = Pfad relativ zum Kategorieordner."""
+    items: list[dict] = []
+    for p in sorted(cat_dir.rglob("*"), key=lambda x: str(x).lower()):
+        if not p.is_file() or p.suffix.lower() not in IMAGE_EXTS:
+            continue
+        if p.name.lower() in DENYLIST:
+            continue
+        rel = p.relative_to(cat_dir).as_posix()
+        # Sonderfall: »10 im Quadrat«-Porträtserie (gehört zum SZ-Ausstellungsartikel)
+        if cat == "meine-kunst" and rel.lower().startswith("10-im-quadrat-bilder/"):
+            parts = rel.split("/")
+            person = parts[1].replace("_", " ").replace("-", " ").strip().title() if len(parts) > 2 else ""
+            title = f"10 im Quadrat – {person}" if person else "10 im Quadrat"
+            alt = (f"»10 im Quadrat« – Porträtserie mit {person}, Ausstellung München "
+                   f"(Süddeutsche Zeitung) – Foto von Benjamin Gillmann") if person else \
+                  "»10 im Quadrat« – Porträtausstellung München (Süddeutsche Zeitung) – Benjamin Gillmann"
+        else:
+            title = prettify(p.stem) or cfg["title"]
+            alt = cfg["alt"].format(t=title)
+        item = {
+            "file": rel,
+            "title": title,
+            "cat": cat,
+            "catLabel": cfg["label"],
+            "alt": alt,
+        }
+        w, h = dims(p)
+        if w and h:
+            item["width"] = w
+            item["height"] = h
+        items.append(item)
+    return items
+
+
+def write_json(data, out: Path) -> None:
+    out.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def img_url(file_rel_to_portfolio: str) -> str:
+    return f"{SITE_URL}/portfolio/" + quote(file_rel_to_portfolio, safe="/")
+
+
+def write_sitemap(by_cat: dict[str, list[dict]], out: Path) -> None:
+    from datetime import date
+    today = date.today().isoformat()
+    L = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
+        '  <url>',
+        f'    <loc>{SITE_URL}/</loc>',
+        f'    <lastmod>{today}</lastmod>',
+        '    <changefreq>weekly</changefreq>',
+        '    <priority>1.0</priority>',
+        '  </url>',
+    ]
+    for cat in CAT_ORDER:
+        items = by_cat.get(cat, [])
+        if not items:
+            continue
+        L += [
+            '  <url>',
+            f'    <loc>{SITE_URL}/portfolio/{cat}/</loc>',
+            f'    <lastmod>{today}</lastmod>',
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>0.8</priority>',
+        ]
+        for it in items:
+            L.append('    <image:image>')
+            L.append(f'      <image:loc>{img_url(cat + "/" + it["file"])}</image:loc>')
+            L.append(f'      <image:caption>{escape(it["alt"])}</image:caption>')
+            L.append('    </image:image>')
+        L.append('  </url>')
+    for page in ("impressum.html", "datenschutz.html"):
+        L += [
+            '  <url>',
+            f'    <loc>{SITE_URL}/{page}</loc>',
+            f'    <lastmod>{today}</lastmod>',
+            '    <changefreq>yearly</changefreq>',
+            '    <priority>0.3</priority>',
+            '  </url>',
+        ]
+    L += ['</urlset>', '']
+    out.write_text("\n".join(L), encoding="utf-8")
+
+
+def main(argv: list[str]) -> int:
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+    portfolio_dir = Path(argv[1]) if len(argv) > 1 else Path("portfolio")
+    site_root = Path(argv[2]) if len(argv) > 2 else Path(".")
+    if not portfolio_dir.is_dir():
+        print(f"FEHLER: Portfolio-Ordner nicht gefunden: {portfolio_dir}", file=sys.stderr)
+        return 1
+
+    by_cat: dict[str, list[dict]] = {}
+    aggregated: list[dict] = []
+    total = 0
+
+    for cat, cfg in CATEGORIES.items():
+        cat_dir = portfolio_dir / cat
+        if not cat_dir.is_dir():
+            print(f"  (übersprungen: {cat}/ existiert nicht)")
+            continue
+        items = collect_category(cat_dir, cat, cfg)
+        by_cat[cat] = items
+        write_json(items, cat_dir / "images.json")
+        # Aggregiert: file-Pfad relativ zu portfolio/ (z. B. "sport/foo.jpg")
+        for it in items:
+            agg = dict(it)
+            agg["file"] = f"{cat}/{it['file']}"
+            aggregated.append(agg)
+        total += len(items)
+        print(f"  ✓ {cat}: {len(items)} Bilder -> {cat_dir / 'images.json'}")
+
+    write_json(aggregated, portfolio_dir / "images.json")
+    write_sitemap(by_cat, site_root / "sitemap.xml")
+    print(f"OK: {total} Bilder gesamt -> {portfolio_dir / 'images.json'} + {site_root / 'sitemap.xml'}")
+    if not _HAS_PIL:
+        print("Hinweis: Pillow nicht installiert -> width/height fehlen (kein CLS-Schutz).",
+              file=sys.stderr)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))

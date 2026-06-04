@@ -1,33 +1,17 @@
 {
   "name": "Benjamin Gillmann Photography",
   "short_name": "BG Photo",
-  "description": "Professioneller Fotograf für Sport, Musik und Events in Deutschland",
+  "description": "Professioneller Fotograf für Sport, Musik und Events in München und deutschlandweit",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "orientation": "any",
+  "orientation": "portrait-primary",
   "categories": ["photography", "portfolio", "business"],
   "lang": "de-DE",
   "dir": "ltr",
   "icons": [
-    {
-      "src": "/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
-    },
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
@@ -39,20 +23,38 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "shortcuts": [
     {
-      "name": "Galerie",
-      "short_name": "Galerie",
-      "description": "Kundengalerie öffnen",
-      "url": "/galerie/"
+      "name": "Portfolio",
+      "short_name": "Portfolio",
+      "description": "Fotografie-Portfolio ansehen",
+      "url": "/#portfolio"
+    },
+    {
+      "name": "Sport",
+      "short_name": "Sport",
+      "description": "Sportfotografie-Portfolio",
+      "url": "/portfolio/sport/"
+    },
+    {
+      "name": "Musik",
+      "short_name": "Musik",
+      "description": "Konzert- & Musikfotografie-Portfolio",
+      "url": "/portfolio/konzert/"
     },
     {
       "name": "Kontakt",
       "short_name": "Kontakt",
-      "description": "Direkter Mail-Kontakt",
-      "url": "mailto:b.b@black.com"
+      "description": "Kontakt aufnehmen",
+      "url": "/#contact"
     }
   ],
   "related_applications": [],

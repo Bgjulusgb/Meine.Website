@@ -1,0 +1,51 @@
+name: Portfolio-Manifest aktualisieren
+
+# Läuft bei jeder Änderung im portfolio/-Ordner (z. B. neue Bilder hochgeladen)
+# und kann manuell ausgelöst werden. Erzeugt portfolio/images.json + sitemap.xml
+# und committet sie zurück. Commits mit GITHUB_TOKEN lösen KEINE neuen Workflows
+# aus -> keine Endlosschleife. Der klassische GitHub-Pages-Build deployt danach neu.
+
+on:
+  push:
+    paths:
+      - "portfolio/**"
+      - "scripts/build_portfolio.py"
+      - ".github/workflows/portfolio-manifest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portfolio-manifest
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pillow installieren
+        run: pip install Pillow
+
+      - name: Manifest + Sitemap erzeugen
+        run: python scripts/build_portfolio.py portfolio .
+
+      - name: Änderungen committen (falls vorhanden)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portfolio/images.json sitemap.xml
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen – nichts zu committen."
+          else
+            git commit -m "chore: Portfolio-Manifest & Sitemap automatisch aktualisiert"
+            git push
+          fi

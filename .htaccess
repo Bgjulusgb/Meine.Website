@@ -1,76 +1,60 @@
-# .htaccess für benni-photo.com
-# Performance · Sicherheit · SEO
+# .htaccess für Performance und SEO Optimierung
 
-# ─── Gzip / Brotli Komprimierung ────────────────────────────────
+# Enable Gzip Compression
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
-    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
-    AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
-    AddOutputFilterByType DEFLATE image/svg+xml font/woff font/woff2
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml
 </IfModule>
 
-# ─── Browser-Caching ────────────────────────────────────────────
+# Browser Caching
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresDefault                          "access plus 1 month"
-    ExpiresByType text/html                 "access plus 0 seconds"
-    ExpiresByType application/json          "access plus 0 seconds"
-    ExpiresByType application/xml           "access plus 0 seconds"
-    ExpiresByType text/css                  "access plus 1 year"
-    ExpiresByType application/javascript    "access plus 1 year"
-    ExpiresByType image/svg+xml             "access plus 1 year"
-    ExpiresByType image/png                 "access plus 1 year"
-    ExpiresByType image/jpg                 "access plus 1 year"
-    ExpiresByType image/jpeg                "access plus 1 year"
-    ExpiresByType image/webp                "access plus 1 year"
-    ExpiresByType image/x-icon              "access plus 1 year"
-    ExpiresByType font/woff                 "access plus 1 year"
-    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# ─── Sicherheits-Header ─────────────────────────────────────────
+# Security Headers
 <IfModule mod_headers.c>
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
-    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 
-    # Service-Worker darf nicht gecacht werden
-    <FilesMatch "sw\.js$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-    </FilesMatch>
+    # HSTS: 1 Jahr, bewusst ohne includeSubDomains (Subdomains evtl. noch HTTP-only)
+    Header always set Strict-Transport-Security "max-age=31536000"
 
-    # CORS-Header fürs Worker-Backend bei API-Aufrufen erlauben (optional)
-    <FilesMatch "\.(woff2?|ttf|eot)$">
-        Header set Access-Control-Allow-Origin "*"
-    </FilesMatch>
+    # CSP: getunt auf Google Fonts + FontAwesome (cdnjs), Inline-CSS/JS bleibt erlaubt
+    Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; form-action 'self'"
 </IfModule>
 
-# ─── HTTPS erzwingen ────────────────────────────────────────────
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS (uncomment when SSL is active)
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
 
-    # www entfernen (Canonical: nur benni-photo.com)
-    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
-</IfModule>
+# Remove www (or add www - choose one)
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#     RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+# </IfModule>
 
-# ─── Eigene Fehlerseiten ────────────────────────────────────────
-ErrorDocument 404 /index.html
+# Custom Error Pages
+ErrorDocument 404 /404.html
 
-# ─── Sensible Dateien blockieren ────────────────────────────────
-<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op]|env|toml)|~)$">
+# Protect sensitive files
+<FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
     Order allow,deny
     Deny from all
     Satisfy All
 </FilesMatch>
-
-# Verzeichnis-Listing deaktivieren
-Options -Indexes
-
-# Default-Charset für Text-Antworten
-AddDefaultCharset UTF-8
