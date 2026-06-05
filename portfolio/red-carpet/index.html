@@ -96,7 +96,7 @@
     .logo:hover img{transform:scale(1.07);}
     @media (max-width:360px){.logo-name{display:none;}}
     .nav-links{display:flex;list-style:none;gap:clamp(1rem,3vw,2rem);align-items:center;}
-    .nav-a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;position:relative;padding:.4rem 0;min-height:var(--hit);display:flex;align-items:center;transition:color .2s ease;}
+    .nav-a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;position:relative;padding:.4rem 0;min-height:var(--hit);display:flex;align-items:center;transition:color .2s ease;}
     .nav-a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#fff;transition:width .3s ease;}
     .nav-a:hover{color:#fff;}
     .nav-a:hover::after{width:100%;}
@@ -155,7 +155,7 @@
     @media (max-width:480px){.lb-prev{left:.4rem;}.lb-next{right:.4rem;}}
 
     /* BACK TO TOP */
-    .back-top{position:fixed;bottom:calc(1.5rem + var(--safe-bottom));right:1.5rem;z-index:100;width:42px;height:42px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.78rem;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;}
+    .back-top{position:fixed;bottom:calc(1.5rem + var(--safe-bottom));right:1.5rem;z-index:100;width:44px;height:44px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.78rem;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;}
     .back-top.show{opacity:1;visibility:visible;}
     .back-top:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);}
     @media (max-width:480px){.back-top{bottom:calc(1rem + var(--safe-bottom));right:1rem;}}
@@ -240,7 +240,6 @@
             <a href="../../#portfolio" data-nav>Portfolio</a> <span aria-hidden="true">/</span>
             <span id="crumbCat" aria-current="page">Kategorie</span>
         </div>
-        <div class="eyebrow reveal" id="gEyebrow">Portfolio</div>
         <h1 class="g-title reveal" id="gTitle">Portfolio</h1>
         <p class="g-desc reveal" id="gDesc"></p>
         <div class="g-count reveal" id="gCount" aria-live="polite"></div>
@@ -254,7 +253,7 @@
 <!-- FOOTER -->
 <footer class="footer" role="contentinfo">
     <div class="footer-inner">
-        <span class="footer-copy">&copy; 2026 Benjamin Gillmann Photography</span>
+        <span class="footer-copy">&copy; 2026 Benjamin Gillmann</span>
         <div class="footer-links">
             <a href="../../#portfolio" data-nav>Alle Portfolios</a>
             <a href="../../#contact" data-nav>Kontakt</a>
@@ -283,7 +282,7 @@ const CAT_META = {
     "sport":               {label:"Sport",            h:"Sport",                desc:"Dynamische Action- und Sportfotografie – von American Football bis Leichtathletik. Schnelle Reaktion, präzise Bildkomposition."},
     "konzert":             {label:"Musik",            h:"Konzert &amp; Musik",  desc:"Atmosphärische Konzert- und Musikfotografie, die Energie und Emotion einfängt – von kleinen Clubs bis zu großen Bühnen."},
     "event":               {label:"Events",           h:"Events",               desc:"Authentische Dokumentation von Veranstaltungen und besonderen Momenten."},
-    "red-carpet":          {label:"Red Carpet",       h:"Red Carpet",           desc:"Red-Carpet- und Premieren-Fotografie mit Gespür für den entscheidenden Moment."},
+    "red-carpet":          {label:"Red Carpet",       h:"Red Carpet",           desc:"Red-Carpet- und Premieren-Fotografie."},
     "meine-kunst":         {label:"Meine Kunst",      h:"Meine Kunst",          desc:"Künstlerische Porträts und freie Arbeiten – unter anderem aus dem Ausstellungsprojekt »10 im Quadrat«.",
         note:'Die Porträtserie <strong>»10 im Quadrat«</strong> entstand für ein gemeinsames Ausstellungsprojekt junger Fotografen und Musiker in München – dokumentiert und veröffentlicht von der <a href="https://www.sueddeutsche.de/projekte/artikel/muenchen/10-im-quadrat-ausstellung-junge-fotografen-junge-musiker-portraets-e331356/" target="_blank" rel="noopener noreferrer">Süddeutschen Zeitung</a>.'},
     "theater-und-musical": {label:"Theater &amp; Musical", h:"Theater &amp; Musical", desc:"Bühnenfotografie aus Theater, Musical und Show – Licht, Bewegung und Ausdruck."}
@@ -319,7 +318,6 @@ const plain = s => String(s).replace(/&amp;/g,'&');
     });
     // Sichtbare Texte
     document.getElementById('plName').innerHTML = META.h;
-    document.getElementById('gEyebrow').textContent = 'Portfolio · ' + labelPlain;
     document.getElementById('gTitle').innerHTML = META.h;
     document.getElementById('gDesc').textContent = descTxt;
     document.getElementById('crumbCat').textContent = labelPlain;
