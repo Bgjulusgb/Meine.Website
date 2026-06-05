@@ -342,15 +342,20 @@
         .hero-overlay {
             background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.3) 60%, rgba(0,0,0,.45) 100%);
         }
-        /* Handy: kurzer Header im Querformat statt langem Hochformat */
-        .hero { min-height: 60svh; min-height: 60vh; }
+        /* Handy: Header nimmt 2,5/4 (62,5%) der Hoehe ein; Bild komplett sichtbar,
+           horizontal nicht herangezoomt, mittig zentriert. */
+        .hero { min-height: 62.5svh; min-height: 62.5vh; }
         .hero-inner {
-            min-height: 60svh; min-height: 60vh;
+            min-height: 62.5svh; min-height: 62.5vh;
             padding:
                 calc(4.5rem + var(--safe-top))
                 clamp(1.4rem, 6vw, 5rem)
                 clamp(1.8rem, 5vh, 3rem)
                 clamp(1.4rem, 6vw, 5rem);
+        }
+        .hero-img img {
+            object-fit: contain; object-position: center;
+            transform: none !important;
         }
     }
     .hero-inner {
@@ -396,20 +401,22 @@
         .hero-btns { flex-direction: column; }
         .hero-btns .btn { width: 100%; justify-content: center; }
     }
-    /* Instagram-Icon direkt in der Button-Reihe */
+    /* Instagram-Icon direkt in der Button-Reihe – auffaellig im Instagram-Farbverlauf */
     .hero-soc-link {
         display: inline-flex; align-items: center; justify-content: center;
-        width: 44px; height: var(--hit); flex-shrink: 0;
-        border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.06);
-        color: rgba(255,255,255,.9); font-size: .95rem;
+        width: var(--hit); height: var(--hit); flex-shrink: 0;
+        border: none;
+        background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        color: #fff; font-size: 1.2rem;
         text-decoration: none;
-        transition: color .25s, border-color .25s, transform .25s, background .25s;
-        backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 4px 16px rgba(220,39,67,.45);
+        transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
         opacity: 0; animation: fadeUp .9s ease .65s forwards;
     }
-    .hero-soc-link:hover {
-        color: #fff; border-color: rgba(255,255,255,.6);
-        transform: translateY(-2px); background: rgba(255,255,255,.06);
+    .hero-soc-link:hover, .hero-soc-link:focus-visible {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 24px rgba(220,39,67,.6);
+        filter: saturate(1.12) brightness(1.06);
     }
 
     .hero-scroll {
@@ -601,12 +608,12 @@
         .svc-bg { filter: grayscale(55%) brightness(.7) contrast(1.04); }
         .svc-card::after { background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.2) 60%, rgba(0,0,0,.25) 100%); }
         .svc-cta { opacity: 1; transform: none; color: rgba(255,255,255,.85); }
-        /* Beim Reinscrollen automatisch den vollen Hover-Look aktivieren (ohne Maus-Hover) */
-        .svc-card.in-view { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,.55); }
-        .svc-card.in-view .svc-bg { transform: scale(1.06); filter: grayscale(0) brightness(.95) contrast(1.06) saturate(1.08); }
-        .svc-card.in-view::after { background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,.15) 100%); }
-        .svc-card.in-view .svc-cta { opacity: 1; transform: none; color: #fff; }
-        .svc-card.in-view .svc-cta i { transform: translateX(4px); }
+        /* Handy: vollen Hover-Look automatisch ausloesen, sobald die Karte die Bildschirmmitte kreuzt */
+        .svc-card.at-center { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,.55); }
+        .svc-card.at-center .svc-bg { transform: scale(1.06); filter: grayscale(0) brightness(.95) contrast(1.06) saturate(1.08); }
+        .svc-card.at-center::after { background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.12) 55%, rgba(0,0,0,.15) 100%); }
+        .svc-card.at-center .svc-cta { opacity: 1; transform: none; color: #fff; }
+        .svc-card.at-center .svc-cta i { transform: translateX(4px); }
     }
 
     /* ═══ PRESS / VERNISSAGE ═══ */
@@ -742,9 +749,11 @@
     .pf-item.hidden { display: none; }
     .pf-empty { text-align: center; color: var(--fg-2); font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em; padding: 2.5rem 1rem; }
     @media (hover:none) {
-        .pf-overlay { opacity: 1; }
-        .pf-info { transform: translateY(0); opacity: 1; }
-        .pf-zoom { opacity: 1; transform: scale(1); }
+        /* Handy: Hover-Effekt automatisch, sobald das Bild die Bildschirmmitte kreuzt */
+        .pf-item.at-center img { filter: none; transform: scale(1.04); }
+        .pf-item.at-center .pf-overlay { opacity: 1; }
+        .pf-item.at-center .pf-info { transform: translateY(0); opacity: 1; }
+        .pf-item.at-center .pf-zoom { opacity: 1; transform: scale(1); }
     }
 
     /* ═══ CONTACT ═══ */
@@ -1429,6 +1438,15 @@ const revObs = new IntersectionObserver(entries => {
 }, {threshold:.08, rootMargin:'0px 0px -48px 0px'});
 document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.reveal-s,.reveal-blur').forEach(el => revObs.observe(el));
 
+/* ── HANDY: Effekte automatisch ausloesen, sobald ein Element die Bildschirmmitte kreuzt (nur Touch) ── */
+let centerObs = null;
+if(window.matchMedia('(hover:none)').matches && !window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    centerObs = new IntersectionObserver(entries => {
+        entries.forEach(e => e.target.classList.toggle('at-center', e.isIntersecting));
+    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+    document.querySelectorAll('.svc-card').forEach(el => centerObs.observe(el));
+}
+
 /* ── ABSCHNITTS-ÜBERGÄNGE (Trenner zieht sich beim Scrollen auf) ── */
 (function(){
     const secs = document.querySelectorAll('main > section');
@@ -1575,6 +1593,8 @@ function renderPortfolio(items){
         item.addEventListener('click', () => { lbItems=getVisible(); openLB(item.dataset.src,item.dataset.title,lbItems.indexOf(item)); });
         item.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); item.click(); } });
     });
+    // Handy: Mini-Portfolio-Bilder beim Kreuzen der Bildschirmmitte automatisch animieren
+    if(centerObs) pfItems().forEach(item => centerObs.observe(item));
 }
 fetch('main-portfolio/images.json', {cache:'no-cache'})
     .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
