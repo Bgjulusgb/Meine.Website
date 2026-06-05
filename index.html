@@ -1587,8 +1587,22 @@ fetch('main-portfolio/images.json', {cache:'no-cache'})
         pfMoreEl = document.createElement('div'); pfMoreEl.className = 'pf-more'; pfMoreEl.hidden = true;
         pfGrid.after(pfMoreEl);
         updateMore('all');
+        // Die dynamisch geladene Collage verlängert die Seite. Wurde die Seite mit
+        // einem Anker (z. B. #contact) von einer Unterseite aus geöffnet, sprang der
+        // Browser zum Ziel, bevor die Galerie aufgebaut war – und landete dann zu weit
+        // oben. Deshalb hier erneut zum Hash-Ziel scrollen.
+        requestAnimationFrame(restoreHashScroll);
     })
     .catch(() => { pfGrid.removeAttribute('aria-busy'); if(pfEmpty) pfEmpty.hidden = false; });
+
+function restoreHashScroll(){
+    if(!location.hash || location.hash === '#') return;
+    let el;
+    try { el = document.querySelector(location.hash); } catch(e){ return; }
+    if(el) el.scrollIntoView({ block: 'start', behavior: 'auto' });
+}
+// Nachdem alle Bilder/Schriften geladen sind, ggf. erneut korrigieren.
+window.addEventListener('load', restoreHashScroll);
 
 /* ── BACK TO TOP ── */
 const btBtn = document.getElementById('backTop');
