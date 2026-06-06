@@ -1,4 +1,4 @@
-name: Deploy Worker + Frontend
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -10,112 +10,21 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  # ─────────────────────────────────────────────────────────────
-  # 1) Cloudflare Worker (Backend, hält Dropbox-Token geheim)
-  # ─────────────────────────────────────────────────────────────
-  deploy_worker:
-    name: Cloudflare Worker
-    runs-on: ubuntu-latest
-    outputs:
-      worker_url: ${{ steps.url.outputs.worker_url }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Wrangler installieren
-        run: npm install -g wrangler@latest
-
-      # Worker zuerst deployen (Reihenfolge wichtig: 'secret put' braucht
-      # einen existierenden Worker).
-      - name: Worker deployen
-        id: deploy
-        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
-        run: wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
-      # Alle Worker-Secrets setzen (nur wenn Worker erfolgreich deployt).
-      # Dropbox: OAuth2 Refresh-Token (empfohlen) oder statischer Token (Fallback).
-      # Galerie-Passwort: optional, aus GitHub Secret GALLERY_PASSWORD_HASH.
-      - name: Worker-Secrets setzen
-        if: ${{ steps.deploy.outcome == 'success' }}
-        run: |
-          # ── Dropbox-Token ─────────────────────────────────────────
-          if [ -n "${DROPBOX_REFRESH_TOKEN}" ] && [ -n "${DROPBOX_APP_KEY}" ] && [ -n "${DROPBOX_APP_SECRET}" ]; then
-            printf '%s' "${DROPBOX_REFRESH_TOKEN}" | wrangler secret put DROPBOX_REFRESH_TOKEN --name galerie-api
-            printf '%s' "${DROPBOX_APP_KEY}"       | wrangler secret put DROPBOX_APP_KEY       --name galerie-api
-            printf '%s' "${DROPBOX_APP_SECRET}"    | wrangler secret put DROPBOX_APP_SECRET    --name galerie-api
-            echo "::notice::Dropbox OAuth2 Refresh-Token konfiguriert (läuft nie ab)."
-          elif [ -n "${DROPBOX_ACCESS_TOKEN}" ]; then
-            printf '%s' "${DROPBOX_ACCESS_TOKEN}" | wrangler secret put DROPBOX_TOKEN --name galerie-api
-            echo "::warning::Statischer Dropbox-Token gesetzt (~4h Gültigkeit). Empfehlung: OAuth2 Refresh-Token verwenden."
-          else
-            echo "::warning::Kein Dropbox-Token konfiguriert – Bilder können nicht geladen werden."
-          fi
-          # ── Galerie-Passwort (optional) ────────────────────────────
-          if [ -n "${GALLERY_PASSWORD_HASH}" ]; then
-            printf '%s' "${GALLERY_PASSWORD_HASH}" | wrangler secret put GALLERY_PASSWORD_HASH --name galerie-api
-            echo "::notice::Galerie-Passwortschutz aktiviert."
-          fi
-        env:
-          DROPBOX_REFRESH_TOKEN:  ${{ secrets.DROPBOX_REFRESH_TOKEN }}
-          DROPBOX_APP_KEY:        ${{ secrets.DROPBOX_APP_KEY }}
-          DROPBOX_APP_SECRET:     ${{ secrets.DROPBOX_APP_SECRET }}
-          DROPBOX_ACCESS_TOKEN:   ${{ secrets.DROPBOX_ACCESS_TOKEN }}
-          GALLERY_PASSWORD_HASH:  ${{ secrets.GALLERY_PASSWORD_HASH }}
-          CLOUDFLARE_API_TOKEN:   ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID:  ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-
-      - name: Worker-URL ermitteln
-        id: url
-        run: |
-          ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
-          if [ -n "$ACCOUNT_ID" ]; then
-            URL="https://galerie-api.${ACCOUNT_ID}.workers.dev"
-          else
-            # Fallback: Worker-Subdomain des Accounts
-            URL="https://galerie-api.gillmannbenjamin99.workers.dev"
-          fi
-          echo "worker_url=${URL}" >> "$GITHUB_OUTPUT"
-          echo "::notice title=Worker URL::${URL}"
-
-  # ─────────────────────────────────────────────────────────────
-  # 2) Frontend zu GitHub Pages (mit injizierter Worker-URL)
-  # ─────────────────────────────────────────────────────────────
-  deploy_frontend:
-    name: Frontend zu GitHub Pages
-    needs: deploy_worker
-    runs-on: ubuntu-latest
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Worker-URL aus apiBase prüfen
-        run: |
-          # Worker-URL ist in galerie/index.html fest eingetragen.
-          # Hier nur verifizieren, dass eine HTTPS-URL gesetzt ist.
-          if ! grep -qE "apiBase:\s*'https://[^']+'" galerie/index.html; then
-            echo "::error::CONFIG.apiBase in galerie/index.html enthält keine HTTPS-URL!"
-            exit 1
-          fi
-          echo "Aktuelle apiBase:"
-          grep -nE "apiBase:\s*'[^']+'" galerie/index.html | head -1
-
-      - name: Pages konfigurieren
-        uses: actions/configure-pages@v5
-
-      - name: Artifact hochladen
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-
-      - name: Zu Pages deployen
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4

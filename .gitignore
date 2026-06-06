@@ -20,3 +20,8 @@ Thumbs.db
 
 # ── Lokaler Ordner außerhalb des Site-Roots (falls je mitversioniert) ─────────
 das hier nicht benutzen/
+
+# ── Umgebungsvariablen / Secrets ─────────────────────────────────────────────
+.env
+.env.local
+.env.*.local

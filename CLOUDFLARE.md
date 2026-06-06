@@ -54,9 +54,9 @@ Modify Response Header** je eine Regel „Set static“ anlegen (Match: alle Anf
 2. Den angezeigten **Token** kopieren.
 3. In `index.html` den Platzhalter ersetzen:
    ```html
-   data-cf-beacon='{"token": "DEIN_CLOUDFLARE_ANALYTICS_TOKEN"}'
+   data-cf-beacon='{"token": "e1eab273f1424f19b342694a84bad628"}'
    ```
-   → echten Token statt `DEIN_CLOUDFLARE_ANALYTICS_TOKEN` eintragen.
+   → echten Token statt `e1eab273f1424f19b342694a84bad628` eintragen.
    (Der Beacon-Host `static.cloudflareinsights.com` ist in der CSP bereits erlaubt.)
 
 ## 6. Caching (Cache Rules)

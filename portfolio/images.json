@@ -63,85 +63,31 @@
     "height": 1244
   },
   {
-    "file": "konzert/Auftritt-im-Wanda-1.jpg",
-    "title": "Auftritt im Wanda 1",
+    "file": "konzert/cat_call-1.jpg",
+    "title": "cat call 1",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "Auftritt im Wanda 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1920,
-    "height": 1377
-  },
-  {
-    "file": "konzert/Auftritt-im-Wanda-3.jpg",
-    "title": "Auftritt im Wanda 3",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Auftritt im Wanda 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1920,
-    "height": 1280
-  },
-  {
-    "file": "konzert/Auftritt-im-Wanda-4.jpg",
-    "title": "Auftritt im Wanda 4",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Auftritt im Wanda 4 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1920,
-    "height": 1280
-  },
-  {
-    "file": "konzert/Band Foto (1).jpg",
-    "title": "Band Foto",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Band Foto – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1536
-  },
-  {
-    "file": "konzert/Band Foto (2).jpg",
-    "title": "Band Foto",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Band Foto – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "cat call 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1365
   },
   {
-    "file": "konzert/flaschen_grün-15.jpg",
-    "title": "flaschen grün 15",
+    "file": "konzert/cat_call-2.jpg",
+    "title": "cat call 2",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "flaschen grün 15 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "cat call 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
     "height": 2048
   },
   {
-    "file": "konzert/flaschen_grün-16.jpg",
-    "title": "flaschen grün 16",
+    "file": "konzert/cat_call-4.jpg",
+    "title": "cat call 4",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "flaschen grün 16 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1638,
-    "height": 2048
-  },
-  {
-    "file": "konzert/flaschen_grün-18.jpg",
-    "title": "flaschen grün 18",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "flaschen grün 18 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "cat call 4 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
     "height": 2048
-  },
-  {
-    "file": "konzert/flaschen_grün-20.jpg",
-    "title": "flaschen grün 20",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "flaschen grün 20 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1365
   },
   {
     "file": "konzert/fruchtiger_beigeschmack-22.jpg",
@@ -198,15 +144,6 @@
     "height": 1365
   },
   {
-    "file": "konzert/fruchtiger_beigeschmack-60.jpg",
-    "title": "fruchtiger beigeschmack 60",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "fruchtiger beigeschmack 60 – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1365
-  },
-  {
     "file": "konzert/fruchtiger_beigeschmack-64.jpg",
     "title": "fruchtiger beigeschmack 64",
     "cat": "konzert",
@@ -243,47 +180,11 @@
     "height": 2048
   },
   {
-    "file": "konzert/Metal (1).jpg",
-    "title": "Metal",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Metal – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1365,
-    "height": 2048
-  },
-  {
-    "file": "konzert/Metal (2).jpg",
-    "title": "Metal",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Metal – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1365
-  },
-  {
-    "file": "konzert/Metal (3).jpg",
-    "title": "Metal",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "Metal – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1365
-  },
-  {
     "file": "konzert/metal.jpg",
     "title": "metal",
     "cat": "konzert",
     "catLabel": "Musik",
     "alt": "metal – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1536,
-    "height": 2048
-  },
-  {
-    "file": "konzert/metal_2.jpg",
-    "title": "metal 2",
-    "cat": "konzert",
-    "catLabel": "Musik",
-    "alt": "metal 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
     "height": 2048
   },
@@ -315,40 +216,67 @@
     "height": 1536
   },
   {
-    "file": "konzert/mola (1).jpg",
-    "title": "mola",
+    "file": "konzert/mola_beim_so-not-right-festival_1.jpg",
+    "title": "mola beim so not right festival 1",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "mola – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "mola beim so not right festival 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1365
   },
   {
-    "file": "konzert/mola (2).jpg",
-    "title": "mola",
+    "file": "konzert/mola_beim_so-not-right-festival_2.jpg",
+    "title": "mola beim so not right festival 2",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "mola – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "mola beim so not right festival 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
     "height": 1365
   },
   {
-    "file": "konzert/mola (3).jpg",
-    "title": "mola",
+    "file": "konzert/mola_beim_so-not-right-festival_3.jpg",
+    "title": "mola beim so not right festival 3",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "mola – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "mola beim so not right festival 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
     "height": 2048
   },
   {
-    "file": "konzert/mola (4).jpg",
-    "title": "mola",
+    "file": "konzert/mola_beim_so-not-right-festival_4.jpg",
+    "title": "mola beim so not right festival 4",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "mola – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "alt": "mola beim so not right festival 4 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
     "height": 2048
+  },
+  {
+    "file": "konzert/Papierkatze_im_Wanda-1.jpg",
+    "title": "Papierkatze im Wanda 1",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Papierkatze im Wanda 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1920,
+    "height": 1377
+  },
+  {
+    "file": "konzert/Papierkatze_im_Wanda-2.jpg",
+    "title": "Papierkatze im Wanda 2",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Papierkatze im Wanda 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1920,
+    "height": 1280
+  },
+  {
+    "file": "konzert/Papierkatze_im_Wanda-3.jpg",
+    "title": "Papierkatze im Wanda 3",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Papierkatze im Wanda 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1920,
+    "height": 1280
   },
   {
     "file": "konzert/Sportfreunde_Stiller_Olympiahalle (2) copy.jpg",
@@ -441,22 +369,31 @@
     "height": 1356
   },
   {
-    "file": "konzert/Stahlzeit (5).jpg",
-    "title": "Stahlzeit",
+    "file": "konzert/subkultur_ffb_metal-night_1.jpg",
+    "title": "subkultur ffb metal night 1",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 2048,
-    "height": 1356
+    "alt": "subkultur ffb metal night 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 1365,
+    "height": 2048
   },
   {
-    "file": "konzert/Stahlzeit (6).jpg",
-    "title": "Stahlzeit",
+    "file": "konzert/subkultur_ffb_metal-night_2.jpg",
+    "title": "subkultur ffb metal night 2",
     "cat": "konzert",
     "catLabel": "Musik",
-    "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
-    "width": 1295,
-    "height": 2048
+    "alt": "subkultur ffb metal night 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 2048,
+    "height": 1365
+  },
+  {
+    "file": "konzert/subkultur_ffb_metal-night_3.jpg",
+    "title": "subkultur ffb metal night 3",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "subkultur ffb metal night 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 2048,
+    "height": 1365
   },
   {
     "file": "konzert/Tortured-11.jpg",
@@ -502,6 +439,24 @@
     "alt": "Tortured 29 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
     "height": 2048
+  },
+  {
+    "file": "konzert/Tortured_Bandfoto-2.jpg",
+    "title": "Tortured Bandfoto 2",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Tortured Bandfoto 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 2048,
+    "height": 1365
+  },
+  {
+    "file": "konzert/Tortured_Bandfoto.jpg",
+    "title": "Tortured Bandfoto",
+    "cat": "konzert",
+    "catLabel": "Musik",
+    "alt": "Tortured Bandfoto – Konzert- & Musikfotografie von Benjamin Gillmann",
+    "width": 2048,
+    "height": 1536
   },
   {
     "file": "event/start_into_media_nr_005.jpg",

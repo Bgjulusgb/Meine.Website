@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://benni-photo.com/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/sport/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -43,44 +43,20 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/konzert/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Auftritt-im-Wanda-1.jpg</image:loc>
-      <image:caption>Auftritt im Wanda 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/cat_call-1.jpg</image:loc>
+      <image:caption>cat call 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Auftritt-im-Wanda-3.jpg</image:loc>
-      <image:caption>Auftritt im Wanda 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/cat_call-2.jpg</image:loc>
+      <image:caption>cat call 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Auftritt-im-Wanda-4.jpg</image:loc>
-      <image:caption>Auftritt im Wanda 4 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Band%20Foto%20%281%29.jpg</image:loc>
-      <image:caption>Band Foto – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Band%20Foto%20%282%29.jpg</image:loc>
-      <image:caption>Band Foto – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/flaschen_gr%C3%BCn-15.jpg</image:loc>
-      <image:caption>flaschen grün 15 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/flaschen_gr%C3%BCn-16.jpg</image:loc>
-      <image:caption>flaschen grün 16 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/flaschen_gr%C3%BCn-18.jpg</image:loc>
-      <image:caption>flaschen grün 18 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/flaschen_gr%C3%BCn-20.jpg</image:loc>
-      <image:caption>flaschen grün 20 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/cat_call-4.jpg</image:loc>
+      <image:caption>cat call 4 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-22.jpg</image:loc>
@@ -107,10 +83,6 @@
       <image:caption>fruchtiger beigeschmack 52 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-60.jpg</image:loc>
-      <image:caption>fruchtiger beigeschmack 60 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-64.jpg</image:loc>
       <image:caption>fruchtiger beigeschmack 64 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
@@ -127,24 +99,8 @@
       <image:caption>fruchtiger beigeschmack 71 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Metal%20%281%29.jpg</image:loc>
-      <image:caption>Metal – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Metal%20%282%29.jpg</image:loc>
-      <image:caption>Metal – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Metal%20%283%29.jpg</image:loc>
-      <image:caption>Metal – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/metal.jpg</image:loc>
       <image:caption>metal – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/metal_2.jpg</image:loc>
-      <image:caption>metal 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/metal_adept_2.jpg</image:loc>
@@ -159,20 +115,32 @@
       <image:caption>metal adept crowd – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola%20%281%29.jpg</image:loc>
-      <image:caption>mola – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_1.jpg</image:loc>
+      <image:caption>mola beim so not right festival 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola%20%282%29.jpg</image:loc>
-      <image:caption>mola – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_2.jpg</image:loc>
+      <image:caption>mola beim so not right festival 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola%20%283%29.jpg</image:loc>
-      <image:caption>mola – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_3.jpg</image:loc>
+      <image:caption>mola beim so not right festival 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola%20%284%29.jpg</image:loc>
-      <image:caption>mola – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_4.jpg</image:loc>
+      <image:caption>mola beim so not right festival 4 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Papierkatze_im_Wanda-1.jpg</image:loc>
+      <image:caption>Papierkatze im Wanda 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Papierkatze_im_Wanda-2.jpg</image:loc>
+      <image:caption>Papierkatze im Wanda 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Papierkatze_im_Wanda-3.jpg</image:loc>
+      <image:caption>Papierkatze im Wanda 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/Sportfreunde_Stiller_Olympiahalle%20%282%29%20copy.jpg</image:loc>
@@ -215,12 +183,16 @@
       <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Stahlzeit%20%285%29.jpg</image:loc>
-      <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/subkultur_ffb_metal-night_1.jpg</image:loc>
+      <image:caption>subkultur ffb metal night 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Stahlzeit%20%286%29.jpg</image:loc>
-      <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/subkultur_ffb_metal-night_2.jpg</image:loc>
+      <image:caption>subkultur ffb metal night 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/subkultur_ffb_metal-night_3.jpg</image:loc>
+      <image:caption>subkultur ffb metal night 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-11.jpg</image:loc>
@@ -242,10 +214,18 @@
       <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-29.jpg</image:loc>
       <image:caption>Tortured 29 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured_Bandfoto-2.jpg</image:loc>
+      <image:caption>Tortured Bandfoto 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured_Bandfoto.jpg</image:loc>
+      <image:caption>Tortured Bandfoto – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/event/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -271,7 +251,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/red-carpet/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -389,7 +369,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/meine-kunst/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -851,7 +831,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/theater-und-musical/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -945,13 +925,13 @@
   </url>
   <url>
     <loc>https://benni-photo.com/impressum.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/datenschutz.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

@@ -58,8 +58,8 @@
         --bg-1:   #080808;
         --bg-2:   #0f0f0f;
         --fg-0:   #fff;
-        --fg-1:   #d4d4d4;   /* helles Grau – Fließtext, gut lesbar */
-        --fg-2:   #bdbdbd;   /* helleres Grau – Labels/Eyebrows */
+        --fg-1:   #f4f4f4;   /* fast weiß mit leichtem Grau-Stich – Fließtext */
+        --fg-2:   #e0e0e0;   /* leichter Grau-Stich – Labels/Eyebrows */
         --accent: #fff;
         --red:    #ff5e5e;
         --green:  #5effa0;
@@ -401,22 +401,21 @@
         .hero-btns { flex-direction: column; }
         .hero-btns .btn { width: 100%; justify-content: center; }
     }
-    /* Instagram-Icon direkt in der Button-Reihe – auffaellig im Instagram-Farbverlauf */
+    /* Instagram-Icon in der Button-Reihe – monoton, passend zum .btn-outline daneben */
     .hero-soc-link {
         display: inline-flex; align-items: center; justify-content: center;
         width: var(--hit); height: var(--hit); flex-shrink: 0;
-        border: none;
-        background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+        background: transparent;
+        border: 1px solid rgba(255,255,255,.28);
         color: #fff; font-size: 1.2rem;
         text-decoration: none;
-        box-shadow: 0 4px 16px rgba(220,39,67,.45);
-        transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+        transition: border-color .25s, background .25s, transform .25s;
         opacity: 0; animation: fadeUp .9s ease .65s forwards;
     }
     .hero-soc-link:hover, .hero-soc-link:focus-visible {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 8px 24px rgba(220,39,67,.6);
-        filter: saturate(1.12) brightness(1.06);
+        border-color: rgba(255,255,255,.6);
+        background: rgba(255,255,255,.06);
+        transform: translateY(-2px);
     }
 
     .hero-scroll {
@@ -758,8 +757,10 @@
 
     /* ═══ CONTACT ═══ */
     .contact-sec { background: transparent; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2.5rem, 6vw, 6rem); }
-    @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 640px; margin: 0 auto; }
+    .contact-note { color: var(--fg-1); font-size: clamp(.88rem, 1.5vw, .96rem); line-height: 1.75; margin-top: .5rem; }
+    .contact-note a { color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.4); text-underline-offset: 3px; transition: text-decoration-color .2s; }
+    .contact-note a:hover { text-decoration-color: #fff; }
     .contact-list { display: flex; flex-direction: column; margin-bottom: 2.5rem; }
     .contact-row {
         display: flex; align-items: center; gap: 1.2rem;
@@ -776,27 +777,6 @@
         transition: border-color .2s;
     }
     .contact-row:hover .contact-icon { border-color: rgba(255,255,255,.35); }
-    .c-form { display: flex; flex-direction: column; gap: 1.4rem; }
-    .f-group { position: relative; display: flex; flex-direction: column; gap: .4rem; }
-    .f-label { font-family: var(--f-mono); font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; color: var(--fg-2); transition: color .2s; }
-    .f-group:focus-within .f-label { color: rgba(255,255,255,.65); }
-    .f-input, .f-area {
-        padding: .85rem 1rem;
-        background: rgba(255,255,255,.025); border: 1px solid rgba(255,255,255,.08);
-        color: #fff; font-family: var(--f-ui); font-size: clamp(.86rem, 1.5vw, .92rem);
-        outline: none; appearance: none; -webkit-appearance: none; border-radius: 0; width: 100%;
-        transition: border-color .25s, background .25s;
-    }
-    .f-input:focus, .f-area:focus { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.04); }
-    .f-input::placeholder, .f-area::placeholder { color: rgba(255,255,255,.18); }
-    .f-area { min-height: 130px; resize: vertical; }
-    @media (max-width: 480px) { .f-input, .f-area { padding: 1rem; font-size: 1rem; } }
-    .f-err { color: var(--red); font-family: var(--f-mono); font-size: .68rem; margin-top: .25rem; display: none; }
-    .f-success {
-        display: none; padding: .85rem 1rem;
-        background: rgba(94,255,160,.06); border: 1px solid rgba(94,255,160,.2);
-        color: rgba(94,255,160,.9); font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
-    }
 
     /* ═══ FOOTER ═══ */
     .footer {
@@ -1018,7 +998,10 @@
                     </div>
                 </div>
                 <p class="about-body reveal d1">
-                    ein angehender Fotograf aus Deutschland mit Fokus auf Sport-, Musik- und Eventfotografie – ich halte authentische Momente fest, vom Stadion bis zur Konzertbühne oder eurem Event.
+                    ein angehender Fotograf aus München mit Fokus auf Sport-, Musik- und Eventfotografie.
+                </p>
+                <p class="about-body reveal d2">
+                    Ich fotografiere seit 2018: Damals habe ich die alte DSLR-Kamera meines Vaters genommen und einfach ausprobiert. Seitdem probiere ich mich in vielen Bereichen der Fotografie aus. Im November 2025 kaufte ich mir eine Digitalkamera von Nikon und fing an, professioneller zu fotografieren. Im März 2026 hatte ich meine erste Vernissage mit neun anderen Fotograf:innen beim Projekt »10 im Quadrat« – einem Projekt der Junge-Leute-Redaktion der Süddeutschen Zeitung.
                 </p>
 
             </div>
@@ -1040,7 +1023,7 @@
                 <span class="svc-cta">Portfolio ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
             <a class="svc-card reveal-s d1" href="portfolio/konzert/" data-nav aria-label="Musikfotografie – Portfolio ansehen">
-                <img class="svc-bg" src="images/leistung-musikfotografie.jpg" data-fallback="portfolio/konzert/Auftritt-im-Wanda-1.jpg" alt="" loading="lazy" decoding="async">
+                <img class="svc-bg" src="images/leistung-musikfotografie.jpg" data-fallback="portfolio/konzert/Sportfreunde_Stiller_Olympiahalle (3).jpg" alt="" loading="lazy" decoding="async">
                 <div class="svc-num">02</div>
                 <h3 class="svc-title">Musikfotografie</h3>
                 <p class="svc-desc">Atmosphärische Konzertbilder, die Energie und Emotion einfangen – von kleinen Clubs bis zu großen Bühnen.</p>
@@ -1147,37 +1130,10 @@
                         <span>München &amp; deutschlandweit</span>
                     </a>
                 </div>
+                <p class="contact-note reveal d4">
+                    Anfragen ausschließlich per E-Mail an <a href="mailto:b.b@black.com">b.b@black.com</a>. Ich melde mich zeitnah zurück.
+                </p>
             </div>
-            <form class="c-form reveal" id="contactForm" novalidate aria-labelledby="ct-h">
-                <div class="f-group">
-                    <label class="f-label" for="fname">Name</label>
-                    <input type="text" id="fname" name="name" class="f-input"
-                           placeholder="Ihr Name" required autocomplete="name"
-                           aria-required="true" aria-describedby="err-name">
-                    <span id="err-name" class="f-err" role="alert">Bitte geben Sie Ihren Namen ein.</span>
-                </div>
-                <div class="f-group">
-                    <label class="f-label" for="femail">E-Mail</label>
-                    <input type="email" id="femail" name="email" class="f-input"
-                           placeholder="ihre@email.de" required autocomplete="email"
-                           aria-required="true" aria-describedby="err-email">
-                    <span id="err-email" class="f-err" role="alert">Bitte eine gültige E-Mail eingeben.</span>
-                </div>
-                <div class="f-group">
-                    <label class="f-label" for="fmsg">Nachricht</label>
-                    <textarea id="fmsg" name="message" class="f-area"
-                              placeholder="Ihr Anliegen..." required
-                              aria-required="true" aria-describedby="err-msg"></textarea>
-                    <span id="err-msg" class="f-err" role="alert">Bitte geben Sie eine Nachricht ein.</span>
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                    Nachricht senden
-                </button>
-                <div id="f-success" class="f-success" role="status">
-                    <i class="fa-solid fa-check" aria-hidden="true"></i>&ensp;Vielen Dank – Ihre Nachricht wurde gesendet.
-                </div>
-            </form>
         </div>
     </div>
 </section>
@@ -1629,21 +1585,7 @@ const btBtn = document.getElementById('backTop');
 window.addEventListener('scroll', () => btBtn.classList.toggle('show', window.scrollY > 400), {passive:true});
 btBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-/* ── CONTACT FORM ── */
-document.getElementById('contactForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const nameEl=document.getElementById('fname'), mailEl=document.getElementById('femail'), msgEl=document.getElementById('fmsg');
-    const errN=document.getElementById('err-name'), errE=document.getElementById('err-email'), errM=document.getElementById('err-msg');
-    const succ=document.getElementById('f-success');
-    let ok=true;
-    [errN,errE,errM].forEach(el=>el.style.display='none');
-    [nameEl,mailEl,msgEl].forEach(el=>el.style.borderColor='');
-    succ.style.display='none';
-    if(!nameEl.value.trim()){ errN.style.display='block'; nameEl.style.borderColor='var(--red)'; ok=false; nameEl.focus(); }
-    else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailEl.value)){ errE.style.display='block'; mailEl.style.borderColor='var(--red)'; ok=false; mailEl.focus(); }
-    else if(!msgEl.value.trim()){ errM.style.display='block'; msgEl.style.borderColor='var(--red)'; ok=false; msgEl.focus(); }
-    if(ok){ succ.style.display='block'; nameEl.value=mailEl.value=msgEl.value=''; setTimeout(()=>succ.style.display='none',6000); }
-});
+
 </script>
 
 <script type="application/ld+json">
@@ -1692,6 +1634,6 @@ document.getElementById('contactForm').addEventListener('submit', e => {
 
 <!-- Cloudflare Web Analytics (cookielos, DSGVO-freundlich). Token in CLOUDFLARE.md eintragen. -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-        data-cf-beacon='{"token": "DEIN_CLOUDFLARE_ANALYTICS_TOKEN"}'></script>
+        data-cf-beacon='{"token": "e1eab273f1424f19b342694a84bad628"}'></script>
 </body>
 </html>
