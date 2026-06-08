@@ -1,5 +1,5 @@
 # Security contact for benni-photo.com (RFC 9116)
-Contact: mailto:benjamin.gillmann@black.com
+Contact: mailto:b.b@black.com
 Contact: https://benni-photo.com/#contact
 Expires: 2027-06-30T23:59:59.000Z
 Preferred-Languages: de, en
