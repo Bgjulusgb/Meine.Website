@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://benni-photo.com/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/sport/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/konzert/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -143,10 +143,6 @@
       <image:caption>Papierkatze im Wanda 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Sportfreunde_Stiller_Olympiahalle%20%282%29%20copy.jpg</image:loc>
-      <image:caption>Sportfreunde Stiller Olympiahalle copy – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/Sportfreunde_Stiller_Olympiahalle%20%282%29.jpg</image:loc>
       <image:caption>Sportfreunde Stiller Olympiahalle – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
@@ -225,7 +221,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/event/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -251,7 +247,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/red-carpet/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -369,7 +365,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/meine-kunst/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -831,7 +827,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/theater-und-musical/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -925,13 +921,13 @@
   </url>
   <url>
     <loc>https://benni-photo.com/impressum.html</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/datenschutz.html</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
