@@ -1521,6 +1521,9 @@ function buildFilters(cats){
     });
 }
 function renderPortfolio(items){
+    // Randomizer: Collage bei jedem Laden in zufälliger Reihenfolge anzeigen
+    items = items.slice();
+    for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]];}
     pfGrid.innerHTML = items.map((it, i) => {
         const src   = encodeURI('main-portfolio/' + it.file);
         const alt   = esc(it.alt || it.title || '');
