@@ -56,6 +56,14 @@ CATEGORIES: dict[str, dict] = {
 }
 CAT_ORDER = list(CATEGORIES.keys())
 
+# Unlisted: bekommt ein eigenes images.json (für die direkte Galerie-URL),
+# taucht aber NICHT in der aggregierten portfolio/images.json und nicht in
+# der sitemap.xml auf. Nur per direktem Link teilen.
+UNLISTED_CATEGORIES: dict[str, dict] = {
+    "bewerbungs-portfolio": dict(label="Bewerbung",        title="Bewerbungsportfolio",
+                                 alt="{t} – Konzert- & Musikfotografie von Benjamin Gillmann"),
+}
+
 
 def prettify(stem: str) -> str:
     """Lesbaren Titel aus einem Dateinamen ableiten."""
@@ -252,6 +260,16 @@ def main(argv: list[str]) -> int:
     write_json(aggregated, portfolio_dir / "images.json")
     write_sitemap(by_cat, site_root / "sitemap.xml")
     print(f"OK: {total} Bilder gesamt -> {portfolio_dir / 'images.json'} + {site_root / 'sitemap.xml'}")
+
+    # Unlisted-Galerien: eigenes images.json erzeugen, aber NICHT in Aggregat/Sitemap aufnehmen.
+    for cat, cfg in UNLISTED_CATEGORIES.items():
+        cat_dir = portfolio_dir / cat
+        if not cat_dir.is_dir():
+            print(f"  (übersprungen: {cat}/ existiert nicht)")
+            continue
+        items = collect_category(cat_dir, cat, cfg)
+        write_json(items, cat_dir / "images.json")
+        print(f"  ✓ {cat} (unlisted): {len(items)} Bilder -> {cat_dir / 'images.json'}")
 
     # Kuratierte Startseiten-Auswahl (separater Ordner main-portfolio/, Geschwister von portfolio/).
     main_dir = site_root / "main-portfolio"
