@@ -33,6 +33,8 @@ SKIP_BYTES = 600 * 1024  # Bilder kleiner als das + bereits <= MAX_EDGE -> über
 JPEG_EXTS = {".jpg", ".jpeg"}
 PNG_EXTS = {".png"}
 IMAGE_EXTS = JPEG_EXTS | PNG_EXTS
+# Ordner, die beim Standard-Lauf nie durchsucht werden (Git, Build-Tools, Templates etc.).
+EXCLUDE_DIRS = {".git", ".github", "node_modules", "scripts", "__pycache__", ".venv", "venv"}
 
 
 def _human(n: int) -> str:
@@ -44,9 +46,11 @@ def _human(n: int) -> str:
 
 
 def default_roots() -> list[Path]:
-    """portfolio/ (Site-Root) + 'das hier nicht benutzen' (eine Ebene darüber)."""
-    site_root = Path(__file__).resolve().parent.parent  # .../Meine.Website-main
-    roots = [site_root / "portfolio", site_root.parent / "das hier nicht benutzen"]
+    """Gesamtes Repo (Site-Root) + 'das hier nicht benutzen' (eine Ebene darüber).
+
+    Unterordner aus EXCLUDE_DIRS werden in iter_images() ausgefiltert."""
+    site_root = Path(__file__).resolve().parent.parent  # .../Meine.Website
+    roots = [site_root, site_root.parent / "das hier nicht benutzen"]
     return [r for r in roots if r.is_dir()]
 
 
@@ -103,8 +107,16 @@ def process_file(path: Path, dry_run: bool) -> tuple[int, int, bool]:
 def iter_images(roots: list[Path]):
     for root in roots:
         for p in sorted(root.rglob("*")):
-            if p.is_file() and p.suffix.lower() in IMAGE_EXTS:
-                yield p
+            if not (p.is_file() and p.suffix.lower() in IMAGE_EXTS):
+                continue
+            # Pfade unterhalb ausgeschlossener Ordner (relativ zum jeweiligen Root) skippen.
+            try:
+                rel_parts = p.relative_to(root).parts
+            except ValueError:
+                rel_parts = p.parts
+            if any(part in EXCLUDE_DIRS for part in rel_parts[:-1]):
+                continue
+            yield p
 
 
 def main(argv: list[str]) -> int:
