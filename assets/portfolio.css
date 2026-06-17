@@ -104,7 +104,7 @@ button{font-family:inherit;cursor:pointer;}
 .pf-item::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(100deg,#131313 30%,#1e1e1e 50%,#131313 70%);background-size:200% 100%;animation:pfShimmer 1.4s linear infinite;transition:opacity .5s ease;}
 .pf-item.loaded-wrap::after{opacity:0;}
 @keyframes pfShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.pf-item img{position:relative;z-index:1;width:100%;height:auto;display:block;opacity:0;transform:translateY(10px);filter:grayscale(22%) brightness(.9);transition:opacity .7s ease,transform .7s var(--ease-io),filter .55s ease;}
+.pf-item img{position:relative;z-index:1;width:100%;height:auto;display:block;opacity:0;transform:translateY(10px);filter:grayscale(100%);transition:opacity .7s ease,transform .7s var(--ease-io),filter .55s ease;}
 .pf-item img.loaded{opacity:1;transform:translateY(0);}
 .pf-item:hover img{filter:none;transform:scale(1.04);}
 .pf-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%);opacity:0;transition:opacity .35s;}
@@ -114,7 +114,7 @@ button{font-family:inherit;cursor:pointer;}
 .pf-title{font-family:var(--f-display);font-size:clamp(.85rem,1.8vw,1rem);font-weight:400;color:#fff;}
 .pf-zoom{position:absolute;top:.7rem;right:.7rem;z-index:3;width:28px;height:28px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.62rem;opacity:0;transform:scale(.8);transition:all .3s;}
 .pf-item:hover .pf-zoom{opacity:1;transform:scale(1);}
-@media (hover:none){.pf-overlay{opacity:1;}.pf-info{transform:translateY(0);opacity:1;}.pf-zoom{opacity:1;transform:scale(1);}}
+@media (hover:none){.pf-item img{filter:none;}.pf-overlay{opacity:1;}.pf-info{transform:translateY(0);opacity:1;}.pf-zoom{opacity:1;transform:scale(1);}}
 .pf-empty{text-align:center;color:var(--fg-2);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;padding:4rem 1rem;}
 
 /* LIGHTBOX */
