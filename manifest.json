@@ -51,6 +51,12 @@
       "url": "/portfolio/konzert/"
     },
     {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "Geschichten, Technik und Einblicke aus der Fotografie",
+      "url": "/blog/"
+    },
+    {
       "name": "Kontakt",
       "short_name": "Kontakt",
       "description": "Kontakt aufnehmen",

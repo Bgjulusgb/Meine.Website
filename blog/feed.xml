@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog – Benjamin Gillmann Photography</title>
+    <link>https://benni-photo.com/blog/</link>
+    <description>Geschichten, Technik und Einblicke aus der Fotografie von Benjamin Gillmann.</description>
+    <language>de-DE</language>
+    <lastBuildDate>Mon, 15 Jun 2026 12:00:00 +0000</lastBuildDate>
+    <atom:link href="https://benni-photo.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Hinter den Kulissen: Konzertfotografie bei wenig Licht</title>
+      <link>https://benni-photo.com/blog/hinter-den-kulissen-konzertfotografie/</link>
+      <guid isPermaLink="true">https://benni-photo.com/blog/hinter-den-kulissen-konzertfotografie/</guid>
+      <pubDate>Mon, 15 Jun 2026 12:00:00 +0000</pubDate>
+      <description>Wie entstehen energiegeladene Live-Konzertfotos, wenn das Licht ständig wechselt? Meine Herangehensweise, Kameraeinstellungen und die Momente, auf die es ankommt.</description>
+      <category>Konzert</category>
+      <category>Technik</category>
+      <category>München</category>
+    </item>
+  </channel>
+</rss>
