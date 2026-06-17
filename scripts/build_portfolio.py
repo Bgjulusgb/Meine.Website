@@ -62,6 +62,8 @@ CAT_ORDER = list(CATEGORIES.keys())
 UNLISTED_CATEGORIES: dict[str, dict] = {
     "bewerbungs-portfolio": dict(label="Bewerbung",        title="Bewerbungsportfolio",
                                  alt="{t} – Konzert- & Musikfotografie von Benjamin Gillmann"),
+    "sportfreunde-stiller": dict(label="Sportfreunde Stiller", title="Sportfreunde Stiller",
+                                 alt="{t} – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann"),
 }
 
 
