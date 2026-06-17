@@ -2,5 +2,6 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://benni-photo.com/sitemap.xml
+Sitemap: https://benni-photo.com/blog/sitemap.xml

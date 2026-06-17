@@ -45,6 +45,7 @@
     <link rel="preload" as="image" href="hero.jpg" fetchpriority="high">
     <link rel="stylesheet" href="assets/fonts.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/blog.css">
 
     <style>
     /* ═══ TOKENS ═══ */
@@ -938,6 +939,7 @@
                 <li><a href="#about"     class="nav-a" role="menuitem">Über mich</a></li>
                 <li><a href="#services"  class="nav-a" role="menuitem">Leistungen</a></li>
                 <li><a href="#portfolio" class="nav-a" role="menuitem">Portfolio</a></li>
+                <li><a href="blog/"      class="nav-a" role="menuitem">Blog</a></li>
                 <li><a href="#contact"   class="nav-a" role="menuitem">Kontakt</a></li>
             </ul>
         </div>
@@ -1100,6 +1102,44 @@
     <p id="pfEmpty" class="pf-empty" hidden>Galerie konnte nicht geladen werden.</p>
 </section>
 
+<!-- ══ NEUESTE BEITRÄGE (BLOG) ══ -->
+<section class="section blog-sec" id="blog" aria-labelledby="blog-h" hidden>
+    <div class="container">
+        <div class="eyebrow reveal">Blog</div>
+        <h2 class="sec-title reveal" id="blog-h">Neueste<br><em>Beiträge</em></h2>
+        <div class="blog-home-grid" id="blogHome" aria-busy="true"></div>
+        <div class="blog-home-more reveal">
+            <a href="blog/" class="nav-a">Alle Beiträge ansehen <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</section>
+<script>
+/* ── Neueste Blog-Beiträge laden (degradiert sauber, wenn leer) ── */
+(function(){
+    const sec=document.getElementById('blog'), grid=document.getElementById('blogHome');
+    if(!sec||!grid) return;
+    const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    fetch('blog/posts.json',{cache:'no-cache'})
+        .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+        .then(list=>{
+            if(!Array.isArray(list)||!list.length) return;
+            grid.innerHTML=list.slice(0,3).map(p=>{
+                const media=p.cover?`<div class="blog-card-media"><img src="${esc(p.cover)}" alt="${esc(p.coverAlt||p.title)}" loading="lazy" decoding="async"></div>`:'';
+                const cat=p.category?`<div class="blog-card-cat">${esc(p.category)}</div>`:'';
+                return `<article class="blog-card"><a class="blog-card-link" href="blog/${esc(p.slug)}/">${media}
+                    <div class="blog-card-body">${cat}
+                        <h3 class="blog-card-title">${esc(p.title)}</h3>
+                        <p class="blog-card-excerpt">${esc(p.excerpt||p.description||'')}</p>
+                        <div class="blog-card-meta"><time datetime="${esc(p.date)}">${esc(p.dateHuman||p.date)}</time><span aria-hidden="true">·</span><span>${esc(p.readingTime||1)} Min. Lesezeit</span></div>
+                    </div></a></article>`;
+            }).join('');
+            grid.removeAttribute('aria-busy');
+            sec.hidden=false;
+        })
+        .catch(()=>{});
+})();
+</script>
+
 <!-- ══ KONTAKT ══ -->
 <section class="section contact-sec" id="contact" aria-labelledby="ct-h">
     <div class="container">
@@ -1154,6 +1194,7 @@
                     <li><a href="#about">Über mich</a></li>
                     <li><a href="#services">Leistungen</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="blog/">Blog</a></li>
                     <li><a href="#contact">Kontakt</a></li>
                 </ul>
             </div>
