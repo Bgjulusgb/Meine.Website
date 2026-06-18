@@ -187,11 +187,11 @@ const plain = s => String(s).replace(/&amp;/g,'&');
         if(reduce){ seal(); return; }
         (function close(){ cur+=(100-cur)*0.3+0.8; if(cur>=99.5){seal();} else {apply(cur); raf=requestAnimationFrame(close);} })();
     }
-    const markLoaded=()=>{ loaded=true; }; window._pfReady=markLoaded;
-    if(document.readyState==='complete') markLoaded(); else window.addEventListener('load',markLoaded);
-    if(reduce){ apply(100); const fin=()=>setTimeout(finish,Math.max(0,MIN_MS-(performance.now()-t0))); if(loaded)fin(); else window.addEventListener('load',fin); return; }
-    (function tick(){ if(done) return; const elapsed=performance.now()-t0; const timeP=Math.min(100,(elapsed/MIN_MS)*100); const target=loaded?timeP:Math.min(timeP,92); cur+=(target-cur)*0.14; apply(cur); if(loaded&&elapsed>=MIN_MS){finish();return;} raf=requestAnimationFrame(tick); })();
+    // Wird von render() bzw. dem Fehler-Catch gerufen – kein window.load-Abwarten
+    window._pfReady=()=>{ loaded=true; if(reduce) setTimeout(finish,Math.max(0,MIN_MS-(performance.now()-t0))); };
     setTimeout(()=>{ loaded=true; finish(); },6000);
+    if(reduce){ apply(100); return; }
+    (function tick(){ if(done) return; const elapsed=performance.now()-t0; const timeP=Math.min(100,(elapsed/MIN_MS)*100); const target=loaded?timeP:Math.min(timeP,92); cur+=(target-cur)*0.14; apply(cur); if(loaded&&elapsed>=MIN_MS){finish();return;} raf=requestAnimationFrame(tick); })();
 })();
 
 /* ── STICKY HEADER + SCROLL-FORTSCHRITT ── */
@@ -281,6 +281,7 @@ function render(list){
     items().forEach(item=>{
         item.addEventListener('click',()=>{ lbItems=items(); openLB(item.dataset.src,item.dataset.title,lbItems.indexOf(item)); });
         item.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); item.click(); } });
+        item.addEventListener('mouseenter',()=>{ new Image().src=item.dataset.src; },{once:true});
     });
     document.getElementById('gCount').textContent = list.length + (list.length===1?' Bild':' Bilder');
     // JSON-LD ImageGallery
@@ -314,7 +315,7 @@ function render(list){
 fetch('./images.json')
     .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(list=>{ if(!Array.isArray(list)||!list.length) throw new Error('leer'); render(list); })
-    .catch(()=>{ grid.removeAttribute('aria-busy'); if(gEmpty) gEmpty.hidden=false; document.getElementById('gCount').textContent=''; });
+    .catch(()=>{ grid.removeAttribute('aria-busy'); window._pfReady?.(); if(gEmpty) gEmpty.hidden=false; document.getElementById('gCount').textContent=''; });
 </script>
 </body>
 </html>
