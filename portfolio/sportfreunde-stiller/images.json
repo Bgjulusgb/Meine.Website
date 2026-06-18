@@ -6,7 +6,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 01 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_01.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_02.jpg",
@@ -15,7 +18,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 02 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_02.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_03.jpg",
@@ -24,7 +30,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 03 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_03.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_04.jpg",
@@ -33,7 +42,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 04 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_04.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_05.jpg",
@@ -42,7 +54,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 05 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_05.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_06.jpg",
@@ -51,7 +66,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 06 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_06.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_07.jpg",
@@ -60,7 +78,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 07 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_07.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_08.jpg",
@@ -69,7 +90,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 08 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_08.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_09.jpg",
@@ -78,7 +102,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 09 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_09.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_10.jpg",
@@ -87,7 +114,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 10 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_10.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_11.jpg",
@@ -96,7 +126,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 11 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_11.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_12.jpg",
@@ -105,7 +138,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 12 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1639,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_12.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_13.jpg",
@@ -114,7 +150,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 13 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_13.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_14.jpg",
@@ -123,7 +162,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 14 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_14.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_15.jpg",
@@ -132,7 +174,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 15 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_15.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_16.jpg",
@@ -141,7 +186,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 16 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_16.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_17.jpg",
@@ -150,7 +198,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 17 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_17.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_18.jpg",
@@ -159,7 +210,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 18 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_18.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_19.jpg",
@@ -168,7 +222,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 19 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_19.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_20.jpg",
@@ -177,7 +234,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 20 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_20.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_21.jpg",
@@ -186,7 +246,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 21 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_21.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_22.jpg",
@@ -195,7 +258,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 22 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_22.webp",
+    "tw": 480,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_23.jpg",
@@ -204,7 +270,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 23 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_23.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_24.jpg",
@@ -213,7 +282,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 24 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_24.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_25.jpg",
@@ -222,7 +294,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 25 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_25.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_26.jpg",
@@ -231,7 +306,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 26 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_26.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_27.jpg",
@@ -240,7 +318,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 27 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_27.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_28.jpg",
@@ -249,7 +330,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 28 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_28.webp",
+    "tw": 480,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_29.jpg",
@@ -258,7 +342,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 29 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_29.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_30.jpg",
@@ -267,7 +354,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 30 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_30.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_31.jpg",
@@ -276,7 +366,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 31 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_31.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_32.jpg",
@@ -285,7 +378,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 32 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_32.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_33.jpg",
@@ -294,7 +390,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 33 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_33.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_34.jpg",
@@ -303,7 +402,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 34 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_34.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_35.jpg",
@@ -312,7 +414,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 35 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_35.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_36.jpg",
@@ -321,7 +426,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 36 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_36.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_37.jpg",
@@ -330,7 +438,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 37 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_37.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_38.jpg",
@@ -339,7 +450,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 38 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_38.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_39.jpg",
@@ -348,7 +462,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 39 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_39.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_40.jpg",
@@ -357,7 +474,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 40 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_40.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_41.jpg",
@@ -366,7 +486,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 41 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_41.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_42.jpg",
@@ -375,7 +498,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 42 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_42.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_43.jpg",
@@ -384,7 +510,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 43 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_43.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_44.jpg",
@@ -393,7 +522,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 44 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_44.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_45.jpg",
@@ -402,7 +534,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 45 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_45.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_46.jpg",
@@ -411,7 +546,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 46 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1639,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_46.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_47.jpg",
@@ -420,7 +558,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 47 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_47.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_48.jpg",
@@ -429,7 +570,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 48 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_48.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_49.jpg",
@@ -438,7 +582,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 49 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_49.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_50_VC01.jpg",
@@ -447,7 +594,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 50 VC01 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_50_VC01.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_51.jpg",
@@ -456,7 +606,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 51 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_51.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_52.jpg",
@@ -465,7 +618,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 52 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1639,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_52.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_53.jpg",
@@ -474,7 +630,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 53 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_53.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_54.jpg",
@@ -483,7 +642,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 54 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_54.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_55.jpg",
@@ -492,7 +654,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 55 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_55.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_56.jpg",
@@ -501,7 +666,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 56 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_56.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_57.jpg",
@@ -510,7 +678,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 57 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_57.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_58.jpg",
@@ -519,7 +690,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 58 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_58.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_59.jpg",
@@ -528,7 +702,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 59 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_59.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_60.jpg",
@@ -537,7 +714,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 60 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_60.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_61.jpg",
@@ -546,7 +726,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 61 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_61.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_62.jpg",
@@ -555,7 +738,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 62 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_62.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_63.jpg",
@@ -564,7 +750,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 63 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_63.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_64.jpg",
@@ -573,7 +762,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 64 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_64.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_65.jpg",
@@ -582,7 +774,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 65 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_65.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_66.jpg",
@@ -591,7 +786,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 66 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_66.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_67.jpg",
@@ -600,7 +798,10 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 67 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Sportfreunde_Stiller_67.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_68.jpg",
@@ -609,6 +810,9 @@
     "catLabel": "Sportfreunde Stiller",
     "alt": "Sportfreunde Stiller 68 – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Sportfreunde_Stiller_68.webp",
+    "tw": 640,
+    "th": 427
   }
 ]
