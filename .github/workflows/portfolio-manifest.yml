@@ -43,9 +43,11 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add portfolio/images.json sitemap.xml
+          git add portfolio/*/images.json
+          git add portfolio/*/thumbs/
           if git diff --staged --quiet; then
             echo "Keine Änderungen – nichts zu committen."
           else
-            git commit -m "chore: Portfolio-Manifest & Sitemap automatisch aktualisiert"
+            git commit -m "chore: Portfolio-Manifest, Thumbnails & Sitemap automatisch aktualisiert"
             git push
           fi

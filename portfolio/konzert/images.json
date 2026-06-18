@@ -6,7 +6,10 @@
     "catLabel": "Musik",
     "alt": "cat call 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/cat_call-1.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "cat_call-2.jpg",
@@ -15,7 +18,10 @@
     "catLabel": "Musik",
     "alt": "cat call 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/cat_call-2.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "cat_call-4.jpg",
@@ -24,7 +30,10 @@
     "catLabel": "Musik",
     "alt": "cat call 4 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/cat_call-4.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "fruchtiger_beigeschmack-22.jpg",
@@ -33,7 +42,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 22 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/fruchtiger_beigeschmack-22.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "fruchtiger_beigeschmack-28.jpg",
@@ -42,7 +54,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 28 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/fruchtiger_beigeschmack-28.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "fruchtiger_beigeschmack-37.jpg",
@@ -51,7 +66,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 37 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/fruchtiger_beigeschmack-37.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "fruchtiger_beigeschmack-42.jpg",
@@ -60,7 +78,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 42 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/fruchtiger_beigeschmack-42.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "fruchtiger_beigeschmack-48.jpg",
@@ -69,7 +90,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 48 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/fruchtiger_beigeschmack-48.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "fruchtiger_beigeschmack-52.jpg",
@@ -78,7 +102,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 52 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/fruchtiger_beigeschmack-52.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "fruchtiger_beigeschmack-64.jpg",
@@ -87,7 +114,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 64 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/fruchtiger_beigeschmack-64.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "fruchtiger_beigeschmack-67.jpg",
@@ -96,7 +126,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 67 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/fruchtiger_beigeschmack-67.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "fruchtiger_beigeschmack-68.jpg",
@@ -105,7 +138,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 68 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/fruchtiger_beigeschmack-68.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "fruchtiger_beigeschmack-71.jpg",
@@ -114,7 +150,10 @@
     "catLabel": "Musik",
     "alt": "fruchtiger beigeschmack 71 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/fruchtiger_beigeschmack-71.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "metal.jpg",
@@ -123,7 +162,10 @@
     "catLabel": "Musik",
     "alt": "metal – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/metal.webp",
+    "tw": 480,
+    "th": 640
   },
   {
     "file": "metal_adept_2.jpg",
@@ -132,7 +174,10 @@
     "catLabel": "Musik",
     "alt": "metal adept 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/metal_adept_2.webp",
+    "tw": 480,
+    "th": 640
   },
   {
     "file": "metal_adept_4.jpg",
@@ -141,7 +186,10 @@
     "catLabel": "Musik",
     "alt": "metal adept 4 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/metal_adept_4.webp",
+    "tw": 480,
+    "th": 640
   },
   {
     "file": "metal_adept_crowd.jpg",
@@ -150,7 +198,10 @@
     "catLabel": "Musik",
     "alt": "metal adept crowd – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1536
+    "height": 1536,
+    "thumb": "thumbs/metal_adept_crowd.webp",
+    "tw": 640,
+    "th": 480
   },
   {
     "file": "mola_beim_so-not-right-festival_1.jpg",
@@ -159,7 +210,10 @@
     "catLabel": "Musik",
     "alt": "mola beim so not right festival 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/mola_beim_so-not-right-festival_1.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "mola_beim_so-not-right-festival_2.jpg",
@@ -168,7 +222,10 @@
     "catLabel": "Musik",
     "alt": "mola beim so not right festival 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/mola_beim_so-not-right-festival_2.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "mola_beim_so-not-right-festival_3.jpg",
@@ -177,7 +234,10 @@
     "catLabel": "Musik",
     "alt": "mola beim so not right festival 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/mola_beim_so-not-right-festival_3.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "mola_beim_so-not-right-festival_4.jpg",
@@ -186,7 +246,10 @@
     "catLabel": "Musik",
     "alt": "mola beim so not right festival 4 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/mola_beim_so-not-right-festival_4.webp",
+    "tw": 480,
+    "th": 640
   },
   {
     "file": "Papierkatze_im_Wanda-1.jpg",
@@ -195,7 +258,10 @@
     "catLabel": "Musik",
     "alt": "Papierkatze im Wanda 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1920,
-    "height": 1377
+    "height": 1377,
+    "thumb": "thumbs/Papierkatze_im_Wanda-1.webp",
+    "tw": 640,
+    "th": 459
   },
   {
     "file": "Papierkatze_im_Wanda-2.jpg",
@@ -204,7 +270,10 @@
     "catLabel": "Musik",
     "alt": "Papierkatze im Wanda 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1920,
-    "height": 1280
+    "height": 1280,
+    "thumb": "thumbs/Papierkatze_im_Wanda-2.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Papierkatze_im_Wanda-3.jpg",
@@ -213,7 +282,10 @@
     "catLabel": "Musik",
     "alt": "Papierkatze im Wanda 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1920,
-    "height": 1280
+    "height": 1280,
+    "thumb": "thumbs/Papierkatze_im_Wanda-3.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_Olympiahalle (2).jpg",
@@ -222,7 +294,10 @@
     "catLabel": "Musik",
     "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1536,
-    "height": 1920
+    "height": 1920,
+    "thumb": "thumbs/Sportfreunde_Stiller_Olympiahalle (2).webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_Olympiahalle (3).jpg",
@@ -231,7 +306,10 @@
     "catLabel": "Musik",
     "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1920,
-    "height": 1280
+    "height": 1280,
+    "thumb": "thumbs/Sportfreunde_Stiller_Olympiahalle (3).webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Sportfreunde_Stiller_Olympiahalle (5).jpg",
@@ -240,7 +318,10 @@
     "catLabel": "Musik",
     "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1280,
-    "height": 1920
+    "height": 1920,
+    "thumb": "thumbs/Sportfreunde_Stiller_Olympiahalle (5).webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Sportfreunde_Stiller_Olympiahalle (7).jpg",
@@ -249,7 +330,10 @@
     "catLabel": "Musik",
     "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1920,
-    "height": 1279
+    "height": 1279,
+    "thumb": "thumbs/Sportfreunde_Stiller_Olympiahalle (7).webp",
+    "tw": 640,
+    "th": 426
   },
   {
     "file": "Sportfreunde_Stiller_Olympiahalle (8).jpg",
@@ -258,7 +342,10 @@
     "catLabel": "Musik",
     "alt": "Sportfreunde Stiller Olympiahalle – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1920,
-    "height": 1280
+    "height": 1280,
+    "thumb": "thumbs/Sportfreunde_Stiller_Olympiahalle (8).webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Stahlzeit (1).jpg",
@@ -267,7 +354,10 @@
     "catLabel": "Musik",
     "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1580
+    "height": 1580,
+    "thumb": "thumbs/Stahlzeit (1).webp",
+    "tw": 640,
+    "th": 494
   },
   {
     "file": "Stahlzeit (2).jpg",
@@ -276,7 +366,10 @@
     "catLabel": "Musik",
     "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1356
+    "height": 1356,
+    "thumb": "thumbs/Stahlzeit (2).webp",
+    "tw": 640,
+    "th": 424
   },
   {
     "file": "Stahlzeit (3).jpg",
@@ -285,7 +378,10 @@
     "catLabel": "Musik",
     "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1356
+    "height": 1356,
+    "thumb": "thumbs/Stahlzeit (3).webp",
+    "tw": 640,
+    "th": 424
   },
   {
     "file": "Stahlzeit (4).jpg",
@@ -294,7 +390,10 @@
     "catLabel": "Musik",
     "alt": "Stahlzeit – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1356
+    "height": 1356,
+    "thumb": "thumbs/Stahlzeit (4).webp",
+    "tw": 640,
+    "th": 424
   },
   {
     "file": "subkultur_ffb_metal-night_1.jpg",
@@ -303,7 +402,10 @@
     "catLabel": "Musik",
     "alt": "subkultur ffb metal night 1 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/subkultur_ffb_metal-night_1.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "subkultur_ffb_metal-night_2.jpg",
@@ -312,7 +414,10 @@
     "catLabel": "Musik",
     "alt": "subkultur ffb metal night 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/subkultur_ffb_metal-night_2.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "subkultur_ffb_metal-night_3.jpg",
@@ -321,7 +426,10 @@
     "catLabel": "Musik",
     "alt": "subkultur ffb metal night 3 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/subkultur_ffb_metal-night_3.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Tortured-11.jpg",
@@ -330,7 +438,10 @@
     "catLabel": "Musik",
     "alt": "Tortured 11 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Tortured-11.webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "Tortured-18.jpg",
@@ -339,7 +450,10 @@
     "catLabel": "Musik",
     "alt": "Tortured 18 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Tortured-18.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Tortured-20.jpg",
@@ -348,7 +462,10 @@
     "catLabel": "Musik",
     "alt": "Tortured 20 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Tortured-20.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Tortured-27.jpg",
@@ -357,7 +474,10 @@
     "catLabel": "Musik",
     "alt": "Tortured 27 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Tortured-27.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Tortured-29.jpg",
@@ -366,7 +486,10 @@
     "catLabel": "Musik",
     "alt": "Tortured 29 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 1365,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/Tortured-29.webp",
+    "tw": 427,
+    "th": 640
   },
   {
     "file": "Tortured_Bandfoto-2.jpg",
@@ -375,7 +498,10 @@
     "catLabel": "Musik",
     "alt": "Tortured Bandfoto 2 – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1365
+    "height": 1365,
+    "thumb": "thumbs/Tortured_Bandfoto-2.webp",
+    "tw": 640,
+    "th": 427
   },
   {
     "file": "Tortured_Bandfoto.jpg",
@@ -384,6 +510,9 @@
     "catLabel": "Musik",
     "alt": "Tortured Bandfoto – Konzert- & Musikfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1536
+    "height": 1536,
+    "thumb": "thumbs/Tortured_Bandfoto.webp",
+    "tw": 640,
+    "th": 480
   }
 ]

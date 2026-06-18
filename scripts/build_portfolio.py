@@ -28,7 +28,7 @@ from urllib.parse import quote
 from xml.sax.saxutils import escape
 
 try:
-    from PIL import Image  # type: ignore
+    from PIL import Image, ImageOps  # type: ignore
     _HAS_PIL = True
 except Exception:  # pragma: no cover - Pillow optional
     _HAS_PIL = False
@@ -37,6 +37,10 @@ except Exception:  # pragma: no cover - Pillow optional
 SITE_URL = "https://benni-photo.com"
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".avif"}
 DENYLIST = {"images.json", "index.html"}
+
+# Thumbnail-Einstellungen: WebP-Vorschauen für das Grid (Vollbild nur in der Lightbox)
+THUMB_EDGE = 640     # lange Kante in px
+THUMB_QUALITY = 75   # WebP-Qualität
 
 # Reihenfolge + Beschriftung der Kategorien. Schlüssel = Ordnername in portfolio/.
 # "alt" ist eine Vorlage; {t} wird durch den aus dem Dateinamen abgeleiteten Titel ersetzt.
@@ -85,15 +89,52 @@ def dims(path: Path):
         return (None, None)
 
 
+def make_thumb(src: Path, thumb_dir: Path) -> tuple:
+    """Erzeugt ein WebP-Thumbnail. Gibt (rel_pfad, breite, hoehe) oder (None,None,None) zurück."""
+    if not _HAS_PIL:
+        return (None, None, None)
+    try:
+        thumb_name = src.stem + ".webp"
+        thumb_path = thumb_dir / thumb_name
+        # Überspringe wenn Thumbnail aktueller als Quelle
+        if (thumb_path.exists()
+                and thumb_path.stat().st_mtime >= src.stat().st_mtime):
+            with Image.open(thumb_path) as _im:
+                return ("thumbs/" + thumb_name, *_im.size)
+        with Image.open(src) as im:
+            im = ImageOps.exif_transpose(im)
+            w, h = im.size
+            long_edge = max(w, h)
+            if long_edge > THUMB_EDGE:
+                scale = THUMB_EDGE / long_edge
+                im = im.resize((round(w * scale), round(h * scale)), Image.LANCZOS)
+            # RGBA → RGB für WebP ohne Transparenz
+            if im.mode in ("RGBA", "LA", "P"):
+                bg = Image.new("RGB", im.size, (255, 255, 255))
+                bg.paste(im.convert("RGBA"), mask=im.convert("RGBA").split()[-1])
+                im = bg
+            elif im.mode != "RGB":
+                im = im.convert("RGB")
+            thumb_dir.mkdir(exist_ok=True)
+            im.save(thumb_path, format="WebP", quality=THUMB_QUALITY, method=4)
+            return ("thumbs/" + thumb_name, im.width, im.height)
+    except Exception:
+        return (None, None, None)
+
+
 def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
     """Alle Bilder einer Kategorie REKURSIV sammeln. file = Pfad relativ zum Kategorieordner."""
     items: list[dict] = []
+    thumb_dir = cat_dir / "thumbs"
     for p in sorted(cat_dir.rglob("*"), key=lambda x: str(x).lower()):
         if not p.is_file() or p.suffix.lower() not in IMAGE_EXTS:
             continue
         if p.name.lower() in DENYLIST:
             continue
         rel = p.relative_to(cat_dir).as_posix()
+        # Generierte Thumbnails überspringen
+        if rel.startswith("thumbs/"):
+            continue
         # Sonderfall: »10 im Quadrat«-Porträtserie (gehört zum SZ-Ausstellungsartikel)
         if cat == "meine-kunst" and rel.lower().startswith("10-im-quadrat-bilder/"):
             parts = rel.split("/")
@@ -116,6 +157,13 @@ def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
         if w and h:
             item["width"] = w
             item["height"] = h
+        # WebP-Thumbnail generieren (nur für direkte Kategorie-Dateien, keine Unterordner)
+        if "/" not in rel:
+            thumb_rel, tw, th = make_thumb(p, thumb_dir)
+            if thumb_rel:
+                item["thumb"] = thumb_rel
+                item["tw"] = tw
+                item["th"] = th
         items.append(item)
     return items
 

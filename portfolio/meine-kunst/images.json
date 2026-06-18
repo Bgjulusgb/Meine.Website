@@ -978,7 +978,10 @@
     "catLabel": "Meine Kunst",
     "alt": "choreo said – künstlerische Porträtfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 2047
+    "height": 2047,
+    "thumb": "thumbs/choreo_said (1).webp",
+    "tw": 640,
+    "th": 640
   },
   {
     "file": "choreo_said (2).jpg",
@@ -987,7 +990,10 @@
     "catLabel": "Meine Kunst",
     "alt": "choreo said – künstlerische Porträtfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1640
+    "height": 1640,
+    "thumb": "thumbs/choreo_said (2).webp",
+    "tw": 640,
+    "th": 512
   },
   {
     "file": "choreo_said (3).jpg",
@@ -996,7 +1002,10 @@
     "catLabel": "Meine Kunst",
     "alt": "choreo said – künstlerische Porträtfotografie von Benjamin Gillmann",
     "width": 1638,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/choreo_said (3).webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "choreo_said (4).jpg",
@@ -1005,7 +1014,10 @@
     "catLabel": "Meine Kunst",
     "alt": "choreo said – künstlerische Porträtfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1358
+    "height": 1358,
+    "thumb": "thumbs/choreo_said (4).webp",
+    "tw": 640,
+    "th": 424
   },
   {
     "file": "choreo_said (5).jpg",
@@ -1014,7 +1026,10 @@
     "catLabel": "Meine Kunst",
     "alt": "choreo said – künstlerische Porträtfotografie von Benjamin Gillmann",
     "width": 1639,
-    "height": 2048
+    "height": 2048,
+    "thumb": "thumbs/choreo_said (5).webp",
+    "tw": 512,
+    "th": 640
   },
   {
     "file": "choreo_said (6).jpg",
@@ -1023,6 +1038,9 @@
     "catLabel": "Meine Kunst",
     "alt": "choreo said – künstlerische Porträtfotografie von Benjamin Gillmann",
     "width": 2048,
-    "height": 1152
+    "height": 1152,
+    "thumb": "thumbs/choreo_said (6).webp",
+    "tw": 640,
+    "th": 360
   }
 ]
