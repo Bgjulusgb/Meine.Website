@@ -1,0 +1,86 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Magie & Illusion — galerie-spezifische Überschreibungen
+   Konzept: Default = SW + animiertes Filmkorn (IMAX-Stil, monochrom).
+            Hover  = Originalfarbe + leichter Zoom — das Korn läuft weiter.
+   Korn wird als echtes <div class="grain-cell"> in jede Kachel gerendert
+   (nach .pf-overlay, damit es nicht vom Lesbarkeits-Gradient verdeckt wird).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Eigener Stacking-Context, damit mix-blend-mode zuverlässig nur in der Kachel mischt */
+.pf-item{ isolation:isolate; }
+
+.pf-item img{
+    filter:grayscale(100%) contrast(1.3) brightness(.95);
+    transition:opacity .7s ease,transform .7s var(--ease-io),filter .55s ease;
+}
+.pf-item:hover img{
+    filter:none;
+    transform:scale(1.04);
+}
+
+/* Animiertes Filmkorn pro Bild — fadet mit dem Bild ein (.loaded-wrap setzt das JS) */
+.pf-item .grain-cell{
+    position:absolute;
+    top:-100%; left:-50%;
+    width:300%; height:300%;
+    z-index:2;
+    opacity:0;
+    pointer-events:none;
+    will-change:transform,opacity;
+    mix-blend-mode:soft-light;
+    /* Filmkorn — detailliert, hohe Quellauflösung, geräte-adaptiv:
+       - viewBox 480        → genug intrinsische Pixel, damit beim Skalieren wenig
+                              Information verloren geht (kein „Pixelated"-Look mehr)
+       - baseFrequency 0.5  → mittel-feine Features, klar erkennbar
+       - numOctaves 5       → fünf Detail-Layer → reichhaltiges, unregelmäßiges Muster
+       - saturate 0         → monochrom
+       - slope 1.35 intercept -0.12 → leichter Mikro-Kontrast für Schärfe
+                                       ohne harte Schwarz/Weiß-Spitzen
+       - background-size clamp(): adaptiv zum Viewport
+       - kein image-rendering:pixelated → Browser-Smoothing erlaubt =
+                                          hochwertige Übergänge statt blockiger Pixel */
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 480 480' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='1.35' intercept='-0.12'/%3E%3CfeFuncG type='linear' slope='1.35' intercept='-0.12'/%3E%3CfeFuncB type='linear' slope='1.35' intercept='-0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat:repeat;
+    background-size:clamp(300px, 26vw, 480px);
+    animation:grain-shift 7s steps(10) infinite;
+    transition:opacity .6s ease;
+}
+.pf-item.loaded-wrap .grain-cell{ opacity:.78; }
+/* Hover-Übergang: Analog-SW-mit-Korn → klares Originalbild ohne Korn */
+.pf-item.loaded-wrap:hover .grain-cell{ opacity:0; }
+
+/* HighDPI/Retina-Korrektur: auf 2dppx+ Bildschirmen rastert der Browser die SVG
+   feiner → das Korn wirkt optisch schwächer. Leichter Sichtbarkeits-Boost. */
+@media (min-resolution:2dppx),(-webkit-min-device-pixel-ratio:2){
+    .pf-item.loaded-wrap .grain-cell{ opacity:.85; }
+    .pf-item.loaded-wrap:hover .grain-cell{ opacity:0; }
+}
+
+@keyframes grain-shift{
+    0%,100%{ transform:translate(0,0); }
+    10%{ transform:translate(-5%,-10%); }
+    20%{ transform:translate(-15%,5%); }
+    30%{ transform:translate(7%,-25%); }
+    40%{ transform:translate(-5%,25%); }
+    50%{ transform:translate(-15%,10%); }
+    60%{ transform:translate(15%,0%); }
+    70%{ transform:translate(0%,15%); }
+    80%{ transform:translate(3%,35%); }
+    90%{ transform:translate(-10%,10%); }
+}
+
+/* Typographischer Akzent: »Illusion« italic, Beschreibung leicht kursiv */
+.g-intro .g-title{ letter-spacing:.005em; }
+.g-intro .g-title em{ font-style:italic; font-weight:300; }
+.g-intro .g-desc{ font-style:italic; opacity:.88; }
+
+/* Touch/Mobile: kein Hover → SW dauerhaft (defensiv gegen den !filter-Reset aus portfolio.css) */
+@media (hover:none){
+    .pf-item img,
+    .pf-item.loaded-wrap img{ filter:grayscale(100%) contrast(1.35); }
+}
+
+/* Bewegungsreduzierung respektieren — Korn bleibt sichtbar, ruht aber */
+@media (prefers-reduced-motion:reduce){
+    .pf-item .grain-cell{ animation:none; }
+}

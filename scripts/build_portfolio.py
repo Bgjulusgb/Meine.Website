@@ -68,6 +68,8 @@ UNLISTED_CATEGORIES: dict[str, dict] = {
                                  alt="{t} – Konzert- & Musikfotografie von Benjamin Gillmann"),
     "sportfreunde-stiller": dict(label="Sportfreunde Stiller", title="Sportfreunde Stiller",
                                  alt="{t} – Sportfreunde Stiller live, Konzertfotografie von Benjamin Gillmann"),
+    "magie-und-illusion":   dict(label="Magie & Illusion", title="Magie & Illusion",
+                                 alt="{t} – Bühnenfotografie aus einer Magie- & Illusionsshow von Benjamin Gillmann"),
 }
 
 
@@ -143,6 +145,18 @@ def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
             alt = (f"»10 im Quadrat« – Porträtserie mit {person}, Ausstellung München "
                    f"(Süddeutsche Zeitung) – Foto von Benjamin Gillmann") if person else \
                   "»10 im Quadrat« – Porträtausstellung München (Süddeutsche Zeitung) – Benjamin Gillmann"
+        # Sonderfall: Magie & Illusion – „Generalprobe_017" / „Premiere_Teil_2_Nr_067" lesbar machen
+        elif cat == "magie-und-illusion":
+            ROMAN = {1:"I",2:"II",3:"III",4:"IV",5:"V"}
+            m = re.match(r"^(Generalprobe|Premiere)(?:_Teil_(\d+))?(?:_Nr)?_(\d+)$", p.stem, re.IGNORECASE)
+            if m:
+                phase = m.group(1).capitalize()
+                teil = int(m.group(2)) if m.group(2) else None
+                num = int(m.group(3))
+                title = f"{phase} · Akt {ROMAN.get(teil, teil)} · Nr. {num}" if teil else f"{phase} · Nr. {num}"
+            else:
+                title = prettify(p.stem) or cfg["title"]
+            alt = cfg["alt"].format(t=title)
         else:
             title = prettify(p.stem) or cfg["title"]
             alt = cfg["alt"].format(t=title)

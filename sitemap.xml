@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://benni-photo.com/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/sport/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -40,10 +40,54 @@
       <image:loc>https://benni-photo.com/portfolio/sport/ffb_fursty_113.jpg</image:loc>
       <image:caption>ffb fursty 113 – Sportfotografie von Benjamin Gillmann</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/furstys_05.jpg</image:loc>
+      <image:caption>furstys 05 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/furstys_06.jpg</image:loc>
+      <image:caption>furstys 06 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/furstys_22.jpg</image:loc>
+      <image:caption>furstys 22 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/furstys_39.jpg</image:loc>
+      <image:caption>furstys 39 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/furstys_45.jpg</image:loc>
+      <image:caption>furstys 45 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/furstys_46.jpg</image:loc>
+      <image:caption>furstys 46 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/muc-cowboys_14.jpg</image:loc>
+      <image:caption>muc cowboys 14 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/muc-cowboys_15_VC01.jpg</image:loc>
+      <image:caption>muc cowboys 15 VC01 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/muc-cowboys_22.jpg</image:loc>
+      <image:caption>muc cowboys 22 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/muc-cowboys_25.jpg</image:loc>
+      <image:caption>muc cowboys 25 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/sport/muc-cowboys_73.jpg</image:loc>
+      <image:caption>muc cowboys 73 – Sportfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/konzert/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -221,7 +265,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/event/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -247,7 +291,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/red-carpet/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -365,7 +409,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/meine-kunst/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -827,7 +871,7 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/theater-und-musical/</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -921,13 +965,13 @@
   </url>
   <url>
     <loc>https://benni-photo.com/impressum.html</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/datenschutz.html</loc>
-    <lastmod>2026-06-18</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

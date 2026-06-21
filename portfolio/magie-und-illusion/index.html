@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
 
     <link rel="stylesheet" href="../../assets/portfolio.css?v=20260620">
-    <style>.pf-item img{filter:none;}.pf-item:hover img{filter:none;transform:scale(1);}</style>
+    <link rel="stylesheet" href="../../assets/magie.css?v=20260620f">
 </head>
 <body>
 
@@ -45,6 +45,7 @@
 <div class="bg-fx" aria-hidden="true"></div>
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <div class="page-fade" id="pageFade" aria-hidden="true"></div>
+
 
 <!-- HEADER -->
 <header class="header" id="header" role="banner">
@@ -114,7 +115,7 @@ const CAT_META = {
     "meine-kunst":         {label:"Meine Kunst",      h:"Meine Kunst",          desc:"Künstlerische Porträts und freie Arbeiten – unter anderem aus dem Ausstellungsprojekt »10 im Quadrat«.",
         note:'Die Porträtserie <strong>»10 im Quadrat«</strong> entstand für ein gemeinsames Ausstellungsprojekt junger Fotografen und Musiker in München – dokumentiert und veröffentlicht von der <a href="https://www.sueddeutsche.de/projekte/artikel/muenchen/10-im-quadrat-ausstellung-junge-fotografen-junge-musiker-portraets-e331356/" target="_blank" rel="noopener noreferrer">Süddeutschen Zeitung</a>.'},
     "theater-und-musical": {label:"Theater &amp; Musical", h:"Theater &amp; Musical", desc:"Bühnenfotografie aus Theater, Musical und Show – Licht, Bewegung und Ausdruck."},
-    "bewerbungs-portfolio":{label:"Bewerbung",        h:"Bewerbungsportfolio",  desc:"Kuratierte Auswahl meiner Konzert- und Musikfotografie für Bewerbungen."}
+    "magie-und-illusion":  {label:"Magie &amp; Illusion", h:"Magie &amp; <em>Illusion</em>", desc:"Bühnenfotografie aus Magie- und Illusionsshows – von der Generalprobe bis zur Premiere. Licht, Spannung und der Moment, bevor das Unmögliche passiert."}
 };
 
 /* Kategorie aus dem Pfad ableiten: /portfolio/<cat>/ */
@@ -127,7 +128,7 @@ function detectCat(){
 }
 const CAT = detectCat();
 const META = CAT_META[CAT] || {label:"Portfolio", h:"Portfolio", desc:"Ausgewählte Arbeiten von Benjamin Gillmann."};
-const plain = s => String(s).replace(/&amp;/g,'&');
+const plain = s => String(s).replace(/<[^>]+>/g,'').replace(/&amp;/g,'&');
 
 /* ── Head/SEO kategoriespezifisch setzen ── */
 (function(){
@@ -255,6 +256,9 @@ lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tsX; if(
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function render(list){
+    // Randomizer: Bilder bei jedem Laden in zufälliger Reihenfolge anzeigen
+    list=list.slice();
+    for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
     grid.innerHTML=list.map((it,i)=>{
         const fullSrc=encodeURI(it.file);
         const thumbSrc=it.thumb?encodeURI(it.thumb):fullSrc;
@@ -266,6 +270,7 @@ function render(list){
         return `<div class="pf-item" tabindex="0" role="button" aria-label="${alt} – vergrößern" data-src="${fullSrc}" data-title="${title}">
     <img src="${thumbSrc}" alt="${alt}"${dim}${eager} decoding="async">
     <div class="pf-overlay" aria-hidden="true"></div>
+    <div class="grain-cell" aria-hidden="true"></div>
     <div class="pf-info"><div class="pf-title">${title}</div></div>
     <div class="pf-zoom" aria-hidden="true"><i class="fa-solid fa-plus"></i></div>
 </div>`;
