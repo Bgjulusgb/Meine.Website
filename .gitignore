@@ -1,0 +1,27 @@
+# ── Große, ungenutzte Videodateien ───────────────────────────────────────────
+# .mov-Backups (z. B. in 10-im-quadrat-bilder/Kristina/) liegen über GitHubs
+# 100-MB-Limit und würden den Push blockieren. Nur lokales Backup, nicht deployt.
+*.mov
+
+# ── Editor-/Tool-Verlauf & lokale Konfiguration ──────────────────────────────
+.history/
+.vscode/
+.claude/settings.local.json
+
+# ── Python (Build-Skripte) ───────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ── Temporäre & Backup-Dateien ───────────────────────────────────────────────
+*.tmp
+*.zip
+.DS_Store
+Thumbs.db
+
+# ── Lokaler Ordner außerhalb des Site-Roots (falls je mitversioniert) ─────────
+das hier nicht benutzen/
+
+# ── Umgebungsvariablen / Secrets ─────────────────────────────────────────────
+.env
+.env.local
+.env.*.local

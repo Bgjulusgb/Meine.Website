@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" style="display: none;">
+  <defs>
+    <!-- Rustikales Ornament 1: Vintage Corner -->
+    <symbol id="ornament-corner" viewBox="0 0 100 100">
+      <path d="M 5 50 Q 20 30, 50 5 Q 80 20, 95 50 Q 80 80, 50 95 Q 20 80, 5 50 Z" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            opacity="0.3"/>
+      <circle cx="50" cy="50" r="8" fill="currentColor" opacity="0.2"/>
+      <circle cx="30" cy="30" r="3" fill="currentColor" opacity="0.3"/>
+      <circle cx="70" cy="30" r="3" fill="currentColor" opacity="0.3"/>
+      <circle cx="30" cy="70" r="3" fill="currentColor" opacity="0.3"/>
+      <circle cx="70" cy="70" r="3" fill="currentColor" opacity="0.3"/>
+    </symbol>
+    
+    <!-- Rustikales Ornament 2: Elegante Linie -->
+    <symbol id="ornament-divider" viewBox="0 0 200 20">
+      <line x1="0" y1="10" x2="80" y2="10" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+      <circle cx="100" cy="10" r="4" fill="currentColor" opacity="0.3"/>
+      <circle cx="90" cy="10" r="2" fill="currentColor" opacity="0.25"/>
+      <circle cx="110" cy="10" r="2" fill="currentColor" opacity="0.25"/>
+      <line x1="120" y1="10" x2="200" y2="10" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+    </symbol>
+    
+    <!-- Rustikales Ornament 3: Papier-Textur Pattern -->
+    <pattern id="paper-texture" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <circle cx="5" cy="5" r="0.5" fill="currentColor" opacity="0.02"/>
+      <circle cx="25" cy="15" r="0.5" fill="currentColor" opacity="0.02"/>
+      <circle cx="15" cy="35" r="0.5" fill="currentColor" opacity="0.02"/>
+      <circle cx="40" cy="40" r="0.5" fill="currentColor" opacity="0.02"/>
+    </pattern>
+    
+    <!-- Rustikales Ornament 4: Vintage Frame -->
+    <symbol id="ornament-frame" viewBox="0 0 150 150">
+      <rect x="10" y="10" width="130" height="130" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            opacity="0.25"
+            rx="5"/>
+      <rect x="5" y="5" width="140" height="140" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="0.5" 
+            opacity="0.15"
+            rx="3"/>
+      <circle cx="20" cy="20" r="3" fill="currentColor" opacity="0.2"/>
+      <circle cx="130" cy="20" r="3" fill="currentColor" opacity="0.2"/>
+      <circle cx="20" cy="130" r="3" fill="currentColor" opacity="0.2"/>
+      <circle cx="130" cy="130" r="3" fill="currentColor" opacity="0.2"/>
+    </symbol>
+    
+    <!-- Rustikales Ornament 5: Blumen-Motiv -->
+    <symbol id="ornament-flower" viewBox="0 0 60 60">
+      <g transform="translate(30, 30)">
+        <circle cx="0" cy="0" r="6" fill="currentColor" opacity="0.2"/>
+        <ellipse cx="0" cy="-15" rx="6" ry="10" fill="currentColor" opacity="0.15" transform="rotate(0)"/>
+        <ellipse cx="0" cy="-15" rx="6" ry="10" fill="currentColor" opacity="0.15" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-15" rx="6" ry="10" fill="currentColor" opacity="0.15" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-15" rx="6" ry="10" fill="currentColor" opacity="0.15" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-15" rx="6" ry="10" fill="currentColor" opacity="0.15" transform="rotate(288)"/>
+      </g>
+    </symbol>
+    
+    <!-- Rustikales Ornament 6: Elegante Kurve -->
+    <symbol id="ornament-curve" viewBox="0 0 100 50">
+      <path d="M 0 25 Q 25 5, 50 25 T 100 25" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1.5" 
+            opacity="0.2"/>
+      <path d="M 0 28 Q 25 8, 50 28 T 100 28" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="0.5" 
+            opacity="0.15"/>
+    </symbol>
+    
+    <!-- Rustikales Ornament 7: Vintage Scroll -->
+    <symbol id="ornament-scroll" viewBox="0 0 120 40">
+      <path d="M 10 20 Q 20 10, 30 20 Q 40 30, 50 20 Q 60 10, 70 20 Q 80 30, 90 20 Q 100 10, 110 20" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="1" 
+            opacity="0.25"/>
+      <circle cx="30" cy="20" r="2" fill="currentColor" opacity="0.2"/>
+      <circle cx="60" cy="20" r="2" fill="currentColor" opacity="0.2"/>
+      <circle cx="90" cy="20" r="2" fill="currentColor" opacity="0.2"/>
+    </symbol>
+    
+    <!-- Rustikales Ornament 8: Vintage Border -->
+    <symbol id="ornament-border" viewBox="0 0 200 10">
+      <rect x="0" y="3" width="200" height="4" fill="currentColor" opacity="0.1"/>
+      <rect x="0" y="4" width="200" height="2" fill="currentColor" opacity="0.15"/>
+      <circle cx="20" cy="5" r="2" fill="currentColor" opacity="0.2"/>
+      <circle cx="60" cy="5" r="2" fill="currentColor" opacity="0.2"/>
+      <circle cx="100" cy="5" r="2" fill="currentColor" opacity="0.2"/>
+      <circle cx="140" cy="5" r="2" fill="currentColor" opacity="0.2"/>
+      <circle cx="180" cy="5" r="2" fill="currentColor" opacity="0.2"/>
+    </symbol>
+  </defs>
+</svg>
