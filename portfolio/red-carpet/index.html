@@ -110,10 +110,8 @@ const CAT_META = {
     "sport":               {label:"Sport",            h:"Sport",                desc:"Dynamische Action- und Sportfotografie – von American Football bis Leichtathletik. Schnelle Reaktion, präzise Bildkomposition."},
     "konzert":             {label:"Musik",            h:"Konzert &amp; Musik",  desc:"Atmosphärische Konzert- und Musikfotografie, die Energie und Emotion einfängt – von kleinen Clubs bis zu großen Bühnen."},
     "event":               {label:"Events",           h:"Events",               desc:"Authentische Dokumentation von Veranstaltungen und besonderen Momenten."},
+    "politik":             {label:"Politik &amp; Gesellschaft", h:"Politik &amp; Gesellschaft", desc:"Dokumentarische Politik- und Reportagefotografie von Demonstrationen, Gedenktagen und gesellschaftlichen Ereignissen."},
     "red-carpet":          {label:"Red Carpet",       h:"Red Carpet",           desc:"Red-Carpet- und Premieren-Fotografie."},
-    "meine-kunst":         {label:"Meine Kunst",      h:"Meine Kunst",          desc:"Künstlerische Porträts und freie Arbeiten – unter anderem aus dem Ausstellungsprojekt »10 im Quadrat«.",
-        note:'Die Porträtserie <strong>»10 im Quadrat«</strong> entstand für ein gemeinsames Ausstellungsprojekt junger Fotografen und Musiker in München – dokumentiert und veröffentlicht von der <a href="https://www.sueddeutsche.de/projekte/artikel/muenchen/10-im-quadrat-ausstellung-junge-fotografen-junge-musiker-portraets-e331356/" target="_blank" rel="noopener noreferrer">Süddeutschen Zeitung</a>.'},
-    "theater-und-musical": {label:"Theater &amp; Musical", h:"Theater &amp; Musical", desc:"Bühnenfotografie aus Theater, Musical und Show – Licht, Bewegung und Ausdruck."}
 };
 
 /* Kategorie aus dem Pfad ableiten: /portfolio/<cat>/ */
@@ -253,10 +251,16 @@ lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tsX; if(
 
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+function weightedShuffle(list){
+    // Gewichtete Zufallssortierung: aktuelle Highlights erscheinen haeufiger
+    // frueh, ohne bei jedem Laden eine feste Reihenfolge zu erzwingen.
+    return list.slice().map(it=>({
+        it,
+        score:-Math.log(Math.max(Math.random(),Number.EPSILON))/Math.max(1,Number(it.weight)||1)
+    })).sort((a,b)=>a.score-b.score).map(entry=>entry.it);
+}
 function render(list){
-    // Randomizer: Bilder bei jedem Laden in zufälliger Reihenfolge anzeigen
-    list=list.slice();
-    for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
+    list=weightedShuffle(list);
     grid.innerHTML=list.map((it,i)=>{
         const fullSrc=encodeURI(it.file);
         const thumbSrc=it.thumb?encodeURI(it.thumb):fullSrc;

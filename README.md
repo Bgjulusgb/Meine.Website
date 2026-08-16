@@ -1,9 +1,9 @@
 # Benjamin Gillmann Photography — Website
 
 Statische Fotografen-Website (HTML / CSS / Vanilla-JS, **kein Build-Framework, kein npm**).
-Gehostet über **Cloudflare Pages** (Auto-Deploy bei jedem Push auf `main`),
-Domain bei **Strato**, vorgeschaltet sind **Cloudflare** Security-Header, Caching
-und Web-Analytics. Live: <https://benni-photo.com>
+Gehostet über **GitHub Pages** (Auto-Deploy bei jedem Push auf `main`).
+Die Domain liegt bei **Strato**; vorgeschaltet ist **Cloudflare** für
+Security-Header, Caching und Web-Analytics. Live: <https://benni-photo.com>
 
 ---
 
@@ -27,14 +27,15 @@ Meine.Website/                 ← Site-Root (genau dieser Ordner wird deployt)
 │   └── leistung-*.jpg
 ├── hero.jpg · Profil.jpg · Transparent_Logo.svg · logo.svg · favicons …
 │
-├── portfolio/                 ← öffentliche Galerien
-│   ├── images.json            ← AGGREGIERT (alle Kategorien) – speist die Startseiten-Vorschau
-│   └── <kategorie>/           ← sport · konzert · event · red-carpet ·
-│       ├── index.html         ←   meine-kunst · theater-und-musical
+├── portfolio/                 ← öffentliche Hauptportfolios
+│   ├── images.json            ← AGGREGIERT, inkl. Gewichtung + Startseiten-Auswahl
+│   └── <kategorie>/           ← sport · konzert · event · politik · red-carpet
+│       ├── index.html
 │       ├── images.json        ← Manifest NUR dieser Kategorie (generiert)
-│       └── <bilder …>
+│       ├── <bilder …>
+│       └── thumbs/            ← generierte 640-px-WebP-Vorschauen
 │
-├── main-portfolio/            ← Bestand für „Bewerbungs-Portfolio“ (intern)
+├── main-portfolio/            ← alte, nur noch als Bestand erhaltene Auswahl
 ├── _blog_disabled/            ← Blog vorerst deaktiviert (siehe Abschnitt 8)
 │
 ├── scripts/
@@ -44,20 +45,19 @@ Meine.Website/                 ← Site-Root (genau dieser Ordner wird deployt)
 │   └── templates/             ← HTML-Vorlagen für den Blog-Generator
 │
 └── .github/workflows/
-    ├── deploy.yml             ← Auto-Deploy zu Cloudflare Pages
+    ├── deploy.yml             ← Auto-Deploy zu GitHub Pages
     ├── portfolio-manifest.yml ← baut images.json + sitemap.xml bei Push
     └── blog.yml               ← Blog-Build (zurzeit ohne Effekt, Blog ist aus)
 ```
 
-### Die 6 Portfolio-Kategorien
+### Die 5 öffentlichen Hauptportfolios
 | Ordner | Anzeigename | Leistungs-Kärtchen |
 |--------|-------------|--------------------|
 | `sport` | Sport | Sportfotografie |
 | `konzert` | Musik | Musikfotografie |
 | `event` | Events | Eventfotografie |
+| `politik` | Politik & Gesellschaft | Politik- und Reportagefotografie |
 | `red-carpet` | Red Carpet | Red Carpet |
-| `meine-kunst` | Meine Kunst | Meine Kunst |
-| `theater-und-musical` | Theater & Musical | Theater & Musical |
 
 ---
 
@@ -67,7 +67,7 @@ Meine.Website/                 ← Site-Root (genau dieser Ordner wird deployt)
    (Dateiname = später der Titel im Hover; sprechende Namen helfen dem SEO).
 2. **Komprimieren** (Pflicht, sonst werden die Dateien zu groß):
    ```bash
-   python scripts/compress_images.py
+   python scripts/compress_images.py portfolio/<kategorie>
    ```
 3. **Manifeste + Sitemap erzeugen:**
    ```bash
@@ -76,8 +76,12 @@ Meine.Website/                 ← Site-Root (genau dieser Ordner wird deployt)
 4. Committen & pushen. Die GitHub Action regeneriert `images.json` /
    `sitemap.xml` automatisch noch einmal und deployt neu.
 
-Die Galerie-Seite der Kategorie und die Startseiten-Vorschau (zufällige Bilder
-pro Kategorie) ziehen sich die neuen Bilder danach automatisch.
+Die Galerie-Seite der Kategorie zieht die neuen Bilder danach automatisch.
+Die Startseiten-Collage nimmt aus `portfolio/images.json` automatisch die in
+`FEATURED_FILES` markierten aktuellen Bilder (zurzeit drei pro Hauptportfolio).
+Diese Bilder erhalten zugleich Gewicht `8` und erscheinen deshalb trotz weiterhin
+zufälliger Reihenfolge häufiger weit oben in ihrer Kategorie. Alle anderen Bilder
+haben Gewicht `1`.
 
 ---
 
@@ -89,7 +93,7 @@ lange Kante, JPEG-Qualität **82**. Idempotent: bereits kleine Bilder werden
 
 ```bash
 python scripts/compress_images.py --dry-run   # nur anzeigen, was passieren würde
-python scripts/compress_images.py             # portfolio/ + 'das hier nicht benutzen'
+python scripts/compress_images.py             # gesamtes Site-Root + optionaler Backup-Ordner
 python scripts/compress_images.py <ordner>    # eigener Ordner
 ```
 Benötigt **Pillow** (`pip install Pillow`). Überschreibt Originale — vorher sichern.
@@ -100,11 +104,15 @@ Benötigt **Pillow** (`pip install Pillow`). Überschreibt Originale — vorher 
 
 Scannt jede Kategorie (rekursiv) und schreibt:
 - `portfolio/<kategorie>/images.json` — pro Kategorie (für die Galerie-Seite),
-- `portfolio/images.json` — aggregiert (für die Startseiten-Vorschau),
-- `sitemap.xml` — mit allen Bildern (Bild-SEO) + den 6 Galerie-Seiten.
+- `portfolio/images.json` — aggregiert über alle fünf Hauptportfolios, inklusive
+  `featured`-Markierung und `weight` für die gewichtete Zufallssortierung,
+- `main-portfolio/images.json` — altes Auswahl-Manifest (die Startseite nutzt es
+  nicht mehr),
+- `sitemap.xml` — mit allen Bildern (Bild-SEO) + den fünf Galerie-Seiten.
 
 ```bash
 python scripts/build_portfolio.py
+python scripts/build_portfolio.py --refresh-thumbs  # alle 640-px-WebPs neu rendern
 ```
 Läuft auch automatisch via GitHub Action bei jeder Änderung unter `portfolio/`.
 
@@ -123,7 +131,7 @@ Browser die `images.json` per `fetch` nicht laden.
 ---
 
 ## 6. Deployment & Betrieb
-- **Cloudflare Pages** deployt den Site-Root automatisch beim Push auf `main`.
+- **GitHub Pages** deployt den Site-Root automatisch beim Push auf `main`.
 - **Cloudflare** setzt Security-Header & Caching — siehe `_headers` und `CLOUDFLARE.md`.
 - **SEO**-Einrichtung (Search Console, Sitemap einreichen …) — siehe `SEO.md`.
 - **WWW-Subdomain** Setup — siehe `WWW-SUBDOMAIN.md`.
@@ -161,4 +169,4 @@ erreichbar. Folgende Änderungen sind dafür aktiv:
 2. In `index.html` die drei Blog-Blöcke (Nav-Link, Sektion „Neueste Beiträge“
    inkl. Script, Footer-Link) wieder entkommentieren.
 3. In `robots.txt` die Blog-Sitemap-Zeile wieder aktivieren.
-4. Committen & pushen — Cloudflare Pages deployt automatisch.
+4. Committen & pushen — GitHub Pages deployt automatisch.

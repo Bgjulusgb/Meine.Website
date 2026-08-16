@@ -4,17 +4,19 @@ Bildern in den Kategorie-Unterordnern von portfolio/.
 
 Struktur:
     portfolio/
-      <kategorie>/            z. B. sport, konzert, event, red-carpet,
-        <bilder...>           meine-kunst, theater-und-musical
+      <kategorie>/            sport, konzert, event, politik, red-carpet
+        <bilder...>
         images.json          <- pro Kategorie (von diesem Skript erzeugt)
       images.json            <- aggregiert über alle Kategorien (für die Startseite)
 
 Aufruf:
     python scripts/build_portfolio.py             # Standard: portfolio/ + ./ (Site-Root)
     python scripts/build_portfolio.py <portfolio_dir> <site_root>
+    python scripts/build_portfolio.py --refresh-thumbs  # alle Vorschaubilder neu rendern
 
 - Bildmaße werden via Pillow gelesen (ohne Pillow fehlen width/height -> kein CLS-Schutz).
-- Jede Kategorie wird REKURSIV gescannt (z. B. meine-kunst/10-im-quadrat-bilder/<person>/).
+- Jede konfigurierte Kategorie wird rekursiv gescannt; direkte Bilder erhalten zusätzlich
+  ein WebP-Thumbnail.
 - Neue Bilder einfach in den passenden Kategorieordner legen und committen – die GitHub
   Action ruft dieses Skript auf und aktualisiert alle images.json + sitemap.xml automatisch.
 """
@@ -42,7 +44,8 @@ DENYLIST = {"images.json", "index.html"}
 THUMB_EDGE = 640     # lange Kante in px
 THUMB_QUALITY = 75   # WebP-Qualität
 
-# Reihenfolge + Beschriftung der Kategorien. Schlüssel = Ordnername in portfolio/.
+# Reihenfolge + Beschriftung der öffentlichen Hauptportfolios.
+# Schlüssel = direkter Ordnername in portfolio/.
 # "alt" ist eine Vorlage; {t} wird durch den aus dem Dateinamen abgeleiteten Titel ersetzt.
 CATEGORIES: dict[str, dict] = {
     "sport":               dict(label="Sport",            title="Sport",
@@ -51,14 +54,44 @@ CATEGORIES: dict[str, dict] = {
                                  alt="{t} – Konzert- & Musikfotografie von Benjamin Gillmann"),
     "event":               dict(label="Events",           title="Event",
                                  alt="{t} – Eventfotografie von Benjamin Gillmann"),
+    "politik":             dict(label="Politik & Gesellschaft", title="Politik & Gesellschaft",
+                                 alt="{t} – Politik- und Reportagefotografie von Benjamin Gillmann"),
     "red-carpet":          dict(label="Red Carpet",       title="Red Carpet",
                                  alt="{t} – Red-Carpet-Fotografie von Benjamin Gillmann"),
-    "meine-kunst":         dict(label="Meine Kunst",      title="Porträt",
-                                 alt="{t} – künstlerische Porträtfotografie von Benjamin Gillmann"),
-    "theater-und-musical": dict(label="Theater & Musical", title="Theater & Musical",
-                                 alt="{t} – Theater- & Musicalfotografie von Benjamin Gillmann"),
 }
 CAT_ORDER = list(CATEGORIES.keys())
+
+# Aktuelle, besonders starke Aufnahmen. Sie bleiben Teil der zufaelligen
+# Sortierung, erhalten im Browser aber eine hoehere Chance auf einen fruehen
+# Platz. Dieselbe Auswahl speist die Portfolio-Collage der Startseite.
+FEATURED_WEIGHT = 8
+FEATURED_FILES: dict[str, set[str]] = {
+    "sport": {
+        "ffb_fursty_078_VC01.jpg",
+        "muc-cowboys_15_VC01.jpg",
+        "furstys_39.jpg",
+    },
+    "konzert": {
+        "BAC_Oben Ohne Open Air_Nr-12.jpg",
+        "Souly_Oben Ohne Open Air_Nr-20_VC01.jpg",
+        "PISS - TEST_beim Punkmas-30.jpg",
+    },
+    "event": {
+        "Konferenz_01.jpg",
+        "Konferenz_13.jpg",
+        "Konferenz_37.jpg",
+    },
+    "politik": {
+        "altoGillmann_Disability Pride Month_24072026-01.jpg",
+        "altoGillmann_OEZ-Gedenktag_22072026-34_VC01.jpg",
+        "Mahnwache_11.jpg",
+    },
+    "red-carpet": {
+        "Steckerlfischfiasko-18.jpg",
+        "Steckerlfischfiasko-2-43.jpg",
+        "Steckerlfischfiasko-59.jpg",
+    },
+}
 
 # Unlisted: bekommt ein eigenes images.json (für die direkte Galerie-URL),
 # taucht aber NICHT in der aggregierten portfolio/images.json und nicht in
@@ -91,7 +124,7 @@ def dims(path: Path):
         return (None, None)
 
 
-def make_thumb(src: Path, thumb_dir: Path) -> tuple:
+def make_thumb(src: Path, thumb_dir: Path, force: bool = False) -> tuple:
     """Erzeugt ein WebP-Thumbnail. Gibt (rel_pfad, breite, hoehe) oder (None,None,None) zurück."""
     if not _HAS_PIL:
         return (None, None, None)
@@ -99,7 +132,7 @@ def make_thumb(src: Path, thumb_dir: Path) -> tuple:
         thumb_name = src.stem + ".webp"
         thumb_path = thumb_dir / thumb_name
         # Überspringe wenn Thumbnail aktueller als Quelle
-        if (thumb_path.exists()
+        if (not force and thumb_path.exists()
                 and thumb_path.stat().st_mtime >= src.stat().st_mtime):
             with Image.open(thumb_path) as _im:
                 return ("thumbs/" + thumb_name, *_im.size)
@@ -117,14 +150,15 @@ def make_thumb(src: Path, thumb_dir: Path) -> tuple:
                 im = bg
             elif im.mode != "RGB":
                 im = im.convert("RGB")
-            thumb_dir.mkdir(exist_ok=True)
+            thumb_dir.mkdir(parents=True, exist_ok=True)
             im.save(thumb_path, format="WebP", quality=THUMB_QUALITY, method=4)
             return ("thumbs/" + thumb_name, im.width, im.height)
     except Exception:
         return (None, None, None)
 
 
-def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
+def collect_category(cat_dir: Path, cat: str, cfg: dict,
+                     refresh_thumbs: bool = False) -> list[dict]:
     """Alle Bilder einer Kategorie REKURSIV sammeln. file = Pfad relativ zum Kategorieordner."""
     items: list[dict] = []
     thumb_dir = cat_dir / "thumbs"
@@ -157,15 +191,39 @@ def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
             else:
                 title = prettify(p.stem) or cfg["title"]
             alt = cfg["alt"].format(t=title)
+        # Politik & Gesellschaft: Fotografenpräfix, Datum und Bildnummer lesbar machen.
+        elif cat == "politik":
+            raw = re.sub(r"^altoGillmann[_ -]*", "", p.stem, flags=re.IGNORECASE)
+            raw = re.sub(r"_VC\d+$", "", raw, flags=re.IGNORECASE)
+            dated = re.match(r"^(.*?)[_-]?(\d{2})(\d{2})(\d{4})-(\d+)$", raw)
+            numbered = re.match(r"^(Mahnwache|japanfest)[_-](\d+)$", raw, re.IGNORECASE)
+            if dated:
+                subject = prettify(dated.group(1)) or "Politische Reportage"
+                subject_names = {
+                    "disability pride month": "Disability Pride Month",
+                    "oez gedenktag": "OEZ-Gedenktag",
+                }
+                subject = subject_names.get(subject.lower(), subject)
+                day, month, year, number = dated.group(2), dated.group(3), dated.group(4), dated.group(5)
+                title = f"{subject} · {day}.{month}.{year} · Nr. {number}"
+            elif numbered:
+                subject = "Japanfest" if numbered.group(1).lower() == "japanfest" else "Mahnwache"
+                title = f"{subject} · Nr. {numbered.group(2)}"
+            else:
+                title = prettify(raw) or cfg["title"]
+            alt = cfg["alt"].format(t=title)
         else:
             title = prettify(p.stem) or cfg["title"]
             alt = cfg["alt"].format(t=title)
+        featured = rel in FEATURED_FILES.get(cat, set())
         item = {
             "file": rel,
             "title": title,
             "cat": cat,
             "catLabel": cfg["label"],
             "alt": alt,
+            "featured": featured,
+            "weight": FEATURED_WEIGHT if featured else 1,
         }
         w, h = dims(p)
         if w and h:
@@ -173,12 +231,19 @@ def collect_category(cat_dir: Path, cat: str, cfg: dict) -> list[dict]:
             item["height"] = h
         # WebP-Thumbnail generieren (nur für direkte Kategorie-Dateien, keine Unterordner)
         if "/" not in rel:
-            thumb_rel, tw, th = make_thumb(p, thumb_dir)
+            thumb_rel, tw, th = make_thumb(p, thumb_dir, force=refresh_thumbs)
             if thumb_rel:
                 item["thumb"] = thumb_rel
                 item["tw"] = tw
                 item["th"] = th
         items.append(item)
+
+    # Nicht mehr benötigte, ausschließlich generierte Thumbnails entfernen.
+    expected_thumbs = {Path(it["thumb"]).name for it in items if it.get("thumb")}
+    if thumb_dir.is_dir():
+        for old_thumb in thumb_dir.glob("*.webp"):
+            if old_thumb.name not in expected_thumbs:
+                old_thumb.unlink()
     return items
 
 
@@ -295,8 +360,10 @@ def main(argv: list[str]) -> int:
         except Exception:
             pass
 
-    portfolio_dir = Path(argv[1]) if len(argv) > 1 else Path("portfolio")
-    site_root = Path(argv[2]) if len(argv) > 2 else Path(".")
+    refresh_thumbs = "--refresh-thumbs" in argv[1:]
+    positional = [arg for arg in argv[1:] if arg != "--refresh-thumbs"]
+    portfolio_dir = Path(positional[0]) if positional else Path("portfolio")
+    site_root = Path(positional[1]) if len(positional) > 1 else Path(".")
     if not portfolio_dir.is_dir():
         print(f"FEHLER: Portfolio-Ordner nicht gefunden: {portfolio_dir}", file=sys.stderr)
         return 1
@@ -310,7 +377,13 @@ def main(argv: list[str]) -> int:
         if not cat_dir.is_dir():
             print(f"  (übersprungen: {cat}/ existiert nicht)")
             continue
-        items = collect_category(cat_dir, cat, cfg)
+        items = collect_category(cat_dir, cat, cfg, refresh_thumbs=refresh_thumbs)
+        actual_featured = {it["file"] for it in items if it.get("featured")}
+        missing_featured = FEATURED_FILES.get(cat, set()) - actual_featured
+        if missing_featured:
+            print(f"FEHLER: Ausgewaehlte Bilder fehlen in {cat}: "
+                  + ", ".join(sorted(missing_featured)), file=sys.stderr)
+            return 1
         by_cat[cat] = items
         write_json(items, cat_dir / "images.json")
         # Aggregiert: file-Pfad relativ zu portfolio/ (z. B. "sport/foo.jpg")
@@ -331,7 +404,7 @@ def main(argv: list[str]) -> int:
         if not cat_dir.is_dir():
             print(f"  (übersprungen: {cat}/ existiert nicht)")
             continue
-        items = collect_category(cat_dir, cat, cfg)
+        items = collect_category(cat_dir, cat, cfg, refresh_thumbs=refresh_thumbs)
         write_json(items, cat_dir / "images.json")
         print(f"  ✓ {cat} (unlisted): {len(items)} Bilder -> {cat_dir / 'images.json'}")
 

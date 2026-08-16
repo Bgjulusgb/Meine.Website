@@ -45,6 +45,7 @@ jobs:
           git add portfolio/images.json sitemap.xml
           git add portfolio/*/images.json
           git add portfolio/*/thumbs/
+          git add main-portfolio/images.json
           if git diff --staged --quiet; then
             echo "Keine Änderungen – nichts zu committen."
           else

@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://benni-photo.com/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/sport/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -87,44 +87,68 @@
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/konzert/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/cat_call-1.jpg</image:loc>
-      <image:caption>cat call 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/BAC_Oben%20Ohne%20Open%20Air_Nr-05.jpg</image:loc>
+      <image:caption>BAC Oben Ohne Open Air Nr 05 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/cat_call-2.jpg</image:loc>
-      <image:caption>cat call 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/BAC_Oben%20Ohne%20Open%20Air_Nr-09.jpg</image:loc>
+      <image:caption>BAC Oben Ohne Open Air Nr 09 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/cat_call-4.jpg</image:loc>
-      <image:caption>cat call 4 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/BAC_Oben%20Ohne%20Open%20Air_Nr-12.jpg</image:loc>
+      <image:caption>BAC Oben Ohne Open Air Nr 12 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-22.jpg</image:loc>
-      <image:caption>fruchtiger beigeschmack 22 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-04.jpg</image:loc>
+      <image:caption>catcall 04 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-08.jpg</image:loc>
+      <image:caption>catcall 08 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-11.jpg</image:loc>
+      <image:caption>catcall 11 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-20.jpg</image:loc>
+      <image:caption>catcall 20 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-23.jpg</image:loc>
+      <image:caption>catcall 23 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-29.jpg</image:loc>
+      <image:caption>catcall 29 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-30.jpg</image:loc>
+      <image:caption>catcall 30 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-35.jpg</image:loc>
+      <image:caption>catcall 35 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-36.jpg</image:loc>
+      <image:caption>catcall 36 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-40.jpg</image:loc>
+      <image:caption>catcall 40 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/catcall-44.jpg</image:loc>
+      <image:caption>catcall 44 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-28.jpg</image:loc>
       <image:caption>fruchtiger beigeschmack 28 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-37.jpg</image:loc>
-      <image:caption>fruchtiger beigeschmack 37 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-42.jpg</image:loc>
-      <image:caption>fruchtiger beigeschmack 42 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-48.jpg</image:loc>
-      <image:caption>fruchtiger beigeschmack 48 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-52.jpg</image:loc>
-      <image:caption>fruchtiger beigeschmack 52 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/fruchtiger_beigeschmack-64.jpg</image:loc>
@@ -143,48 +167,116 @@
       <image:caption>fruchtiger beigeschmack 71 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/metal.jpg</image:loc>
-      <image:caption>metal – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Nura_Oben%20Ohne%20Open%20Air_Nr-5.jpg</image:loc>
+      <image:caption>Nura Oben Ohne Open Air Nr 5 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/metal_adept_2.jpg</image:loc>
-      <image:caption>metal adept 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-05.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 05 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/metal_adept_4.jpg</image:loc>
-      <image:caption>metal adept 4 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-11.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 11 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/metal_adept_crowd.jpg</image:loc>
-      <image:caption>metal adept crowd – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-12.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 12 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_1.jpg</image:loc>
-      <image:caption>mola beim so not right festival 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-22.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 22 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_2.jpg</image:loc>
-      <image:caption>mola beim so not right festival 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-27.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 27 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_3.jpg</image:loc>
-      <image:caption>mola beim so not right festival 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-30.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 30 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/mola_beim_so-not-right-festival_4.jpg</image:loc>
-      <image:caption>mola beim so not right festival 4 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-32.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 32 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Papierkatze_im_Wanda-1.jpg</image:loc>
-      <image:caption>Papierkatze im Wanda 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-34.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 34 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Papierkatze_im_Wanda-2.jpg</image:loc>
-      <image:caption>Papierkatze im Wanda 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-35.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 35 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Papierkatze_im_Wanda-3.jpg</image:loc>
-      <image:caption>Papierkatze im Wanda 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-36.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 36 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-39.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 39 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-42.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 42 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-49.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 49 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-50.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 50 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/PISS%20-%20TEST_beim%20Punkmas-51.jpg</image:loc>
+      <image:caption>PISS TEST beim Punkmas 51 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Radikale%20R%C3%BCben_beim%20Punkmas-02.jpg</image:loc>
+      <image:caption>Radikale Rüben beim Punkmas 02 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Radikale%20R%C3%BCben_beim%20Punkmas-06.jpg</image:loc>
+      <image:caption>Radikale Rüben beim Punkmas 06 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Radikale%20R%C3%BCben_beim%20Punkmas-07.jpg</image:loc>
+      <image:caption>Radikale Rüben beim Punkmas 07 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Radikale%20R%C3%BCben_beim%20Punkmas-08.jpg</image:loc>
+      <image:caption>Radikale Rüben beim Punkmas 08 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Radikale%20R%C3%BCben_beim%20Punkmas-13.jpg</image:loc>
+      <image:caption>Radikale Rüben beim Punkmas 13 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-07.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 07 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-20_VC01.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 20 VC01 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-21.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 21 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-24.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 24 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-27.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 27 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-37.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 37 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Souly_Oben%20Ohne%20Open%20Air_Nr-38.jpg</image:loc>
+      <image:caption>Souly Oben Ohne Open Air Nr 38 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/Sportfreunde_Stiller_Olympiahalle%20%282%29.jpg</image:loc>
@@ -207,22 +299,6 @@
       <image:caption>Sportfreunde Stiller Olympiahalle – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Stahlzeit%20%281%29.jpg</image:loc>
-      <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Stahlzeit%20%282%29.jpg</image:loc>
-      <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Stahlzeit%20%283%29.jpg</image:loc>
-      <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Stahlzeit%20%284%29.jpg</image:loc>
-      <image:caption>Stahlzeit – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
       <image:loc>https://benni-photo.com/portfolio/konzert/subkultur_ffb_metal-night_1.jpg</image:loc>
       <image:caption>subkultur ffb metal night 1 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
@@ -231,43 +307,199 @@
       <image:caption>subkultur ffb metal night 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/subkultur_ffb_metal-night_3.jpg</image:loc>
-      <image:caption>subkultur ffb metal night 3 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Venus%20Bleeding_beim%20Punkmas-02.jpg</image:loc>
+      <image:caption>Venus Bleeding beim Punkmas 02 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-11.jpg</image:loc>
-      <image:caption>Tortured 11 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Venus%20Bleeding_beim%20Punkmas-03.jpg</image:loc>
+      <image:caption>Venus Bleeding beim Punkmas 03 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-18.jpg</image:loc>
-      <image:caption>Tortured 18 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Venus%20Bleeding_beim%20Punkmas-04.jpg</image:loc>
+      <image:caption>Venus Bleeding beim Punkmas 04 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-20.jpg</image:loc>
-      <image:caption>Tortured 20 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Venus%20Bleeding_beim%20Punkmas-07.jpg</image:loc>
+      <image:caption>Venus Bleeding beim Punkmas 07 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-27.jpg</image:loc>
-      <image:caption>Tortured 27 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Venus%20Bleeding_beim%20Punkmas-10.jpg</image:loc>
+      <image:caption>Venus Bleeding beim Punkmas 10 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured-29.jpg</image:loc>
-      <image:caption>Tortured 29 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Yung%20Pepp_Oben%20Ohne%20Open%20Air_Nr-07.jpg</image:loc>
+      <image:caption>Yung Pepp Oben Ohne Open Air Nr 07 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured_Bandfoto-2.jpg</image:loc>
-      <image:caption>Tortured Bandfoto 2 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Yung%20Pepp_Oben%20Ohne%20Open%20Air_Nr-21.jpg</image:loc>
+      <image:caption>Yung Pepp Oben Ohne Open Air Nr 21 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/konzert/Tortured_Bandfoto.jpg</image:loc>
-      <image:caption>Tortured Bandfoto – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/konzert/Yung%20Pepp_Oben%20Ohne%20Open%20Air_Nr-34.jpg</image:loc>
+      <image:caption>Yung Pepp Oben Ohne Open Air Nr 34 – Konzert- &amp; Musikfotografie von Benjamin Gillmann</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://benni-photo.com/portfolio/event/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_01.jpg</image:loc>
+      <image:caption>Konferenz 01 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_02.jpg</image:loc>
+      <image:caption>Konferenz 02 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_03.jpg</image:loc>
+      <image:caption>Konferenz 03 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_04.jpg</image:loc>
+      <image:caption>Konferenz 04 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_05.jpg</image:loc>
+      <image:caption>Konferenz 05 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_06.jpg</image:loc>
+      <image:caption>Konferenz 06 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_07.jpg</image:loc>
+      <image:caption>Konferenz 07 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_08.jpg</image:loc>
+      <image:caption>Konferenz 08 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_09.jpg</image:loc>
+      <image:caption>Konferenz 09 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_10.jpg</image:loc>
+      <image:caption>Konferenz 10 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_11.jpg</image:loc>
+      <image:caption>Konferenz 11 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_12.jpg</image:loc>
+      <image:caption>Konferenz 12 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_13.jpg</image:loc>
+      <image:caption>Konferenz 13 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_14.jpg</image:loc>
+      <image:caption>Konferenz 14 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_15.jpg</image:loc>
+      <image:caption>Konferenz 15 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_16.jpg</image:loc>
+      <image:caption>Konferenz 16 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_17.jpg</image:loc>
+      <image:caption>Konferenz 17 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_18.jpg</image:loc>
+      <image:caption>Konferenz 18 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_19.jpg</image:loc>
+      <image:caption>Konferenz 19 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_20.jpg</image:loc>
+      <image:caption>Konferenz 20 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_21.jpg</image:loc>
+      <image:caption>Konferenz 21 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_22.jpg</image:loc>
+      <image:caption>Konferenz 22 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_23.jpg</image:loc>
+      <image:caption>Konferenz 23 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_24.jpg</image:loc>
+      <image:caption>Konferenz 24 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_25.jpg</image:loc>
+      <image:caption>Konferenz 25 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_26.jpg</image:loc>
+      <image:caption>Konferenz 26 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_27.jpg</image:loc>
+      <image:caption>Konferenz 27 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_28.jpg</image:loc>
+      <image:caption>Konferenz 28 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_29.jpg</image:loc>
+      <image:caption>Konferenz 29 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_30.jpg</image:loc>
+      <image:caption>Konferenz 30 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_31.jpg</image:loc>
+      <image:caption>Konferenz 31 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_32.jpg</image:loc>
+      <image:caption>Konferenz 32 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_33.jpg</image:loc>
+      <image:caption>Konferenz 33 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_34.jpg</image:loc>
+      <image:caption>Konferenz 34 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_35.jpg</image:loc>
+      <image:caption>Konferenz 35 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_36.jpg</image:loc>
+      <image:caption>Konferenz 36 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_37.jpg</image:loc>
+      <image:caption>Konferenz 37 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_39.jpg</image:loc>
+      <image:caption>Konferenz 39 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/event/Konferenz_40.jpg</image:loc>
+      <image:caption>Konferenz 40 – Eventfotografie von Benjamin Gillmann</image:caption>
+    </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/event/start_into_media_nr_005.jpg</image:loc>
       <image:caption>start into media nr 005 – Eventfotografie von Benjamin Gillmann</image:caption>
@@ -290,88 +522,370 @@
     </image:image>
   </url>
   <url>
-    <loc>https://benni-photo.com/portfolio/red-carpet/</loc>
-    <lastmod>2026-07-01</lastmod>
+    <loc>https://benni-photo.com/portfolio/politik/</loc>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%281%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann21072026-001.jpg</image:loc>
+      <image:caption>Politische Reportage · 21.07.2026 · Nr. 001 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2810%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann21072026-022.jpg</image:loc>
+      <image:caption>Politische Reportage · 21.07.2026 · Nr. 022 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2811%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann21072026-028.jpg</image:loc>
+      <image:caption>Politische Reportage · 21.07.2026 · Nr. 028 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2812%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann21072026-091.jpg</image:loc>
+      <image:caption>Politische Reportage · 21.07.2026 · Nr. 091 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2813%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann21072026-156.jpg</image:loc>
+      <image:caption>Politische Reportage · 21.07.2026 · Nr. 156 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2814%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann21072026-163.jpg</image:loc>
+      <image:caption>Politische Reportage · 21.07.2026 · Nr. 163 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2815%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-01.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 01 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2816%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-04.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 04 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2817%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-08.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 08 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%2818%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-09.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 09 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%282%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-10.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 10 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%283%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-11.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 11 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%284%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-14.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 14 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%285%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-16.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 16 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%286%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-18.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 18 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%287%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-19.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 19 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%288%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-20.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 20 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/die-drei-fragezeichen-premiere-2026%20%289%29.jpg</image:loc>
-      <image:caption>die drei fragezeichen premiere 2026 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-21.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 21 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-22.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 22 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-23.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 23 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_Disability%20Pride%20Month_24072026-24.jpg</image:loc>
+      <image:caption>Disability Pride Month · 24.07.2026 · Nr. 24 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-01.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 01 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-08.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 08 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-09.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 09 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-11.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 11 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-15.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 15 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-20.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 20 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-24.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 24 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-26.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 26 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-27.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 27 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-30.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 30 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-32.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 32 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-34_VC01.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 34 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-39.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 39 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-42.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 42 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-43.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 43 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/altoGillmann_OEZ-Gedenktag_22072026-44.jpg</image:loc>
+      <image:caption>OEZ-Gedenktag · 22.07.2026 · Nr. 44 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/japanfest_25.jpg</image:loc>
+      <image:caption>Japanfest · Nr. 25 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/japanfest_28.jpg</image:loc>
+      <image:caption>Japanfest · Nr. 28 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/japanfest_32.jpg</image:loc>
+      <image:caption>Japanfest · Nr. 32 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/japanfest_46.jpg</image:loc>
+      <image:caption>Japanfest · Nr. 46 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/japanfest_56.jpg</image:loc>
+      <image:caption>Japanfest · Nr. 56 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_02.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 02 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_03.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 03 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_04.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 04 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_07.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 07 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_11.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 11 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_16.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 16 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_20.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 20 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_21.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 21 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_24.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 24 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_28.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 28 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_29.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 29 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_31.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 31 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/politik/Mahnwache_33.jpg</image:loc>
+      <image:caption>Mahnwache · Nr. 33 – Politik- und Reportagefotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://benni-photo.com/portfolio/red-carpet/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-05.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 05 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-13.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 13 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-14.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 14 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-15.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 15 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-18.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 18 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-19.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 19 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-19.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 19 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-41.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 41 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-43.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 43 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-47.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 47 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-51.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 51 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-57.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 57 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-2-59.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 2 59 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-21.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 21 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-22.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 22 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-23.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 23 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-24.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 24 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-25.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 25 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-26.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 26 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-27.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 27 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-28.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 28 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-29.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 29 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-31.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 31 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-39.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 39 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-41.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 41 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-45.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 45 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-46.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 46 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-49.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 49 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-53.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 53 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-54.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 54 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-57.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 57 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-59.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 59 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://benni-photo.com/portfolio/red-carpet/Steckerlfischfiasko-60.jpg</image:loc>
+      <image:caption>Steckerlfischfiasko 60 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://benni-photo.com/portfolio/red-carpet/woodwalkers_2%20%281%29.jpg</image:loc>
-      <image:caption>woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/woodwalkers_2%20%2810%29.jpg</image:loc>
       <image:caption>woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
     </image:image>
     <image:image>
@@ -398,580 +912,16 @@
       <image:loc>https://benni-photo.com/portfolio/red-carpet/woodwalkers_2%20%287%29.jpg</image:loc>
       <image:caption>woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
     </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/woodwalkers_2%20%288%29.jpg</image:loc>
-      <image:caption>woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/red-carpet/woodwalkers_2%20%289%29.jpg</image:loc>
-      <image:caption>woodwalkers 2 – Red-Carpet-Fotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://benni-photo.com/portfolio/meine-kunst/</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2815%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2822%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2827%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2831%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2838%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2840%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2842%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2844%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2849%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2858%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2862%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%2863%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/adrian/adrian_18%20%288%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Adrian, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_02.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_03.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_05.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_06.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_08.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_11.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_13.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_16.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_18.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_20.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_23.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_28.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_30.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_31.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_33.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_36.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_44.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/chris/chris_46.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Chris, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_03.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_05.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_06.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_22.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_25.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_27.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_31.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_32.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_37.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_38.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_46.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_48.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_50.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_51.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_52.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Cleo/cleo_54.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Cleo, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/_DSC4222%20%281%29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina01.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina02.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina03.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina04.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina05.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina06.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina07.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina08.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina09.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina10.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina11.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina12.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina13.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina14.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina15.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina16.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina17.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina18.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina19.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina20.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Kristina/kristina21.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Kristina, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-14.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-16.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-17.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-18.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-2.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-34.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-4.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-46.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-54.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-55.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-56.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Len/len-69.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Len, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_02.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_03.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_05.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_07.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_09.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_10.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_14.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_17.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_20.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_21.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_22.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_25.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_27.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Max/max_30.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Max, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Niah/niah_02.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Niah, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Niah/niah_05.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Niah, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Niah/niah_18.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Niah, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Niah/niah_25.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Niah, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Niah/niah_30.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Niah, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Rubzz/rubzz_06.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Rubzz, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Rubzz/rubzz_10.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Rubzz, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Rubzz/rubzz_11.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Rubzz, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Rubzz/rubzz_12.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Rubzz, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Rubzz/rubzz_26.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Rubzz, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/10-im-quadrat-bilder/Rubzz/rubzz_29.jpg</image:loc>
-      <image:caption>»10 im Quadrat« – Porträtserie mit Rubzz, Ausstellung München (Süddeutsche Zeitung) – Foto von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/choreo_said%20%281%29.jpg</image:loc>
-      <image:caption>choreo said – künstlerische Porträtfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/choreo_said%20%282%29.jpg</image:loc>
-      <image:caption>choreo said – künstlerische Porträtfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/choreo_said%20%283%29.jpg</image:loc>
-      <image:caption>choreo said – künstlerische Porträtfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/choreo_said%20%284%29.jpg</image:loc>
-      <image:caption>choreo said – künstlerische Porträtfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/choreo_said%20%285%29.jpg</image:loc>
-      <image:caption>choreo said – künstlerische Porträtfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/meine-kunst/choreo_said%20%286%29.jpg</image:loc>
-      <image:caption>choreo said – künstlerische Porträtfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://benni-photo.com/portfolio/theater-und-musical/</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2814%20von%201%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2820%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2822%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2832%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2836%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2838%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2843%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2844%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2845%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2857%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2858%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2860%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2863%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2867%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%287%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2870%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2872%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2875%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%288%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2882%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2887%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://benni-photo.com/portfolio/theater-und-musical/Cavalluna_Wintershow_Kids%20%2890%20von%20265%29.jpg</image:loc>
-      <image:caption>Cavalluna Wintershow Kids – Theater- &amp; Musicalfotografie von Benjamin Gillmann</image:caption>
-    </image:image>
   </url>
   <url>
     <loc>https://benni-photo.com/impressum.html</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://benni-photo.com/datenschutz.html</loc>
-    <lastmod>2026-07-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

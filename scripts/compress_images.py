@@ -4,7 +4,8 @@ umzubenennen oder zu verschieben.
 
 Standard-Verhalten:
 - Lange Kante auf max. MAX_EDGE px verkleinern (kleinere Bilder bleiben unverändert groß).
-- JPEG mit Qualität QUALITY neu speichern (progressiv, optimiert, EXIF entfernt).
+- JPEG mit Qualität QUALITY neu speichern (progressiv, optimiert, EXIF entfernt,
+  vorhandenes ICC-Farbprofil bleibt erhalten).
 - PNG bleibt PNG (verlustfrei optimiert, ggf. verkleinert) -> Dateiname/Endung bleiben gleich.
 - EXIF-Orientierung wird vor dem Verkleinern angewendet (Bild bleibt korrekt gedreht).
 
@@ -29,7 +30,7 @@ from PIL import Image, ImageOps
 # ── Konfiguration ────────────────────────────────────────────────────────────
 MAX_EDGE = 2048          # lange Kante in px (Web-optimiert)
 QUALITY = 82             # JPEG-Qualität
-SKIP_BYTES = 600 * 1024  # Bilder kleiner als das + bereits <= MAX_EDGE -> überspringen
+SKIP_BYTES = 1024 * 1024 # Bereits auf Webmaß verkleinerte Bilder unter 1 MB überspringen
 JPEG_EXTS = {".jpg", ".jpeg"}
 PNG_EXTS = {".png"}
 IMAGE_EXTS = JPEG_EXTS | PNG_EXTS
@@ -57,6 +58,7 @@ def default_roots() -> list[Path]:
 def encode(img: Image.Image, ext: str) -> bytes:
     """Bild in Bytes kodieren (JPEG bzw. PNG) – ohne auf Platte zu schreiben."""
     buf = io.BytesIO()
+    icc_profile = img.info.get("icc_profile")
     if ext in JPEG_EXTS:
         out = img
         if out.mode in ("RGBA", "LA", "P"):
@@ -66,9 +68,15 @@ def encode(img: Image.Image, ext: str) -> bytes:
             out = bg
         elif out.mode != "RGB":
             out = out.convert("RGB")
-        out.save(buf, format="JPEG", quality=QUALITY, optimize=True, progressive=True)
+        save_args = dict(format="JPEG", quality=QUALITY, optimize=True, progressive=True)
+        if icc_profile:
+            save_args["icc_profile"] = icc_profile
+        out.save(buf, **save_args)
     else:  # PNG
-        img.save(buf, format="PNG", optimize=True)
+        save_args = dict(format="PNG", optimize=True)
+        if icc_profile:
+            save_args["icc_profile"] = icc_profile
+        img.save(buf, **save_args)
     return buf.getvalue()
 
 
@@ -121,7 +129,7 @@ def iter_images(roots: list[Path]):
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description="Portfolio-Bilder web-tauglich komprimieren.")
-    ap.add_argument("roots", nargs="*", help="Zu verarbeitende Ordner (Standard: portfolio + 'das hier nicht benutzen').")
+    ap.add_argument("roots", nargs="*", help="Zu verarbeitende Ordner (Standard: gesamtes Site-Root + optionaler Backup-Ordner).")
     ap.add_argument("--dry-run", action="store_true", help="Nur anzeigen, nichts schreiben.")
     args = ap.parse_args(argv[1:])
 
